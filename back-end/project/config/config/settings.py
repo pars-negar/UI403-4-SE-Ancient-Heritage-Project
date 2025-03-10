@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'tours',
     'reserve',
     'message',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
