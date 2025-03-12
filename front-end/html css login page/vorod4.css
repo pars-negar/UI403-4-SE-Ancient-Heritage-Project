@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
+
+
+/* تنظیمات کلی صفحه */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to top left,#ee9e48, rgb(217, 93, 21), rgb(110, 54, 6));
+/* رنگ پس‌زمینه صفحه */
+    font-family: 'Gandom', serif;
+    direction: rtl; /* جهت متن راست به چپ */
+}
+
+/* تنظیمات کلی کادر اصلی */
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 80%;
+    height: 90vh;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* تنظیمات بخش سمت چپ (تصویر پل و عنوان) */
+.left-panel {
+    flex: 1.2;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("axvorood1.png");
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* تنظیمات عنوان مهرگان */
+.title {
+    font-size: 60px;
+    color: #871717;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* تنظیمات تصویر پل */
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+/* کادر دور تصویر پل */
+.image-box {
+    position: relative;
+    width: 60%; /* کاهش اندازه تصویر به ۷۰٪ */
+    height: auto;
+    border: 5px solid #871717;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.image-box img {
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+}
+
+/* مستطیل‌های زیر تصویر */
+.rectangles {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* اجازه می‌دهد مستطیل‌ها هنگام کوچک شدن صفحه، به خط بعدی بروند */
+    gap: 15px;
+    position: relative; 
+    margin-top: 90px;/*فاصله از تصویر*/
+    bottom: 70px; /* فاصله از پایین */
+    left: 50%;
+    transform: translateX(-50%); /* برای وسط‌چین کردن مستطیل‌ها */
+    width: 100%;
+    }
+    
+    .rectangles div {
+    width: 100px;  /* عرض دلخواه مستطیل */
+    height: 30px;  /* ارتفاع دلخواه مستطیل */
+    background-color: rgb(110, 54, 6);
+    border-radius: 5px;
+    }
+
+/* تنظیمات بخش سمت راست (فرم ورود) */
+.right-panel {
+    flex: 1;
+    background-color: #e0b489;
+    color: rgb(11, 60, 85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+form{
+    width: 75%;
+}
+.foor{
+  font-size: 40px;
+}
+/* تنظیمات فرم ورود */
+.form-group {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 110%;
+}
+
+.form-group input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 18px;
+    width: 110%;
+}
+
+/* تنظیمات آیکون‌های داخل فرم */
+.icon {
+    margin-right: 10px;
+    font-family: 'Noto Color Emoji', sans-serif;
+    font-size: 20px; /* اندازه ایموجی */
+}
+
+/* دکمه ورود */
+.login-btn {
+    background: rgb(11, 60, 85);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 115%;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background: #e0d0c0;
+}
+.linkk{
+    color:rgb(1, 35, 54) ;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+
+
+@media screen and (max-width: 850px) {
+    .container {
+        width: 95%;
+    }
+
+  }
+
+  @media screen and (max-width: 700px) {
+
+    .left-panel {
+        display: none;
+    }
+  }

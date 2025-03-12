@@ -4,15 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="./sign-up-styles.css">
 </head>
 <body>
-    <div>
-        <hr>
-        <h4>ثبت‌نام کاربر</h4>
-        <input type="number" placeholder="نام کاربری"> <br>
-        <input type="email" placeholder="ایمیل"> <br>
-        <input type="text" placeholder="نام کاربری"> <br>
-        <input type="password" placeholder="رمز عبور"> <br>
+    <div class="container">
+        <div id="sign-up-card">
+            <hr>
+            <div id="inputs">
+                <h4>ثبت‌نام کاربر</h4>
+                <input type="number" placeholder="شماره موبایل"> 
+                <input id="email" type="email" placeholder="ایمیل"> 
+                <input type="text" placeholder="نام کاربری"> 
+                <input type="password" placeholder="رمز عبور"> 
+                <button type="submit" id="sign-up-button">ثبت‌نام</button>
+                <p>قبلا ثبت‌نام کرده اید؟ <a href="">ورود</a></p>
+            </div>
+        </div>
+        <div class="image-container">
+            <h1 id="title">پارس نگار</h1>
+            <div class="no-border-rectangle"></div>
+            <img src="./images/1.png" alt="image" id="pic">
+            <div class="brown-rectangle"></div>
+           
+        </div>
     </div>
 </body>
 </html>
