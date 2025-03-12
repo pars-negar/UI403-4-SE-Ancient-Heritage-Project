@@ -107,10 +107,9 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
     width: 50%;
     height: 100%;
-    /* overflow: hidden; */
+    overflow: hidden;
     box-sizing: border-box;
 }
 
@@ -120,19 +119,20 @@ body{
     border-radius: 6px;
     z-index: 2;
     align-self: center;
+    margin-bottom: 130px;
+    margin-left: 40px;
     
 }
 
-.background-rectangle {
+.brown-rectangle {
     position: absolute;
-    z-index: 1;  
     width: 200px;
     height: 240px;
     /* top: 240px;
     left: 140px; */
-   margin-right: auto;
- 
-    background-color: #B34D4A;  
+   margin-right: 250px;
+   margin-top: 150px;
+   background-color: #B34D4A;  
 }
 
 
@@ -143,5 +143,18 @@ body{
     font-weight: bold;
     font-size: 60px;
     margin: 0px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
+}
+
+.no-border-rectangle
+{
+    border: 2px solid #C9A16A;
+    width: 200px;
+    height: 240px;
+    margin-right: 125px;
+    margin-bottom: 150px;
+    padding: 20px;
+    z-index: 1;
+    overflow: hidden;
+    position: absolute;
 }
