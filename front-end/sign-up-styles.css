@@ -41,6 +41,7 @@ body{
     font-weight: bold;
     width: 18vw;
     height: 80vh;
+    /* border: none; */
 }
 
 #sign-up-button {
@@ -75,6 +76,7 @@ body{
     padding: 8px;
     margin: 20x;
     /* gap: 10px; */
+    border: none;
 }
 
 #sign-up-card hr {
