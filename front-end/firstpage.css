@@ -2,7 +2,7 @@
 @import url('https://cdn.fontsiran.com/Shabnam.css');
 
 
-
+/* General styles */
 body {
     margin: 0;
     padding: 0;
@@ -15,7 +15,7 @@ body {
     direction: rtl;
 }
 
-
+/* Main container */
 .container {
     display: flex;
     flex-direction: row;
@@ -27,7 +27,7 @@ body {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
 }
 
-
+/* Left panel (Text section) */
 .text-panel {
     flex: 1;
     display: flex;
@@ -50,9 +50,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* 
-  دکمه‌های ورود و ثبت‌نام
-*/
+/* Buttons styling */
 .btn {
     width: 220px;
     padding: 10px;
@@ -69,9 +67,7 @@ body {
 
 .btn:hover { opacity: 0.8; }
 
-/* 
-  پنل سمت راست (عکس)
-*/
+/* Right panel (Image section) */
 .image-panel {
     flex: 1;
     display: flex;
@@ -88,6 +84,7 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Responsive design for smaller screens */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
