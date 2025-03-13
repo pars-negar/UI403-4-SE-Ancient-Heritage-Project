@@ -9,30 +9,33 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-   height: 100vh;
+    height: 100vh;
 }
 
 .container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 80%;
     height: 90vh;
     background-color: #D9A883;
+    border-radius: 5px;
     /* position: inherit; */
 }
+
+
 #sign-up-card {
     display: flex;
     flex-direction: column;
     /* align-items: flex-start; */
     background-color: #623528;
-    padding: 20px;
+    padding: 10px;
     border-radius: 6px;
     /* margin: 20px; */
-    width: 27vw;
+    width: 24vw;
     height: 80vh;
     align-items: center;
-    /* margin-left: 100px; */
+    /* margin-right: 20px; */
     align-self: center;
 }
 
@@ -84,13 +87,18 @@ body{
     border-radius: 6px;
     padding: 5px;
     /* position: relative; */
-    color: #959494;
     align-self: center;
     width: 90%;
     padding: 8px;
     margin: 20x;
     /* gap: 10px; */
     border: none;
+}
+
+#inputs input::placeholder
+{
+    color: black;
+    opacity: 1;
 }
 
 #sign-up-card hr {
@@ -118,24 +126,30 @@ body{
 } */
 
 .image-container {
+    flex: 1.2;
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 50%;
-    height: 100%;
+    height: 90%;
     overflow: hidden;
     box-sizing: border-box;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("images/sign-up-picture.png");
+    background-size: cover;
+    background-position: center;
+    margin: 0px 20px;
+    align-self: center;
+    border-radius: 5px;
 }
 
 .image-container img {
     height: 290px;
     width: 250px;
-    border-radius: 6px;
+    border-radius: 5px;
     z-index: 2;
     align-self: center;
-    margin-bottom: 130px;
-    margin-left: 40px;
-    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("./images/sign-up-picture.png");
+    margin-bottom: 40px;
+    margin-left: 50px;
     
 }
 
@@ -145,8 +159,8 @@ body{
     height: 240px;
     /* top: 240px;
     left: 140px; */
-   margin-right: 250px;
-   margin-top: 150px;
+   margin-right: 300px;
+   margin-top: 200px;
    background-color: #623528;  
 }
 
@@ -166,8 +180,8 @@ body{
     border: 2px solid #C9A16A;
     width: 200px;
     height: 240px;
-    margin-right: 125px;
-    margin-bottom: 150px;
+    margin-right: 120px;
+    margin-bottom: 60px;
     padding: 20px;
     z-index: 1;
     overflow: hidden;
