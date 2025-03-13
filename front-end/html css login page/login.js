@@ -10,7 +10,7 @@ document.querySelector(".login-btn").addEventListener("click", function(event)
         return;
     }
 
-    const apiUrl = "api/login/"; 
+    const apiUrl = "127.0.0.1:8000/api/login/"; 
 
     const data = {
         username: username,
