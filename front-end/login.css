@@ -29,7 +29,7 @@ body {
 /* Settings for the left panel (bridge image and Mehrgan title) */
 .left-panel {
     flex: 1.2;
-    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("axvorood1.png");
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("ax-login-page.jpg");
     background-size: cover;
     background-position: center;
     padding: 20px;
@@ -41,7 +41,7 @@ body {
     font-size: 60px;
     color: #871717;
     text-align: center;
-    margin-bottom: 15px;
+    margin-top: 80px;
 }
 
 /* Settings for the bridge image */
@@ -54,17 +54,19 @@ body {
 /* Border around the bridge image */
 .image-box {
     position: relative;
-    width: 60%; /* Reducing the image size to 70% */
+    width: 70%; /* Reducing the image size to 70% */
     height: auto;
     border: 5px solid #871717;
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.6);
+    margin-top:2%;
 }
 
 .image-box img {
     width: 100%;
     display: block;
     border-radius: 5px;
+   
 }
 
 /* Rectangles below the image */
@@ -72,7 +74,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap; /* Allows rectangles to move to the next line when the screen shrinks */
-    gap: 15px;
+    gap: 10px;
     position: relative; 
     margin-top: 90px; /* Distance from the image */
     bottom: 70px; /* Distance from the bottom */
@@ -83,7 +85,7 @@ body {
     
 .rectangles div {
     width: 100px;  /* Desired width of the rectangle */
-    height: 30px;  /* Desired height of the rectangle */
+    height: 20px;  /* Desired height of the rectangle */
     background-color: #623528;
     border-radius: 5px;
 }
