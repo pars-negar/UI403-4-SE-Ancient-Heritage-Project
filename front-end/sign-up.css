@@ -3,15 +3,21 @@
 }
 
 body{
-    background-color: #F8E8D9;
+    background: linear-gradient(to top left,#A98062, #956643, #623528);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    width: 100%;
-    height: 100vh;
+    width: 80%;
+    height: 90vh;
+    background-color: #D9A883;
     /* position: inherit; */
 }
 #sign-up-card {
@@ -45,10 +51,11 @@ body{
 }
 
 #sign-up-button {
-    background-color: #8F2626;
-    color: #F8EADA;
-    border-radius: 10px;
-    border:1px solid #F8EADA;
+    background-color: #213141;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
     padding: 10px;
     width: 50%;
     align-self: center;
