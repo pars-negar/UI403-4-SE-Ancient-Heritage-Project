@@ -1,6 +1,7 @@
 document.querySelector(".login-btn").addEventListener("click", function(event)
 {
-    event.preventDefault;
+    event.preventDefault();
+
 
     const username = document.querySelector("input[type='text']").value.trim();
     const password = document.querySelector("input[type='password']").value.trim();
@@ -10,12 +11,13 @@ document.querySelector(".login-btn").addEventListener("click", function(event)
         return;
     }
 
-    const apiUrl = "127.0.0.1:8000/api/login/"; 
+    const apiUrl = "http://127.0.0.1:8000/api/login/"; 
 
     const data = {
         username: username,
         password: password
     };
+    console.log("Sending Data:", data);
 
     fetch(apiUrl, {
         method: "POST",
@@ -26,13 +28,16 @@ document.querySelector(".login-btn").addEventListener("click", function(event)
     })
     .then(response => response.json())
     .then(result => {
-        if (result.success) {
+        if (result.access) {  // بررسی وجود توکن 'access'
             alert("ورود موفقیت‌آمیز بود!");
-            window.location.href = "dashboard.html"; // Redirect on success
+            localStorage.setItem("access_token", result.access); // ذخیره توکن
+            localStorage.setItem("refresh_token", result.refresh); // ذخیره رفرش توکن
+            window.location.href = "dashboard.html"; // انتقال به داشبورد
         } else {
             alert("نام کاربری یا رمز عبور اشتباه است");
         }
     })
+    
     .catch(error => {
         console.error("خطا در ارتباط با سرور:", error);
         alert("مشکلی در ارتباط با سرور پیش آمده است");

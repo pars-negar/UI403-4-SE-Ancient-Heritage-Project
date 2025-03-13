@@ -26,6 +26,7 @@ class LoginViewSet(viewsets.ViewSet):
         if serializer.is_valid():
             username = serializer.validated_data['username']
             password = serializer.validated_data['password']
+            print(f"Received: username={username}, password={password}") 
             user = authenticate(username=username, password=password)
             if user:
                 # ساخت توکن JWT

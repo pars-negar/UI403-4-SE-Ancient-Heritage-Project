@@ -16,6 +16,10 @@ from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+CORS_ALLOW_HEADERS = ["authorization", "content-type"]
+
 
 # Get the Kavenegar API key
 KAVENEGAR_API_KEY = os.getenv('KAVENEGAR_API_KEY')
@@ -54,12 +58,16 @@ INSTALLED_APPS = [
     'apps.reserve',
     'apps.message',
     'apps.authentication',
+        'corsheaders',
+
   
 ]
 
 
 AUTH_USER_MODEL = 'users.CustomUser'
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
