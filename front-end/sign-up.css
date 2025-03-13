@@ -23,8 +23,13 @@ body{
     /* position: inherit; */
 }
 
-
+.right-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
 #sign-up-card {
+    
     display: flex;
     flex-direction: column;
     /* align-items: flex-start; */
@@ -159,9 +164,10 @@ body{
     height: 240px;
     /* top: 240px;
     left: 140px; */
-   margin-right: 300px;
-   margin-top: 200px;
+   margin-right: 200px;
+   margin-top: 160px;
    background-color: #623528;  
+   border-radius: 5px;
 }
 
 
@@ -180,10 +186,11 @@ body{
     border: 2px solid #C9A16A;
     width: 200px;
     height: 240px;
-    margin-right: 120px;
-    margin-bottom: 60px;
+    margin-right: 100px;
+    margin-bottom: 20px;
     padding: 20px;
     z-index: 1;
     overflow: hidden;
     position: absolute;
+    border-radius: 5px;
 }
