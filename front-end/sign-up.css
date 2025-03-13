@@ -9,6 +9,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+   height: 100vh;
 }
 
 .container {
@@ -24,7 +25,7 @@ body{
     display: flex;
     flex-direction: column;
     /* align-items: flex-start; */
-    background-color: #B34D4A;
+    background-color: #623528;
     padding: 20px;
     border-radius: 6px;
     /* margin: 20px; */
@@ -39,7 +40,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 7px;
-    background-color: #B34D4A;
+    background-color: #623528;
     text-align: center;
     /* margin: 10px;
     padding: 20px; */
@@ -58,18 +59,24 @@ body{
     cursor: pointer;
     padding: 10px;
     width: 50%;
-    align-self: center;
+    margin-top: 10px;
+    position: relative;
+    left: -25%;
+    /* align-self: center;
     margin-top: 30px;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: bold; */
 }
 
 #inputs p, h4 {
     color: #F8EADA;
+    font-family: 'Gandom', serif;
 }
 
 #inputs a {
-    color: #102E3B;
+    color: rgb(1, 35, 54);
+    text-decoration: none;
+
 }
 
 #inputs input {
@@ -128,6 +135,7 @@ body{
     align-self: center;
     margin-bottom: 130px;
     margin-left: 40px;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("./images/sign-up-picture.png");
     
 }
 
@@ -139,14 +147,14 @@ body{
     left: 140px; */
    margin-right: 250px;
    margin-top: 150px;
-   background-color: #B34D4A;  
+   background-color: #623528;  
 }
 
 
 #title
 {
     align-self: center;
-    color: #B87333;
+    color: #811717;
     font-weight: bold;
     font-size: 60px;
     margin: 0px;
