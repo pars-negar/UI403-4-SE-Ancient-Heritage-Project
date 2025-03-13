@@ -10,7 +10,7 @@ document.querySelector(".login-btn").addEventListener("click", function(event)
         return;
     }
 
-    const apiUrl = "https://your-api.com/login"; 
+    const apiUrl = "api/login/"; 
 
     const data = {
         username: username,
