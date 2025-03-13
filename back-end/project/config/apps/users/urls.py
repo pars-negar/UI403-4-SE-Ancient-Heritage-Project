@@ -1,9 +1,12 @@
-from rest_framework.routers import SimpleRouter
-from .views import CustomUserViewSet
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import RegisterViewSet, LoginViewSet, CustomUserViewSet
 
-app_name = 'apps.users'  
+router = DefaultRouter()
+router.register(r'register', RegisterViewSet, basename='register')
+router.register(r'login', LoginViewSet, basename='login')
+router.register(r'users', CustomUserViewSet, basename='users')
 
-router = SimpleRouter()
-router.register('admin/users/customuser', CustomUserViewSet)
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('api/', include(router.urls)),
+]
