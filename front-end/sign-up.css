@@ -105,20 +105,16 @@ body{
 }
 
 #inputs input {
-    background-color: #F8E8D9;
-    border-radius: 6px;
-    /* padding: 5px; */
-    /* position: relative; */
-    /* align-self: center;
-    width: 90%;
-    padding: 8px; */
-    margin: 20x;
-    /* gap: 10px; */
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 5px;
+    padding: 17px;
+    margin: 5px 0;
     border: none;
-    outline: none;
-    flex: 1;
-    font-size: 18px;
-    width: 110%;
+    width: 130%;
+    position: relative;
+    right: -5%;
 }
 
 /* #inputs input::placeholder
