@@ -1,5 +1,4 @@
 from django.core.cache import cache
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -17,7 +16,7 @@ class SendOTPView(APIView):
             return Response({'error': 'Phone number is required'}, status=status.HTTP_400_BAD_REQUEST)
 
         otp = str(randint(100000, 999999))
-        cache.set(phone_number, otp, timeout=300)  # 👈 ذخیره OTP در cache با زمان انقضا 5 دقیقه
+        cache.set(phone_number, otp, timeout=120)  
 
         try:
             response = sms.verification({
