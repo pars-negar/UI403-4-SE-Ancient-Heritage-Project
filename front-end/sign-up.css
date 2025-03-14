@@ -27,17 +27,18 @@ body{
     flex: 1;
     display: flex;
     justify-content: center;
+    width: 50%;
 }
 #sign-up-card {
-    
+    flex: 1;
     display: flex;
     flex-direction: column;
     /* align-items: flex-start; */
-    background-color: #623528;
-    padding: 10px;
+    background-color: #D9A883;
+    /* padding: 10px; */
     border-radius: 6px;
     /* margin: 20px; */
-    width: 24vw;
+    
     height: 80vh;
     align-items: center;
     /* margin-right: 20px; */
@@ -48,25 +49,37 @@ body{
     display: flex;
     flex-direction: column;
     gap: 7px;
-    background-color: #623528;
+    background-color: #D9A883;
     text-align: center;
     /* margin: 10px;
     padding: 20px; */
     border-radius: 6px;
     font-weight: bold;
-    width: 18vw;
+    /* width: 18vw; */
     height: 80vh;
     /* border: none; */
 }
 
 #sign-up-button {
-    background-color: #213141;
+    /* background-color: #213141;
     color: white;
     border-radius: 5px;
     border: none;
     cursor: pointer;
     padding: 10px;
     width: 50%;
+    margin-top: 10px;
+    position: relative;
+    left: -25%; */
+
+    background: #213141;
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 60%;
     margin-top: 10px;
     position: relative;
     left: -25%;
@@ -76,8 +89,12 @@ body{
     font-weight: bold; */
 }
 
+#sign-up-button:hover {
+    background: #e0d0c0;
+}
+
 #inputs p, h4 {
-    color: #F8EADA;
+    color: #811717;
     font-family: 'Gandom', serif;
 }
 
@@ -90,21 +107,25 @@ body{
 #inputs input {
     background-color: #F8E8D9;
     border-radius: 6px;
-    padding: 5px;
+    /* padding: 5px; */
     /* position: relative; */
-    align-self: center;
+    /* align-self: center;
     width: 90%;
-    padding: 8px;
+    padding: 8px; */
     margin: 20x;
     /* gap: 10px; */
     border: none;
+    outline: none;
+    flex: 1;
+    font-size: 18px;
+    width: 110%;
 }
 
-#inputs input::placeholder
+/* #inputs input::placeholder
 {
     color: black;
     opacity: 1;
-}
+} */
 
 #sign-up-card hr {
     border: none;
@@ -131,20 +152,18 @@ body{
 } */
 
 .image-container {
-    flex: 1.2;
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 50%;
-    height: 90%;
+    height: 100%;
     overflow: hidden;
     box-sizing: border-box;
     background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("images/sign-up-picture.png");
     background-size: cover;
     background-position: center;
-    margin: 0px 20px;
     align-self: center;
-    border-radius: 5px;
+    /* border-radius: 5px; */
 }
 
 .image-container img {
@@ -159,6 +178,7 @@ body{
 }
 
 .brown-rectangle {
+    display: none;
     position: absolute;
     width: 200px;
     height: 240px;
@@ -181,7 +201,7 @@ body{
     margin-bottom: 40px;
 }
 
-.no-border-rectangle
+/* .no-border-rectangle
 {
     border: 2px solid #C9A16A;
     width: 200px;
@@ -193,4 +213,4 @@ body{
     overflow: hidden;
     position: absolute;
     border-radius: 5px;
-}
+} */
