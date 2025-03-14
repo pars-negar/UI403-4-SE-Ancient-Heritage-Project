@@ -112,9 +112,9 @@ body{
     padding: 17px;
     margin: 5px 0;
     border: none;
-    width: 130%;
+    width: 140%;
     position: relative;
-    right: -5%;
+    right: -8%;
 }
 
 /* #inputs input::placeholder
@@ -133,7 +133,9 @@ body{
 #inputs h4{
     padding: 5px;
     margin: 10px;
-    font-size: 28px;
+    font-size: 30px;
+    position: relative;
+    left: -10%;
 }
 
 /* #email {
