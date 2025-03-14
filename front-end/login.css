@@ -28,10 +28,11 @@ body {
 
 /* Settings for the left panel (bridge image and Mehrgan title) */
 .left-panel {
-    flex: 1;
+    flex: 1.075;
     background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("images/ax-login-page.jpg");
     background-size: cover;
     background-position: center;
+    align-items: center;
     padding: 20px;
     position: relative;
 }
