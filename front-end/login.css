@@ -28,7 +28,7 @@ body {
 
 /* Settings for the left panel (bridge image and Mehrgan title) */
 .left-panel {
-    flex: 1.2;
+    flex: 1;
     background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("images/ax-login-page.jpg");
     background-size: cover;
     background-position: center;
@@ -123,7 +123,9 @@ form {
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
-    width: 100%;
+    width: 70%;
+    position: relative;
+    left: -13%;
 }
 
 .form-group input {
@@ -154,10 +156,12 @@ form {
     margin-top: 10px;
     position: relative;
     left: -25%;
+    transition-duration: 0.3s;
 }
 
 .login-btn:hover {
     background: #e0d0c0;
+    transition-duration: 0.3s;
 }
 
 .linkk {
