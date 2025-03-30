@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'apps.wallet',
     'apps.reserve',
     'apps.message',
+    'apps.tour',
     'apps.authentication',
         'corsheaders',
 
