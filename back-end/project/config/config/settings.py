@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'apps.reserve',
     'apps.message',
     'apps.tour',
+    'apps.faq',
     'apps.authentication',
         'corsheaders',
 
