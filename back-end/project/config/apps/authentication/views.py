@@ -1,9 +1,10 @@
 from django.core.cache import cache
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets
 import ghasedakpack
 from random import randint
+from .serializers import RegisterSerializer 
 
 GHASEDAK_API_KEY = "YOUR_GHASEDAK_API_KEY"
 sms = ghasedakpack.Ghasedak(GHASEDAK_API_KEY)
@@ -45,3 +46,13 @@ class VerifyOTPView(APIView):
             return Response({'message': 'OTP verified successfully'}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+# register
+class RegisterViewSet(viewsets.ViewSet):
+    def create(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()  # ساخت کاربر
+            return Response({"message": "ثبت نام موفقیت آمیز بود!", "user": serializer.data}, status=201)
+        return Response(serializer.errors, status=400)
