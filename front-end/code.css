@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to top left, #EFDCC5, #E2B97F, #E09950);
+    background: linear-gradient(to top left, #f8e0c3, #E2B97F, #E09950);
     font-family: 'Gandom', serif;
     direction: rtl;
 }
@@ -71,7 +71,7 @@ body {
 .rectangles div {
     width: 80px;
     height: 15px;
-    background-color: #E09950;
+    background-color: #e68a2efb;
     border-radius: 5px;
 }
 
@@ -111,6 +111,7 @@ body {
     border: 2px solid #A57C5D;
     border-radius: 5px;
     outline: none;
+    box-shadow: 0px 0px 5px #838383;
 }
 
 .code-input input:focus {
@@ -118,8 +119,9 @@ body {
 }
 
 .confirm-btn {
-    background: #E09950;
-    color: white;
+    background: #e68a2efb;
+    box-shadow: 0px 0px 5px #838383;
+    color: rgb(255, 255, 255);
     border: none;
     padding: 10px 20px;
     font-size: 20px;
@@ -130,7 +132,7 @@ body {
 }
 
 .confirm-btn:hover {
-    background: #D08340;
+    background: #ae7542;
 }
 
 .edit-number, .resend-code {
