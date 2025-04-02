@@ -1,6 +1,6 @@
 import React from "react";
 import styles from '../styles/code.module.css';
-import kakh from "../assest/images/code.png"
+import kakh from "../asset/images/code.png";
 
 const LeftPanel = () => {
   return (
