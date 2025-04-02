@@ -1,7 +1,7 @@
 import React from "react";
-import styles from '../../styles/left-panel.css';
+import styles from '../../styles/left-panel.module.css';
 
-const LeftPanel = (props) => {
+const LeftPanel = ( props ) => {
   const imageUrl = props.imageUrl;
   const imageTitle = props.imageTitle;
   

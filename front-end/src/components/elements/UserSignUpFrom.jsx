@@ -1,7 +1,9 @@
-import LeftPanel from "./LeftPanel";
+import LeftPanel2 from "./LeftPanel2";
+import styles from '../../styles/code.module.css';
+
 const UserSignUpForm = () => {
     return (
-        <LeftPanel imageUrl='./images/user-sign-up-form-image.png' imageTitle="something"/>
+        <LeftPanel2 imageUrl='./images/user-sign-up-form-image.png' imageTitle="something"/>
     );
 }
  
