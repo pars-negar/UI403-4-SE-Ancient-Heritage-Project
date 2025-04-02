@@ -3,6 +3,7 @@ import VerificationPage from "./components/VerificationPage";  // وارد کر�
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/layouts/Navbar';
+import UserSignUpForm from "./components/elements/UserSignUpFrom";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
     <Routes>
       {/* <Route exact path="/">
       </Route> */}
+      {/* <Route exact path="/" element={<UserSignUpForm/>}></Route> */}
       <Route exact path="/" element={<VerificationPage />}/>
     </Routes>
   </BrowserRouter>
