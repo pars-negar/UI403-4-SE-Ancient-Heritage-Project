@@ -1,0 +1,19 @@
+.navbar-links {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: black;    
+}
+
+.navbar {
+    display: flex;
+    gap: 10px;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+}

@@ -25,7 +25,7 @@ body {
 
 .leftPanel {
     flex: 1.075;
-    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("../asset/images/Rectangle.png");
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("../assets/images/Rectangle.png");
     background-size: cover;
     background-position: center;
     padding: 20px;
