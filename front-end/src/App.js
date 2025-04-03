@@ -4,6 +4,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserSignUpPage from "./pages/UserSignUpPage/UserSignUpPage";
 import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery";
+import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx";
 
 
 function App() {
@@ -13,8 +14,9 @@ function App() {
       {/* <Route exact path="/">
       </Route> */}
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
-      <Route exact path="/" element={ <PasswordRecovery/> }></Route>
-      <Route exact path="/verfp" element={ <VerificationPage /> }/>
+      {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
+      {/* <Route exact path="/verfp" element={ <VerificationPage /> }/> */}
+      <Route exact path="/verfp" element={ <LoginSignUp /> }/>
     </Routes>
   </BrowserRouter>
   );
