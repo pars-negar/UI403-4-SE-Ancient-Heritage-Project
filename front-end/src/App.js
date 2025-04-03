@@ -14,7 +14,7 @@ function App() {
       </Route> */}
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
       <Route exact path="/" element={ <PasswordRecovery/> }></Route>
-      <Route exact path="/verf" element={ <VerificationPage /> }/>
+      <Route exact path="/verfp" element={ <VerificationPage /> }/>
     </Routes>
   </BrowserRouter>
   );
