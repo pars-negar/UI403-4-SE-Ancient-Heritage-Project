@@ -1,5 +1,5 @@
 import LeftPanel2 from "../../components/LeftPanel/LeftPanel2";
-import UserSignUpRightPanel from "../../components/UserSignUpRightPanel/UserSignUpRightPanel";
+import UserSignUpRightPanel from "../../components/RightPanel/UserSignUpRightPanel";
 import styles from './user-sign-up-page.module.css'
 
 const UserSignUpPage = () => {
