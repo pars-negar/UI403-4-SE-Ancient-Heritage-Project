@@ -12,8 +12,8 @@ function App() {
     <Routes>
       {/* <Route exact path="/">
       </Route> */}
-      {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
-      <Route exact path="/" element={ <PasswordRecovery/> }></Route>
+      <Route exact path="/" element={ <UserSignUpPage/> }></Route>
+      {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
       {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
     </Routes>
   </BrowserRouter>
