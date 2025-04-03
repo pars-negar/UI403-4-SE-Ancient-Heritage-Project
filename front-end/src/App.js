@@ -2,8 +2,8 @@ import React from "react";
 // import VerificationPage from "./components/VerificationPage";  // وارد کردن کامپوننت صفحه تأیید شماره تلفن
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/layouts/Navbar';
-import UserSignUpForm from "./components/elements/UserSignUpFrom";
+import Navbar from './components/Navbar/Navbar';
+import UserSignUpPage from "./pages/UserSignUp/UserSignUpPage";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
     <Routes>
       {/* <Route exact path="/">
       </Route> */}
-      <Route exact path="/" element={ <UserSignUpForm/> }></Route>
+      <Route exact path="/" element={ <UserSignUpPage/> }></Route>
       {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
     </Routes>
   </BrowserRouter>

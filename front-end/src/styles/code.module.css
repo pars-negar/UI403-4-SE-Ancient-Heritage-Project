@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to top left, #f8e0c3, #E2B97F, #E09950);
+    /* background: linear-gradient(to top left, #f8e0c3, #E2B97F, #E09950); */
     font-family: 'Gandom', serif;
     direction: rtl;
 }
