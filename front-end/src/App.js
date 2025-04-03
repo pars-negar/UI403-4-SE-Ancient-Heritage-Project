@@ -1,5 +1,5 @@
 import React from "react";
-// import VerificationPage from "./components/VerificationPage";  // وارد کردن کامپوننت صفحه تأیید شماره تلفن
+import VerificationPage from "./pages/verificationPage/verificationPage.jsx";  // وارد کردن کامپوننت صفحه تأیید شماره تلفن
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserSignUpPage from "./pages/UserSignUpPage/UserSignUpPage";
@@ -14,7 +14,7 @@ function App() {
       </Route> */}
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
       <Route exact path="/" element={ <PasswordRecovery/> }></Route>
-      {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
+      <Route exact path="/verfp" element={ <VerificationPage /> }/>
     </Routes>
   </BrowserRouter>
   );
