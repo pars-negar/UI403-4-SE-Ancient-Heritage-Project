@@ -6,7 +6,7 @@ import img from "../../assets/images/ax-login-page.png"
 const Container = () => {
   return (
     <div className={styles.container}>
-      <LeftPanel imageUrl={img} imageTitle="پل سی و سه پل" rectanglesColor="#623528" />
+      <LeftPanel imageUrl={img} imageTitle="پل سی و سه پل" rectanglesColor="#205781" />
       <RightPanel />
     </div>
   );
