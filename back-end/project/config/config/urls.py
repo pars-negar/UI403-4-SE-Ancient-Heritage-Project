@@ -25,6 +25,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from rest_framework_simplejwt.views import TokenVerifyView
+from django.conf.urls.static import static
 
 user_urls = [
     path('', include('apps.users.urls')),
@@ -44,3 +45,5 @@ urlpatterns = [
     
 ]+user_urls
 
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
