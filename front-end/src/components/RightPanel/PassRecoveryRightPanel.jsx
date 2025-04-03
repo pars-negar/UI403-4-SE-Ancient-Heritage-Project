@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./PassRecoveryRightPanel.module.css"; // Import CSS module
+import styles from "./PassRecoveryRightPanel.module.css"; 
 
 const PassRecoveryRightPanel = () => {
   // State to store the email input
