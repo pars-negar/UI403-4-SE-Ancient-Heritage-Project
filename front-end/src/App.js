@@ -4,19 +4,17 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserSignUpPage from "./pages/UserSignUpPage/UserSignUpPage";
 import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery";
-
+import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
-      {/* <Route exact path="/">
-      </Route> */}
-      {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
-      <Route exact path="/" element={ <PasswordRecovery/> }></Route>
-      <Route exact path="/verfp" element={ <VerificationPage /> }/>
-    </Routes>
-  </BrowserRouter>
+      <Route exact path="/login" element={ <LoginPage/> }></Route>
+      <Route exact path="/" element={ <UserSignUpPage/> }></Route>
+      {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
+      <Route exact path="/verf" element={ <VerificationPage /> }/></Routes>
+    </BrowserRouter>
   );
 }
 

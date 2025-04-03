@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
+ 
+ body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: none; /* حذف پس‌زمینه */
+    font-family:'Gandom', serif;
+    direction: rtl;
+}
+ 
+ .container {
+
+     display: flex;
+     flex-direction: row-reverse;
+     width: 100vw;  /* عرض کل صفحه */
+     height: 100vh; /* ارتفاع کل صفحه */
+     background: none; /* پس‌زمینه‌ی جداگانه حذف شد */
+     border-radius: 0; /* گردی کناره‌ها حذف شد که کل صفحه رو بگیره */
+     overflow: hidden;
+     box-shadow: none;
+     
+ }
