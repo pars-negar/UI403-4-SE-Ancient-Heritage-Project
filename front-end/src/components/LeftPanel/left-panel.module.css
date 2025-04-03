@@ -6,7 +6,7 @@
 .leftPanell {
     width: 100vh;
     height: 100vh;
-    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('../../../public/assets/images/left-panel-background.png');
+    /* background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('../../../public/assets/images/left-panel-background.png'); */
     background-size: cover;
     background-position: center;
     padding: 20px;
@@ -46,9 +46,9 @@
     margin-top: 30px;
 }
 
-.rectanglesl div {
+.leftPanelRectangle {
     width: 80px;
     height: 15px;
-    background-color: #e68a2efb;
+    background-color: var(--rectangles-color);
     border-radius: 5px;
 }

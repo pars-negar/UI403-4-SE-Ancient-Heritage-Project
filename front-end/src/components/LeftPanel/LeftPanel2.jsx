@@ -5,6 +5,7 @@ const LeftPanel = ( props ) => {
   const imageUrl = props.imageUrl;
   const imageTitle = props.imageTitle;
   const logoUrl = './assets/icons/logo.svg';
+  const rectanglesColor = props.rectanglesColor;
   
   return (
     <div className={ styles.leftPanell }>
@@ -13,9 +14,9 @@ const LeftPanel = ( props ) => {
       <div className={styles.leftPanelContent}>
         <img className={ styles.leftPanelImage } src={ `${process.env.PUBLIC_URL}${imageUrl}` } alt={imageTitle} />
         <div className={ styles.rectanglesl }>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div style={{ backgroundColor: rectanglesColor }} className={ styles.leftPanelRectangle }></div>
+          <div style={{ backgroundColor: rectanglesColor }} className={ styles.leftPanelRectangle }></div>
+          <div style={{ backgroundColor: rectanglesColor }} className={ styles.leftPanelRectangle }></div>
         </div>
       </div>
       
