@@ -1,6 +1,10 @@
+import styles from './user-sign-up-right-panel.module.css'
+
 const UserSignUpRightPanel = () => {
     return (  
-        <h1>hello</h1>
+        <div className={ styles.userSignUpRightPanel }>
+            <h1>hello</h1>
+        </div>
     );
 }
  
