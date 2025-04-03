@@ -54,3 +54,9 @@
     /* background-color: var(--rectangles-color); */
     border-radius: 5px;
 }
+
+@media screen and (max-width: 700px) {
+    .leftPanell {
+        display: none;
+    }
+}
