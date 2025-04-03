@@ -1,49 +1,63 @@
 import React, { useState } from "react";
-import styles from "./PassRecoveryRightPanel.module.css";
+import styles from "./PassRecoveryRightPanel.module.css"; // Import CSS module
 
-function PassRecoveryRightPanel() {
+const PassRecoveryRightPanel = () => {
+  // State to store the email input
   const [email, setEmail] = useState("");
 
+  // Regex pattern for email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Handle input change
   const handleChange = (event) => {
     setEmail(event.target.value);
   };
 
+  // Handle sending the reset link
   const handleSendLink = () => {
     if (email.trim() === "") {
-      alert("لطفاً ایمیل خود را وارد کنید!"); 
+      alert("لطفاً ایمیل خود را وارد کنید!");
       return;
     }
+
+    if (!emailRegex.test(email)) {
+      alert("لطفاً یک ایمیل معتبر وارد کنید!");
+      return;
+    }
+
     console.log("لینک بازیابی برای:", email);
     alert(`لینک بازیابی برای ${email} ارسال شد!`);
   };
 
   return (
     <div className={styles.container}>
-      {/*title*/}
+      {/* Title */}
       <h2 className={styles.title}>فراموشی رمز عبور</h2>
       <p className={styles.description}>
         ایمیل خود را وارد کنید تا لینک بازیابی برای شما ارسال شود.
       </p>
 
-      {/*email input */}
+      {/* Email input field */}
       <input
         type="email"
         placeholder="ایمیل"
         className={styles.input}
-        value={email} 
+        value={email}
         onChange={handleChange}
       />
 
-      {/* send link button*/}
+      {/* Send link button */}
       <button className={styles.sendButton} onClick={handleSendLink}>
         ارسال لینک
       </button>
 
-      {/*back button*/}
+      {/* Back to login button */}
       <button className={styles.backButton} onClick={() => alert("بازگشت به صفحه ورود")}>
         بازگشت به صفحه ورود
       </button>
     </div>
   );
-  }
-  export default PassRecoveryRightPanel
+};
+
+export default PassRecoveryRightPanel;
+
