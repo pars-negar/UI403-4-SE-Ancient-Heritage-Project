@@ -3,6 +3,7 @@ import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserSignUpPage from "./pages/UserSignUpPage/UserSignUpPage";
+import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
     <Routes>
       {/* <Route exact path="/">
       </Route> */}
-      <Route exact path="/" element={ <UserSignUpPage/> }></Route>
+      {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
+      <Route exact path="/" element={ <PasswordRecovery/> }></Route>
       {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
     </Routes>
   </BrowserRouter>

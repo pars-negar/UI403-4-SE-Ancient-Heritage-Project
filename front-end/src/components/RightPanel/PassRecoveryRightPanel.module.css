@@ -1,0 +1,70 @@
+/* main panel style*/
+.container {
+    width: 50%;
+    background-color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* title*/
+.title {
+    font-size: 24px;
+    color: #1e3a8a;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* description*/
+.description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* email input */
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/*send link button */
+.sendButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #184a80;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.sendButton:hover {
+    background-color: #102c5a;
+}
+
+/* back button */
+.backButton {
+    background: none;
+    border: none;
+    color: #184a80;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.backButton:hover {
+    color: #102c5a;
+}
