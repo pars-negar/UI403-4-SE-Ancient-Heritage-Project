@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '../styles/code.module.css';
+import styles from '../../../pages/verificationPage/code.module.css';
 
 const CodeInput = ({ code, onCodeChange }) => {
   const handleInputChange = (index, event) => {

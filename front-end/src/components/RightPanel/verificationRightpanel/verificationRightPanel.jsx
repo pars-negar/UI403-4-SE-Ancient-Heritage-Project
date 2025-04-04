@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from '../styles/code.module.css';
+import styles from '../../../pages/verificationPage/code.module.css';
 import CodeInput from "./CodeInput";
 
 const RightPanel = () => {
