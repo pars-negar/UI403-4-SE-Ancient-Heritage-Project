@@ -1,0 +1,15 @@
+.loginSignUpRightPanel {
+  width: 50vw; /* 50 درصد عرض صفحه */
+  height: 100vh; /* کل ارتفاع صفحه */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iranMapLoginSignUp {
+  max-width: 60%; /* اندازه نقشه ایران */
+  height: auto;
+  display: flex;
+}

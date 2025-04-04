@@ -59,5 +59,5 @@ const PassRecoveryRightPanel = () => {
   );
 };
 
-export default PassRecoveryRightPanel;
+export default PassRecoveryRightPanel
 
