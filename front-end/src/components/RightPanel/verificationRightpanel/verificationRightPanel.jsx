@@ -15,7 +15,7 @@ const RightPanel = () => {
 
   const handleSubmit = () => {
     if (isCodeComplete) {
-      window.location.href = "https://www.google.com"; // تغییر آدرس دلخواه
+      window.location.href = "/"; // تغییر آدرس دلخواه
     }
   };
 
