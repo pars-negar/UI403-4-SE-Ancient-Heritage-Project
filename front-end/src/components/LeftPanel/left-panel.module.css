@@ -3,7 +3,7 @@
 
 
 
-.leftPanell {
+.leftPanel {
     width: 100vh;
     height: 100vh;
     background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('../../../public/assets/images/left-panel-background.png');
@@ -22,7 +22,7 @@
     top: 0;
     left: 0;    
     width: 200px;
-    height: 100px;
+    height: 120px;
    
 }
 
@@ -35,13 +35,13 @@
 }
 
 .leftPanelImage {
-    width: 300px;
+    width: 340px;
     height: auto;
     display: block;
     border-radius: 14px;
 }
 
-.rectanglesl {
+.rectangles {
     display: flex;
     justify-content: center;
     gap: 10px;

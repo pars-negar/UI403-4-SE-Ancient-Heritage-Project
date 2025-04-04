@@ -30,7 +30,7 @@ const PassRecoveryRightPanel = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.passwordRecoveryRightPanel}>
       {/* Title */}
       <h2 className={styles.title}>فراموشی رمز عبور</h2>
       <p className={styles.description}>

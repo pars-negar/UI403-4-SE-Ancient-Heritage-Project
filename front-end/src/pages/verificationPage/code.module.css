@@ -1,21 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
- 
- body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: none; /* حذف پس‌زمینه */
-    font-family:'Gandom', serif;
-    direction: rtl;
-}
+
  
  .container {
 
      display: flex;
-     flex-direction: row-reverse;
      width: 100vw;  /* عرض کل صفحه */
      height: 100vh; /* ارتفاع کل صفحه */
      background: none; /* پس‌زمینه‌ی جداگانه حذف شد */
@@ -39,13 +27,15 @@
  }
  
  .header {
-     font-size: 30px;
+     font-size: 40px;
      font-weight: bold;
+     margin-bottom: 100px;
+     color: #205781;
  }
  
  .instruction {
-     font-size: 18px;
-     margin-bottom: 20px;
+     font-size: 20px;
+     margin-bottom: 30px;
  }
  
  .codeInput {
@@ -73,9 +63,9 @@
  .confirmBtn {
      background: #e68a2efb;
      box-shadow: 0px 0px 5px #838383;
-     color: rgb(255, 255, 255);
-     border: none;
-     padding: 10px 20px;
+     color: white;
+     border:none;
+     padding: 10px 40px;
      font-size: 20px;
      border-radius: 5px;
      cursor: pointer;
@@ -84,12 +74,12 @@
  }
  
  .confirmBtn:hover {
-     background: #ae7542;
+     background: #e0d0c0;
  }
  
  .editNumber, .resendCode {
      display: block;
-     color: #2C3A47;
+     color: #205781;
      text-decoration: none;
      margin-top: 10px;
      font-size: 16px;
