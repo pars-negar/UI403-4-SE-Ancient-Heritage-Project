@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap');
+
+.LSLPanel {
+    width: 50vw;
+    height: 100vh;
+    background: #f8f8f8;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    direction: rtl;
+}
+
+.LSLPanelContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcomeText {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1f1f1f;
+    margin-bottom: 10px;
+}
+
+.sloganImage {
+    width: 80%;
+    max-width: 350px;
+    margin-bottom: 15px;
+}
+
+.LSLPanelImage {
+    width: 80%;
+    max-width: 400px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.button {
+    width: 80%;
+    max-width: 250px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background-color: #2c3e50;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button:hover {
+    background-color: #1a252f;
+}
+
+@media screen and (max-width: 700px) {
+    .LSLPanel {
+        width: 100vw;
+    }
+}
