@@ -11,9 +11,9 @@ function App() {
     <BrowserRouter>
     <Routes>
       {/* <Route exact path="/" element={ <LoginPage/> }></Route> */}
-      {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
+      <Route exact path="/" element={ <UserSignUpPage/> }></Route>
       {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
-      <Route exact path="/" element={ <VerificationPage /> }/>
+      {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
       </Routes>
     </BrowserRouter>
   );
