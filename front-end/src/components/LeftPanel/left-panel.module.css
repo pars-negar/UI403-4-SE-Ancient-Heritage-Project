@@ -3,7 +3,7 @@
 
 
 
-.leftPanell {
+.leftPanel {
     width: 100vh;
     height: 100vh;
     background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('../../../public/assets/images/left-panel-background.png');
@@ -41,7 +41,7 @@
     border-radius: 14px;
 }
 
-.rectanglesl {
+.rectangles {
     display: flex;
     justify-content: center;
     gap: 10px;
