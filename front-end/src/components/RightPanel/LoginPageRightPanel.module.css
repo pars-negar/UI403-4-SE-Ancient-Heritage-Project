@@ -20,7 +20,7 @@ h2 {
     color: #213141;
 }
 
-form {
+.loginForm {
     width: 75%;
     display: flex;
     justify-content: center;

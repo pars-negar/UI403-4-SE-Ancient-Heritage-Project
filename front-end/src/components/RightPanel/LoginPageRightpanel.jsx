@@ -5,7 +5,7 @@ const RightPanel = () => {
   return (
     <div className={styles.rightPanel}>
       <h2 className={styles.foor}>ورود به حساب کاربری</h2>
-      <form>
+      <form className={ styles.loginForm }>
         <div className={styles.formGroup}>
           <span className={styles.icon}>&#128100;</span>
           <input type="text" placeholder="نام کاربری" />
