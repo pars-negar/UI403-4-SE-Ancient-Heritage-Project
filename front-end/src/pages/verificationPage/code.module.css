@@ -4,7 +4,6 @@
  .container {
 
      display: flex;
-     flex-direction: row-reverse;
      width: 100vw;  /* عرض کل صفحه */
      height: 100vh; /* ارتفاع کل صفحه */
      background: none; /* پس‌زمینه‌ی جداگانه حذف شد */
