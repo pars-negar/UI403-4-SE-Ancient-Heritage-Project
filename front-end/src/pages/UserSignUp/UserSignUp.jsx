@@ -5,7 +5,7 @@ import styles from './user-sign-up.module.css'
 const UserSignUpPage = () => {
     const red = "#e68a2efb";
     return (
-        <div className={ styles.userSignUp }>
+        <div className={ styles.userSignUp}>
             <LeftPanel imageUrl='./assets/images/user-sign-up-form-image.png' imageTitle="something" rectanglesColor="#e68a2efb" />
             <UserSignUpRightPanel />
         </div>

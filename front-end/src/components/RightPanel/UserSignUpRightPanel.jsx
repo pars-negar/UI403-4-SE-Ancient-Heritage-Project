@@ -46,7 +46,7 @@ const UserSignUpRightPanel = () => {
                     </Form.Text>
                 </FloatingLabel>
             </Form>
-            <FormButton buttonText='ثبت‌نام' buttonColor='#FB8101' buttonTextColor='black' />
+            <FormButton buttonText='ثبت‌نام' buttonColor='#FB8101' buttonTextColor='black' buttonColorHovered="#D96F00"/>
             {/* <script>{
                 document.getElementById("phone").addEventListener("input", function (event) {
                     this.value = this.value.replace(/\D/g, "")
