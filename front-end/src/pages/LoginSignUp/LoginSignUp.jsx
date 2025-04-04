@@ -1,9 +1,9 @@
 import LoginSignUpRightPanel from "../../components/RightPanel/LoginSignUpRightPanel";
-
+import styles from './log-sign-module.css'
 const LoginSignup = () => {
     return (
-        <div>
-            <LoginSignUpRightPanel/>
+        <div className={styles.logInSignUp}>
+                <LoginSignUpRightPanel/>
         </div>
     );
 }
