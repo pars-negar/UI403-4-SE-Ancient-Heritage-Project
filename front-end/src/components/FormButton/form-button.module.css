@@ -1,8 +1,9 @@
 .formButton button {
-    border-radius: 13px;
-    padding: 10px 25px;   
-    font-size: 20px;
+    border-radius: 10px;
+    padding: 4px 38px;   
+    font-size: 25px;
     font-weight: bold;
+    border: none;
 }
 
 .buttonGroup {

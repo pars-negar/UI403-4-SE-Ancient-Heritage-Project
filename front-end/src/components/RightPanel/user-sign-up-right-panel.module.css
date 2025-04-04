@@ -13,9 +13,10 @@
   width: 100%;
 }
 
-.formTitle {
+.userFormTitle {
   color: var(--form-title-color);
   font-family: 'VazirBold', serif;
+  margin-bottom: 3.5rem;
 }
 
 .formControl {
