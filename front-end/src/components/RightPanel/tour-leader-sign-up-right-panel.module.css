@@ -1,0 +1,14 @@
+.tourLeaderSignUpRightPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100vh;
+    direction: rtl;
+  }
+
+  .tourLeaderFloatingLabel label{
+    text-align: right;
+    width: 100%;
+  }
