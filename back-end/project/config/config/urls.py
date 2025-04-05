@@ -34,6 +34,10 @@ user_urls = [
 
 ]
 
+FAQ_urls= [
+    path('', include('apps.faq.urls')),
+]
+
 urlpatterns = [
      path('admin/', admin.site.urls),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
@@ -43,7 +47,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     
-]+user_urls
+]+user_urls+ FAQ_urls
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
