@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'apps.faq',
     'apps.authentication',
         'corsheaders',
+         
+
 
   
 ]
