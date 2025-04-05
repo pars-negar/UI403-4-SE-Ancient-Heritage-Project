@@ -48,12 +48,6 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    
-<<<<<<< Updated upstream
-]+user_urls+ FAQ_urls
-=======
-]+user_urls+tour_urls
->>>>>>> Stashed changes
-
+]+user_urls+ FAQ_urls+tour_urls
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
