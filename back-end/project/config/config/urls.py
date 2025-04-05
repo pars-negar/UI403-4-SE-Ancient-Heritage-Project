@@ -31,7 +31,9 @@ user_urls = [
     path('', include('apps.users.urls')),
     path('api/', include('apps.authentication.urls')),  
     path('', include('apps.users.urls')),  
-
+]
+tour_urls=[
+    path('', include('apps.tour.urls')),
 ]
 
 FAQ_urls= [
@@ -47,7 +49,11 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     
+<<<<<<< Updated upstream
 ]+user_urls+ FAQ_urls
+=======
+]+user_urls+tour_urls
+>>>>>>> Stashed changes
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
