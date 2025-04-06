@@ -10,7 +10,7 @@ class Attraction(models.Model):
     opening_hours = models.CharField(max_length=100, blank=True)  
     entry_fee = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True) 
     image = models.ImageField(upload_to='attractions/', blank=True, null=True)   
-    built_date = models.DateField(verbose_name="تاریخ ساخت مکان تاریخی", blank=True, null=True)
+    built_date = models.CharField(max_length=100, null=True, blank=True)
     
     def __str__(self):
         return self.attraction_name

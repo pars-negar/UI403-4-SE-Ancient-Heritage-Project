@@ -60,8 +60,9 @@ INSTALLED_APPS = [
     'apps.tour',
     'apps.faq',
     'apps.authentication',
-        'corsheaders',
-         
+    'corsheaders',
+    'apps.frontpage',
+
 
 
   
