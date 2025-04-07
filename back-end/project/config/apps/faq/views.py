@@ -1,3 +1,8 @@
-from django.shortcuts import render
+# views.py
+from rest_framework.viewsets import ReadOnlyModelViewSet
+from .models import FAQ
+from .serializers import FAQSerializer
 
-# Create your views here.
+class FAQViewSet(ReadOnlyModelViewSet):
+    queryset = FAQ.objects.all()
+    serializer_class = FAQSerializer
