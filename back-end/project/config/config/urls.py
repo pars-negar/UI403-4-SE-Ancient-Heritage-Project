@@ -30,8 +30,7 @@ from rest_framework_simplejwt.views import (
 
 user_urls = [
     path('', include('apps.users.urls')),
-    path('api/', include('apps.authentication.urls')),  
-    path('', include('apps.users.urls')),  
+    path('api/', include('apps.authentication.urls')),      
 ]
 tour_urls=[
     path('', include('apps.tour.urls')),
@@ -51,7 +50,7 @@ urlpatterns = [
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/', include('apps.authentication.urls')),
 
-]+user_urls+ FAQ_urls+tour_urls
+]+ user_urls + FAQ_urls + tour_urls
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

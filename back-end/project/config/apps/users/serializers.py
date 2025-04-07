@@ -32,14 +32,13 @@ class VerifyOTPSerializer(serializers.Serializer):
 
 
 # serializer for register
-class RegisterSerializer(serializers.ModelSerializer):
+class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    confirm_password = serializers.CharField(write_only=True)
     phone_number = serializers.CharField()
     
     class Meta:
         model = User
-        fields = ['username', 'password', 'confirm_password', 'email', 'phone_number']
+        fields = ['username', 'password', 'email', 'phone_number']
 
     # Phone number validation
     def validate_phone_number(self, value):
@@ -66,14 +65,8 @@ class RegisterSerializer(serializers.ModelSerializer):
             raise ValidationError("این نام کاربری قبلاً استفاده شده است.")
         return value
     
-    # Password match validation and password confirmation
-    def validate(self, data):
-        if data['password'] != data['confirm_password']:
-            raise serializers.ValidationError("رمز عبور و تایید رمز عبور مطابقت ندارند.")
-        return data
 
     def create(self, validated_data):
-        validated_data.pop('confirm_password') 
         user = User.objects.create_user(**validated_data)
         return user
 
@@ -82,7 +75,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class TourRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    confirm_password = serializers.CharField(write_only=True)
     phone_number = serializers.CharField()
     
     class Meta:
