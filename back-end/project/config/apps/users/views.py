@@ -2,7 +2,7 @@ from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate, get_user_model
-from .serializers import CustomUserSerializer, LoginSerializer
+from .serializers import CustomUserSerializer, LoginSerializer, RegisterSerializer
 
 User = get_user_model()
 
@@ -40,5 +40,17 @@ class RegisterViewSet(viewsets.ViewSet):
             return Response({
                 "message": "ثبت نام موفقیت آمیز بود!",
                 "user": RegisterSerializer(user).data
+            }, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# tour register
+class TourRegisterViewSet(viewsets.ViewSet):
+    def create(self, request):
+        serializer = TourRegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            return Response({
+                "message": "ثبت نام موفقیت آمیز بود!",
+                "user": TourRegisterSerializer(user).data
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
