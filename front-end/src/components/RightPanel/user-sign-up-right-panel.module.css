@@ -1,5 +1,25 @@
 .userSignUpRightPanel {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 50%;
+  height: 100vh;
+  direction: rtl;
+}
+
+.userFloatingLabel label{
+  text-align: right;
+  width: 100%;
+}
+
+.userFormTitle {
+  color: var(--form-title-color);
+  font-family: 'VazirBold', serif;
+  margin-bottom: 3.5rem;
+}
+
+.formControl {
+  border: solid 1px var(--form-input-borders);
+  border-radius: 6px;
 }

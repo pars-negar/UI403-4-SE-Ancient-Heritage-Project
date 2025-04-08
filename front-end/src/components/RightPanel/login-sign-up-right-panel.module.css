@@ -1,32 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
 
-
-
-
-.leftPanel {
-    width: 100vh;
+.LSRPanel {
+    width:120vh;
     height: 100vh;
     background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('../../../public/assets/images/left-panel-background.png');
-    background-size: cover;
+    background-size:auto;
+    float: left;
     background-position: center;
-    padding: 20px;
+    padding: 0px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
- 
 }
 
-.leftPanelLogo {
-    position: absolute;
-    top: 0;
-    left: 0;    
-    width: 200px;
-    height: 120px;
-   
-}
-
-.leftPanelContent {
+.LSRPanelContent {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -34,25 +22,11 @@
     /* height: 100vh; */
 }
 
-.leftPanelImage {
-    width: 340px;
+.LSRPanelImage {
+    width: 700px;
     height: auto;
     display: block;
     border-radius: 14px;
-}
-
-.rectangles {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 30px;
-}
-
-.leftPanelRectangle {
-    width: 80px;
-    height: 15px;
-    /* background-color: var(--rectangles-color); */
-    border-radius: 5px;
 }
 
 @media screen and (max-width: 700px) {

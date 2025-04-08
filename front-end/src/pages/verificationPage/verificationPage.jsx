@@ -1,7 +1,7 @@
 import React from "react";
 import img from "../../assets/images/code.png"
  import styles from './code.module.css';
- import LeftPanel from "../../components/LeftPanel/LeftPanel2";
+ import LeftPanel from "../../components/LeftPanel/LeftPanel";
  import RightPanel from "../../components/RightPanel/verificationRightpanel/verificationRightPanel";
  
  

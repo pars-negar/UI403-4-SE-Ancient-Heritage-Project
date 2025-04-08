@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap');
+
+.LSLPanel {
+    width: 90vh;
+    height: 100vh;
+    background: #f8f8f8;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    direction: rtl;
+}
+.LSLImage{
+    margin-top: 2rem;
+    width: 80%;
+}
+
+.LSLPanelContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcomeText {
+
+    font-size: 40px;
+    font-weight: bold;
+    color: #205781;
+    margin-bottom: 2rem;
+}
+
+.description {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.LSLPanelImage {
+    width: 60%;
+    max-width: 200px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+}
+
+.buttonsContainer {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+button {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    /* max-width: 350px; */
+    padding: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button:hover {
+    background-color: #1a252f;
+} 
+/* .button {
+    width: 220px;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+} */
+
+.darkBlue { background-color: #1E3A5F; color: white; }
+.midblue { background-color: #3C5A82; color: white; }
+.lightblue { background-color: #6690C7; color: white; }
+
+
+@media screen and (max-width: 700px) {
+    .LSLPanel {
+        width: 100vw;
+    }
+}
