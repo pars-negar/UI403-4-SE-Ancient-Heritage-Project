@@ -14,7 +14,7 @@ class Attraction(models.Model):
         ('Qajar', 'قاجار'),
         ('Uncertain' , 'نامشخص')
     ]
-    period = models.CharField(max_length=20, choices=PERIOD_CHOICES, default='Uncertain')
+    historical_period  = models.CharField(max_length=20, choices=PERIOD_CHOICES, default='Uncertain')
     attraction_name = models.CharField(max_length=255)  
     description = models.TextField() 
     location = models.CharField(max_length=255)

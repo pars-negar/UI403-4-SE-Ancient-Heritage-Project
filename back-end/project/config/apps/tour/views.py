@@ -43,3 +43,32 @@ class TourSearchView(APIView):
             return Response(tour_serializer.data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+from django.shortcuts import render
+from .serializers import Attractionserializers
+from .models import Attraction
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+class AttractionSearchAPIView(APIView):
+    def post(self, request):
+        name = request.data.get('name', None)
+        city = request.data.get('city', None)
+        historical_period = request.data.get('historical_period', None)
+
+        queryset = Attraction.objects.all()
+
+        if name:
+            queryset = queryset.filter(attraction_name__icontains=name)
+        if city:
+            queryset = queryset.filter(city__icontains=city)
+        if historical_period:
+            queryset = queryset.filter(historical_period=historical_period)
+
+        if queryset.exists():
+            serializer = Attractionserializers(queryset, many=True)
+            return Response(serializer.data)
+        else:
+            return Response({"message": "مکانی با مشخصات درخواستی شما وجود ندارد."}, status=status.HTTP_404_NOT_FOUND)
