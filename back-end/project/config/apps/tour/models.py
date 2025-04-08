@@ -3,6 +3,18 @@ from apps.users.models import CustomUser
 
 
 class Attraction(models.Model):
+    PERIOD_CHOICES = [
+        ('Achaemenid', 'هخامنشیان'),
+        ('Ilkhanid', 'ایلخانیان'),
+        ('Parthian', 'اشکانیان'),
+        ('Timurid', 'تیموریان'),
+        ('Sassanid', 'ساسانیان'),
+        ('Safavid', 'صفویان'),
+        ('Seljuk', 'سلجوقیان'),
+        ('Qajar', 'قاجار'),
+        ('Uncertain' , 'نامشخص')
+    ]
+    period = models.CharField(max_length=20, choices=PERIOD_CHOICES, default='Uncertain')
     attraction_name = models.CharField(max_length=255)  
     description = models.TextField() 
     location = models.CharField(max_length=255)
