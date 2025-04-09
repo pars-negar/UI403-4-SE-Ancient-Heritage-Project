@@ -9,7 +9,7 @@ router.register(r'attraction', AttractionViewSet, basename='attraction')
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('api/attractionsearch/', AttractionSearchAPIView.as_view(), name='attraction-search'),  
-    path('api/toursearch/', TourSearchView.as_view(), name='tour-search'),  
+    path('api/attractionsearch/', AttractionSearchAPIView.as_view(), name='attractionsearch'),  
+    path('api/toursearch/', TourSearchView.as_view(), name='toursearch'),  
 ]
 
