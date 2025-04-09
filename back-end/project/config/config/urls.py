@@ -28,8 +28,7 @@ from rest_framework_simplejwt.views import TokenVerifyView
 
 user_urls = [
     path('', include('apps.users.urls')),
-    path('api/', include('apps.authentication.urls')),  
-    path('', include('apps.users.urls')),  
+    path('api/', include('apps.authentication.urls')),   
 
 ]
 
