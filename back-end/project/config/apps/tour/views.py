@@ -45,12 +45,6 @@ class TourSearchView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-from django.shortcuts import render
-from .serializers import Attractionserializers
-from .models import Attraction
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
 
 class AttractionSearchAPIView(APIView):
     def post(self, request):

@@ -3,8 +3,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate, get_user_model
 from .serializers import CustomUserSerializer, LoginSerializer, UserRegisterSerializer , TourRegisterSerializer
-from rest_framework import generics
-from .models import User, TourManagerProfile
+from .models import CustomUser, TourManagerProfile
 
 User = get_user_model()
 
@@ -47,7 +46,7 @@ class UserRegisterViewSet(viewsets.ViewSet):
 
 
 
-class TourRegisterViewSet(generics.CreateAPIView):
+class TourRegisterViewSet(viewsets.ViewSet):
     serializer_class = TourRegisterSerializer
 
     def create(self, request, *args, **kwargs):
