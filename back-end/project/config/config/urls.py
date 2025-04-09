@@ -19,7 +19,8 @@ from django.urls import path
 from django.conf import settings 
 from django.urls import include
 from django.conf.urls.static import static
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView,TokenVerifyView
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+from rest_framework_simplejwt.views import TokenVerifyView
 from django.urls import path, include
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
