@@ -9,9 +9,14 @@
     color: black;    
 }
 
+.navbar-links a:hover {
+    text-decoration: underline;
+    color: #DDA853;
+}
+
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: row-reverse;
     gap: 10px;
 }
@@ -26,4 +31,8 @@
     display: flex;
     justify-content: center;
     padding: none;
+}
+
+.navbarButton {
+    
 }

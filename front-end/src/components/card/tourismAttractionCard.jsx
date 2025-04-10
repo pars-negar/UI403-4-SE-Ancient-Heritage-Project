@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './tourism-attraction-card.module.css';
 
-const TourismAttractionCard = ({ image, title, description, backgroundColor }) => {
+const TourismAttractionCard = ({image, title, description, backgroundColor}) => {
   return (
     <div className={styles.cardWrapper}>
       <div className={styles.imageContainer}>
