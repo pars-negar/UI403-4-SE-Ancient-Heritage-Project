@@ -1,0 +1,22 @@
+{"tourAttraction":[
+    {
+        "image": "https://example.com/image1.jpg",
+        "title": "برج ایفل",
+        "description": "یک نماد معروف جهانی در پاریس، فرانسه.",
+        "backgroundColor": "#FFD700"
+      },
+      {
+        "image": "https://example.com/image2.jpg",
+        "title": "دیوار بزرگ چین",
+        "description": "یک دژ باستانی که برای حفاظت از ایالات و امپراتوری‌های چین ساخته شده است.",
+        "backgroundColor": "#FF6347"
+      },
+      {
+        "image": "https://example.com/image3.jpg",
+        "title": "ماچو پیچو",
+        "description": "یک قلعه اینکا از قرن 15 در کوه‌های آند در پرو.",
+        "backgroundColor": "#98FB98"
+      }
+  ]
+}
+  
