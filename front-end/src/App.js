@@ -13,17 +13,13 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-<<<<<<< HEAD
-      <Route exact path="/login" element={ <LoginPage/> }></Route>
-      <Route exact path="/sign" element={ <UserSignUpPage/> }></Route>
-=======
+
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
-      {/* <Route exact path="/" element={ <LoginPage/> }></Route> */}
+      <Route exact path="/" element={ <LoginPage/> }></Route>
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
->>>>>>> 83073de0c0b38514bc2934807164a4d280c3aac2
       {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
-      <Route exact path="/verf" element={ <VerificationPage /> }/>
-      <Route exact path="/" element={ <LoginSignup/> }></Route>
+      {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
+      {/* <Route exact path="/" element={ <LoginSignup/> }></Route> */}
       </Routes>
     </BrowserRouter>
   );
