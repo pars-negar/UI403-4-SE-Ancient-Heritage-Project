@@ -1,5 +1,6 @@
 .navbar-links {
     display: flex;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -10,10 +11,19 @@
 
 .navbar {
     display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
     gap: 10px;
 }
 
 .logo {
     height: 100px;
     width: 100px;
+}
+
+
+.ul {
+    display: flex;
+    justify-content: center;
+    padding: none;
 }

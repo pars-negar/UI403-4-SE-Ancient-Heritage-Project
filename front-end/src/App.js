@@ -6,6 +6,7 @@ import UserSignUpPage from "./pages/UserSignUp/UserSignUp.jsx";
 import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
+import Navbar from "./components/Navbar/Navbar.jsx"
 
 
 
@@ -15,10 +16,12 @@ function App() {
     <Routes>
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
       {/* <Route exact path="/" element={ <LoginPage/> }></Route> */}
-      <Route exact path="/" element={ <UserSignUpPage/> }></Route>
+      {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
       {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
       {/* <Route exact path="/" element={ <LoginSignUp/> }></Route> */}
       {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
+
+      <Route exact path="/" element={ <Navbar />}></Route>
       </Routes>
     </BrowserRouter>
   );
