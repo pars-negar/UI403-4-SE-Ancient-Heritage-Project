@@ -23,7 +23,7 @@ const Navbar = () => {
                     <Link to="/">درباره‌ی ما</Link>
                     </div>
                 </ul>
-                <FormButton className={ styles.navbarButton } buttonText='ورود/ثبت‌نام' buttonColor='#205781' buttonTextColor='white' buttonColorHovered="#D96F00"/>
+                <FormButton className={ styles.navbarButton } buttonText='ورود/ثبت‌نام' buttonColor='#FB8101' buttonTextColor='black' buttonColorHovered="#D96F00"/>
                 </ReactNavbar>
         </Container> 
     );
