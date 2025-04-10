@@ -22,6 +22,7 @@ h2 {
 
 .loginForm {
     width: 75%;
+    height: 30%;
     display: flex;
     justify-content: center;
     align-items: center;

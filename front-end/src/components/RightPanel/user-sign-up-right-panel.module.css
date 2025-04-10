@@ -22,4 +22,12 @@
 .formControl {
   border: solid 1px var(--form-input-borders);
   border-radius: 6px;
+  border: solid 1px var(--form-input-borders);
+  border-radius: 6px;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
