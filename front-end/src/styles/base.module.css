@@ -15,7 +15,7 @@
 }
 
 
- body {
+ /* body {
     margin: 0;
     padding: 0;
     display: flex;
@@ -24,7 +24,7 @@
     height: 100vh;
     background: none;
     font-family:'Gandom', serif;
-}
+} */
 
 :root {
     --form-title-color: #205781;
