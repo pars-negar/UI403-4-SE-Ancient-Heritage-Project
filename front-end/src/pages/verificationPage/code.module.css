@@ -9,6 +9,7 @@
      background: none; /* پس‌زمینه‌ی جداگانه حذف شد */
      border-radius: 0; /* گردی کناره‌ها حذف شد که کل صفحه رو بگیره */
      overflow: hidden;
+     justify-content: space-between;
      box-shadow: none;
      
  }
