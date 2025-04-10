@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "تور یزد",
-      "image": "/images/yazd.png",
+      "image": "/yazd.png",
       "price": "۳,۰۰۰,۰۰۰ تومان",
       "duration": "۲ روز",
       "rating": 4,
@@ -13,7 +13,7 @@
     {
       "id": "2",
       "title": "تور شیراز",
-      "image": "/images/shiraz.png",
+      "image": "/shiraz.png",
       "price": "۶,۰۰۰,۰۰۰ تومان",
       "duration": "۴ روز",
       "rating": 5,
@@ -23,10 +23,10 @@
     {
       "id": "3",
       "title": "تور اصفهان",
-      "image": "/images/isfahan.png",
+      "image": "/isfahan.png",
       "price": "۴,۰۰۰,۰۰۰ تومان",
       "duration": "۳ روز",
-      "rating": 4,
+      "rating": 2,
       "capacity": 25,
       "description": "بازدید از نقش جهان و سی‌وسه پل."
     }
