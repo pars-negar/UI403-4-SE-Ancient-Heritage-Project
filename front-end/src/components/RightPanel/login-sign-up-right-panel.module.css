@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
 
 .LSRPanel {
-    /* width:120vh; */
     width: 60%;
     height: 100vh;
     background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('../../../public/assets/images/left-panel-background.png');
@@ -17,10 +16,8 @@
 
 .LSRPanelContent {
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
 }
 
 .LSRPanelImage {
