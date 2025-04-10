@@ -21,9 +21,9 @@ const FormButton = (props) => {
                     onMouseLeave={() => setIsHavered(false)}
                     >{ buttonText }
                 </Button>
-                <p className="mt-2">
+                {/* <p className="mt-2">
                     قبلا ثبت‌نام کرده‌اید؟ <a href="/login">ورود</a>
-                </p>
+                </p> */}
             </div>
         </div>
      );
