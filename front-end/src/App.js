@@ -25,7 +25,7 @@ function App() {
       {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
       {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
       {/* <Route path="/tour/:id" element={<TourPage />} /></Routes> */}
-    
+  
       <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
