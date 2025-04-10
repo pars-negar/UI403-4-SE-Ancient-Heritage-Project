@@ -10,7 +10,6 @@ const LeftPanel = ( props ) => {
   return (
     <div className={ styles.leftPanel }>
       <img className={ styles.leftPanelLogo } src={`${ process.env.PUBLIC_URL }${ logoUrl }`} alt="left-panel-logo" />
-
       <div className={ styles.leftPanelContent }>
         <img className={ styles.leftPanelImage } src={`${ process.env.PUBLIC_URL }${ imageUrl }`} alt={ imageTitle } />
         <div className={ styles.rectangles }>
