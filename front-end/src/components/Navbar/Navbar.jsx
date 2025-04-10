@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import {Navbar as ReactNavbar} from 'react-bootstrap';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import FormButton from "../FormButton/FormButton";
+import styles from './navbar.css';
 
 
 const Navbar = () => {
@@ -22,7 +23,7 @@ const Navbar = () => {
                     <Link to="/">درباره‌ی ما</Link>
                     </div>
                 </ul>
-                <FormButton buttonText='ورود/ثبت‌نام' buttonColor='#205781' buttonTextColor='white' buttonColorHovered="#D96F00"/>
+                <FormButton className={ styles.navbarButton } buttonText='ورود/ثبت‌نام' buttonColor='#205781' buttonTextColor='white' buttonColorHovered="#D96F00"/>
                 </ReactNavbar>
         </Container> 
     );
