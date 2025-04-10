@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
+
 const TourCard = ({ tour }) => {
   const stars = "⭐".repeat(tour.rating) + "☆".repeat(5 - tour.rating);
+
+
 
   return (
     <div className="tour-card">

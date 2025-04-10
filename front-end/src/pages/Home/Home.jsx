@@ -1,30 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { fetchTours } from "../services/api";
-import TourCard from "../components/TourCard";
+import TourCard from "../../components/Card/TourCard";
+import axios from "axios"
 
-const HomePage = () => {
-  const [tours, setTours] = useState([]);
+
+const Home = () => {
+
+  const [tours, setTours] = useState([])
 
   useEffect(() => {
-    const getData = async () => {
-      const tourData = await fetchTours();
-      setTours(tourData);
-    };
-    getData();
-  }, []);
+    get_data()
+    
+     }, []);
 
-  const handleDetailsClick = (tour) => {
-    // اگر مدال یا صفحه جدید داری می‌تونی اینجا هندل کنی
-    console.log("نمایش جزئیات:", tour);
-  };
+  async function get_data(event) {
+    try {
+        const response = await axios.get("http://localhost:8001/tours");
+        if (response.status === 200) {
+          console.log(response)
+          setTours(response.data)
+        }
+      }
+      catch (e) {
+      console.log(e)}
+  }
+
 
   return (
     <div className="tours-wrapper">
       {tours.map((tour) => (
-        <TourCard key={tour.id} tour={tour} onDetailsClick={handleDetailsClick} />
+        <TourCard key={tour.id} tour={tour} />
       ))}
     </div>
   );
 };
 
-export default HomePage;
+export default Home;

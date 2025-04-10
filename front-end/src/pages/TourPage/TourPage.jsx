@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import tours from "../data/tours";
+import tours from "../TourPage/TourPage";
 
 const TourPage = () => {
   const { id } = useParams();
