@@ -17,4 +17,3 @@ const TourismAttractionCard = ({image, title, description, backgroundColor}) => 
 };
 
 export default TourismAttractionCard;
-

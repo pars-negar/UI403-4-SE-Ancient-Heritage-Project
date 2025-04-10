@@ -1,5 +1,6 @@
 .navbar-links {
     display: flex;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -8,12 +9,30 @@
     color: black;    
 }
 
+.navbar-links a:hover {
+    text-decoration: underline;
+    color: #DDA853;
+}
+
 .navbar {
     display: flex;
+    justify-content: space-around;
+    flex-direction: row-reverse;
     gap: 10px;
 }
 
 .logo {
     height: 100px;
     width: 100px;
+}
+
+
+.ul {
+    display: flex;
+    justify-content: center;
+    padding: none;
+}
+
+.navbarButton {
+    
 }
