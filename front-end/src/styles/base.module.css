@@ -26,6 +26,10 @@
     font-family:'Gandom', serif;
 } */
 
+
+body {
+    direction: rtl;
+}
 :root {
     --form-title-color: #205781;
     --form-input-borders: #DDA853;
