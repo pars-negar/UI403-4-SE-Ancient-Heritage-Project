@@ -70,9 +70,9 @@ button {
 .button:hover {
     background-color: #1a252f;
 } 
-.darkBlue { background-color: #1E3A5F; color: white; }
-.midblue { background-color: #3C5A82; color: white; }
-.lightblue { background-color: #6690C7; color: white; }
+.darkBlue { background-color: #FF6A00; color: black; }
+.midblue { background-color: #FF7D20; color: black; }
+.lightblue { background-color: #F26500; color: black; }
 
 
 @media screen and (max-width: 700px) {
