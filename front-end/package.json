@@ -12,6 +12,7 @@
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.1.0",
+    "react-jalali-datepicker": "^0.2.66",
     "react-modern-calendar-datepicker": "^3.1.6",
     "react-router-dom": "^7.5.0",
     "react-scripts": "5.0.1",
