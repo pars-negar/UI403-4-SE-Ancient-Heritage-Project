@@ -2,12 +2,12 @@ from django.contrib import admin
 from .models import Attraction, Tour
 
 class AttractionAdmin(admin.ModelAdmin):
-    list_display = ('attraction_name', 'city', 'built_date', 'entry_fee'  )
+    list_display = ('attraction_name', 'city','historical_period', 'entry_fee'  )
     search_fields = ('attraction_name', 'city')
     list_filter = ('city',)
     fields = (
-        'attraction_name', 'description', 'location', 'city', 
-        'opening_hours', 'entry_fee', 'image', 'built_date'
+        'attraction_name', 'description', 'location', 'city', 'historical_period',
+        'opening_hours', 'entry_fee', 'image', 
     )
 
 class TourAdmin(admin.ModelAdmin):

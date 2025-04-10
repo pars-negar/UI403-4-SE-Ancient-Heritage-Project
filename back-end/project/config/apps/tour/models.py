@@ -4,6 +4,7 @@ from apps.users.models import CustomUser
 
 class Attraction(models.Model):
     PERIOD_CHOICES = [
+        ('Ilamian', 'ایلامیان'),
         ('Achaemenid', 'هخامنشیان'),
         ('Ilkhanid', 'ایلخانیان'),
         ('Parthian', 'اشکانیان'),
