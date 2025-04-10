@@ -4,6 +4,7 @@
     justify-content: center;
     flex-wrap: wrap;
     padding: 40px;
+    margin-top: 40%;
   }
   
   .tour-card {
@@ -27,21 +28,28 @@
   }
   
   .tour-card button {
-    margin-top: 10px;
+    margin-top: 20px; /* دکمه بیاد پایین‌تر */
     padding: 10px 20px;
+    width: 60%;
     background: #f58119;
     border: none;
-    color: white;
+    color: black;
     border-radius: 6px;
     cursor: pointer;
+    font-size: 15px;
+    white-space: nowrap;         /* جلوگیری از رفتن متن به خط بعد */
+    line-height: 1.5;            /* فاصله استاندارد متن درون دکمه */
+    display: inline-block;
+    text-align: center;
   }
+  
   
   .tour-details {
     max-width: 600px;
     margin: 50px auto;
     padding: 30px;
     border-radius: 12px;
-    background: #fff6e9;
+    background: #f3ffe9;
     text-align: center;
     box-shadow: 0 8px 16px #ccc;
     animation: fadeIn 0.5s ease-in-out;
