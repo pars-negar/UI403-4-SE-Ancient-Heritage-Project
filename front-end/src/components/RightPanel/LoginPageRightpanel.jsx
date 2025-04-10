@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./LoginPageRightPanel.module.css";
-
+import FormButton from "../FormButton/FormButton";
 const RightPanel = () => {
   return (
     <div className={styles.rightPanel}>
@@ -14,7 +14,7 @@ const RightPanel = () => {
           <span className={styles.icon}>&#128273;</span>
           <input type="password" placeholder="رمز عبور" />
         </div>
-        <button className={styles.loginBtn}>ورود</button>
+        <FormButton buttonText="تائید" buttonColor='#FB8101' buttonTextColor='black' buttonColorHovered="#D96F00"/>
       </form>
       <a href="/" className={styles.linkk}>رمز عبور را فراموش کرده‌اید؟</a>
       <p>حساب کاربری ندارید؟ <a href="sign-up.html" className={styles.linkk}>ثبت‌نام</a></p>
