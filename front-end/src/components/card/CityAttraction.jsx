@@ -19,6 +19,7 @@ const CityAttraction = ({ cityName, imageSrc }) => {
         backgroundImage: `url(${imageSrc})`,
         width: `${dimensions.width}px`,
         height: `${dimensions.height}px`,
+        
       }}
     >
       <div className={styles.Cityoverlay}>
