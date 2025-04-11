@@ -1,7 +1,8 @@
 .navbar-links {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    text-align: center;
+    gap: 17px;
 }
 
 .navbar-links a {
@@ -17,13 +18,13 @@
 .navbar {
     display: flex;
     justify-content: space-around;
-    flex-direction: row-reverse;
+    margin-top: 0px;
     gap: 10px;
 }
 
 .logo {
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
 }
 
 
@@ -31,8 +32,15 @@
     display: flex;
     justify-content: center;
     padding: none;
+    text-align: center;
 }
 
 .navbarButton {
     
 }
+
+/* 
+
+.cn {
+    margin: 0;
+} */

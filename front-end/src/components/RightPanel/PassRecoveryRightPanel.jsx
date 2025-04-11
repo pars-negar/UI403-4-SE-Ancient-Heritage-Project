@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import styles from "./PassRecoveryRightPanel.module.css"; 
+import axios from "axios";
+
 
 const PassRecoveryRightPanel = () => {
+
   // State to store the email input
   const [email, setEmail] = useState("");
+
+  // loading state
+  const [loading, setLoading] = useState(false); 
+
+// error state
+  const [error, setError] = useState(""); 
 
   // Regex pattern for email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -14,7 +23,7 @@ const PassRecoveryRightPanel = () => {
   };
 
   // Handle sending the reset link
-  const handleSendLink = () => {
+  const handleSendLink = async () => {
     if (email.trim() === "") {
       alert("لطفاً ایمیل خود را وارد کنید!");
       return;
@@ -24,6 +33,23 @@ const PassRecoveryRightPanel = () => {
       alert("لطفاً یک ایمیل معتبر وارد کنید!");
       return;
     }
+    setLoading(true); // Request is being sent
+    setError(""); // Clear any previous errors
+
+    try {
+      // Send the request to the backend API for password recovery link
+      const response = await axios.post("http://localhost:8000/api/password-recovery/", { email });
+      
+      if (response.status === 200) {
+        alert(`لینک بازیابی رمز عبور برای ${email} ارسال شد!`);
+      }
+    } catch (err) {
+      setError("خطا در ارسال لینک بازیابی. لطفاً دوباره تلاش کنید.");
+      console.error("Error sending reset link:", err);
+    } finally {
+      setLoading(false); // Loading is complete
+    }
+  
 
     console.log("لینک بازیابی برای:", email);
     alert(`لینک بازیابی برای ${email} ارسال شد!`);
