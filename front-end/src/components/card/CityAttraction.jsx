@@ -1,25 +1,12 @@
-import React, { useState, useEffect } from "react";
+// import React from "react";
 import styles from "./city-attraction.module.css";
 
-const CityAttraction = ({ cityName, imageSrc }) => {
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-
-  useEffect(() => {
-    const img = new Image();
-    img.src = imageSrc;
-    img.onload = () => {
-      setDimensions({ width: img.naturalWidth, height: img.naturalHeight });
-    };
-  }, [imageSrc]);
-
+const CityAttraction = ({ cityName, imageSrc, isHighlighted }) => {
   return (
     <div
-      className={styles.Citycard}
+      className={`${styles.Citycard} ${isHighlighted ? styles.highlighted : ""}`}
       style={{
         backgroundImage: `url(${imageSrc})`,
-        width: `${dimensions.width}px`,
-        height: `${dimensions.height}px`,
-        
       }}
     >
       <div className={styles.Cityoverlay}>
