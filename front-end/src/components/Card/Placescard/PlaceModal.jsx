@@ -1,23 +1,19 @@
 import React from 'react';
-import PlaceCard from './PlaceCard';
-import '../Placescard/Places.css';
+import '../Placescard/PlaceCard';
 
-const PlaceSection = ({ title, places, onMoreInfo }) => {
+const PlaceModal = ({ show, onClose, place }) => {
+  if (!show) return null;
+
   return (
-    <div className="my-8">
-      <h2 className="text-xl font-bold mb-4 border-r-4 border-orange-500 pr-2">{title}</h2>
-      
-      <div className="flex flex-wrap justify-center gap-6">
-        {places.map((place, idx) => (
-          <div key={idx} className="w-full sm:w-[45%] md:w-[30%]">
-            <PlaceCard {...place} onMoreInfo={() => onMoreInfo(place)} />
-          </div>
-        ))}
+    <div className="place-modal-overlay">
+      <div className="place-modal">
+        <button onClick={onClose} className="place-modal-close"></button>
+        <h2>{place.title}</h2>
+        <img src={place.image} alt={place.title} />
+        <p>{place.details}</p>
       </div>
     </div>
   );
 };
 
-export default PlaceSection;
-
-
+export default PlaceModal;

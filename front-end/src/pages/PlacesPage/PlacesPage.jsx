@@ -17,8 +17,8 @@ const popularPlaces = [
     details: 'مکانی مقدس برای ایرانیان...'
   },
   {
-    // title: 'بیستون',
-    // description: 'کتیبه‌ای با داستانی تاریخی',
+    title: 'بیستون',
+    description: 'کتیبه‌ای با داستانی تاریخی',
     image: '/bisoton.png',
     details: 'در کرمانشاه قرار دارد و قدمتی چند هزار ساله دارد...'
   }

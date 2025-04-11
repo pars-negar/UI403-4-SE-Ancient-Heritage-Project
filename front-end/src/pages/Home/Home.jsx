@@ -1,41 +1,40 @@
-import React, { useEffect, useState } from "react";
-import TourCard from "../../components/Card/TourCard";
 import React, { cloneElement, useEffect, useState } from "react";
 import TourCard from "../../components/Card/TourCard";
-import axios from "axios"
-import Navbar from '../../components/Navbar/Navbar'
-import image from '../../assets/images/1.png'
-import imageTwo from '../../assets/images/2.png'
-import styles from './home.module.css'
-import SearchBox from '../../components/SearchBox'
-import CityAttraction from "../../components/card/CityAttraction";
-import im from '../../assets/images/1.png'
-import data from '../../assets/data.json'
+import TourPage from "../TourPage/TourPage";
+import axios from "axios";
+import Navbar from '../../components/Navbar/Navbar';
+import image from '../../assets/images/1.png';
+import imageTwo from '../../assets/images/2.png';
+import styles from './home.module.css';
+// import SearchBox from "../../components/SearchBox";
+import CityAttraction from "../../components/Card/CityAttraction";
+import im from '../../assets/images/1.png';
+import data from '../../assets/data.json';
 import TourismAttractionCard from "../../components/Card/tourismAttractionCard";
-import Comments from '../../components/Comments/Testimonials'
-import FAQAccordian from '../../components/FAQ/FAQAccordion'
-import Footer from '../../components/Footer/Footer'
+import Comments from '../../components/Comments/Testimonials';
+import FAQAccordian from '../../components/FAQ/FAQAccordion';
+import Footer from '../../components/Footer/Footer';
 
 const Home = () => {
 
-  // const [tours, setTours] = useState([])
+  const [tours, setTours] = useState([])
 
-  // useEffect(() => {
-  //   get_data()
+  useEffect(() => {
+    get_data()
     
-  //    }, []);
+     }, []);
 
-  // async function get_data(event) {
-  //   try {
-  //       const response = await axios.get("http://localhost:8001/tours");
-  //       if (response.status === 200) {
-  //         console.log(response)
-  //         setTours(response.data)
-  //       }
-  //     }
-  //     catch (e) {
-  //     console.log(e)}
-  // }
+  async function get_data(event) {
+    try {
+        const response = await axios.get("http://localhost:8001/tours");
+        if (response.status === 200) {
+          console.log(response)
+          setTours(response.data)
+        }
+      }
+      catch (e) {
+      console.log(e)}
+  }
 
   
   return (
