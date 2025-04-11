@@ -36,7 +36,6 @@ user_urls = [
 tour_urls=[
     path('', include('apps.tour.urls')),
 ]
-
 FAQ_urls= [
     path('', include('apps.faq.urls')),
 ]

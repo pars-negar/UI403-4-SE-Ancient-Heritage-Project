@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 import ghasedakpack
 from random import randint
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import get_user_model
 
 
 GHASEDAK_API_KEY = "YOUR_GHASEDAK_API_KEY"
@@ -20,14 +22,15 @@ class SendOTPView(APIView):
         cache.set(phone_number, otp, timeout=120)  
 
         try:
-            response = sms.verification({
-                'receptor': phone_number,
-                'linenumber': good_line_number_for_sending_otp,
-                'type': 1,
-                'template': 'Ghasedak',
-                'param1': otp
-            })
-            print(f"OTP: {otp}, Response: {response}")
+           # response = sms.verification({
+           #     'receptor': phone_number,
+           #     'linenumber': good_line_number_for_sending_otp,
+            #    'type': 1,
+             #   'template': 'Ghasedak',
+              #  'param1': otp
+            #})
+            
+            print(f"✅ OTP برای {phone_number}: {otp}")   
             return Response({'message': 'OTP sent successfully'}, status=status.HTTP_200_OK)
         except Exception as e:
             print(f"SMS Error: {e}")
@@ -43,7 +46,17 @@ class VerifyOTPView(APIView):
         
         stored_otp = cache.get(phone_number)
         if stored_otp and stored_otp == otp:
-            return Response({'message': 'OTP verified successfully'}, status=status.HTTP_200_OK)
+            # کاربر رو از مدل User می‌گیریم
+            User = get_user_model()
+            user, created = User.objects.get_or_create(phone_number=phone_number)
+            
+            # توکن جدید JWT رو می‌سازیم
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'message': 'OTP verified successfully',
+                # 'access': str(refresh.access_token),
+                #'refresh': str(refresh)
+                             }, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
 

@@ -13,6 +13,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # مدت زمان اعتبار access token
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),     # مدت زمان اعتبار refresh token
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
 # Load environment variables from .env file
 load_dotenv()
