@@ -65,10 +65,12 @@
 .tourCardContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem; /* فاصله بین کارت‌ها */
+  flex-direction: row;
+  justify-content: center; /* یا space-between یا flex-start */
+  gap: 1.5rem;
   margin: 2rem auto;
 }
+
 
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
