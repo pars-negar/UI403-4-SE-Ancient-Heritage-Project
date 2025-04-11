@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'apps.authentication',
     'corsheaders',
     'apps.frontpage',
+    
 
 
 
