@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './SearchBox.module.css';
-import FormButton from './FormButton/FormButton';
+import FormButton from '../FormButton/FormButton';
 
 function SearchBox() {
   return (
