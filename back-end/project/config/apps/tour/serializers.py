@@ -36,9 +36,7 @@ class TourFilterSerializer(serializers.Serializer):
         help_text="تاریخ پایان تور را وارد کنید. اگر تاریخ پایان را وارد نکنید، فیلتر نخواهد شد."
     )
 
-    # serializers.py
-from rest_framework import serializers
-from .models import Attraction
+
 
 class Attractionserializers(serializers.ModelSerializer):
     class Meta:
