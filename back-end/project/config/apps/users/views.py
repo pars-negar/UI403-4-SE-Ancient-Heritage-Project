@@ -4,6 +4,12 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate, get_user_model
 from .serializers import CustomUserSerializer, LoginSerializer, UserRegisterSerializer , TourRegisterSerializer
 from .models import CustomUser, TourManagerProfile
+from rest_framework.views import APIView
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.core.mail import send_mail
+from .serializers import PasswordResetRequestSerializer, PasswordResetConfirmSerializer
 
 User = get_user_model()
 
@@ -69,3 +75,35 @@ class TourRegisterViewSet(viewsets.ViewSet):
                 'role': user.role
             }
         }, status=status.HTTP_201_CREATED)
+        
+        
+        
+class PasswordResetRequestView(APIView):
+    def post(self, request):
+        serializer = PasswordResetRequestSerializer(data = request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            user = User.objects.get(email=email)
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            token = default_token_generator.make_token(user)
+            reset_link = f"http://localhost:3000/reset-password/{uid}/{token}/"  # یا آدرس واقعی فرانت‌اند 
+            
+            send_mail(
+                subject= "بازیابی رمز عبور ",
+                message=f"برای تغییر رمز عبور روی این لینک کلیک کنید:\n{reset_link}",
+                from_email="fatememhdzdeee@gmail.com",
+                recipient_list=[user.email],
+            )
+            
+            return Response({"message": "لینک بازیابی رمز عبور ارسال شد."}, status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class PasswordResetConfirmView(APIView):
+    def post(self, request):
+        serializer = PasswordResetConfirmSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "رمز عبور با موفقیت تغییر کرد."}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)

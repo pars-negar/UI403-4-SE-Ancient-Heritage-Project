@@ -3,6 +3,9 @@ from .models import CustomUser , TourManagerProfile
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 import re
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_str, force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
 User = get_user_model()
 
@@ -103,3 +106,42 @@ class TourRegisterSerializer(serializers.ModelSerializer):
             TourManagerProfile.objects.create(user=user, **company_data)
 
         return user
+    
+class PasswordResetRequestSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+      
+    def validate_email(self, value):
+        if not User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("کاربری با این ایمیل یافت نشد.")
+        return value
+    
+
+
+class PasswordResetConfirmSerializer(serializers.Serializer):
+    uid = serializers.CharField()
+    token = serializers.CharField()
+    new_password = serializers.CharField(min_length=8, write_only=True)
+    
+    
+def validate(self, data):
+    try:
+        uid = force_str(urlsafe_base64_decode(data['uid']))
+        user = User.objects.get(pk=uid)
+        
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        raise serializers.ValidationError("کاربر معتبر نیست.")
+    
+    if not default_token_generator.check_token(user, data['token']):
+        raise serializers.ValidationError("توکن معتبر نیست یا منقضی شده است.")
+    
+    data['user'] = user
+    return data
+
+def save(self):
+    user = self.validated_data['user']
+    user.set_password(self.validated_data['new_password'])
+    user.save()
+    
+    
+    
+
