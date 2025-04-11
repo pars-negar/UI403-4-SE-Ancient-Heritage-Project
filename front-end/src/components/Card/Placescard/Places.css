@@ -47,7 +47,7 @@
   .place-card:hover {
     transform: scale(1.02);
   }
-  
+  `
   .place-card img {
     width: 220px;
     height: 180px;
