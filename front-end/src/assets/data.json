@@ -1,0 +1,54 @@
+{
+  "tours": [
+    {
+      "id": "1",
+      "title": "تور یزد",
+      "image": "/yazd.png",
+      "price": "۳,۰۰۰,۰۰۰ تومان",
+      "duration": "۲ روز",
+      "rating": 4,
+      "capacity": 20,
+      "description": "سفر به یزد، شهر بادگیرها و معماری کویری."
+    },
+    {
+      "id": "2",
+      "title": "تور شیراز",
+      "image": "/shiraz.png",
+      "price": "۶,۰۰۰,۰۰۰ تومان",
+      "duration": "۴ روز",
+      "rating": 5,
+      "capacity": 15,
+      "description": "گردش در باغ ارم و حافظیه، با فرهنگ غنی."
+    },
+    {
+      "id": "3",
+      "title": "تور اصفهان",
+      "image": "/isfahan.png",
+      "price": "۴,۰۰۰,۰۰۰ تومان",
+      "duration": "۳ روز",
+      "rating": 2,
+      "capacity": 25,
+      "description": "بازدید از نقش جهان و سی‌وسه پل."
+    },
+    {
+      "id": "3",
+      "title": "تور اصفهان",
+      "image": "/isfahan.png",
+      "price": "۴,۰۰۰,۰۰۰ تومان",
+      "duration": "۳ روز",
+      "rating": 2,
+      "capacity": 25,
+      "description": "بازدید از نقش جهان و سی‌وسه پل."
+    },
+    {
+      "id": "3",
+      "title": "تور اصفهان",
+      "image": "/isfahan.png",
+      "price": "۴,۰۰۰,۰۰۰ تومان",
+      "duration": "۳ روز",
+      "rating": 2,
+      "capacity": 25,
+      "description": "بازدید از نقش جهان و سی‌وسه پل."
+    }
+  ]
+}
