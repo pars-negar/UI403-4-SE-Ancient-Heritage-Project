@@ -8,37 +8,46 @@ class Attractionserializers(serializers.ModelSerializer):
         model=Attraction
         fields= '__all__'
         
-
+# Serializer for the Tour model - used for serializing and deserializing Tour instances
 class TourSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tour
-        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description']
+        model = Tour  # Specifies the model to serialize
+        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description']  # Fields to include
 
+
+# Serializer for filtering Tour objects based on specific criteria
 class TourFilterSerializer(serializers.Serializer):
+       # Optional field to filter tours by origin city or location
     origin = serializers.CharField(
-        required=False, 
-        allow_blank=True, 
-        help_text="مبدا تور را وارد کنید. اگر نمی‌خواهید فیلتر کنید، این فیلد را خالی بگذارید."
+        required=False,               # This field is not mandatory
+        allow_blank=True,            # Allows empty strings (i.e., no filtering if left blank)
+        help_text="Enter the origin of the tour. Leave empty if you don't want to filter by origin."
     )
+
+    # Optional field to filter tours by destination city or location
     destination = serializers.CharField(
-        required=False, 
-        allow_blank=True, 
-        help_text="مقصد تور را وارد کنید. اگر نمی‌خواهید فیلتر کنید، این فیلد را خالی بگذارید."
+        required=False,               # This field is not mandatory
+        allow_blank=True,            # Allows empty strings
+        help_text="Enter the destination of the tour. Leave empty if you don't want to filter by destination."
     )
+
+    # Optional field to filter tours that start on or after a specific date
     start_date = serializers.DateField(
-        required=False, 
-        allow_null=True, 
-        help_text="تاریخ شروع تور را وارد کنید. اگر تاریخ شروع را وارد نکنید، فیلتر نخواهد شد."
+        required=False,               # This field is not required
+        allow_null=True,             # Accepts null values (i.e., no filtering if left null)
+        help_text="Enter the start date of the tour. Leave it empty if you don't want to filter by start date."
     )
+
+    # Optional field to filter tours that end on or before a specific date
     end_date = serializers.DateField(
-        required=False, 
-        allow_null=True, 
-        help_text="تاریخ پایان تور را وارد کنید. اگر تاریخ پایان را وارد نکنید، فیلتر نخواهد شد."
+        required=False,               # Not mandatory
+        allow_null=True,             # Can be null
+        help_text="Enter the end date of the tour. Leave it empty if you don't want to filter by end date."
     )
 
 
-
+# Serializer for the Attraction model - used for serializing and deserializing Attraction instances
 class Attractionserializers(serializers.ModelSerializer):
     class Meta:
-        model = Attraction
-        fields = ['id', 'attraction_name', 'city', 'historical_period']
+        model = Attraction  # Specifies the model to serialize
+        fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
