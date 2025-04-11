@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+import TourCard from "../../components/Card/TourCard";
+import React, { cloneElement, useState, useEffect } from "react";
+import axios from "axios"
+import Navbar from '../../components/Navbar/Navbar'
+import image from '../../assets/images/1.png'
+import imageTwo from '../../assets/images/2.png'
+import styles from './home.module.css'
+import SearchBox from '../../components/SearchBox/SearchBox'
+import CityAttraction from "../../components/Card/CityAttraction";
+import im from '../../assets/images/1.png'
+import data from '../../assets/data.json'
+import TourismAttractionCard from "../../components/Card/tourismAttractionCard";
+import Comments from '../../components/Comments/Testimonials'
+import FAQAccordian from '../../components/FAQ/FAQAccordion'
+import Footer from '../../components/Footer/Footer'
+import FourCityCards from "../../components/Card/FourCityCards";
+import tomb from '../../assets/images/tomb.png'
+=======
 import React, { cloneElement, useEffect, useState } from "react";
 import TourCard from "../../components/Card/TourCard";
 import TourPage from "../TourPage/TourPage";
@@ -15,6 +34,7 @@ import Comments from '../../components/Comments/Testimonials';
 import FAQAccordian from '../../components/FAQ/FAQAccordion';
 import Footer from '../../components/Footer/Footer';
 
+>>>>>>> 6182f591ea8b04c2fb32faae1f91eb9bb57f2e48
 const Home = () => {
 
   const [tours, setTours] = useState([])
@@ -45,16 +65,25 @@ const Home = () => {
       </div>
 
       <div className={ styles.about } >
-        <img className={styles.imageTwo} src={ imageTwo } alt="image2" />
-      <div className={ styles.aboutText } >
         <h2>درباره سامانه پارس نگار</h2>
         <div className={ styles.paragraphContainer }>
           <p>این سیستم یک وب‌سایت گردشگری است که با هدف نمایش و معرفی آثار باستانی ایران طراحی شده است. کاربران می‌توانند اطلاعات جامع و دقیقی درباره مکان‌های تاریخی کشور، به همراه عکس‌های معتبر، توضیحات، موقعیت جغرافیایی و نقد و بررسی‌های سایر کاربران دریافت کنند.</p>
         </div>
       </div>
+
+      <div className={ styles.fourCitySection }>
+        <div className={ styles.fourCityAbout}>
+            <h2>جاذبه‌های تاریخی ایران</h2>
+            <p>
+              کشف ایران، لمس تاریخ، تجربه‌ای فراموش‌نشدنی!
+            </p>
+            <button className={ styles.more }>مشاهده بیشتر</button>
+        </div>
+        <FourCityCards />
+
       </div>
 
-      {/* <SearchBox /> */}
+      <SearchBox />
 
       <CityAttraction
         cityName="اصفهان"
@@ -69,6 +98,17 @@ const Home = () => {
 
 
 
+      <section className={ styles.hightlitSection}>
+        <div className={ styles.highlightText }>
+          <h3>ایران را از دریچه‌ای نو ببینید،</h3>
+          <p>هر سفر، یک داستان تازه!</p>
+        </div>
+        <div className={ styles.highlightImage}>
+          <img src={ tomb } alt="مقبره تاریخی" />
+        </div>
+      </section>
+
+      
     <div>
     <TourismAttractionCard
         image="/assets/images/takht-jamshid.png"
