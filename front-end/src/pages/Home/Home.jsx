@@ -61,7 +61,13 @@ const Home = () => {
         imageSrc="./assets/images/esf.png"
       />
 
-      <TourCard tour={data}/>
+      <div className={styles.tourCardContainer}>
+       {tours.map((tour) => (
+       <TourCard key={tour.id} tour={tour} />
+       ))}
+      </div>
+
+
 
     <div>
     <TourismAttractionCard

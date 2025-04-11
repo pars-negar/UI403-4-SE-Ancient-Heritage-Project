@@ -62,6 +62,14 @@
   object-fit: contain;
 }
 
+.tourCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem; /* فاصله بین کارت‌ها */
+  margin: 2rem auto;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
