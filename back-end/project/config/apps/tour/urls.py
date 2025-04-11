@@ -9,7 +9,12 @@ router.register(r'attraction', AttractionViewSet, basename='attraction')
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('api/attractionsearch/', AttractionSearchAPIView.as_view(), name='attractionsearch'),  
+   
+    # Custom endpoint for searching attractions (via custom API view)
+    path('api/attractionsearch/', AttractionSearchAPIView.as_view(), name='attractionsearch'),
+
+    # Custom endpoint for searching tours using filters like origin, destination, dates
+    path('api/toursearch/', TourSearchView.as_view(), name='toursearch'), path('api/attractionsearch/', AttractionSearchAPIView.as_view(), name='attractionsearch'),  
     path('api/toursearch/', TourSearchView.as_view(), name='toursearch'),  
 ]
 
