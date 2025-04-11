@@ -5,6 +5,7 @@ from rest_framework import status
 import ghasedakpack
 from random import randint
 
+
 GHASEDAK_API_KEY = "YOUR_GHASEDAK_API_KEY"
 sms = ghasedakpack.Ghasedak(GHASEDAK_API_KEY)
 good_line_number_for_sending_otp = '30005088'
@@ -45,3 +46,4 @@ class VerifyOTPView(APIView):
             return Response({'message': 'OTP verified successfully'}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
+

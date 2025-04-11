@@ -18,19 +18,27 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings 
 from django.urls import include
+from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+from rest_framework_simplejwt.views import TokenVerifyView
 from django.urls import path, include
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
+    TokenVerifyView
 )
-from rest_framework_simplejwt.views import TokenVerifyView
+
 
 user_urls = [
     path('', include('apps.users.urls')),
-    path('api/', include('apps.authentication.urls')),  
-    path('', include('apps.users.urls')),  
+    path('api/', include('apps.authentication.urls')),      
+]
+tour_urls=[
+    path('', include('apps.tour.urls')),
+]
 
+FAQ_urls= [
+    path('', include('apps.faq.urls')),
 ]
 
 urlpatterns = [
@@ -41,6 +49,10 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    
-]+user_urls
+    path('api/', include('apps.authentication.urls')),
+    path('api/frontpage/', include('frontpage.urls')),
 
+]+ user_urls + FAQ_urls + tour_urls
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

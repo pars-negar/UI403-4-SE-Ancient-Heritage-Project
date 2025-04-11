@@ -11,7 +11,7 @@ import styles from './navbar.css';
 
 const Navbar = () => {
     return ( 
-        <Container>
+        <Container className={ styles.cn}>
              <ReactNavbar expand="sm" className="navbar bg-body-tertiary" fluid>
                 <img className="logo" src={ logoUrl }  alt="logo" />
                 <ul className="ul">
