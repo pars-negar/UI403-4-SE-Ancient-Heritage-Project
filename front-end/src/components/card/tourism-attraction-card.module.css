@@ -1,54 +1,53 @@
-tourism-attraction-card.module.css
 
 .cardWrapper {
-    width: 250px;
-    margin: 0 auto;
-    position: relative;
-  }
-  
-  .imageContainer {
-    position: absolute;
-    top: -60%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    width: 200px;
-    height: 200px;
-    /* overflow: hidden; */
-  }
-  
-  
-  .cardImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
-  
-  .cardContent {
-    padding: 60px 16px 40px;
-    min-height: 220px;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .cardTitle {
-    font-weight: bolder;
-    font-size: 1.7rem;
-    margin-top: 12px;
-    /* margin-bottom: 6px; */
-    color: #000000;
-  }
-  
-  .cardDescription {
-    font-size: 1rem;
-    color: #000000;
-    line-height: 1.4;
-    margin-top: 20px;
-  } 
+  width: 350px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Vazir', sans-serif;
+  direction: rtl;
+  position: relative;
+}
+
+
+.imageWrapper {
+  width: 85%;
+  border-radius: 24px;
+  overflow: hidden;
+  z-index: 2;
+  position: relative;
+  transform: translateY(10%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.cardImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+
+.cardContent {
+  margin-top: -20%;
+  width: 100%;
+  border-radius: 32px;
+  padding: 120px 20px 55px;
+  text-align: center;
+  z-index: 1;
+}
+
+.cardTitle {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+.cardDescription {
+  font-size: 1.1rem;
+  color: #111;
+  line-height: 1.8;
+}

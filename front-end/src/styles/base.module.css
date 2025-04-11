@@ -26,10 +26,19 @@
     font-family:'Gandom', serif;
 } */
 
+* {
+    box-sizing: border-box;
+}
 
 body {
     direction: rtl;
 }
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
 :root {
     --form-title-color: #205781;
     --form-input-borders: #DDA853;
