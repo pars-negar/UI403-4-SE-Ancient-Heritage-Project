@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import tours from "../TourPage/TourPage";
+import TourCard from "../../components/Card/TourCard";
 
 const TourPage = () => {
   const { id } = useParams();
