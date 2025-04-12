@@ -36,11 +36,11 @@ function App() {
       {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
 
       {/* <Route exact path="/" element={ <Navbar />} /> */}
-       {/* <Route exact path="/" element={ <Home />}></Route> */}
+       <Route exact path="/" element={ <Home />}></Route>
       {/* <Route exact path="/" element={<CityAttraction cityName="اصفهان" imageSrc="./assets/images/esf.png" />}></Route> */}
       {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
       {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
-      <Route exact path="/" element={ < PlacesPage/>}></Route>
+  
 
       </Routes>
     </BrowserRouter>

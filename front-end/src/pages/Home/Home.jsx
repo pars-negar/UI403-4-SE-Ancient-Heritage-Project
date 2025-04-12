@@ -16,6 +16,7 @@ import FAQAccordian from '../../components/FAQ/FAQAccordion'
 import Footer from '../../components/Footer/Footer'
 import FourCityCards from "../../components/card/FourCityCards";
 import tomb from '../../assets/images/tomb.png'
+import ThreeTourismAttractions from "../../components/card/threeTorismAttraction";
 
 
 const Home = () => {
@@ -87,7 +88,7 @@ const Home = () => {
 
       
     <div>
-    <TourismAttractionCard
+    <ThreeTourismAttractions
         image="/assets/images/takht-jamshid.png"
         title="تخت جمشید"
         description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید"
