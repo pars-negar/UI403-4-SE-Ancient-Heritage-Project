@@ -16,8 +16,8 @@ import "./App.css";
 // import CityAttraction from "./components/card/CityAttraction.jsx";
 // import TourismAttractionCard from "./components/card/tourismAttractionCard.jsx";
 // import FourCityCards from "./components/card/FourCityCards.jsx";
-// import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery.jsx"
-import LoginPageRightpanel from './components/RightPanel/LoginPageRightpanel.jsx'
+import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery.jsx"
+//import LoginPageRightpanel from './components/RightPanel/LoginPageRightpanel.jsx'
 
 
 
@@ -31,9 +31,9 @@ function App() {
 
 
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
-      <Route exact path="/login" element={ <LoginPage/> }></Route>
+      {/* <Route exact path="/login" element={ <LoginPage/> }></Route> */}
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
-      {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
+      <Route exact path="/" element={ <PasswordRecovery/> }></Route>
       {/* <Route exact path="/" element={ <LoginSignUp/> }></Route> */}
       {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
 
@@ -42,7 +42,7 @@ function App() {
       {/* <Route exact path="/" element={<CityAttraction cityName="اصفهان" imageSrc="./assets/images/esf.png" />}></Route> */}
       {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
       {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
-      <Route exact path="/" element={ < LoginPageRightpanel/>}></Route>
+      {/* <Route exact path="/" element={ < LoginPageRightpanel/>}></Route> */}
 
       </Routes>
     </BrowserRouter>

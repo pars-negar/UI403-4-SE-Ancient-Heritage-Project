@@ -106,6 +106,7 @@ class TourRegisterViewSet(viewsets.ViewSet):
            
 class PasswordResetRequestView(APIView):
     def post(self, request):
+        print(request.data)
         serializer = PasswordResetRequestSerializer(data = request.data)
         if serializer.is_valid():
             email = serializer.validated_data['email']
