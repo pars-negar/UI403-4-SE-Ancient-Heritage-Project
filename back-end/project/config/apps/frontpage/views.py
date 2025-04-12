@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializer import HeaderImageSerializer , AttractionSerializer, TourSerializer, FAQSerializer # 👈 این لازمه
+from .serializer import HeaderImageSerializer , AttractionSerializer, TourSerializer, FAQSerializer 
 
 
 from .serializer import AttractionSerializer, TourSerializer, FAQSerializer
