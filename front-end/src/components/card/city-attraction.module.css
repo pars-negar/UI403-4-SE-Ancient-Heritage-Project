@@ -1,112 +1,60 @@
-/* .Citycard {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    border-radius: 20px;
-    overflow: hidden;
-    color: white;
-    display: flex;
-    padding: 0.8rem;
-    align-items: flex-end;
-    justify-content: center;
-  }
-  
-  .Cityoverlay {
-    width: 100%;
-    padding: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  
-  .cityName {
-    font-size: 2rem;
-    justify-content: center;
-    font-weight: bolder;
-    margin: 0;
-    margin-bottom: 12rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-  }
-  
-  .CityAttractionbutton {
-    margin-bottom: 2rem;
-    width: 200px;
-    height: 80px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    padding: 0.4rem 1.2rem;
-    border-radius: 12px;
-    font-size: 1.3rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-  }
-  
-  .button:hover {
-    background-color: rgba(255, 255, 255, 0.35);
-    border-color: rgba(255, 255, 255, 0.8);
-  }
- 
-   */
-   .Citycard {
-    width: 350px;
-    height: 220px;
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    border-radius: 20px;
-    overflow: hidden;
-    color: white;
-    display: flex;
-    padding: 0.8rem;
-    align-items: flex-end;
-    justify-content: center;
-    transition: transform 0.3s ease;
-  }
-  
-  .Citycard:hover {
-    transform: scale(1.02);
-  }
-  
-  .highlighted {
-    border: 3px solid #007bff;
-    box-shadow: 0 0 12px #007bff;
-  }
-  
-  .Cityoverlay {
-    width: 100%;
-    padding: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  
-  .cityName {
-    font-size: 1.8rem;
-    font-weight: bolder;
-    margin: 0;
-    margin-bottom: 8rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-  }
-  
-  .CityAttractionbutton {
-    margin-bottom: 1.5rem;
-    width: 180px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    padding: 0.4rem 1.2rem;
-    border-radius: 12px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-  }
-  
-  .CityAttractionbutton:hover {
-    background-color: rgba(255, 255, 255, 0.35);
-    border-color: rgba(255, 255, 255, 0.8);
-  }
-  
+
+.Citycard {
+  width: 350px;
+  height: 220px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  padding: 0.8rem;
+  align-items: flex-end;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.Citycard:hover {
+  transform: scale(1.02);
+}
+
+.highlighted {
+  border: 3px solid #007bff;
+  box-shadow: 0 0 12px #007bff;
+}
+
+.Cityoverlay {
+  width: 100%;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cityName {
+  font-size: 1.8rem;
+  font-weight: bolder;
+  margin-bottom: 30%;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.CityAttractionbutton {
+  margin-bottom: 1%;
+  width: 180px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 0.4rem 1.2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.CityAttractionbutton:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.8);
+}
