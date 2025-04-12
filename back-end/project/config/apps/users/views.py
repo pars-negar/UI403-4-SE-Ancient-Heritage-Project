@@ -13,19 +13,18 @@ from .serializers import PasswordResetRequestSerializer, PasswordResetConfirmSer
 
 User = get_user_model()
 
-# login
+# ViewSet for user login
 class LoginViewSet(viewsets.ViewSet):
     def create(self, request):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
             username = serializer.validated_data['username']
             password = serializer.validated_data['password']
-            print(f"Received: username={username}, password={password}") 
             user = authenticate(username=username, password=password)
             if user:
                 refresh = RefreshToken.for_user(user)
                 return Response({
-                    "message": "Login successful!",
+                    "message": "ورود با موفقیت انجام شد.",
                     "refresh": str(refresh),
                     "access": str(refresh.access_token)
                 }, status=status.HTTP_200_OK)

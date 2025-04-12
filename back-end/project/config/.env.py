@@ -1,2 +1,2 @@
-KAVENEGAR_API_KEY=3046519
+EMAIL_HOST_PASSWORD = 'jtre hgom taza rdev'  
 
