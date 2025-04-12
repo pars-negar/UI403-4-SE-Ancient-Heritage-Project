@@ -1,5 +1,5 @@
 
-import TourCard from "../../components/Card/TourCard";
+import TourCard from "../../components/card/TourCard";
 import React, { cloneElement, useState, useEffect } from "react";
 import axios from "axios"
 import Navbar from '../../components/Navbar/Navbar'
@@ -7,14 +7,14 @@ import image from '../../assets/images/1.png'
 import imageTwo from '../../assets/images/2.png'
 import styles from './home.module.css'
 import SearchBox from '../../components/SearchBox/SearchBox'
-import CityAttraction from "../../components/Card/CityAttraction";
+import CityAttraction from "../../components/card/CityAttraction";
 import im from '../../assets/images/1.png'
 import data from '../../assets/data.json'
-import TourismAttractionCard from "../../components/Card/tourismAttractionCard";
+import TourismAttractionCard from "../../components/card/tourismAttractionCard";
 import Comments from '../../components/Comments/Testimonials'
 import FAQAccordian from '../../components/FAQ/FAQAccordion'
 import Footer from '../../components/Footer/Footer'
-import FourCityCards from "../../components/Card/FourCityCards";
+import FourCityCards from "../../components/card/FourCityCards";
 import tomb from '../../assets/images/tomb.png'
 
 
@@ -42,6 +42,7 @@ const Home = () => {
   
   return (
     <div className="home">
+      
       <Navbar />
       <div className={ styles.carousel }>
         <img className={styles.imageOne} src={ image } alt="image" />
@@ -55,6 +56,9 @@ const Home = () => {
       </div>
 
       <div className={ styles.fourCitySection }>
+        <div className={styles.fourCity}>
+        <FourCityCards />
+        </div>
         <div className={ styles.fourCityAbout}>
             <h2>جاذبه‌های تاریخی ایران</h2>
             <p>
@@ -62,18 +66,12 @@ const Home = () => {
             </p>
             <button className={ styles.more }>مشاهده بیشتر</button>
         </div>
-        {/* <FourCityCards /> */}
-
       </div>
+      <div className={styles.SearchBox}><SearchBox /></div>
 
-      {/* <SearchBox /> */}
-
-      <CityAttraction
-        cityName="اصفهان"
-        imageSrc="./assets/images/esf.png"
-      />
-
-      <TourCard tour={data}/>
+      {tours.map((tour) => (
+      <TourCard key={tour.id} tour={tour} />
+    ))}
 
       {/* <section className={ styles.hightlitSection}>
         <div className={ styles.highlightText }>
