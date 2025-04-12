@@ -59,36 +59,40 @@ class UserRegisterViewSet(viewsets.ViewSet):
 
 # ViewSet for handling tour manager registration
 class TourRegisterViewSet(viewsets.ViewSet):
-        user = self.get_object() 
-        if user.role == 'tour_manager': 
-            company_data = {
-                'company_name': request.data.get('company_name'),
-                'company_address': request.data.get('company_address'),
-                'company_registration_number': request.data.get('company_registration_number'),
-            }
-            TourManagerProfile.objects.create(user=user, **company_data)
-        
-        def create(self, request):
-            # Instantiate the serializer with request data
-            serializer = TourRegisterSerializer(data=request.data)
-
-            # Check if the provided data is valid
-            if serializer.is_valid():
-                # Save the user and create their profile (handled inside the serializer)
-                user = serializer.save()
-
-                # Return a success response with basic user details
-                return Response({
-                    'message': 'ثبت‌نام با موفقیت انجام شد.',  # "Registration completed successfully."
-                    'user': {
-                        'username': user.username,
-                        'email': user.email,
-                        'role': user.role
-                    }
-                }, status=status.HTTP_201_CREATED)
+    def create(self, request):
+        # Instantiate the serializer with request data
+        serializer = TourRegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            user = self.get_object() 
+            if user.role == 'tour_manager': 
+                company_data = {
+                    'company_name': request.data.get('company_name'),
+                    'company_address': request.data.get('company_address'),
+                    'company_registration_number': request.data.get('company_registration_number'),
+                }
+                TourManagerProfile.objects.create(user=user, **company_data)
             
-        
-        
+            def create(self, request):
+                # Instantiate the serializer with request data
+                serializer = TourRegisterSerializer(data=request.data)
+
+                # Check if the provided data is valid
+                if serializer.is_valid():
+                    # Save the user and create their profile (handled inside the serializer)
+                    user = serializer.save()
+
+                    # Return a success response with basic user details
+                    return Response({
+                        'message': 'ثبت‌نام با موفقیت انجام شد.',  # "Registration completed successfully."
+                        'user': {
+                            'username': user.username,
+                            'email': user.email,
+                            'role': user.role
+                        }
+                    }, status=status.HTTP_201_CREATED)
+                
+            
+            
  
 # View to handle password reset requests.
 # This API view allows users to request a password reset by providing their registered email address. 
