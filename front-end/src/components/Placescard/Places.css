@@ -1,0 +1,147 @@
+.place-section-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+  padding-right: 10px;
+  border-right: 4px solid #f97316; /* نارنجی */
+  margin-bottom: 20px;
+}
+.place-section-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.place-section-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.place-section-row::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+
+.place-grid {
+  display: grid;
+  grid-template-columns:row;
+  gap: 20px;
+  justify-items: center;
+}
+
+.place-card {
+  position: relative;
+  width: 220px;
+  height: 180px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.place-card:hover {
+  transform: scale(1.02);
+}
+
+.place-card img {
+  width: 220px;
+  height: 180px;
+  object-fit: cover;
+  border: 15px;
+  border-radius: 15px;
+}
+
+.place-overlay {
+  position: absolute;
+  inset: 0;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+}
+
+.place-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.place-desc {
+  font-size: 12px;
+}
+
+.place-button {
+  position: absolute;
+  bottom: 4px;
+  left: 8px;
+  width: 25px;
+  height: 25px;
+  background-color: #f97316;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.349);
+}
+
+.place-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.place-modal {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.place-modal-close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 22px;
+  color: #555;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.place-modal img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.place-modal h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.place-section-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
