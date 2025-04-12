@@ -160,3 +160,13 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'fatememhdzdeee@gmail.com'
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
+
+ALLOWED_HOSTS = ['*']
+
+CORS_ALLOW_ALL_ORIGINS = [
+    'http://127.0.0.1:8000' ,
+    'http://localhost:8000' ,
+    'http://localhost:8000' ,
+]
+
+CORS_ALLOW_ALL_ORIGINS = True 

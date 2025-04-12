@@ -26,7 +26,7 @@ class HomePageAPIView(APIView):
             'attractions': AttractionSerializer(attractions, many=True).data,
             'tours': TourSerializer(tours, many=True).data,
             'faqs': FAQSerializer(faqs, many=True).data,
-            'headers': HeaderImageSerializer(headers, many=True).data,  # 👈 اضافه شد
+            'headers': HeaderImageSerializer(headers, many=True).data,  
         }
         return Response(data, status=status.HTTP_200_OK)
 print
