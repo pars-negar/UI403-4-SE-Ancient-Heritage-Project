@@ -158,3 +158,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'fatememhdzdeee@gmail.com'
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
+
+HADIR_HAWITY_API_URL = 'http://localhost:8000/api'

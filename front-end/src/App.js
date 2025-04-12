@@ -2,7 +2,7 @@ import React from "react";
 // import VerificationPage from "./pages/verificationPage/verificationPage";  // وارد کردن کامپوننت صفحه تأیید شماره تلفن
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import UserSignUpPage from "./pages/UserSignUp/UserSignUp.jsx";
+//import UserSignUpPage from "./pages/UserSignUp/UserSignUp.jsx";
 // import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery";
 // import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
@@ -17,6 +17,8 @@ import "./App.css";
 // import TourismAttractionCard from "./components/card/tourismAttractionCard.jsx";
 // import FourCityCards from "./components/card/FourCityCards.jsx";
 import LoginPageRightpanel from './components/RightPanel/LoginPageRightpanel.jsx'
+import UserSignUpRightPanel from "./components/RightPanel/UserSignUpRightPanel.jsx";
+import VerificationPage from "./components/RightPanel/verificationRightpanel/verificationRightPanel.jsx";
 
 
 
@@ -40,7 +42,9 @@ function App() {
       {/* <Route exact path="/" element={<CityAttraction cityName="اصفهان" imageSrc="./assets/images/esf.png" />}></Route> */}
       {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
       {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
-      <Route exact path="/" element={ < LoginPageRightpanel/>}></Route>
+      <Route exact path="/" element={ <UserSignUpRightPanel/>}></Route>
+      <Route path="/verify-otp" element={< VerificationPage/>} />
+
 
       </Routes>
     </BrowserRouter>
