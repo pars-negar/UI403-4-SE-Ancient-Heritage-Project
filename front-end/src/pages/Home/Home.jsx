@@ -2,6 +2,7 @@
 import TourCard from "../../components/Card/TourCard";
 import React, { cloneElement, useState, useEffect } from "react";
 import axios from "axios"
+// import "./App.css";
 import Navbar from '../../components/Navbar/Navbar'
 import image from '../../assets/images/1.png'
 import imageTwo from '../../assets/images/2.png'
@@ -73,7 +74,9 @@ const Home = () => {
         imageSrc="./assets/images/esf.png"
       />
 
-      <TourCard tour={data}/>
+      {tours.map((tour) => (
+       <TourCard key={tour.id} tour={tour} />
+       ))}
 
       {/* <section className={ styles.hightlitSection}>
         <div className={ styles.highlightText }>
