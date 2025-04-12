@@ -3,6 +3,7 @@ from apps.users.models import CustomUser
 
 
 class Attraction(models.Model):
+    # Define the available historical period choices as (value, display name) tuples
     PERIOD_CHOICES = [
         ('Ilamian', 'ایلامیان'),
         ('Achaemenid', 'هخامنشیان'),
@@ -15,6 +16,7 @@ class Attraction(models.Model):
         ('Qajar', 'قاجار'),
         ('Uncertain' , 'نامشخص')
     ]
+     # Field to store the historical period of the attraction, limited to predefined choices. Default is 'Uncertain'.
     historical_period  = models.CharField(max_length=20, choices=PERIOD_CHOICES, default='Uncertain')
     attraction_name = models.CharField(max_length=255)  
     description = models.TextField() 
