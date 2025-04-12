@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./PassRecoveryRightPanel.module.css"; 
 import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
 
 
 const PassRecoveryRightPanel = () => {
@@ -16,7 +17,7 @@ const PassRecoveryRightPanel = () => {
 
   // Regex pattern for email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+  const navigate = useNavigate();
   // Handle input change
   const handleChange = (event) => {
     setEmail(event.target.value);
@@ -38,7 +39,7 @@ const PassRecoveryRightPanel = () => {
 
     try {
       // Send the request to the backend API for password recovery link
-      const response = await axios.post("http://localhost:8000/api/password-recovery/", { email });
+      const response = await axios.post("http://localhost:8000/api/api/auth/password/reset/", { email });
       
       if (response.status === 200) {
         alert(`لینک بازیابی رمز عبور برای ${email} ارسال شد!`);
@@ -73,14 +74,14 @@ const PassRecoveryRightPanel = () => {
       />
 
       {/* Send link button */}
-      <button className={styles.sendButton} onClick={handleSendLink}>
-        ارسال لینک
-      </button>
-
-      {/* Back to login button */}
-      <button className={styles.backButton} onClick={() => alert("بازگشت به صفحه ورود")}>
-        بازگشت به صفحه ورود
-      </button>
+      <Link to="http://localhost:3000/login">
+        <button className={styles.sendButton} onClick={handleSendLink}>
+          ارسال لینک
+        </button >
+        {/* Back to login button */} <button className={styles.backButton} onClick={() => navigate("/login")}>
+          بازگشت به صفحه ورود
+        </button>
+      </Link>
     </div>
   );
 };
