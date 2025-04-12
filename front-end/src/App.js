@@ -15,7 +15,8 @@ import "./App.css";
 // import Footer from "./components/Footer/Footer.jsx"
 // import CityAttraction from "./components/card/CityAttraction.jsx";
 // import TourismAttractionCard from "./components/card/tourismAttractionCard.jsx";
-import FourCityCards from "./components/card/FourCityCards.jsx";
+// import FourCityCards from "./components/card/FourCityCards.jsx";
+import LoginPageRightpanel from './components/RightPanel/LoginPageRightpanel.jsx'
 
 
 
@@ -39,6 +40,7 @@ function App() {
       {/* <Route exact path="/" element={<CityAttraction cityName="اصفهان" imageSrc="./assets/images/esf.png" />}></Route> */}
       {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
       {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
+      <Route exact path="/" element={ < LoginPageRightpanel/>}></Route>
 
       </Routes>
     </BrowserRouter>

@@ -16,10 +16,13 @@ User = get_user_model()
 # ViewSet for user login
 class LoginViewSet(viewsets.ViewSet):
     def create(self, request):
+        print("داده‌های دریافتی از فرانت‌اند:", request.data)  # 👈 این خطو اضافه کن
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
             username = serializer.validated_data['username']
+            print(username)
             password = serializer.validated_data['password']
+            print(password)
             user = authenticate(username=username, password=password)
             if user:
                 refresh = RefreshToken.for_user(user)

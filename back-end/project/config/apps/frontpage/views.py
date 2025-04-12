@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializer import HeaderImageSerializer , AttractionSerializer, TourSerializer, FAQSerializer # 👈 این لازمه
+from .serializer import HeaderImageSerializer , AttractionSerializer, TourSerializer, FAQSerializer 
 
 
 from .serializer import AttractionSerializer, TourSerializer, FAQSerializer
@@ -26,7 +26,7 @@ class HomePageAPIView(APIView):
             'attractions': AttractionSerializer(attractions, many=True).data,
             'tours': TourSerializer(tours, many=True).data,
             'faqs': FAQSerializer(faqs, many=True).data,
-            'headers': HeaderImageSerializer(headers, many=True).data,  # 👈 اضافه شد
+            'headers': HeaderImageSerializer(headers, many=True).data,  
         }
         return Response(data, status=status.HTTP_200_OK)
 print

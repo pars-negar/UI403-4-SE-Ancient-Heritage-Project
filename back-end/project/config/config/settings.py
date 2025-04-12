@@ -17,8 +17,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 CORS_ALLOW_HEADERS = ["authorization", "content-type"]
 
-# Kavenegar SMS API key from environment
-KAVENEGAR_API_KEY = os.getenv('KAVENEGAR_API_KEY')
 
 # Base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
