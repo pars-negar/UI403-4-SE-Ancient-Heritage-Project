@@ -152,11 +152,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Email settings (for sending emails like OTP or notifications)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'fatememhdzdeee@gmail.com'
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = 'cayx vxez ccts revi'
+DEFAULT_FROM_EMAIL = 'test@example.com'
+
 
 
 HADIR_HAWITY_API_URL = 'http://localhost:8000/api'
+
+ALLOWED_HOSTS = ['*']
+
+CORS_ALLOW_ALL_ORIGINS = [
+    'http://127.0.0.1:8000' ,
+    'http://localhost:8000' ,
+    'http://localhost:8000' ,
+]
+
+CORS_ALLOW_ALL_ORIGINS = True 

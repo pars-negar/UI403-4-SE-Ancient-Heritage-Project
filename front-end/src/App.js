@@ -4,8 +4,8 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import UserSignUpPage from "./pages/UserSignUp/UserSignUp.jsx";
 // import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery";
-// import LoginPage from "./pages/LoginPage/LoginPage.jsx"
-import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
+import LoginPage from "./pages/LoginPage/LoginPage.jsx"
+//import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
 // import Navbar from "./components/Navbar/Navbar.jsx"
 // import TourismAttractionCard from "../src/components/Card/tourismAttractionCard.jsx";
 // import HomePage from "./pages/Home/Home.jsx";
@@ -16,9 +16,14 @@ import "./App.css";
 // import CityAttraction from "./components/card/CityAttraction.jsx";
 // import TourismAttractionCard from "./components/card/tourismAttractionCard.jsx";
 // import FourCityCards from "./components/card/FourCityCards.jsx";
+
 import LoginPageRightpanel from './components/RightPanel/LoginPageRightpanel.jsx'
 import UserSignUpRightPanel from "./components/RightPanel/UserSignUpRightPanel.jsx";
 import VerificationPage from "./components/RightPanel/verificationRightpanel/verificationRightPanel.jsx";
+
+import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery.jsx"
+//import LoginPageRightpanel from './components/RightPanel/LoginPageRightpanel.jsx'
+import TourleaderSignUp from "./pages/TourLeaderSignUp/TourleaderSignUp.jsx"
 
 
 
@@ -31,7 +36,8 @@ function App() {
 
 
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
-      {/* <Route exact path="/" element={ <LoginPage/> }></Route> */}
+      <Route exact path="/" element={ <TourleaderSignUp/> }></Route>
+      {/* <Route exact path="/login" element={ <LoginPage/> }></Route> */}
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
       {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
       {/* <Route exact path="/" element={ <LoginSignUp/> }></Route> */}
@@ -44,6 +50,8 @@ function App() {
       {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
       <Route exact path="/" element={ <UserSignUpRightPanel/>}></Route>
       <Route path="/verify-otp" element={< VerificationPage/>} />
+
+     {/* <Route exact path="/" element={ < LoginPageRightpanel/>}></Route> */}
 
 
       </Routes>
