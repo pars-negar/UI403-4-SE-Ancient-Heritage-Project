@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import PlaceSection from '../../components/Placescard/PlaceSection';
 import PlaceModal from '../../components/Placescard/PlaceModal';
-import "../../components/Card/Placescard/Places.css";
+import "../../components/card/Placescard/Places.css";
 import styles from "./PlacesPage.module.css"
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
