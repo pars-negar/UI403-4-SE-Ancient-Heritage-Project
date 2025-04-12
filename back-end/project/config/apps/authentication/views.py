@@ -1,16 +1,14 @@
+import requests
 from django.core.cache import cache
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-import ghasedakpack
 from random import randint
-from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 
-
-GHASEDAK_API_KEY = "YOUR_GHASEDAK_API_KEY"
-sms = ghasedakpack.Ghasedak(GHASEDAK_API_KEY)
+GHASEDAK_API_KEY = "78a33e51203b08913a6cef083b92d212c713a74b603afc50af0e10370c7a1465QkEAodV6AH7WLUaR"
 good_line_number_for_sending_otp = '30005088'
+sms_url = "https://gateway.ghasedak.me/rest/api/v1/WebService/SendOtpWithParams"
 
 class SendOTPView(APIView):
     def post(self, request, *args, **kwargs):
@@ -21,17 +19,34 @@ class SendOTPView(APIView):
         otp = str(randint(100000, 999999))
         cache.set(phone_number, otp, timeout=120)  
 
+        headers = {
+            'accept': 'application/json',
+            'ApiKey': GHASEDAK_API_KEY
+        }
+
+        data = {
+    "receptors": [{"mobile": phone_number}],  # فقط شماره موبایل
+    "templateName": "parsnegar",
+    "param1": otp,
+    "isVoice": False,
+    "udh": False
+}
+
+
+        
         try:
-           # response = sms.verification({
-           #     'receptor': phone_number,
-           #     'linenumber': good_line_number_for_sending_otp,
-            #    'type': 1,
-             #   'template': 'Ghasedak',
-              #  'param1': otp
-            #})
+            response = requests.post(sms_url, headers=headers, json=data)
+            response_data = response.json()  # اینجا پاسخ API را دریافت می‌کنید
+            print(data)
+            print(response_data) 
             
-            print(f"✅ OTP برای {phone_number}: {otp}")   
-            return Response({'message': 'OTP sent successfully'}, status=status.HTTP_200_OK)
+            if response_data.get('isSuccess'):
+                print(f"✅ OTP برای {phone_number}: {otp}")
+                return Response({'message': 'OTP sent successfully'}, status=status.HTTP_200_OK)
+            else:
+                print(f"Error sending OTP: {response_data.get('message')}")
+                return Response({'error': 'Failed to send OTP'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
         except Exception as e:
             print(f"SMS Error: {e}")
             return Response({'error': 'Failed to send OTP'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
