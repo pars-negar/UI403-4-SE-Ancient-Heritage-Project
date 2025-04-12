@@ -28,15 +28,15 @@ class LoginViewSet(viewsets.ViewSet):
                     "refresh": str(refresh),
                     "access": str(refresh.access_token)
                 }, status=status.HTTP_200_OK)
-            return Response({"error": "Invalid credentials!"}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({"error": "نام کاربری یا رمز عبور نادرست است!"}, status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#view for user
+# Read-only view for all users
 class CustomUserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
 
-# ViewSet for handling user registration
+# ViewSet for normal user registration
 class UserRegisterViewSet(viewsets.ViewSet):
     def create(self, request):
         # Instantiate the serializer with request data
