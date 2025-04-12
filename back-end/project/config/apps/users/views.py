@@ -31,41 +31,47 @@ class CustomUserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
 
-
-# register
+# ViewSet for handling user registration
 class UserRegisterViewSet(viewsets.ViewSet):
     def create(self, request):
+        # Instantiate the serializer with request data
         serializer = UserRegisterSerializer(data=request.data)
+        
+        # Check if the provided data is valid
         if serializer.is_valid():
+            # Save the user (create the user object)
             user = serializer.save()
+            
+            # Return a success response with the created user data
             return Response({
-                "message": "ثبت نام موفقیت آمیز بود!",
-                "user": UserRegisterSerializer(user).data
+                "message": "ثبت نام موفقیت آمیز بود!",  # "Registration successful!"
+                "user": UserRegisterSerializer(user).data  # Return serialized user info
             }, status=status.HTTP_201_CREATED)
+        
+        # If validation fails, return the error details
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
+# ViewSet for handling tour manager registration
 class TourRegisterViewSet(viewsets.ViewSet):
-    serializer_class = TourRegisterSerializer
+    def create(self, request):
+        # Instantiate the serializer with request data
+        serializer = TourRegisterSerializer(data=request.data)
 
-    def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs)
+        # Check if the provided data is valid
+        if serializer.is_valid():
+            # Save the user and create their profile (handled inside the serializer)
+            user = serializer.save()
 
-        user = self.get_object() 
-        if user.role == 'tour_manager': 
-            company_data = {
-                'company_name': request.data.get('company_name'),
-                'company_address': request.data.get('company_address'),
-                'company_registration_number': request.data.get('company_registration_number'),
-            }
-            TourManagerProfile.objects.create(user=user, **company_data)
-
-        return Response({
-            'message': 'ثبت‌نام با موفقیت انجام شد.',
-            'user': {
-                'username': user.username,
-                'email': user.email,
-                'role': user.role
-            }
-        }, status=status.HTTP_201_CREATED)
+            # Return a success response with basic user details
+            return Response({
+                'message': 'ثبت‌نام با موفقیت انجام شد.',  # "Registration completed successfully."
+                'user': {
+                    'username': user.username,
+                    'email': user.email,
+                    'role': user.role
+                }
+            }, status=status.HTTP_201_CREATED)
+        
+        # If validation fails, return the error details
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
