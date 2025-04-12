@@ -60,28 +60,6 @@ class UserRegisterViewSet(viewsets.ViewSet):
 
 # ViewSet for handling tour manager registration
 class TourRegisterViewSet(viewsets.ViewSet):
-    def create(self, request):
-        # Instantiate the serializer with request data
-        serializer = TourRegisterSerializer(data=request.data)
-
-        # Check if the provided data is valid
-        if serializer.is_valid():
-            # Save the user and create their profile (handled inside the serializer)
-            user = serializer.save()
-
-            # Return a success response with basic user details
-            return Response({
-                'message': 'ثبت‌نام با موفقیت انجام شد.',  # "Registration completed successfully."
-                'user': {
-                    'username': user.username,
-                    'email': user.email,
-                    'role': user.role
-                }
-            }, status=status.HTTP_201_CREATED)
-        
-        # If validation fails, return the error details
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
         user = self.get_object() 
         if user.role == 'tour_manager': 
             company_data = {
@@ -90,15 +68,26 @@ class TourRegisterViewSet(viewsets.ViewSet):
                 'company_registration_number': request.data.get('company_registration_number'),
             }
             TourManagerProfile.objects.create(user=user, **company_data)
+        
+        def create(self, request):
+            # Instantiate the serializer with request data
+            serializer = TourRegisterSerializer(data=request.data)
 
-        return Response({
-            'message': 'ثبت‌نام با موفقیت انجام شد.',
-            'user': {
-                'username': user.username,
-                'email': user.email,
-                'role': user.role
-            }
-        }, status=status.HTTP_201_CREATED)
+            # Check if the provided data is valid
+            if serializer.is_valid():
+                # Save the user and create their profile (handled inside the serializer)
+                user = serializer.save()
+
+                # Return a success response with basic user details
+                return Response({
+                    'message': 'ثبت‌نام با موفقیت انجام شد.',  # "Registration completed successfully."
+                    'user': {
+                        'username': user.username,
+                        'email': user.email,
+                        'role': user.role
+                    }
+                }, status=status.HTTP_201_CREATED)
+            
         
         
  
