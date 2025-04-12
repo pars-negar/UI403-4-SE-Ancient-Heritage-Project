@@ -41,6 +41,10 @@ FAQ_urls= [
     path('', include('apps.faq.urls')),
 ]
 
+frontpage_urls = [
+    path('api/frontpage/', include('apps.frontpage.urls')),
+]
+
 urlpatterns = [
      path('admin/', admin.site.urls),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
@@ -51,7 +55,9 @@ urlpatterns = [
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/', include('apps.authentication.urls')),
 
-]+ user_urls + FAQ_urls + tour_urls
+]+ user_urls + FAQ_urls + tour_urls+frontpage_urls
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
