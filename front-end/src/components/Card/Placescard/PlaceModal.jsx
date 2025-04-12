@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Placescard/PlaceCard';
+// import PlaceCard from './PlaceCard';
 
 const PlaceModal = ({ show, onClose, place }) => {
   if (!show) return null;

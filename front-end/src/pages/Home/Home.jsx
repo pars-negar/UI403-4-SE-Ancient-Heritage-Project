@@ -67,11 +67,13 @@ const Home = () => {
             <button className={ styles.more }>مشاهده بیشتر</button>
         </div>
       </div>
-      <div className={styles.SearchBox}><SearchBox /></div>
+      <div className={styles.HomesearchBox}><SearchBox /></div>
 
-      {tours.map((tour) => (
-      <TourCard key={tour.id} tour={tour} />
-    ))}
+      <div className={styles.editTourCard }>
+        {tours.map((tour) => (
+        <TourCard key={tour.id} tour={tour} />
+        ))}
+       </div>
 
       {/* <section className={ styles.hightlitSection}>
         <div className={ styles.highlightText }>

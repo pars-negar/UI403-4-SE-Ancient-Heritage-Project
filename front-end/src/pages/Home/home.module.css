@@ -99,8 +99,11 @@
     border-radius: 8px;
     object-fit: cover;
   }
-  .searchBox{
-      margin-left: 10px;
-      margin-bottom: 200px;
+  .HomesearchBox{
+      margin-right: 8%;
+      margin-top:-150px;
+  }
+  .editTourCard{
+    flex-direction: row;
   }
   
