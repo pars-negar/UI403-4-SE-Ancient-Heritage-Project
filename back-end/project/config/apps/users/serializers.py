@@ -131,19 +131,22 @@ class TourRegisterSerializer(serializers.ModelSerializer):
 
     # Create tour manager user and related company profile
     def create(self, validated_data):
-        # Create the user account
+    # جدا کردن فیلدهای مربوط به شرکت
+        company_name = validated_data.pop('company_name', None)
+        company_address = validated_data.pop('company_address', None)
+        company_registration_number = validated_data.pop('company_registration_number', None)
+
+        # ساخت یوزر
         user = User.objects.create_user(**validated_data)
 
-        # If user has role 'tour_manager', create a company profile
+        # ساخت پروفایل شرکت اگر نقش کاربر tour_manager بود
         if user.role == 'tour_manager':
-            # Extract company fields
-            company_data = {
-                key: validated_data[key]
-                for key in ['company_name', 'company_address', 'company_registration_number']
-                if key in validated_data
-            }
-            # Create tour manager profile
-            TourManagerProfile.objects.create(user=user, **company_data)
+            TourManagerProfile.objects.create(
+                user=user,
+                company_name=company_name,
+                company_address=company_address,
+                company_registration_number=company_registration_number
+            )
 
         return user
 

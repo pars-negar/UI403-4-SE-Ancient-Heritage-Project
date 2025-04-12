@@ -18,8 +18,7 @@ import "./App.css";
 // import FourCityCards from "./components/card/FourCityCards.jsx";
 import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery.jsx"
 //import LoginPageRightpanel from './components/RightPanel/LoginPageRightpanel.jsx'
-
-
+import TourleaderSignUp from "./pages/TourLeaderSignUp/TourleaderSignUp.jsx"
 
 
 
@@ -31,9 +30,10 @@ function App() {
 
 
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
+      <Route exact path="/" element={ <TourleaderSignUp/> }></Route>
       {/* <Route exact path="/login" element={ <LoginPage/> }></Route> */}
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
-      <Route exact path="/" element={ <PasswordRecovery/> }></Route>
+      {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
       {/* <Route exact path="/" element={ <LoginSignUp/> }></Route> */}
       {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
 
