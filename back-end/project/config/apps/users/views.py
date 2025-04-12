@@ -77,7 +77,14 @@ class TourRegisterViewSet(viewsets.ViewSet):
         }, status=status.HTTP_201_CREATED)
         
         
-        
+ 
+# View to handle password reset requests.
+# This API view allows users to request a password reset by providing their registered email address. 
+# Upon receiving a POST request, it validates the provided data using the PasswordResetRequestSerializer. 
+# If the email is valid and associated with a user, it generates a unique password reset link, 
+# sends an email to the user with the reset link, and returns a success message. 
+# If the email is invalid or not found, it returns appropriate error messages.
+           
 class PasswordResetRequestView(APIView):
     def post(self, request):
         serializer = PasswordResetRequestSerializer(data = request.data)
@@ -98,9 +105,15 @@ class PasswordResetRequestView(APIView):
             return Response({"message": "لینک بازیابی رمز عبور ارسال شد."}, status=status.HTTP_200_OK)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+ 
     
+# Handles POST requests for confirming password reset.
 
 class PasswordResetConfirmView(APIView):
+    
+    # This view validates the provided data using the PasswordResetConfirmSerializer,
+    # updates the user's password if the data is valid, and returns an appropriate response.
+    
     def post(self, request):
         serializer = PasswordResetConfirmSerializer(data = request.data)
         if serializer.is_valid():

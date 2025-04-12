@@ -129,6 +129,10 @@ class TourRegisterSerializer(serializers.ModelSerializer):
 
         return user
     
+    
+# Serializer for handling password reset requests.
+# It validates that the provided email is registered in the system.  
+  
 class PasswordResetRequestSerializer(serializers.Serializer):
     email = serializers.EmailField()
       
@@ -143,8 +147,11 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
     uid = serializers.CharField()
     token = serializers.CharField()
     new_password = serializers.CharField(min_length=8, write_only=True)
+
     
-    
+# Validates the provided data to ensure the user exists and the token is valid.
+# This function decodes the UID, retrieves the corresponding user, and checks the validity of the token.   
+ 
 def validate(self, data):
     try:
         uid = force_str(urlsafe_base64_decode(data['uid']))
@@ -158,6 +165,9 @@ def validate(self, data):
     
     data['user'] = user
     return data
+
+# Saves the new password for the user after validation.
+# This method updates the user's password and saves the changes to the database.
 
 def save(self):
     user = self.validated_data['user']
