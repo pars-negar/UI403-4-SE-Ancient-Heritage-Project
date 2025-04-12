@@ -29,6 +29,16 @@
       "rating": 2,
       "capacity": 25,
       "description": "بازدید از نقش جهان و سی‌وسه پل."
+    },
+    {
+      "id": "4",
+      "title": "تور رفسنجان",
+      "image": "/yazd.png",
+      "price": "۳,۰۰۰,۰۰۰ تومان",
+      "duration": "۲ روز",
+      "rating": 4,
+      "capacity": 12,
+      "description": "سفر به کرمان، شهر کلمپه و قطاب."
     }
   ]
 }
