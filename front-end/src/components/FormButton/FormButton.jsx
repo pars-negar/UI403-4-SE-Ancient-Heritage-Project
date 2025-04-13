@@ -8,11 +8,12 @@ const FormButton = (props) => {
     const buttonColor = props.buttonColor;
     const buttonColorHovered = props.buttonColorHovered;
     const buttonTextColor = props.buttonTextColor;
+    // const handleClick = props.handleClick;
 
     const [isHovered, setIsHavered] = useState(false);
 
     return ( 
-        <div className={ styles.formButton}>
+        <div className={ styles.formButton} >
             <div className={ styles.buttonGroup }>
                 <Button
                 type="submit" 

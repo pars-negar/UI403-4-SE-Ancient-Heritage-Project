@@ -7,14 +7,25 @@
   margin-top: 40%;
 }
 
+#home-tour-card{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 80px;
+}
+
 .tour-card {
+  margin-bottom: 30px;
   background: #f4e3c3;
   border-radius: 12px;
   padding: 20px;
-  width: 230px;
+  width: 310px;
+  margin-bottom: 50px;
   text-align: center;
   box-shadow: 0 4px 8px #ccc;
   transition: transform 0.3s;
+  justify-content: center;
 }
 .tour-card:hover {
   transform: translateY(-5px);
@@ -70,6 +81,12 @@
   gap: 1.5rem;
   margin: 2rem auto;
 }
+/* .home{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+   flex-wrap: wrap;
+  } */
 
 
 @keyframes fadeIn {

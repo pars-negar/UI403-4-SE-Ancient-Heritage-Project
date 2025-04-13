@@ -19,3 +19,5 @@ const PlaceSection = ({ title, places, onMoreInfo }) => {
 };
 
 export default PlaceSection;
+
+

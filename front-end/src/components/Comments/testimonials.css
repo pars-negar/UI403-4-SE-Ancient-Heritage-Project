@@ -78,12 +78,11 @@
 }
 
 .stars {
-  top: 5px;
-  right: 10px; /* چون حالا RTL هست */
+  /* top: 5px;
+  right: 10px; چون حالا RTL هست */
   font-size: 16px;
   color: #f5a623;
   white-space: nowrap;
-  margin-right: 80px;
 }
 
 .testimonial-text {
@@ -98,5 +97,5 @@
   white-space: nowrap; /* جلوگیری از شکستن خط */
   overflow: hidden;     /* محتوای اضافه نشون داده نشه */
   text-overflow: ellipsis; /* سه‌نقطه بزنه اگه جا نشد */
-  max-width: 150px; 
+  
 }
