@@ -14,7 +14,6 @@ urlpatterns = [
     path('api/attractionsearch/', AttractionSearchAPIView.as_view(), name='attractionsearch'),
 
     # Custom endpoint for searching tours using filters like origin, destination, dates
-    path('api/toursearch/', TourSearchView.as_view(), name='toursearch'), path('api/attractionsearch/', AttractionSearchAPIView.as_view(), name='attractionsearch'),  
-    path('api/toursearch/', TourSearchView.as_view(), name='toursearch'),  
+    path('api/toursearch/', TourSearchView.as_view(), name='toursearch'),
 ]
 
