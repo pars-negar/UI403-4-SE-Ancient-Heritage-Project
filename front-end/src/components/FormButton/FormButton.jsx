@@ -15,7 +15,9 @@ const FormButton = (props) => {
     return ( 
         <div className={ styles.formButton} >
             <div className={ styles.buttonGroup }>
-                <Button style={{ backgroundColor: isHovered ? buttonColorHovered : buttonColor,
+                <Button
+                type="submit" 
+                 style={{ backgroundColor: isHovered ? buttonColorHovered : buttonColor,
                                 color: buttonTextColor
                                 }} className={"formButton"}
                     onMouseEnter={() => setIsHavered(true)}

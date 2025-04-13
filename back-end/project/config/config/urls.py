@@ -1,7 +1,7 @@
 """
 URL configuration for config project.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+The urlpatterns list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
 Examples:
 Function views
@@ -36,12 +36,9 @@ user_urls = [
 tour_urls=[
     path('', include('apps.tour.urls')),
 ]
+
 FAQ_urls= [
     path('', include('apps.faq.urls')),
-]
-
-frontpage_urls = [
-    path('api/frontpage/', include('apps.frontpage.urls')),
 ]
 
 urlpatterns = [
@@ -53,11 +50,10 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/', include('apps.authentication.urls')),
-    #path('api/frontpage/', include('frontpage.urls')),
+    path('api/homepage/', include('apps.frontpage.urls')),
+   # path('api/tour/', include('apps.tour.urls')),
 
-]+ user_urls + FAQ_urls + tour_urls+frontpage_urls
+]+ user_urls + FAQ_urls + tour_urls
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
