@@ -36,7 +36,7 @@ function App() {
 
 
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
-      <Route exact path="/" element={ <TourleaderSignUp/> }></Route>
+      {/*<Route exact path="/" element={ <TourleaderSignUp/> }></Route>}
       {/* <Route exact path="/login" element={ <LoginPage/> }></Route> */}
       {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
       {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
