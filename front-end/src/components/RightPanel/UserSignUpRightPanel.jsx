@@ -46,6 +46,7 @@ const handleSubmit = async (event) => {
         const data = await response.json();
         alert('کد تأیید برای شما ارسال شد. لطفاً آن را وارد کنید.');
         console.log(data); 
+        localStorage.setItem("pendingPhoneNumber", phoneNumber);
         navigate('/verify-otp');
 
     } catch (error) {

@@ -16,6 +16,7 @@ const RightPanel = () => {
 
   const handleSubmit = async () => {
     const phoneNumber = localStorage.getItem("pendingPhoneNumber");
+  alert(phoneNumber)
   
     // بررسی وجود شماره تلفن
     if (!phoneNumber) {
@@ -28,6 +29,7 @@ const RightPanel = () => {
     if (!isCodeComplete) return;
     
     const fullCode = code.join(""); // تبدیل آرایه به رشته مثل "123456"
+    alert(fullCode)
     console.log("OTP Code:", fullCode); // برای بررسی
   
     try {

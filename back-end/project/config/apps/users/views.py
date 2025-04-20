@@ -44,7 +44,6 @@ class CustomUserViewSet(viewsets.ReadOnlyModelViewSet):
 class UserRegisterViewSet(viewsets.ViewSet):
     def create(self, request):
         # Instantiate the serializer with request data
-        print(request.data)
         serializer = UserRegisterSerializer(data=request.data)
 
         # Check if the provided data is valid
@@ -54,13 +53,15 @@ class UserRegisterViewSet(viewsets.ViewSet):
             phone_number = serializer.validated_data['phone_number']
             username = serializer.validated_data['username']
             email = serializer.validated_data['email']
+            password= serializer.validated_data['password']
+            
             
             # ذخیره اطلاعات کاربر در کش به مدت 10 دقیقه (600 ثانیه)
-            cache.set(f'user_{phone_number}', {'username': username, 'phone_number': phone_number, 'email': email}, timeout=600)
+            cache.set(f'user_{phone_number}', {'username': username, 'phone_number': phone_number, 'email': email, 'password':password,}, timeout=600)
             
             # URL اپ احراز هویت
             otp_api_url = f'{settings.HADIR_HAWITY_API_URL}/send-otp/'
-            otp_response = requests.post(otp_api_url, data={'phone_number': phone_number})
+            otp_response = requests.post(otp_api_url, data={'username': username, 'phone_number': phone_number, 'email': email,'password':password,})
             
             if otp_response.status_code == 200:
                 return Response({
@@ -124,6 +125,8 @@ class PasswordResetRequestView(APIView):
             return Response({"message": "لینک بازیابی رمز عبور ارسال شد."}, status=status.HTTP_200_OK)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+ 
+ 
  
     
 # Handles POST requests for confirming password reset.

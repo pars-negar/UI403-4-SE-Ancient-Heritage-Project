@@ -43,6 +43,7 @@ function App() {
       {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
 
       <Route exact path="/" element={ <LoginSignUp/> }></Route>
+      <Route exact path="/home" element={ <Home/> }></Route>
       <Route exact path="/UserSignUp" element={ <UserSignUpPage/> }></Route>
       <Route exact path="/TourleaderSignUp" element={ <TourleaderSignUp/> }></Route>
       <Route exact path="/login" element={ <LoginPage/> }></Route>
