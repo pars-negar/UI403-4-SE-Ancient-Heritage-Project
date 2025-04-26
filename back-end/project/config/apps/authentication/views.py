@@ -6,98 +6,57 @@ from rest_framework import status
 from random import randint
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.tokens import RefreshToken
-# import ghasedakpack
 
 
 GHASEDAK_API_KEY = "78a33e51203b08913a6cef083b92d212c713a74b603afc50af0e10370c7a1465QkEAodV6AH7WLUaR"
 good_line_number_for_sending_otp = '30005088'
-#sms_url = "https://gateway.ghasedak.me/rest/api/v1/WebService/SendOtpWithParams"
-
-# class SendOTPView(APIView):
-#     def post(self, request, *args, **kwargs):
-#         phone_number = request.data.get('phone_number')
-#         username = request.data.get('username') 
-#         email = request.data.get('email')  
-
-#         if not phone_number:
-#             return Response({'error': 'Phone number is required'}, status=status.HTTP_400_BAD_REQUEST)
-
-#         otp = str(randint(100000, 999999))
-#         cache.set(phone_number, otp, timeout=120)  
-#         cache.set(f'user_{phone_number}', {'username': username, 'phone_number': phone_number, 'email': email}, timeout=120)
-#         print(otp)
-#         headers = {
-#             'accept': 'application/json',
-#             'ApiKey': GHASEDAK_API_KEY
-#         }
-
-#         data = {
-#     "receptors": [{"mobile": phone_number}],  # فقط شماره موبایل
-#     "templateName": "parsnegar",
-#     "param1": otp,
-#     "isVoice": False,
-#     "udh": False
-# }
-
-
-        
-        # try:
-        #     response = requests.post(sms_url, headers=headers, json=data)
-        #     response_data = response.json()  # اینجا پاسخ API را دریافت می‌کنید
-            
-        #     if response_data.get('isSuccess'):
-        #         return Response({'message': 'OTP sent successfully'}, status=status.HTTP_200_OK)
-        #     else:
-        #         print(f"Error sending OTP: {response_data.get('message')}")
-        #         return Response({'error': 'Failed to send OTP'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        
-        # except Exception as e:
-        #     print(f"SMS Error: {e}")
-        #     return Response({'error': 'Failed to send OTP'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
- 
-
-
-
-        # try:
-        #             # ارسال OTP با استفاده از SDK قاصدک
-        #             ghasedakpack.verification(
-        #                 receptor=phone_number,
-                   
-        #                  templateName="parsnegar",
-
-                     
-        #                 param1=otp
-        #             )
-        #             return Response({'message': 'OTP sent successfully'}, status=status.HTTP_200_OK)
-        # except Exception as e:
-        #             print(f"Error sending OTP: {e}")
-        #             return Response({'error': 'Failed to send OTP'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+sms_url = "https://gateway.ghasedak.me/rest/api/v1/WebService/SendOtpWithParams"
 
 class SendOTPView(APIView):
     def post(self, request, *args, **kwargs):
         phone_number = request.data.get('phone_number')
-        username = request.data.get('username')
-        email = request.data.get('email')
-        password= request.data.get('password')
-        # اگر شماره موبایل وارد نشده باشد، خطا برمی‌گرداند
+        username = request.data.get('username') 
+        email = request.data.get('email')  
+        password = request.data.get('password')
+
         if not phone_number:
             return Response({'error': 'Phone number is required'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # تولید یک OTP تصادفی
         otp = str(randint(100000, 999999))
-
-        # ذخیره OTP در کش به مدت 120 ثانیه
-        cache.set(phone_number, otp, timeout=120)
+        cache.set(phone_number, otp, timeout=120)  
         cache.set(f'user_{phone_number}', {'username': username, 'phone_number': phone_number, 'email': email , 'password':password,}, timeout=600)
         
+        headers = {
+            'accept': 'application/json',
+            'ApiKey': GHASEDAK_API_KEY
+        }
 
-        # چاپ OTP در ترمینال برای بررسی
-        print(f"OTP for {phone_number}: {otp}")
+        data = {
+    "receptors": [{"mobile": phone_number}],  # فقط شماره موبایل
+    "templateName": "parsnegar",
+    "param1": otp,
+    "isVoice": False,
+    "udh": False
+}
 
-        # در اینجا، به جای ارسال OTP به قاصدک، فقط پیامی برای موفقیت ارسال می‌کنیم
-        return Response({'message': f'OTP for {phone_number} generated and printed in terminal.'}, status=status.HTTP_200_OK)
-    
-    
+
+        
+        try:
+            response = requests.post(sms_url, headers=headers, json=data)
+            response_data = response.json()  # اینجا پاسخ API را دریافت می‌کنید
+            print(data)
+            print(response_data) 
+            
+            if response_data.get('isSuccess'):
+                return Response({'message': 'OTP sent successfully'}, status=status.HTTP_200_OK)
+            else:
+                print(f"Error sending OTP: {response_data.get('message')}")
+                return Response({'error': 'Failed to send OTP'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        except Exception as e:
+            print(f"SMS Error: {e}")
+            return Response({'error': 'Failed to send OTP'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     
     
 
