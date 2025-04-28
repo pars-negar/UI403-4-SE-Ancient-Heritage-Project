@@ -2,7 +2,8 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    gap: 17px;
+    gap: 1rem;
+
 }
 
 .navbar-links a {
@@ -16,8 +17,10 @@
 }
 
 .navbar {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+
+    justify-content: space-evenly;
     margin-top: 0px;
     gap: 10px;
 }
@@ -31,16 +34,26 @@
 .ul {
     display: flex;
     justify-content: center;
-    padding: none;
     text-align: center;
 }
 
-.navbarButton {
-    
+#button {
+    width: 200px;
+    height: 50px;
+    align-items: center;
+    align-content: center;
+}
+ 
+a {
+    text-decoration: none;
 }
 
-/* 
 
-.cn {
-    margin: 0;
-} */
+.bottomLine {
+    background-color: var(--form-input-borders);
+    height: 0.2rem;
+    border: none;
+    width: 100%;
+    display: block;
+    margin: 0px;
+}
