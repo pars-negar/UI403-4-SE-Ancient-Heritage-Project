@@ -12,7 +12,7 @@ class AttractionSerializer(serializers.ModelSerializer):
 class TourSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tour
-        fields = ['id', 'title', 'start_date', 'end_date', 'city', 'image']
+        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description']
 
 class FAQSerializer(serializers.ModelSerializer):
     class Meta:
