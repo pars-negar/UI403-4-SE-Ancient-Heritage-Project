@@ -17,7 +17,7 @@ const FormButton = (props) => {
             <div className={ styles.buttonGroup }>
                 <Button
                 type="submit" 
-                 style={{ backgroundColor: isHovered ? buttonColorHovered : buttonColor,
+                 style={{ backgroundColor: isHovered ? `var(${buttonColorHovered})` : `var(${buttonColor})`,
                                 color: buttonTextColor
                                 }} className={"formButton"}
                     onMouseEnter={() => setIsHavered(true)}
