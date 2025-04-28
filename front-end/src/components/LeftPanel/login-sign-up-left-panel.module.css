@@ -3,7 +3,6 @@
 .LSLPanel {
     width: 40%;
     height: 100vh;
-    background: #f8f8f8;
     float: left;
     display: flex;
     align-items: center;
@@ -39,7 +38,7 @@
 }
 
 .LSLPanelImage {
-    width: 60%;
+    width: 100%;
     max-width: 200px;
     border-radius: 14px;
     margin-bottom: 20px;
