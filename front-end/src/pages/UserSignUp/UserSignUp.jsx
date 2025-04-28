@@ -6,8 +6,8 @@ const UserSignUpPage = () => {
     const red = "#e68a2efb";
     return (
         <div className={ styles.userSignUp}>
-            <LeftPanel imageUrl='./assets/images/user-sign-up-form-image.png' imageTitle="something" rectanglesColor="#e68a2efb" />
             <UserSignUpRightPanel />
+            <LeftPanel imageUrl='./assets/images/user-sign-up-form-image.png' imageTitle="something" rectanglesColor="#e68a2efb" />
         </div>
     );
 }

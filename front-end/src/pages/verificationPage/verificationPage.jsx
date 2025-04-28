@@ -8,8 +8,8 @@ import img from "../../assets/images/code.png"
  const VerificationPage = () => {
    return (
      <div className={styles.container}>
-       <LeftPanel rectanglesColor={"#FB8101"} imageTitle={"مسجد"} imageUrl={img} />
        <RightPanel />
+       <LeftPanel rectanglesColor={"#FB8101"} imageTitle={"مسجد"} imageUrl={img} />
      </div>
    );
  };

@@ -1,0 +1,215 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    background: linear-gradient(to top left,#A98062, #956643, #623528);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+    height: 90vh;
+    background-color: #D9A883;
+    border-radius: 5px;
+    /* position: inherit; */
+}
+
+.right-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+#sign-up-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    background-color: #D9A883;
+    /* padding: 10px; */
+    border-radius: 6px;
+    /* margin: 20px; */
+    
+    height: 80vh;
+    align-items: center;
+    /* margin-right: 20px; */
+    align-self: center;
+}
+
+#inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    background-color: #D9A883;
+    text-align: center;
+    /* margin: 10px;
+    padding: 20px; */
+    border-radius: 6px;
+    font-weight: bold;
+    /* width: 18vw; */
+    height: 80vh;
+    /* border: none; */
+}
+
+#sign-up-button {
+    /* background-color: #213141;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    width: 50%;
+    margin-top: 10px;
+    position: relative;
+    left: -25%; */
+
+    background: #213141;
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 60%;
+    margin-top: 10px;
+    position: relative;
+    left: -30%;
+    /* align-self: center;
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: bold; */
+}
+
+#sign-up-button:hover {
+    background: #e0d0c0;
+}
+
+#inputs p, h4 {
+    color: #811717;
+    font-family: 'Gandom', serif;
+}
+
+#inputs a {
+    color: rgb(1, 35, 54);
+    text-decoration: none;
+
+}
+
+#inputs input {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 5px;
+    padding: 17px;
+    margin: 5px 0;
+    border: none;
+    width: 140%;
+    position: relative;
+    right: -8%;
+}
+
+/* #inputs input::placeholder
+{
+    color: black;
+    opacity: 1;
+} */
+
+#sign-up-card hr {
+    border: none;
+    border-top: 2px solid #C9A16A; 
+    width: 100%; 
+    margin: 20px 0;
+}
+
+#inputs h4{
+    color: #213141;
+    padding: 5px;
+    margin: 10px;
+    font-size: 30px;
+    position: relative;
+    left: -10%;
+}
+
+/* #email {
+    background: url("./images/Message_fill.png") no-repeat scroll 7px 7px;
+    background-position: right;
+    background-size: 30px 30px;
+    padding-right: 15px;
+    height: 30px;
+    width: 30px;
+
+    box-sizing: border-box;
+} */
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("images/sign-up-picture.png");
+    background-size: cover;
+    background-position: center;
+    align-self: center;
+    /* border-radius: 5px; */
+}
+
+.image-container img {
+    height: 290px;
+    width: 250px;
+    border-radius: 5px;
+    z-index: 2;
+    align-self: center;
+    margin-bottom: 40px;
+    margin-left: 50px;
+    
+}
+
+.brown-rectangle {
+    display: none;
+    position: absolute;
+    width: 200px;
+    height: 240px;
+    /* top: 240px;
+    left: 140px; */
+   margin-right: 200px;
+   margin-top: 160px;
+   background-color: #623528;  
+   border-radius: 5px;
+}
+
+
+#title
+{
+    align-self: center;
+    color: #811717;
+    font-weight: bold;
+    font-size: 60px;
+    margin: 0px;
+    margin-bottom: 40px;
+}
+
+/* .no-border-rectangle
+{
+    border: 2px solid #C9A16A;
+    width: 200px;
+    height: 240px;
+    margin-right: 100px;
+    margin-bottom: 20px;
+    padding: 20px;
+    z-index: 1;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 5px;
+} */

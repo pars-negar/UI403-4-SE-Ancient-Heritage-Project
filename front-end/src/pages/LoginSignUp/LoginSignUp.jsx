@@ -4,8 +4,8 @@ import styles from './log-sign-module.css'
 const LoginSignup = () => {
     return (
         <div className={styles.logInSignUp}>
-                <LoginSignupLeftPanel/>
                 <LoginSignUpRightPanel/>
+                <LoginSignupLeftPanel/>
                 
         </div>
     );

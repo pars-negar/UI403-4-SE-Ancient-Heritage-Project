@@ -3,21 +3,7 @@ import TourismAttraction from "./tourismAttractionCard";
 
 const ThreeTourismAttractions = () => {
   const attractions = [
-    {
-      image:'/assets/images/takht-jamshid.png' ,
-      title: 'تخت جمشید',
-      description: 'شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید!',
-    },
-    {
-      image: '/assets/images/naghshejahan.png',
-      title: 'میدان نقش جهان',
-      description: 'جایی که تاریخ، هنر و شکوه صفوی در قلب اصفهان زنده می‌شود!',
-    },
-    {
-      image:'/assets/images/argbam.png',
-      title: 'ارگ بم',
-      description: 'بزرگ‌ترین سازه‌ی خشتی جهان، شکوه تاریخ در دل کویر!',
-    },
+    
 
   ];
 

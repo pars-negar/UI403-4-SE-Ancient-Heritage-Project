@@ -1,6 +1,7 @@
  .login {
 
      display: flex;
+     
      justify-content: space-between;
      width: 100vw;  /* عرض کل صفحه */
      height: 100vh; /* ارتفاع کل صفحه */

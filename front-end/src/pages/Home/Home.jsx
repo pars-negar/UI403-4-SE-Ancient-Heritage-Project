@@ -86,11 +86,7 @@ const Home = () => {
 
       
     <div>
-    <ThreeTourismAttractions
-        image="/assets/images/takht-jamshid.png"
-        title="تخت جمشید"
-        description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید"
-        backgroundColor="#FF8C1A"/>
+    <ThreeTourismAttractions></ThreeTourismAttractions>
     </div>
     
     <Comments />

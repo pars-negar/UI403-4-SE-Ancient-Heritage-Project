@@ -5,8 +5,8 @@ import styles from './password-recovery.module.css'
 const PasswordRecovery = () => {
     return (
         <div className={styles.passwordRecovery}>
-            <LeftPanel imageUrl='./assets/images/passRecovery.png' imageTitle="نمای تخت جمشید" rectanglesColor="#205781" />
             <PassRecoveryRightPanel />
+            <LeftPanel imageUrl='./assets/images/passRecovery.png' imageTitle="نمای تخت جمشید" rectanglesColor="#205781" />
         </div>
     );
 }
