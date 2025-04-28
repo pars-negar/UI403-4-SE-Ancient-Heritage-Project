@@ -1,6 +1,7 @@
 .rightPanel {
     width: 100vh;
     height: 100vh;
+    background-color: #F6E1C5;
     color: #205781;
     flex-direction: column;
     padding: 20px;
