@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from jalali_date.admin import ModelAdminJalaliMixin
 from jalali_date.widgets import AdminJalaliDateWidget
-from .models import Attraction, Tour
+from .models import Attraction, Tour ,DailySchedule
 
 class TourAdminForm(forms.ModelForm):
     class Meta:
@@ -39,6 +39,13 @@ class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
         'company_website', 'travel_insurance', 'tourism_services',
         'related_tours', 'tour_manager' , 
     )
+class DailyScheduleAdmin(admin.ModelAdmin):
+    list_display = ('tour', 'day_number', 'title', 'description')
+    search_fields = ('tour__tour_name', 'title')
+    list_filter = ('tour', 'day_number')
+    fields = ('tour', 'day_number', 'title', 'description', 'image')
+
+admin.site.register(DailySchedule, DailyScheduleAdmin)
 
 admin.site.register(Attraction, AttractionAdmin)
 admin.site.register(Tour, TourAdmin)
