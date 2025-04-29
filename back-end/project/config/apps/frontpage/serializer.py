@@ -10,9 +10,15 @@ class AttractionSerializer(serializers.ModelSerializer):
         fields = ['id', 'attraction_name', 'description', 'location', 'city', 'image']
 
 class TourSerializer(serializers.ModelSerializer):
+    price = serializers.SerializerMethodField()
+
     class Meta:
         model = Tour
-        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description']
+        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description', 'main_image']  # تغییر از 'image' به 'main_image'
+
+    def get_price(self, obj):
+        return int(obj.price)
+
 
 class FAQSerializer(serializers.ModelSerializer):
     class Meta:

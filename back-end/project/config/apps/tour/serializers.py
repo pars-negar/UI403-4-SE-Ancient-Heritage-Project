@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import Attraction
 from .models import Tour
 
-
 class Attractionserializers(serializers.ModelSerializer):
     class Meta:
         model=Attraction
@@ -10,9 +9,14 @@ class Attractionserializers(serializers.ModelSerializer):
         
 # Serializer for the Tour model - used for serializing and deserializing Tour instances
 class TourSerializer(serializers.ModelSerializer):
+    price = serializers.SerializerMethodField()
+
     class Meta:
-        model = Tour  # Specifies the model to serialize
-        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description']  # Fields to include
+        model = Tour
+        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description', 'main_image']  
+
+    def get_price(self, obj):
+        return int(obj.price)
 
 
 # Serializer for filtering Tour objects based on specific criteria
@@ -51,3 +55,7 @@ class Attractionserializers(serializers.ModelSerializer):
     class Meta:
         model = Attraction  # Specifies the model to serialize
         fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
+
+
+
+
