@@ -1,11 +1,18 @@
 import styles from './tour-leader-sign-up-right-panel.module.css'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import {Form, InputGroup, FloatingLabel} from 'react-bootstrap';
 import FormButton from '../FormButton/FormButton';
 import { useState } from 'react';
 import axios from 'axios';
 import globalStyles from '../../styles/base.module.css'
+
+import userIcon from '../../assets/icons/user.svg'
+import callIcon from '../../assets/icons/call.svg'
+import emailIcon from '../../assets/icons/email.svg'
+import companyIcon from '../../assets/icons/company.svg'
+import addressIcon from '../../assets/icons/address.svg'
+import registrationNumberIcon from '../../assets/icons/registration-number.svg'
+import passwordIcon from '../../assets/icons/password.svg'
+
 const TourLeaderSignUpRightPanel = () => {
     const [formData, setFormData] = useState({
         username: '',
@@ -46,45 +53,137 @@ const TourLeaderSignUpRightPanel = () => {
 
     return (
         <div className={styles.tourLeaderSignUpRightPanel}>
-            <h1 className={styles.formTitle}>ثبت‌نام مسئول تور</h1>
+            <h1 className={ styles.tourLeaderFormTitle }>ثبت‌نام مسئول تور</h1>
             <Form onSubmit={handleSubmit}>
-                <FloatingLabel label="نام کاربری" className={`${styles.tourLeaderFloatingLabel} mb-3`}>
-                    <Form.Control name="username" type="text" value={formData.username} onChange={handleChange} className={styles.formControl} />
-                </FloatingLabel>
+                <div className={styles.formContainer}>
+                    <InputGroup>
+                        <InputGroup.Text className={ styles.inputGroupText }>
+                            <img src={ userIcon } alt="user-icon" className={ styles.icon }/>
+                            <FloatingLabel label="نام کاربری" className={`${styles.tourLeaderFloatingLabel}`}>
+                                <Form.Control 
+                                    name="username"
+                                    type="text" 
+                                    placeholder="نام کاربری"
+                                    size="lg"
+                                    value={formData.username} 
+                                    onChange={handleChange}
+                                    className={styles.formControl}
+                                    />
+                            </FloatingLabel>
+                        </InputGroup.Text>
+                    </InputGroup>
+                    
+                    <InputGroup>
+                        <InputGroup.Text className={ styles.inputGroupText }>
+                            <img src={ callIcon } alt="call-icon" className={ styles.icon }/>
+                            <FloatingLabel label="شماره موبایل" className={`${styles.tourLeaderFloatingLabel}`}>
+                                <Form.Control 
+                                    name="phone_number" 
+                                    type="tel" 
+                                    value={formData.phone_number} 
+                                    onChange={handleChange}
+                                    placeholder='شماره موبایل'
+                                    size='lg'
+                                    className={styles.formControl}
+                                    />
+                            </FloatingLabel>
+                        </InputGroup.Text>
+                    </InputGroup>
 
-                <FloatingLabel label="شماره موبایل" className={`${styles.tourLeaderFloatingLabel} mb-3`}>
-                    <Form.Control name="phone_number" type="tel" value={formData.phone_number} onChange={handleChange} className={styles.formControl} />
-                </FloatingLabel>
+                    <InputGroup>
+                        <InputGroup.Text className={ styles.inputGroupText }>
+                            <img src={ emailIcon } alt="email-icon" className={ styles.icon }/>
+                            <FloatingLabel label="ایمیل" className={`${styles.tourLeaderFloatingLabel}`}>
+                                <Form.Control 
+                                    name="email" 
+                                    type="email" 
+                                    value={formData.email} 
+                                    onChange={handleChange}
+                                    placeholder='ایمیل'
+                                    size='lg'
+                                    className={styles.formControl}
+                                    />
+                            </FloatingLabel>
+                        </InputGroup.Text>
+                    </InputGroup>
 
-                <FloatingLabel label="ایمیل" className={`${styles.tourLeaderFloatingLabel} mb-3`}>
-                    <Form.Control name="email" type="email" value={formData.email} onChange={handleChange} className={styles.formControl} />
-                </FloatingLabel>
+                    <InputGroup>
+                        <InputGroup.Text className={ styles.inputGroupText }>
+                            <img src={ companyIcon } alt="company-icon" className={ styles.icon }/>
+                            <FloatingLabel label="نام شرکت" className={`${styles.tourLeaderFloatingLabel}`}>
+                                <Form.Control 
+                                    name="company_name"
+                                    type="text" 
+                                    value={formData.company_name} 
+                                    onChange={handleChange} 
+                                    placeholder='نام شرکت'
+                                    size='lg'
+                                    className={styles.formControl}
+                                    />
+                            </FloatingLabel>
+                        </InputGroup.Text>
+                    </InputGroup>
+                    
+                    <InputGroup>
+                        <InputGroup.Text className={ styles.inputGroupText }>
+                            <img src={ addressIcon } alt="address-icon" className={ styles.icon }/>
+                            <FloatingLabel label="آدرس شرکت" className={`${styles.tourLeaderFloatingLabel}`}>
+                                <Form.Control 
+                                    name="company_address" 
+                                    type="text" 
+                                    value={formData.company_address} 
+                                    onChange={handleChange} 
+                                    placeholder='آدرس شرکت'
+                                    size='lg'
+                                    className={styles.formControl}
+                                    />
+                            </FloatingLabel>
+                        </InputGroup.Text>
+                    </InputGroup>
 
-                <FloatingLabel label="نام شرکت" className={`${styles.tourLeaderFloatingLabel} mb-3`}>
-                    <Form.Control name="company_name" type="text" value={formData.company_name} onChange={handleChange} className={styles.formControl} />
-                </FloatingLabel>
+                    <InputGroup>
+                        <InputGroup.Text className={ styles.inputGroupText }>
+                            <img src={ registrationNumberIcon } alt="registration-number-icon" className={ styles.icon }/>
+                            <FloatingLabel label="شماره ثبت شرکت" className={`${styles.tourLeaderFloatingLabel}`}>
+                                <Form.Control 
+                                    name="company_registration_number" 
+                                    type="text" 
+                                    value={formData.company_registration_number} 
+                                    onChange={handleChange} 
+                                    placeholder='شماره ثبت شرکت'
+                                    size='lg'
+                                    className={styles.formControl}
+                                    />
+                            </FloatingLabel>
+                        </InputGroup.Text>
+                    </InputGroup>
 
-                <FloatingLabel label="آدرس شرکت" className={`${styles.tourLeaderFloatingLabel} mb-3`}>
-                    <Form.Control name="company_address" type="text" value={formData.company_address} onChange={handleChange} className={styles.formControl} />
-                </FloatingLabel>
+                    <InputGroup>
+                        <InputGroup.Text className={ styles.inputGroupText }>
+                            <img src={ callIcon } alt="user-icon" className={ styles.icon }/>
+                            <FloatingLabel label="رمز عبور" className={`${styles.tourLeaderFloatingLabel}`}>
+                                <Form.Control 
+                                    name="password" 
+                                    type="password" 
+                                    value={formData.password} 
+                                    onChange={handleChange} 
+                                    placeholder='رمز عبور'
+                                    size='lg'
+                                    className={styles.formControl}
+                                    />
+                            </FloatingLabel>
+                        </InputGroup.Text>
+                    </InputGroup>
+                <p>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
 
-                <FloatingLabel label="شماره ثبت شرکت" className={`${styles.tourLeaderFloatingLabel} mb-3`}>
-                    <Form.Control name="company_registration_number" type="text" value={formData.company_registration_number} onChange={handleChange} className={styles.formControl} />
-                </FloatingLabel>
+                    <FormButton 
+                        buttonText="ثبت نام" 
+                        buttonColor="--color-orange" 
+                        buttonColorHovered="--color-orange-hovered" 
+                        buttonTextColor="white"
+                    />
 
-                <FloatingLabel label="رمز عبور" className={`${styles.tourLeaderFloatingLabel} mb-3`}>
-                    <Form.Control name="password" type="password" value={formData.password} onChange={handleChange} className={styles.formControl} />
-                    <Form.Text className="text-muted">
-                        رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.
-                    </Form.Text>
-                </FloatingLabel>
-
-                <FormButton
-                    buttonText='ثبت‌نام'
-                    buttonColor='#FB8101'
-                    buttonTextColor='black'
-                    buttonColorHovered="#D96F00"
-                />
+                </div>
             </Form>
 
             {message && <p className="text-success mt-3">{message}</p>}
