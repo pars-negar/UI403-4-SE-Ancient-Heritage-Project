@@ -11,23 +11,29 @@ const RightPanel = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/login/', {
-        username,
-        password
+        username: username,
+        password: password,
       });
-  
-      console.log("✅ Response:", response.data);
-  
+
+      // ذخیره توکن‌ها در localStorage
+      localStorage.setItem('token', response.data.token);
+      console.log("Response:", response.data);
+
       const { access, refresh } = response.data;
       localStorage.setItem('access_token', access);
       localStorage.setItem('refresh_token', refresh);
-  
-      alert("ورود با موفقیت انجام شد! توکن دریافت شد ✅");
+
+      alert("ورود با موفقیت انجام شد! توکن دریافت شد");
     } catch (error) {
-      console.error("❌ Error:", error);
-      alert("ورود ناموفق بود ❌");
+      console.error("Error:", error);
+      if (error.response && error.response.data && error.response.data.error) {
+        alert(error.response.data.error);  // پیام از سرور
+      } else {
+        alert("خطایی در ورود رخ داد. لطفاً دوباره تلاش کنید.");
+      }
     }
+    
   };
-  
   return (
     <div className={styles.rightPanel}>
       <h2 className={styles.foor}>ورود به حساب کاربری</h2>
@@ -51,7 +57,7 @@ const RightPanel = () => {
   />
 </div>
 
-        <FormButton buttonText="تائید" buttonColor='#FB8101' buttonTextColor='black' buttonColorHovered="#D96F00"/>
+      <button>submit</button>
       </form>
       <a href="/" className={styles.linkk}>رمز عبور را فراموش کرده‌اید؟</a>
       <p>حساب کاربری ندارید؟ <a href="sign-up.html" className={styles.linkk}>ثبت‌نام</a></p>

@@ -10,6 +10,10 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.core.mail import send_mail
 from .serializers import PasswordResetRequestSerializer, PasswordResetConfirmSerializer
+from django.conf import settings
+import requests
+from django.core.cache import cache
+
 
 User = get_user_model()
 
@@ -40,58 +44,56 @@ class CustomUserViewSet(viewsets.ReadOnlyModelViewSet):
 class UserRegisterViewSet(viewsets.ViewSet):
     def create(self, request):
         # Instantiate the serializer with request data
+        print(request.data)
         serializer = UserRegisterSerializer(data=request.data)
-        
+
         # Check if the provided data is valid
         if serializer.is_valid():
             # Save the user (create the user object)
-            user = serializer.save()
             
-            # Return a success response with the created user data
-            return Response({
-                "message": "ثبت نام موفقیت آمیز بود!",  # "Registration successful!"
-                "user": UserRegisterSerializer(user).data  # Return serialized user info
-            }, status=status.HTTP_201_CREATED)
-        
-        # If validation fails, return the error details
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            phone_number = serializer.validated_data['phone_number']
+            username = serializer.validated_data['username']
+            email = serializer.validated_data['email']
+            
+            # ذخیره اطلاعات کاربر در کش به مدت 10 دقیقه (600 ثانیه)
+            cache.set(f'user_{phone_number}', {'username': username, 'phone_number': phone_number, 'email': email}, timeout=600)
+            
+            # URL اپ احراز هویت
+            otp_api_url = f'{settings.HADIR_HAWITY_API_URL}/send-otp/'
+            otp_response = requests.post(otp_api_url, data={'phone_number': phone_number})
+            
+            if otp_response.status_code == 200:
+                return Response({
+                    "message": "ثبت نام موفقیت آمیز بود! OTP ارسال شد.",
+                    "user": serializer.data  # فقط اطلاعات کاربر بدون ذخیره در دیتابیس
+                }, status=status.HTTP_201_CREATED)
+            else:
+                return Response({'error': 'Failed to send OTP'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+        # If validation fails, return the error details
+        # This will include detailed error messages for each field (e.g., password error)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # ViewSet for handling tour manager registration
 class TourRegisterViewSet(viewsets.ViewSet):
     def create(self, request):
-        # Instantiate the serializer with request data
         serializer = TourRegisterSerializer(data=request.data)
+
         if serializer.is_valid():
-            user = self.get_object() 
-            if user.role == 'tour_manager': 
-                company_data = {
-                    'company_name': request.data.get('company_name'),
-                    'company_address': request.data.get('company_address'),
-                    'company_registration_number': request.data.get('company_registration_number'),
+            # ذخیره‌ی کاربر و ساخت پروفایل شرکت (در داخل serializer هندل می‌شه)
+            user = serializer.save()
+
+            return Response({
+                'message': 'ثبت‌نام با موفقیت انجام شد.',
+                'user': {
+                    'username': user.username,
+                    'email': user.email,
+                    'role': user.role
                 }
-                TourManagerProfile.objects.create(user=user, **company_data)
-            
-            def create(self, request):
-                # Instantiate the serializer with request data
-                serializer = TourRegisterSerializer(data=request.data)
+            }, status=status.HTTP_201_CREATED)
 
-                # Check if the provided data is valid
-                if serializer.is_valid():
-                    # Save the user and create their profile (handled inside the serializer)
-                    user = serializer.save()
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-                    # Return a success response with basic user details
-                    return Response({
-                        'message': 'ثبت‌نام با موفقیت انجام شد.',  # "Registration completed successfully."
-                        'user': {
-                            'username': user.username,
-                            'email': user.email,
-                            'role': user.role
-                        }
-                    }, status=status.HTTP_201_CREATED)
-                
-            
             
  
 # View to handle password reset requests.
@@ -103,6 +105,7 @@ class TourRegisterViewSet(viewsets.ViewSet):
            
 class PasswordResetRequestView(APIView):
     def post(self, request):
+        print(request.data)
         serializer = PasswordResetRequestSerializer(data = request.data)
         if serializer.is_valid():
             email = serializer.validated_data['email']

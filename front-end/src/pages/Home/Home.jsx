@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0d54b0f0852ba4d18fca35ffbb1e7b0d7bbed102
 import TourCard from "../../components/Card/TourCard";
 import React, { cloneElement, useState, useEffect } from "react";
 import axios from "axios"
@@ -14,7 +18,11 @@ import Comments from '../../components/Comments/Testimonials'
 import FAQAccordian from '../../components/FAQ/FAQAccordion'
 import Footer from '../../components/Footer/Footer'
 import FourCityCards from "../../components/Card/FourCityCards";
+<<<<<<< HEAD
 import tomb from '../../assets/images/tom.jpg'
+=======
+import tomb from '../../assets/images/tomb.png'
+>>>>>>> 0d54b0f0852ba4d18fca35ffbb1e7b0d7bbed102
 import ThreeTourismAttractions from "../../components/Card/threeTorismAttraction";
 
 

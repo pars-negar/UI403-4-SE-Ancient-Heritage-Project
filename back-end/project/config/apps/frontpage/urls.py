@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import FrontPageAPIView
+from .views import HomePageAPIView
 
 urlpatterns = [
-    path('', FrontPageAPIView.as_view(), name='frontpage'),
+    path('', HomePageAPIView.as_view(), name='homepage'),
 ]

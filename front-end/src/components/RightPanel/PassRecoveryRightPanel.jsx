@@ -16,7 +16,7 @@ const PassRecoveryRightPanel = () => {
   const [error, setError] = useState(""); 
 
   // Regex pattern for email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const navigate = useNavigate();
   // Handle input change
   const handleChange = (event) => {
@@ -39,7 +39,7 @@ const PassRecoveryRightPanel = () => {
 
     try {
       // Send the request to the backend API for password recovery link
-      const response = await axios.post("http://localhost:8000/api/api/auth/password/reset/", { email });
+      const response = await axios.post("http://localhost:8000/api/auth/password/reset/", { email });
       
       if (response.status === 200) {
         alert(`لینک بازیابی رمز عبور برای ${email} ارسال شد!`);
