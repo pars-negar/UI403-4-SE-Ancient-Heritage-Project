@@ -142,7 +142,7 @@ return (
 
                 {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
-                <FormButton buttonText="تایید" buttonColor="--color-orange" buttonColorHovered="--color-orange-hovered" buttonTextColor="white"/>
+                <FormButton buttonText="تاnnnnیید" buttonColor="--color-orange" buttonColorHovered="--color-orange-hovered" buttonTextColor="white"/>
             </div>
         </Form>
     
