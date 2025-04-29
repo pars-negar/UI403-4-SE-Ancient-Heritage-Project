@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Navbar from '../../components/Navbar/Navbar';
-import Footer from '../../components/Footer/Footer';
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import TourCard from "../../components/Card/TourCard";
 import CityAttraction from "../../components/Card/CityAttraction";
-import Comments from '../../components/Comments/Testimonials';
-import FAQAccordion from '../../components/FAQ/FAQAccordion';
+import Comments from "../../components/Comments/Testimonials";
+import FAQAccordion from "../../components/FAQ/FAQAccordion";
 import FourCityCards from "../../components/Card/FourCityCards";
 import ThreeTourismAttractions from "../../components/Card/threeTorismAttraction";
-import SearchBox from '../../components/SearchBox/SearchBox';
-import tomb from '../../assets/images/tomb.png';
-import image from '../../assets/images/1.png';
-import styles from './home.module.css';
+import SearchBox from "../../components/SearchBox/SearchBox";
+import tomb from "../../assets/images/tomb.png";
+import image from "../../assets/images/1.png";
+import styles from "./home.module.css";
 
 const Home = () => {
   const [tours, setTours] = useState([]);
@@ -51,8 +51,8 @@ const Home = () => {
       <div className={styles.carousel}>
         <p className={styles.paraone}>
           سفر به دل تاریخ ایران با پارس نگار، <br />
-          جایی که هر قدم، روایت‌گر شگفتی‌های باستانی <br />
-          و فرهنگ بی‌پایان این سرزمین است!
+          جایی که هر قدم، روایت‌گر شگفتی‌های باستانی <br />و فرهنگ بی‌پایان این
+          سرزمین است!
         </p>
         <img className={styles.imageOne} src={image} alt="header" />
       </div>
@@ -62,7 +62,10 @@ const Home = () => {
         <h2>درباره سامانه پارس نگار</h2>
         <div className={styles.paragraphContainer}>
           <p>
-            این سیستم یک وب‌سایت گردشگری است که با هدف نمایش و معرفی آثار باستانی ایران طراحی شده است. کاربران می‌توانند اطلاعات جامع و دقیقی درباره مکان‌های تاریخی کشور، به همراه عکس‌های معتبر، توضیحات، موقعیت جغرافیایی و نقد و بررسی‌های سایر کاربران دریافت کنند.
+            این سیستم یک وب‌سایت گردشگری است که با هدف نمایش و معرفی آثار
+            باستانی ایران طراحی شده است. کاربران می‌توانند اطلاعات جامع و دقیقی
+            درباره مکان‌های تاریخی کشور، به همراه عکس‌های معتبر، توضیحات، موقعیت
+            جغرافیایی و نقد و بررسی‌های سایر کاربران دریافت کنند.
           </p>
         </div>
       </div>
@@ -82,14 +85,16 @@ const Home = () => {
       </div>
 
       {/* SearchBox */}
-      <div className={styles.HomeEditSearchBox}><SearchBox /></div>
+      <div className={styles.HomeEditSearchBox}>
+        <SearchBox />
+      </div>
 
       {/* Tours Section */}
       <div id="home-tour-card">
-        {loading ? <p>در حال بارگذاری...</p> : (
-          tours && tours.map((tour) => (
-            <TourCard key={tour.id} tour={tour} />
-          ))
+        {loading ? (
+          <p>در حال بارگذاری...</p>
+        ) : (
+          tours && tours.map((tour) => <TourCard key={tour.id} tour={tour} />)
         )}
       </div>
 
@@ -98,8 +103,11 @@ const Home = () => {
 
       {/* Attractions Section */}
       <div className={styles.attractionsSection}>
-        {loading ? <p>در حال بارگذاری...</p> : (
-          attractions && attractions.map((attraction) => (
+        {loading ? (
+          <p>در حال بارگذاری...</p>
+        ) : (
+          attractions &&
+          attractions.map((attraction) => (
             <CityAttraction key={attraction.id} attraction={attraction} />
           ))
         )}
