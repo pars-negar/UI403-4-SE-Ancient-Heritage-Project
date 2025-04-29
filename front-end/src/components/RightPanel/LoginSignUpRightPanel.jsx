@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "./login-sign-up-right-panel.module.css";
+import logo from '../../assets/icons/logo.svg';
 
 const LoginSignup = () => {
-  const imageUrl = './assets/icons/logo.svg'; 
+
 
   return (
     <div className={ styles.LSRPanel }>
       <div className={ styles.LSRPanelContent }>
-        <img className={ styles.LSRPanelImage } src={`${ process.env.PUBLIC_URL }${ imageUrl }`} alt="our logo" />
+        <img className={ styles.LSRPanelImage } src={ logo } alt="our logo" />
 
       </div>
     </div>
