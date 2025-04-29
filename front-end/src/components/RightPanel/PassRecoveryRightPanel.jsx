@@ -74,14 +74,14 @@ const PassRecoveryRightPanel = () => {
       />
 
       {/* Send link button */}
-      <Link to="http://localhost:3000/login">
+ 
         <button className={styles.sendButton} onClick={handleSendLink}>
           ارسال لینک
         </button >
         {/* Back to login button */} <button className={styles.backButton} onClick={() => navigate("/login")}>
           بازگشت به صفحه ورود
         </button>
-      </Link>
+     
     </div>
   );
 };

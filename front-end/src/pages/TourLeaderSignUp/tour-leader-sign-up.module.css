@@ -1,7 +1,7 @@
 .tourLeaderSignUp {
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
+    flex-direction: row-reverse;
     width: 100%;
     height: 100%;
    

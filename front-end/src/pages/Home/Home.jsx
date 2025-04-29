@@ -1,5 +1,4 @@
-
-import TourCard from "../../components/card/TourCard";
+import TourCard from "../../components/Card/TourCard";
 import React, { cloneElement, useState, useEffect } from "react";
 import axios from "axios"
 import Navbar from '../../components/Navbar/Navbar'
@@ -7,16 +6,16 @@ import image from '../../assets/images/1.png'
 import imageTwo from '../../assets/images/2.png'
 import styles from './home.module.css'
 import SearchBox from '../../components/SearchBox/SearchBox'
-import CityAttraction from "../../components/card/CityAttraction";
+import CityAttraction from "../../components/Card/CityAttraction";
 import im from '../../assets/images/1.png'
 import data from '../../assets/data.json'
-import TourismAttractionCard from "../../components/card/tourismAttractionCard";
+import TourismAttractionCard from "../../components/Card/tourismAttractionCard";
 import Comments from '../../components/Comments/Testimonials'
 import FAQAccordian from '../../components/FAQ/FAQAccordion'
 import Footer from '../../components/Footer/Footer'
-import FourCityCards from "../../components/card/FourCityCards";
-import tomb from '../../assets/images/tomb.png'
-import ThreeTourismAttractions from "../../components/card/threeTorismAttraction";
+import FourCityCards from "../../components/Card/FourCityCards";
+import tomb from '../../assets/images/tom.jpg'
+import ThreeTourismAttractions from "../../components/Card/threeTorismAttraction";
 
 
 const Home = () => {
@@ -45,9 +44,14 @@ const Home = () => {
     <div className="home">
       
       <Navbar />
-      <div className={ styles.carousel }>
-        <img className={styles.imageOne} src={ image } alt="image" />
-      </div>
+      <div className={styles.carousel}>
+      <p className={styles.paraone}>
+        سفر به دل تاریخ ایران با پارس نگار، <br />
+        جایی که هر قدم، روایت‌گر شگفتی‌های باستانی <br />
+        و فرهنگ بی‌پایان این سرزمین است!
+      </p>
+      <img className={styles.imageOne} src={image} alt="image" />
+    </div>
 
       <div className={ styles.about } >
         <h2>درباره سامانه پارس نگار</h2>
@@ -62,8 +66,8 @@ const Home = () => {
         </div>
         <div className={ styles.fourCityAbout}>
             <h2>جاذبه‌های تاریخی ایران</h2>
-            <p>
-              کشف ایران، لمس تاریخ، تجربه‌ای فراموش‌نشدنی!
+            <p className={styles.para}>
+              کشف ایران، <br /> لمس تاریخ، <br /> تجربه‌ای فراموش‌نشدنی!
             </p>
             <button className={ styles.more }>مشاهده بیشتر</button>
         </div>
@@ -77,15 +81,7 @@ const Home = () => {
     ))}
     </div>
 
-      {/* <section className={ styles.hightlitSection}>
-        <div className={ styles.highlightText }>
-          <h3>ایران را از دریچه‌ای نو ببینید،</h3>
-          <p>هر سفر، یک داستان تازه!</p>
-        </div>
-        <div className={ styles.highlightImage}>
-          <img src={ tomb } alt="مقبره تاریخی" />
-        </div>
-      </section> */}
+     <img className={styles.tomb} src={tomb} alt="tomb" />
 
       
     <div>
