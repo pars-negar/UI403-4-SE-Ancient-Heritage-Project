@@ -17,13 +17,13 @@ class TourAdmin(admin.ModelAdmin):
     search_fields = ('tour_name', 'tour_manager__username', 'origin', 'destination')
     list_filter = ('start_date', 'end_date', 'tour_manager', 'related_tours')
     fields = (
-        'tour_name', 'description', 'image', 'price', 'capacity',
+        'tour_name', 'description', 'main_image', 'price', 'capacity',
         'start_date', 'end_date', 'origin', 'destination',
-        'departure_location', 'meal_details', 'transportation',
-        'tour_guides_info', 'accommodation', 'company_name',
-        'company_address', 'company_phone', 'company_email',
+        'meal_details', 'transportation', 'tour_guides_info', 'accommodation',
+        'company_name', 'company_address', 'company_phone', 'company_email',
         'company_website', 'travel_insurance', 'tourism_services',
-        'daily_schedule', 'related_tours', 'tour_manager', 'attractions'  
+        'related_tours', 'tour_manager'
+
     )
 
 admin.site.register(Attraction, AttractionAdmin)
