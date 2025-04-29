@@ -1,9 +1,11 @@
 import styles from './user-sign-up-right-panel.module.css'
-import {Form, InputGroup, FloatingLabel} from 'react-bootstrap';
+import { Form, InputGroup, FloatingLabel } from 'react-bootstrap';
 import FormButton from '../FormButton/FormButton';
 import globalStyles from '../../styles/base.module.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 
 import userIcon from '../../assets/icons/user.svg'
@@ -133,8 +135,9 @@ return (
                 <p>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
 
                 {errorMessage && <p className="text-danger">{errorMessage}</p>}
-
-                <FormButton buttonText="تایید" buttonColor="--color-orange" buttonColorHovered="--color-orange-hovered" buttonTextColor="white"/>
+                <Link type='submit' to='/verifyotp'>
+                    <FormButton buttonText="تایید" buttonColor="--color-orange" buttonColorHovered="--color-orange-hovered" buttonTextColor="white"/>
+                </Link>
             </div>
         </Form>
     

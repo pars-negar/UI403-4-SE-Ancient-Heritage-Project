@@ -1,7 +1,8 @@
 import styles from './tour-leader-sign-up-right-panel.module.css'
-import {Form, InputGroup, FloatingLabel} from 'react-bootstrap';
+import { Form, InputGroup, FloatingLabel } from 'react-bootstrap';
 import FormButton from '../FormButton/FormButton';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import globalStyles from '../../styles/base.module.css'
 
@@ -54,6 +55,7 @@ const TourLeaderSignUpRightPanel = () => {
     return (
         <div className={styles.tourLeaderSignUpRightPanel}>
             <h1 className={ styles.tourLeaderFormTitle }>ثبت‌نام مسئول تور</h1>
+            <p>مسئول گرامی اطلاعات شرکت را با دقت تکمیل کنید.</p>
             <Form onSubmit={handleSubmit}>
                 <div className={styles.formContainer}>
                     <InputGroup>
@@ -174,17 +176,23 @@ const TourLeaderSignUpRightPanel = () => {
                             </FloatingLabel>
                         </InputGroup.Text>
                     </InputGroup>
-                <p>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
+                    <p>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
 
-                    <FormButton 
-                        buttonText="ثبت نام" 
-                        buttonColor="--color-orange" 
-                        buttonColorHovered="--color-orange-hovered" 
-                        buttonTextColor="white"
-                    />
-
+                    <Link type='submit' to='/verifyotp'>
+                        <FormButton 
+                            buttonText="ثبت نام" 
+                            buttonColor="--color-orange" 
+                            buttonColorHovered="--color-orange-hovered" 
+                            buttonTextColor="white"
+                        />
+                    </Link>
                 </div>
             </Form>
+            <p>قبلا ثبت‌نام کرده‌اید؟ &nbsp; 
+            <Link to="/loginsignup/login" className={ styles.signUpLink }>
+                ورود
+            </Link>
+            </p>
 
             {message && <p className="text-success mt-3">{message}</p>}
             {error && <p className="text-danger mt-3">{error}</p>}
