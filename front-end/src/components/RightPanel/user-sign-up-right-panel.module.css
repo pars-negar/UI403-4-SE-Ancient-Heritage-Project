@@ -65,3 +65,8 @@
   transform: translateY(-50%);
   width: 30px;
 }
+
+
+.inputGroup {
+  width: 23.5rem;
+}

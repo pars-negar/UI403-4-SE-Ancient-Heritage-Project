@@ -68,3 +68,7 @@
   font-family: 'VazirBold', serif;
   margin-bottom: 0.75rem;
 }
+
+.inputGroup {
+  width: 23.5rem;
+}

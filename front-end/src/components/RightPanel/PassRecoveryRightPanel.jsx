@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import styles from "./PassRecoveryRightPanel.module.css"; 
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { Form, InputGroup, FloatingLabel } from 'react-bootstrap';
+import FormButton from "../FormButton/FormButton";
 
+
+import emailIcon from '../../assets/icons/email.svg'
 
 const PassRecoveryRightPanel = () => {
 
@@ -60,27 +64,47 @@ const PassRecoveryRightPanel = () => {
     <div className={styles.passwordRecoveryRightPanel}>
       {/* Title */}
       <h2 className={styles.title}>فراموشی رمز عبور</h2>
-      <p className={styles.description}>
+      <p>
         ایمیل خود را وارد کنید تا لینک بازیابی برای شما ارسال شود.
       </p>
+      <Form className={styles.inputGroup}> 
+        <InputGroup>
+          <InputGroup.Text className={ styles.inputGroupText }>
+              <img src={ emailIcon } alt="email-icon" className={styles.icon}/>
+              <FloatingLabel controlId="floatingEmail" label="ایمیل" className={`${styles.userFloatingLabel}`}>
+                  <Form.Control
+                      type="email"
+                      placeholder="name@example.com"
+                      className={styles.formControl}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                  />
+              </FloatingLabel>
+          </InputGroup.Text>
+      </InputGroup>
+      </Form>
 
-      {/* Email input field */}
-      <input
+
+      {/* <input
         type="email"
         placeholder="ایمیل"
         className={styles.input}
         value={email}
         onChange={handleChange}
-      />
+      /> */}
 
-      {/* Send link button */}
-      <Link to="http://localhost:3000/login">
-        <button className={styles.sendButton} onClick={handleSendLink}>
-          ارسال لینک
-        </button >
-        {/* Back to login button */} <button className={styles.backButton} onClick={() => navigate("/login")}>
-          بازگشت به صفحه ورود
-        </button>
+      <Link type='submit' to='/verifyotp'>
+          <FormButton 
+            buttonText="ارسال لینک" 
+            buttonColor="--color-orange" 
+            buttonColorHovered="--color-orange-hovered" 
+            buttonTextColor="black"
+            onClick={handleSendLink}
+            />
+      </Link>
+
+      <Link to="loginsignup/login" className={ styles.signUpLink } >
+        بازگشت به صفحه ورود
       </Link>
     </div>
   );

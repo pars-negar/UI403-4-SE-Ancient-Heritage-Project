@@ -1,7 +1,6 @@
 import styles from './user-sign-up-right-panel.module.css'
 import { Form, InputGroup, FloatingLabel } from 'react-bootstrap';
 import FormButton from '../FormButton/FormButton';
-import globalStyles from '../../styles/base.module.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -68,7 +67,7 @@ const handleSubmit = async (event) => {
 return (
     <div className={styles.userSignUpRightPanel}>
         <h1 className={styles.userFormTitle}>ثبت‌نام کاربر</h1>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className={styles.inputGroup}>
             <div className={styles.formContainer}>
                 <InputGroup>
                     <InputGroup.Text className={ styles.inputGroupText }>

@@ -56,7 +56,7 @@ const TourLeaderSignUpRightPanel = () => {
         <div className={styles.tourLeaderSignUpRightPanel}>
             <h1 className={ styles.tourLeaderFormTitle }>ثبت‌نام مسئول تور</h1>
             <p>مسئول گرامی اطلاعات شرکت را با دقت تکمیل کنید.</p>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className={styles.inputGroup}>
                 <div className={styles.formContainer}>
                     <InputGroup>
                         <InputGroup.Text className={ styles.inputGroupText }>

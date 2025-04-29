@@ -82,6 +82,11 @@
 }
 
 
+.inputGroup {
+  width: 23.5rem;  
+}
+
+
 @media screen and (max-width: 850px) {
     .container {
         width: 95%;

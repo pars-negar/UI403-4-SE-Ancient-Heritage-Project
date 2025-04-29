@@ -45,7 +45,7 @@ const RightPanel = () => {
     <div className={styles.loginRightPanel}>
       <h1 className={ styles.userFormTitle }>ورود به حساب کاربری</h1>
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className={styles.inputGroup}>
         <div className={styles.formContainer}>
           <InputGroup>
             <InputGroup.Text className={ styles.inputGroupText }>
