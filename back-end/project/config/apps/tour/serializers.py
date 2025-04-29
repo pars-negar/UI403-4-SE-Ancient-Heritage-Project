@@ -10,10 +10,12 @@ class Attractionserializers(serializers.ModelSerializer):
         
 # Serializer for the Tour model - used for serializing and deserializing Tour instances
 class TourSerializer(serializers.ModelSerializer):
+    price = serializers.SerializerMethodField()
     class Meta:
-        model = Tour  # Specifies the model to serialize
-        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description']  # Fields to include
-
+        model = Tour
+        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description', 'image']
+    def get_price(self, obj):
+        return int(obj.price)
 
 # Serializer for filtering Tour objects based on specific criteria
 class TourFilterSerializer(serializers.Serializer):

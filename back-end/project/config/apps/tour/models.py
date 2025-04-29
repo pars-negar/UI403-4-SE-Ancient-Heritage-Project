@@ -36,7 +36,7 @@ class Tour(models.Model):
     description = models.TextField()
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price= models.DecimalField(max_digits=10, decimal_places=2)
     capacity = models.IntegerField()
     attractions = models.ManyToManyField(Attraction, related_name="tours")
     origin = models.CharField(max_length=255)
@@ -78,3 +78,30 @@ class Tour(models.Model):
         return self.tour_name
 
 
+class TourImage(models.Model):
+    SECTION_CHOICES = [
+        ('header', 'تصویر اصلی بالا'),
+        ('daily_schedule', 'برنامه روزانه'),
+        ('facilities', 'امکانات'),
+        ('description', 'توضیحات تور'),
+        ('other', 'سایر'),
+    ]
+
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='tour_images/')
+    section = models.CharField(max_length=50, choices=SECTION_CHOICES)
+    caption = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return f"{self.tour.tour_name} - {self.section}"
+
+
+class DailySchedule(models.Model):
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='daily_schedules')
+    day_number = models.PositiveIntegerField(help_text='روز چندم تور؟')
+    title = models.CharField(max_length=255, help_text='عنوان یا خلاصه روز مثلاً "روز اول"')
+    description = models.TextField()
+    image = models.ImageField(upload_to='daily_schedules/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.tour.tour_name} - روز {self.day_number}"
