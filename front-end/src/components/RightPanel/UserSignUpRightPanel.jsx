@@ -1,9 +1,11 @@
-import styles from './user-sign-up-right-panel.module.css'
-import {Form, InputGroup, FloatingLabel} from 'react-bootstrap';
+import selfStyles from './user-sign-up-right-panel.module.css'
+import styles from './right-panel.module.css'
+import { Form, InputGroup, FloatingLabel } from 'react-bootstrap';
 import FormButton from '../FormButton/FormButton';
-import globalStyles from '../../styles/base.module.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 
 import userIcon from '../../assets/icons/user.svg'
@@ -64,85 +66,78 @@ const handleSubmit = async (event) => {
 
 
 return (
-    <div className={styles.userSignUpRightPanel}>
-        <h1 className={styles.userFormTitle}>ثبت‌نام کاربر</h1>
-        <Form onSubmit={handleSubmit}>
+    <div className={selfStyles.userSignUpRightPanel}>
+        <h1 className={styles.formTitle}>ثبت‌نام کاربر</h1>
+        <Form onSubmit={handleSubmit} className={styles.inputGroup}>
             <div className={styles.formContainer}>
                 <InputGroup>
-                    {/* <InputGroup.Text className={styles.inputGroupText}>
-                        <img src={ userIcon } alt="user-icon" />
-                    </InputGroup.Text> */}
-
-                    {/* 
-                        <span>
-                            <img src={ userIcon } alt="user-icon" />
-                            <input 
-                                type="text" 
-                                placeholder='نام کاربری' 
-                                className={styles.formControl} 
-                                value={username} onChange={(e) => setUsername(e.target.value)}
-                                style={
-                                    {width:"700px",
-                                        height:"100px"
-                                    }
-                                }    
+                    <InputGroup.Text className={ styles.inputGroupText }>
+                        <img src={ userIcon } alt="user-icon" className={styles.icon}/>
+                        <FloatingLabel controlId="floatingUsername" label="نام کاربری" className={`${styles.floatingLabel}`}>
+                            <Form.Control
+                                type="text"
+                                placeholder="نام کاربری"
+                                size="lg"
+                                value={username}
+                                className={styles.formControl}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
-
-                        </span>
-                    */}
-                    <InputGroup.Text className="input-group-text">
-                        <img src={ userIcon } alt="" className={styles.userIcon}/>
+                        </FloatingLabel>
                     </InputGroup.Text>
-                    <FloatingLabel controlId="floatingUsername" label="نام کاربری" className={`${styles.userFloatingLabel}`}>
-                        <Form.Control
-                            type="text"
-                            placeholder="نام کاربری"
-                            size="lg"
-                            value={username}
-                            className={styles.formControl}
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                    </FloatingLabel>
                 </InputGroup>
 
-                <FloatingLabel controlId="floatingPhoneNumber" label="شماره موبایل" className={styles.userFloatingLabel}>
-                    <Form.Control
-                        type="tel"
-                        pattern="[0-9]*"
-                        inputMode="numeric"
-                        placeholder="شماره موبایل"
-                        className={styles.formControl}
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                    />
-                </FloatingLabel>
+                <InputGroup>
+                    <InputGroup.Text className={ styles.inputGroupText }>
+                        <img src={ callIcon } alt="call-icon" className={styles.icon}/>
+                        <FloatingLabel controlId="floatingPhoneNumber" label="شماره موبایل" className={styles.floatingLabel}>
+                            <Form.Control
+                                type="tel"
+                                pattern="[0-9]*"
+                                inputMode="numeric"
+                                placeholder="شماره موبایل"
+                                className={styles.formControl}
+                                value={phoneNumber}
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                            />
+                        </FloatingLabel>
+                    </InputGroup.Text>
+                </InputGroup>
 
-                <FloatingLabel controlId="floatingEmail" label="ایمیل" className={`${styles.userFloatingLabel}`}>
-                    <Form.Control
-                        type="email"
-                        placeholder="name@example.com"
-                        className={styles.formControl}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </FloatingLabel>
-
-                <FloatingLabel controlId="floatingPassword" label="رمز عبور" className={`${styles.userFloatingLabel}`}>
-                    <Form.Control
-                        type="password"
-                        placeholder="رمز عبور"
-                        className={styles.formControl}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <Form.Text className="text-muted">
-                        رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.
-                    </Form.Text>
-                </FloatingLabel>
+                <InputGroup>
+                    <InputGroup.Text className={ styles.inputGroupText }>
+                        <img src={ emailIcon } alt="email-icon" className={styles.icon}/>
+                        <FloatingLabel controlId="floatingEmail" label="ایمیل" className={`${styles.floatingLabel}`}>
+                            <Form.Control
+                                type="email"
+                                placeholder="name@example.com"
+                                className={styles.formControl}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </FloatingLabel>
+                    </InputGroup.Text>
+                </InputGroup>
+                
+                <InputGroup>
+                    <InputGroup.Text className={ styles.inputGroupText }>
+                        <img src={ passwordIcon } alt="password-icon" className={styles.icon}/>
+                        <FloatingLabel controlId="floatingPassword" label="رمز عبور" className={`${styles.floatingLabel}`}>
+                            <Form.Control
+                                type="password"
+                                placeholder="رمز عبور"
+                                className={styles.formControl}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </FloatingLabel>
+                    </InputGroup.Text>
+                </InputGroup>
+                <p>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
 
                 {errorMessage && <p className="text-danger">{errorMessage}</p>}
-
-                <FormButton buttonText="تایید" buttonColor="--color-orange" buttonColorHovered="--color-orange-hovered" buttonTextColor="white"/>
+                <Link type='submit' to='/verifyotp'>
+                    <FormButton buttonText="تایید" buttonColor="--color-orange" buttonColorHovered="--color-orange-hovered" buttonTextColor="white"/>
+                </Link>
             </div>
         </Form>
     

@@ -1,88 +1,21 @@
-.rightPanel {
-    width: 100vh;
-    height: 100vh;
-    background-color: #F6E1C5;
-    color: #205781;
-    flex-direction: column;
-    padding: 20px;
-    position: relative;
+.loginRightPanel {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 50%;
+    height: 100vh;
+    direction: rtl;
  }
 
-h2 {
-    font-size: 28px;
-}
-
-.foor {
-    font-size: 40px;
-    color: #213141;
-}
-
-.loginForm {
-    width: 75%;
-    height: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    /* position: relative; */
-}
-
-.formGroup {
-    display: flex;
-    align-items: center;
-    background: white;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0;
-    width: 67%;
-    height: 25%;
-    border: 2px solid #DDA853; 
-    position: relative;
-}
-
-.formGroup input {
-    border:none; 
-    color: #050505; 
-    outline: none;
-    flex: 1;
-    font-size: 18px;
-    width: 110%;
-    padding: 10px; /* برای بهتر دیده شدن کادر */
-    border-radius: 5px; /* هماهنگ با فرم */
-}
-
-.icon {
-    margin-right: 10px;
-    font-family: 'Noto Color Emoji', sans-serif;
-    font-size: 20px;
-}
-
-.loginBtn {
-    background: #205781;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 50%;
-    margin-top: 10px;
-    position: relative;
-    transition-duration: 0.3s;
-}
-
-.loginBtn:hover {
-    background: #e0d0c0;
-}
 
 .linkk {
     color: #070707;
     margin-top: 10px;
     text-decoration: none;
 }
+
+
 
 @media screen and (max-width: 850px) {
     .container {
