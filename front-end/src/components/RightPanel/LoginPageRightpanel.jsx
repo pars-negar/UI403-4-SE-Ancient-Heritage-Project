@@ -1,7 +1,8 @@
 import React from "react";
 import axios from 'axios';
 import { useState } from 'react';
-import styles from "./LoginPageRightPanel.module.css";
+import styles from "./right-panel.module.css";
+import selfStyles from './LoginPageRightPanel.module.css'
 import FormButton from "../FormButton/FormButton";
 import { Link } from 'react-router-dom';
 import { Form, InputGroup, FloatingLabel } from 'react-bootstrap';
@@ -42,15 +43,15 @@ const RightPanel = () => {
     
   };
   return (
-    <div className={styles.loginRightPanel}>
-      <h1 className={ styles.userFormTitle }>ورود به حساب کاربری</h1>
+    <div className={selfStyles.loginRightPanel}>
+      <h1 className={ styles.formTitle }>ورود به حساب کاربری</h1>
 
       <Form onSubmit={handleSubmit} className={styles.inputGroup}>
         <div className={styles.formContainer}>
           <InputGroup>
             <InputGroup.Text className={ styles.inputGroupText }>
               <img src={ userIcon } alt="user-icon" className={styles.icon}/>
-              <FloatingLabel controlId="floatingUsername" label="نام کاربری" className={`${styles.userFloatingLabel}`}>
+              <FloatingLabel controlId="floatingUsername" label="نام کاربری" className={`${styles.floatingLabel}`}>
                   <Form.Control
                       type="text"
                       placeholder="نام کاربری"
@@ -66,7 +67,7 @@ const RightPanel = () => {
           <InputGroup>
             <InputGroup.Text className={ styles.inputGroupText }>
                 <img src={ passwordIcon } alt="password-icon" className={styles.icon}/>
-                <FloatingLabel controlId="floatingPassword" label="رمز عبور" className={`${styles.userFloatingLabel}`}>
+                <FloatingLabel controlId="floatingPassword" label="رمز عبور" className={`${styles.floatingLabel}`}>
                     <Form.Control
                         type="password"
                         placeholder="رمز عبور"
@@ -94,7 +95,7 @@ const RightPanel = () => {
                   flexDirection: "column",
                   gap: "0.5rem"
                 }}>
-      <Link to="/passwordrecovery" className={ styles.linkk }>
+      <Link to="/passwordrecovery" className={ selfStyles.linkk }>
         رمز عبور را فراموش کرده‌اید؟
       </Link>
       <p>حساب کاربری ندارید؟ &nbsp; 

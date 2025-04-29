@@ -1,4 +1,5 @@
-import styles from './user-sign-up-right-panel.module.css'
+import selfStyles from './user-sign-up-right-panel.module.css'
+import styles from './right-panel.module.css'
 import { Form, InputGroup, FloatingLabel } from 'react-bootstrap';
 import FormButton from '../FormButton/FormButton';
 import React, { useState } from 'react';
@@ -65,14 +66,14 @@ const handleSubmit = async (event) => {
 
 
 return (
-    <div className={styles.userSignUpRightPanel}>
-        <h1 className={styles.userFormTitle}>ثبت‌نام کاربر</h1>
+    <div className={selfStyles.userSignUpRightPanel}>
+        <h1 className={styles.formTitle}>ثبت‌نام کاربر</h1>
         <Form onSubmit={handleSubmit} className={styles.inputGroup}>
             <div className={styles.formContainer}>
                 <InputGroup>
                     <InputGroup.Text className={ styles.inputGroupText }>
                         <img src={ userIcon } alt="user-icon" className={styles.icon}/>
-                        <FloatingLabel controlId="floatingUsername" label="نام کاربری" className={`${styles.userFloatingLabel}`}>
+                        <FloatingLabel controlId="floatingUsername" label="نام کاربری" className={`${styles.floatingLabel}`}>
                             <Form.Control
                                 type="text"
                                 placeholder="نام کاربری"
@@ -88,7 +89,7 @@ return (
                 <InputGroup>
                     <InputGroup.Text className={ styles.inputGroupText }>
                         <img src={ callIcon } alt="call-icon" className={styles.icon}/>
-                        <FloatingLabel controlId="floatingPhoneNumber" label="شماره موبایل" className={styles.userFloatingLabel}>
+                        <FloatingLabel controlId="floatingPhoneNumber" label="شماره موبایل" className={styles.floatingLabel}>
                             <Form.Control
                                 type="tel"
                                 pattern="[0-9]*"
@@ -105,7 +106,7 @@ return (
                 <InputGroup>
                     <InputGroup.Text className={ styles.inputGroupText }>
                         <img src={ emailIcon } alt="email-icon" className={styles.icon}/>
-                        <FloatingLabel controlId="floatingEmail" label="ایمیل" className={`${styles.userFloatingLabel}`}>
+                        <FloatingLabel controlId="floatingEmail" label="ایمیل" className={`${styles.floatingLabel}`}>
                             <Form.Control
                                 type="email"
                                 placeholder="name@example.com"
@@ -120,7 +121,7 @@ return (
                 <InputGroup>
                     <InputGroup.Text className={ styles.inputGroupText }>
                         <img src={ passwordIcon } alt="password-icon" className={styles.icon}/>
-                        <FloatingLabel controlId="floatingPassword" label="رمز عبور" className={`${styles.userFloatingLabel}`}>
+                        <FloatingLabel controlId="floatingPassword" label="رمز عبور" className={`${styles.floatingLabel}`}>
                             <Form.Control
                                 type="password"
                                 placeholder="رمز عبور"

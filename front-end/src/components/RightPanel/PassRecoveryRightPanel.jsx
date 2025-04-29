@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import styles from "./PassRecoveryRightPanel.module.css"; 
+import styles from "./right-panel.module.css"; 
+import selfStyles from './PassRecoveryRightPanel.module.css'
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { Form, InputGroup, FloatingLabel } from 'react-bootstrap';
@@ -61,9 +62,9 @@ const PassRecoveryRightPanel = () => {
   };
 
   return (
-    <div className={styles.passwordRecoveryRightPanel}>
+    <div className={selfStyles.passwordRecoveryRightPanel}>
       {/* Title */}
-      <h2 className={styles.title}>فراموشی رمز عبور</h2>
+      <h2 className={styles.formTitle}>فراموشی رمز عبور</h2>
       <p>
         ایمیل خود را وارد کنید تا لینک بازیابی برای شما ارسال شود.
       </p>
@@ -71,7 +72,7 @@ const PassRecoveryRightPanel = () => {
         <InputGroup>
           <InputGroup.Text className={ styles.inputGroupText }>
               <img src={ emailIcon } alt="email-icon" className={styles.icon}/>
-              <FloatingLabel controlId="floatingEmail" label="ایمیل" className={`${styles.userFloatingLabel}`}>
+              <FloatingLabel controlId="floatingEmail" label="ایمیل" className={`${styles.floatingLabel}`}>
                   <Form.Control
                       type="email"
                       placeholder="name@example.com"

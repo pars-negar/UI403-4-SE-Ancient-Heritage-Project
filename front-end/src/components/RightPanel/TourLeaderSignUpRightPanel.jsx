@@ -1,4 +1,5 @@
-import styles from './tour-leader-sign-up-right-panel.module.css'
+import styles from './right-panel.module.css'
+import selfStyles from './tour-leader-sign-up-right-panel.module.css'
 import { Form, InputGroup, FloatingLabel } from 'react-bootstrap';
 import FormButton from '../FormButton/FormButton';
 import { useState } from 'react';
@@ -53,15 +54,15 @@ const TourLeaderSignUpRightPanel = () => {
     };
 
     return (
-        <div className={styles.tourLeaderSignUpRightPanel}>
-            <h1 className={ styles.tourLeaderFormTitle }>ثبت‌نام مسئول تور</h1>
+        <div className={selfStyles.tourLeaderSignUpRightPanel}>
+            <h1 className={ styles.formTitle }>ثبت‌نام مسئول تور</h1>
             <p>مسئول گرامی اطلاعات شرکت را با دقت تکمیل کنید.</p>
             <Form onSubmit={handleSubmit} className={styles.inputGroup}>
                 <div className={styles.formContainer}>
                     <InputGroup>
                         <InputGroup.Text className={ styles.inputGroupText }>
                             <img src={ userIcon } alt="user-icon" className={ styles.icon }/>
-                            <FloatingLabel label="نام کاربری" className={`${styles.tourLeaderFloatingLabel}`}>
+                            <FloatingLabel label="نام کاربری" className={`${styles.floatingLabel}`}>
                                 <Form.Control 
                                     name="username"
                                     type="text" 
@@ -78,7 +79,7 @@ const TourLeaderSignUpRightPanel = () => {
                     <InputGroup>
                         <InputGroup.Text className={ styles.inputGroupText }>
                             <img src={ callIcon } alt="call-icon" className={ styles.icon }/>
-                            <FloatingLabel label="شماره موبایل" className={`${styles.tourLeaderFloatingLabel}`}>
+                            <FloatingLabel label="شماره موبایل" className={`${styles.floatingLabel}`}>
                                 <Form.Control 
                                     name="phone_number" 
                                     type="tel" 
@@ -95,7 +96,7 @@ const TourLeaderSignUpRightPanel = () => {
                     <InputGroup>
                         <InputGroup.Text className={ styles.inputGroupText }>
                             <img src={ emailIcon } alt="email-icon" className={ styles.icon }/>
-                            <FloatingLabel label="ایمیل" className={`${styles.tourLeaderFloatingLabel}`}>
+                            <FloatingLabel label="ایمیل" className={`${styles.floatingLabel}`}>
                                 <Form.Control 
                                     name="email" 
                                     type="email" 
@@ -112,7 +113,7 @@ const TourLeaderSignUpRightPanel = () => {
                     <InputGroup>
                         <InputGroup.Text className={ styles.inputGroupText }>
                             <img src={ companyIcon } alt="company-icon" className={ styles.icon }/>
-                            <FloatingLabel label="نام شرکت" className={`${styles.tourLeaderFloatingLabel}`}>
+                            <FloatingLabel label="نام شرکت" className={`${styles.floatingLabel}`}>
                                 <Form.Control 
                                     name="company_name"
                                     type="text" 
@@ -129,7 +130,7 @@ const TourLeaderSignUpRightPanel = () => {
                     <InputGroup>
                         <InputGroup.Text className={ styles.inputGroupText }>
                             <img src={ addressIcon } alt="address-icon" className={ styles.icon }/>
-                            <FloatingLabel label="آدرس شرکت" className={`${styles.tourLeaderFloatingLabel}`}>
+                            <FloatingLabel label="آدرس شرکت" className={`${styles.floatingLabel}`}>
                                 <Form.Control 
                                     name="company_address" 
                                     type="text" 
@@ -146,7 +147,7 @@ const TourLeaderSignUpRightPanel = () => {
                     <InputGroup>
                         <InputGroup.Text className={ styles.inputGroupText }>
                             <img src={ registrationNumberIcon } alt="registration-number-icon" className={ styles.icon }/>
-                            <FloatingLabel label="شماره ثبت شرکت" className={`${styles.tourLeaderFloatingLabel}`}>
+                            <FloatingLabel label="شماره ثبت شرکت" className={`${styles.floatingLabel}`}>
                                 <Form.Control 
                                     name="company_registration_number" 
                                     type="text" 
@@ -163,7 +164,7 @@ const TourLeaderSignUpRightPanel = () => {
                     <InputGroup>
                         <InputGroup.Text className={ styles.inputGroupText }>
                             <img src={ callIcon } alt="user-icon" className={ styles.icon }/>
-                            <FloatingLabel label="رمز عبور" className={`${styles.tourLeaderFloatingLabel}`}>
+                            <FloatingLabel label="رمز عبور" className={`${styles.floatingLabel}`}>
                                 <Form.Control 
                                     name="password" 
                                     type="password" 

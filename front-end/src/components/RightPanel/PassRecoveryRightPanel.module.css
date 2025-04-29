@@ -1,4 +1,3 @@
-/* main panel style*/
 .passwordRecoveryRightPanel {
     display: flex;
     flex-direction: column;
@@ -9,70 +8,3 @@
     height: 100vh;
 }
 
-/* title*/
-.title {
-    font-size: 24px;
-    color: #1e3a8a;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-
-.inputGroupText {
-  width: 100%;
-  padding: 0;
-}
-
-
-.icon
-{
-  z-index: 2;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-}
-
-.userFloatingLabel label{
-  text-align: right;
-  width: 100%;
-  padding-right: 50px;
-}
-
-.userFloatingLabel {
-  width: 100%;
-  height: 100%;
-
-}
-
-.userFormTitle {
-  color: var(--color-dark-blue);
-  font-family: 'VazirBold', serif;
-  margin-bottom: 3.5rem;
-}
-
-.formControl {
-  border: solid 1px var(--color-brown);
-  border-radius: 6px;
-  border: solid 1px var(--color-brown);
-  border-radius: 6px;
-  width: 100%;
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-indent: 3.125rem;
-}
-
-.signUpLink {
-    color: var(--color-dark-blue);
-    text-decoration: underline;
-    text-underline-offset: 0.3125rem;
-}
-
-
-.inputGroup {
-    width: 23.5rem;
-}

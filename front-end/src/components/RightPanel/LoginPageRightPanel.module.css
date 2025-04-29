@@ -8,33 +8,6 @@
     direction: rtl;
  }
 
-.signUpLink {
-    color: var(--color-dark-blue);
-    text-decoration: underline;
-    text-underline-offset: 0.3125rem;
-}
-
-.userFormTitle {
-  color: var(--color-dark-blue);
-  font-family: 'VazirBold', serif;
-  margin-bottom: 5.5rem;
-}   
-
-
-.formControl {
-  border: solid 1px var(--color-brown);
-  border-radius: 6px;
-  border: solid 1px var(--color-brown);
-  border-radius: 6px;
-  width: 100%;
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-indent: 3.125rem;
-}
-
 
 .linkk {
     color: #070707;
@@ -42,49 +15,6 @@
     text-decoration: none;
 }
 
-
-.formContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    justify-content: center;
-}
-
-
-
-.inputGroupText {
-  width: 100%;
-  padding: 0;
-}
-
-
-.icon
-{
-  z-index: 2;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-}
-
-
-.userFloatingLabel label{
-  text-align: right;
-  width: 100%;
-  padding-right: 50px;
-}
-
-.userFloatingLabel {
-  width: 100%;
-  height: 100%;
-
-}
-
-
-.inputGroup {
-  width: 23.5rem;  
-}
 
 
 @media screen and (max-width: 850px) {
