@@ -55,7 +55,11 @@ INSTALLED_APPS = [
     'apps.faq',
     'apps.authentication',
     'apps.frontpage',
+     'jalali_date',
+
+         
 ]
+
 
 # Custom user model
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -191,3 +195,6 @@ DATABASES = {
 import importlib
 import sys
 importlib.reload(sys)
+
+
+

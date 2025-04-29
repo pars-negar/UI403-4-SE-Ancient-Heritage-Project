@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import Attraction
 from .models import Tour
 
-
 class Attractionserializers(serializers.ModelSerializer):
     class Meta:
         model=Attraction
@@ -56,3 +55,7 @@ class Attractionserializers(serializers.ModelSerializer):
     class Meta:
         model = Attraction  # Specifies the model to serialize
         fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
+
+
+
+

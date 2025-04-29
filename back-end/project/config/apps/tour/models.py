@@ -1,5 +1,8 @@
 from django.db import models
 from apps.users.models import CustomUser  
+import django_jalali.db.models as jmodels
+
+
 
 
 class Attraction(models.Model):
@@ -34,8 +37,11 @@ class Attraction(models.Model):
 class Tour(models.Model):
     tour_name = models.CharField(max_length=255)
     description = models.TextField()
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = jmodels.jDateField(verbose_name="تاریخ شروع")
+    end_date= jmodels.jDateField(verbose_name="تاریخ بازگشت")
+    departure_time = models.TimeField(null=True, blank=True, verbose_name="ساعت حرکت")
+    return_time = models.TimeField(null=True, blank=True, verbose_name="ساعت برگشت")
+    attractions = models.ManyToManyField(Attraction, related_name="tours")
     price = models.DecimalField(max_digits=10, decimal_places=2)
     capacity = models.PositiveIntegerField()
     origin = models.CharField(max_length=255)
