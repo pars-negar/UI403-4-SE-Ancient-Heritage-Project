@@ -1,10 +1,11 @@
 import React from "react";
 import styles from './left-panel.module.css';
 
+import logoUrl from '../../assets/icons/logo.svg'
+
 const LeftPanel = ( props ) => {
   const imageUrl = props.imageUrl;
   const imageTitle = props.imageTitle;
-  const logoUrl = './assets/icons/logo.svg';
   const rectanglesColor = props.rectanglesColor;
   
   return (

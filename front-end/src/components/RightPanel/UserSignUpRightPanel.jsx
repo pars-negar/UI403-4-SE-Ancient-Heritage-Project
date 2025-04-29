@@ -1,11 +1,15 @@
 import styles from './user-sign-up-right-panel.module.css'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import {Form, InputGroup, FloatingLabel} from 'react-bootstrap';
 import FormButton from '../FormButton/FormButton';
 import globalStyles from '../../styles/base.module.css';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  
+import { useNavigate } from 'react-router-dom';
+
+
+import userIcon from '../../assets/icons/user.svg'
+import callIcon from '../../assets/icons/call.svg'
+import emailIcon from '../../assets/icons/email.svg'
+import passwordIcon from '../../assets/icons/password.svg'
 
 
 const UserSignUpRightPanel = () => {
@@ -63,56 +67,83 @@ return (
     <div className={styles.userSignUpRightPanel}>
         <h1 className={styles.userFormTitle}>ثبت‌نام کاربر</h1>
         <Form onSubmit={handleSubmit}>
-            <FloatingLabel controlId="floatingUsername" label="نام کاربری" className={`${styles.userFloatingLabel} mb-3`}>
-                <Form.Control
-                    type="text"
-                    placeholder="نام کاربری"
-                    size="lg"
-                    className={styles.formControl}
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-            </FloatingLabel>
+            <div className={styles.formContainer}>
+                <InputGroup>
+                    {/* <InputGroup.Text className={styles.inputGroupText}>
+                        <img src={ userIcon } alt="user-icon" />
+                    </InputGroup.Text> */}
 
-            <FloatingLabel controlId="floatingPhoneNumber" label="شماره موبایل" className={`${styles.userFloatingLabel} mb-3`}>
-                <Form.Control
-                    type="tel"
-                    pattern="[0-9]*"
-                    inputMode="numeric"
-                    placeholder="شماره موبایل"
-                    className={styles.formControl}
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                />
-            </FloatingLabel>
+                    {/* 
+                        <span>
+                            <img src={ userIcon } alt="user-icon" />
+                            <input 
+                                type="text" 
+                                placeholder='نام کاربری' 
+                                className={styles.formControl} 
+                                value={username} onChange={(e) => setUsername(e.target.value)}
+                                style={
+                                    {width:"700px",
+                                        height:"100px"
+                                    }
+                                }    
+                            />
 
-            <FloatingLabel controlId="floatingEmail" label="ایمیل" className={`${styles.userFloatingLabel} mb-3`}>
-                <Form.Control
-                    type="email"
-                    placeholder="name@example.com"
-                    className={styles.formControl}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-            </FloatingLabel>
+                        </span>
+                    */}
+                    <InputGroup.Text className="input-group-text">
+                        <img src={ userIcon } alt="" className={styles.userIcon}/>
+                    </InputGroup.Text>
+                    <FloatingLabel controlId="floatingUsername" label="نام کاربری" className={`${styles.userFloatingLabel}`}>
+                        <Form.Control
+                            type="text"
+                            placeholder="نام کاربری"
+                            size="lg"
+                            value={username}
+                            className={styles.formControl}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </FloatingLabel>
+                </InputGroup>
 
-            <FloatingLabel controlId="floatingPassword" label="رمز عبور" className={`${styles.userFloatingLabel} mb-3`}>
-                <Form.Control
-                    type="password"
-                    placeholder="رمز عبور"
-                    className={styles.formControl}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <Form.Text className="text-muted">
-                    رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.
-                </Form.Text>
-            </FloatingLabel>
+                <FloatingLabel controlId="floatingPhoneNumber" label="شماره موبایل" className={styles.userFloatingLabel}>
+                    <Form.Control
+                        type="tel"
+                        pattern="[0-9]*"
+                        inputMode="numeric"
+                        placeholder="شماره موبایل"
+                        className={styles.formControl}
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                    />
+                </FloatingLabel>
 
-            {errorMessage && <p className="text-danger">{errorMessage}</p>}
+                <FloatingLabel controlId="floatingEmail" label="ایمیل" className={`${styles.userFloatingLabel}`}>
+                    <Form.Control
+                        type="email"
+                        placeholder="name@example.com"
+                        className={styles.formControl}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </FloatingLabel>
 
+                <FloatingLabel controlId="floatingPassword" label="رمز عبور" className={`${styles.userFloatingLabel}`}>
+                    <Form.Control
+                        type="password"
+                        placeholder="رمز عبور"
+                        className={styles.formControl}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <Form.Text className="text-muted">
+                        رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.
+                    </Form.Text>
+                </FloatingLabel>
 
-            <button></button>
+                {errorMessage && <p className="text-danger">{errorMessage}</p>}
+
+                <FormButton buttonText="تایید" buttonColor="--color-orange" buttonColorHovered="--color-orange-hovered" buttonTextColor="white"/>
+            </div>
         </Form>
     
             {/* <script>{
