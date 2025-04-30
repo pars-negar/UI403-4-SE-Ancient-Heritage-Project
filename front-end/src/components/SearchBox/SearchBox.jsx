@@ -6,7 +6,7 @@ function SearchBox() {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>جستجوی تور</h2>
-      <di className={styles.form}>
+      <div className={styles.form}>
         <select className={styles.input}>
           <option value="">مبدا(شهر)</option>
         </select>
@@ -15,10 +15,10 @@ function SearchBox() {
         </select>
         <input type="date" className={styles.input} placeholder="تاریخ رفت" />
         <input type="date" className={styles.input} placeholder="تاریخ برگشت" />
-        </di>
-        <div className={styles.button}>
-        <FormButton buttonText='جستجو' buttonColor='#205781' buttonTextColor='white' buttonColorHovered="#092840"/>
-        </div>
+      </div>
+      <div className={styles.button}>
+      <FormButton buttonText='جستجو' buttonColor='#205781' buttonTextColor='white' buttonColorHovered="#092840"/>
+      </div>
       
     </div>
   );

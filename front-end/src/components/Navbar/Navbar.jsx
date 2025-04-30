@@ -2,7 +2,7 @@ import "./navbar.css";
 import { Link } from 'react-router-dom';
 import logoUrl from "../../assets/icons/logo.svg"
 import FormButton from "../FormButton/FormButton";
-import styles from './navbar.css';
+import './navbar.css'
 
 
 const Navbar = () => {
@@ -19,7 +19,13 @@ const Navbar = () => {
                     </div>
                 </ul>
                 <Link to='/LoginSignUp' id="button">
-                    <FormButton className={ styles.navbarButton } buttonText='ورود/ثبت‌نام' buttonColor='#FB8101' buttonTextColor='black' buttonColorHovered="#D96F00"/>
+                    <FormButton 
+                        className='navbarButton'
+                        buttonText='ورود/ثبت‌نام'
+                        buttonColor='--color-orange' 
+                        buttonTextColor='black' 
+                        buttonColorHovered="--color-orange-hovered"
+                        />
                 </Link>
                 <hr className="bottomLine" />
             </nav>

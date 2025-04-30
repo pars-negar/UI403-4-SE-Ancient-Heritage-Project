@@ -1,66 +1,14 @@
-import React from "react";
-// import VerificationPage from "./pages/verificationPage/verificationPage";  // وارد کردن کامپوننت صفحه تأیید شماره تلفن
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery";
-//import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
-import Navbar from "./components/Navbar/Navbar.jsx"
-// import TourismAttractionCard from "../src/components/Card/tourismAttractionCard.jsx";
-import "./App.css";
-import Home from "./pages/Home/Home.jsx";
-// import TourPage from "./pages/TourPage/TourPage.jsx";
-// import Footer from "./components/Footer/Footer.jsx"
-// import CityAttraction from "./components/card/CityAttraction.jsx";
-// import TourismAttractionCard from "./components/card/tourismAttractionCard.jsx";
-// import FourCityCards from "./components/card/FourCityCards.jsx";
-import PlacesPage from "./pages/PlacesPage/PlacesPage.jsx";
-
-import UserSignUpPage from "./pages/UserSignUp/UserSignUp.jsx";
-import VerificationPage from "./pages/verificationPage/verificationPage.jsx";
-import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery.jsx"
-import TourleaderSignUp from "./pages/TourLeaderSignUp/TourleaderSignUp.jsx"
-import LoginPage from "./pages/LoginPage/LoginPage.jsx"
-import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
-import SetNewPassword from "./pages/SetNewPassword/SetNewPassword.jsx";
-
-
-
+import { useState } from 'react'
+import './App.css'
 
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <BrowserRouter>
-    <Routes>
-
-
-
-      {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
-      {/*<Route exact path="/" element={ <TourleaderSignUp/> }></Route>}
-      {/* <Route exact path="/login" element={ <LoginPage/> }></Route> */}
-      {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
-      {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
-      {/* <Route exact path="/" element={ <LoginSignUp/> }></Route> */}
-      {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
-      {/* چرت و پرت */}
-
-      <Route exact path="/loginsignup" element={ <LoginSignUp/> }></Route>
-      <Route exact path="loginsignup/usersignup" element={ <UserSignUpPage/> }></Route>
-      <Route exact path="loginsignup/tourleadersignup" element={ <TourleaderSignUp/> }></Route>
-      <Route exact path="loginsignup/login" element={ <LoginPage/> }></Route>
-      <Route exact path="/passwordrecovery" element={ <PasswordRecovery/> }></Route>
-      <Route path="/verifyotp" element={< VerificationPage/>} />
-
-
-      <Route exact path="/nav" element={ <Navbar />} />
-
-
-      <Route exact path="/" element={ <Home />}></Route>
-      {/* <Route exact path="/" element={<CityAttraction cityName="اصفهان" imageSrc="./assets/images/esf.png" />}></Route> */}
-      {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
-      {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
-      <Route exact path="/setnewpassword" element={ < SetNewPassword/>}></Route>
-
-      </Routes>
-    </BrowserRouter>
-  );
+    <body class="bg-red-400">
+      <h1>hi</h1>
+    </body>
+  )
 }
-export default App;
+
+export default App

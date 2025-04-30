@@ -19,7 +19,6 @@
 .navbar {
     width: 100%;
     display: flex;
-
     justify-content: space-evenly;
     margin-top: 0px;
     gap: 10px;
@@ -37,8 +36,8 @@
     text-align: center;
 }
 
-#button {
-    width: 200px;
+.navbarButton {
+    width: 2000px;
     height: 50px;
     align-items: center;
     align-content: center;

@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:css": "postcss src/style.css -o dist/style.css"
+    "build:css": "postcss src/index.css -o dist/index.css"
   },
   "dependencies": {
     "axios": "^1.9.0",
