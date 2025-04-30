@@ -104,7 +104,7 @@ const RightPanel = () => {
         </Link>
       </p>
     </div>
-    </div>
+  </div>
   );
 };
 

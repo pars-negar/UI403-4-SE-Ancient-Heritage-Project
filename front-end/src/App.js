@@ -21,7 +21,7 @@ import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery.jsx"
 import TourleaderSignUp from "./pages/TourLeaderSignUp/TourleaderSignUp.jsx"
 import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
-
+import SetNewPassword from "./pages/SetNewPassword/SetNewPassword.jsx";
 
 
 
@@ -57,6 +57,7 @@ function App() {
       {/* <Route exact path="/" element={<CityAttraction cityName="اصفهان" imageSrc="./assets/images/esf.png" />}></Route> */}
       {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
       {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
+      <Route exact path="/setnewpassword" element={ < SetNewPassword/>}></Route>
 
       </Routes>
     </BrowserRouter>
