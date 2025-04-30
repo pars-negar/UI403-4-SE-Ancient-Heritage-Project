@@ -40,7 +40,7 @@ function App() {
       {/* <Route exact path="/" element={ <PasswordRecovery/> }></Route> */}
       {/* <Route exact path="/" element={ <LoginSignUp/> }></Route> */}
       {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
-
+      {/* چرت و پرت */}
 
       <Route exact path="/loginsignup" element={ <LoginSignUp/> }></Route>
       <Route exact path="loginsignup/usersignup" element={ <UserSignUpPage/> }></Route>
