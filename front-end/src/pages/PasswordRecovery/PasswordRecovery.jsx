@@ -6,7 +6,7 @@ const PasswordRecovery = () => {
     return (
         <div className={styles.passwordRecovery}>
             <PassRecoveryRightPanel />
-            <LeftPanel imageUrl='./assets/images/passRecovery.png' imageTitle="نمای تخت جمشید" rectanglesColor="#205781" />
+            <LeftPanel imageUrl='./assets/images/passRecovery.png' imageTitle="نمای تخت جمشید" rectanglesColor="--color-orange" />
         </div>
     );
 }

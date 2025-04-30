@@ -10,7 +10,7 @@ const TourLeaderSignUp = () => {
             <LeftPanel 
                 imageUrl= { pic }
                 imageTitle="tour-leader-sign-up-form-image"
-                rectanglesColor="#FB8101" />
+                rectanglesColor="--color-orange" />
         </div>
      );
 }

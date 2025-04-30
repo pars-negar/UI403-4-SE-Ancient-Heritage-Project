@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '../../../pages/verificationPage/code.module.css';
+import styles from '../RightPanel/verfication-right-panel.module.css';
 
 const CodeInput = ({ code, onCodeChange }) => {
   const handleInputChange = (index, event) => {

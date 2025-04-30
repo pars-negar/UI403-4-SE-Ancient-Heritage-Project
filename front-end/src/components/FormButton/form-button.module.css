@@ -12,7 +12,7 @@
 
     cursor: pointer;
 
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 1);
     transition: background 0.3s ease, transform 0.2s ease;
 
     background-color: #007bff;
@@ -21,12 +21,6 @@
     display: inline-block;
     white-space: nowrap;
 }
-  
-.formButton button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
 
 
 .buttonGroup {

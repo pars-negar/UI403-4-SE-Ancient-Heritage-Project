@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import styles from '../../../pages/verificationPage/code.module.css';
-import CodeInput from "./CodeInput";
-import FormButton from "../../FormButton/FormButton";
+import selfStyles from './verfication-right-panel.module.css';
+import styles from './right-panel.module.css'
+import CodeInput from "../CodeInput/CodeInput";
+import FormButton from "../FormButton/FormButton";
+import { Link } from 'react-router-dom'
 
 const RightPanel = () => {
   const [code, setCode] = useState(Array(6).fill(""));
@@ -62,23 +64,25 @@ const RightPanel = () => {
   
 
   return (
-    <div className={styles.rightPanel}>
-      <h2 className={styles.header}>تأیید شماره تلفن</h2>
-      <p className={styles.instruction}>لطفاً کدی که به شماره شما ارسال شده را وارد کنید.</p>
-      <CodeInput code={code} onCodeChange={handleCodeChange} />
-      {/* <button className={styles.confirmBtn} onClick={handleSubmit} disabled={!isCodeComplete}> */}
-      <button
-  className={styles.confirmBtn}
-  onClick={handleSubmit}
-  disabled={!isCodeComplete}
->
-  تأیید
-</button>
+    <div className={selfStyles.rightPanel}>
+      <h2 className={selfStyles.header}>تأیید شماره تلفن</h2>
+      <p className={selfStyles.instruction}>لطفاً کدی که به شماره شما ارسال شده را وارد کنید.</p>
+      <CodeInput code={code} onCodeChange={handleCodeChange} />      
 
-        {/* تأیید
-      </button> */}
-      <a href="https://www.google.com" className={styles.editNumber}>ویرایش شماره موبایل</a>
-      <a href="https://www.google.com" className={styles.resendCode}>ارسال مجدد کد</a>
+      <Link type='submit' to='/loginsignup/login'>
+        <FormButton 
+          buttonText="تایید"
+          buttonColor="--color-orange"
+          buttonColorHovered="--color-orange-hovered" 
+          buttonTextColor="black"
+          onClick={handleSubmit}
+          disabled={!isCodeComplete}
+          />
+      </Link>
+      
+
+      <a href="https://www.google.com" className={styles.signUpLink}>ویرایش شماره موبایل</a>
+      <a href="https://www.google.com" className={styles.signUpLink}>ارسال مجدد کد</a>
     </div>
   );
 };

@@ -8,7 +8,7 @@ const Container = () => {
   return (
     <div className={styles.login}>
       <RightPanel />
-      <LeftPanel imageUrl={img} imageTitle="پل سی و سه پل" rectanglesColor="#FB8101" />
+      <LeftPanel imageUrl={img} imageTitle="پل سی و سه پل" rectanglesColor="--color-orange" />
     </div>
   );
 };
