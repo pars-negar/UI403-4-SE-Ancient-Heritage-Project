@@ -1,5 +1,5 @@
 import React from "react";
-import img from "../../assets/images/code.png"
+import pic from "../../assets/images/left-panel-verification.png"
  import styles from './verification.module.css';
  import LeftPanel from "../../components/LeftPanel/LeftPanel";
  import RightPanel from "../../components/RightPanel/verificationRightPanel";
@@ -9,7 +9,7 @@ import img from "../../assets/images/code.png"
    return (
      <div className={styles.container}>
        <RightPanel />
-       <LeftPanel rectanglesColor= "--color-orange" imageTitle={"مسجد"} imageUrl={img} />
+       <LeftPanel rectanglesColor= "--color-orange" imageTitle={"مسجد"} imageUrl={pic} />
      </div>
    );
  };

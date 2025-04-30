@@ -35,7 +35,7 @@
 .formContainer {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
     justify-content: center;
 }
 
@@ -57,7 +57,7 @@
 }
 
 
-/* set input size here: */
+/* set input size here */
 .inputGroup {
   width: 23.5rem;
 }
@@ -67,4 +67,5 @@
   color: var(--color-dark-blue);
   text-decoration: underline;
   text-underline-offset: 0.3125rem;
+  margin-top: 0.5rem;
 }

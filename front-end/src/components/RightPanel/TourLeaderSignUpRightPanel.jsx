@@ -177,8 +177,9 @@ const TourLeaderSignUpRightPanel = () => {
                             </FloatingLabel>
                         </InputGroup.Text>
                     </InputGroup>
-                    <p>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
-
+                </div>
+                <p style={{ marginTop: "0.5rem", marginBottom: 0 }}>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
+                <div className={ styles.formContainer }>
                     <Link type='submit' to='/verifyotp'>
                         <FormButton 
                             buttonText="ثبت نام" 
@@ -189,7 +190,7 @@ const TourLeaderSignUpRightPanel = () => {
                     </Link>
                 </div>
             </Form>
-            <p>قبلا ثبت‌نام کرده‌اید؟ &nbsp; 
+            <p style={{ marginTop: "0.5rem", marginBottom: 0 }}>قبلا ثبت‌نام کرده‌اید؟ &nbsp; 
             <Link to="/loginsignup/login" className={ styles.signUpLink }>
                 ورود
             </Link>

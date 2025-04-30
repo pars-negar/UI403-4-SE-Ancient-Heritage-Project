@@ -9,48 +9,50 @@ const SetNewPassword = () => {
         <div className={ selfStyles.setNewPasswordRightPanel }>
             <h1 className={ styles.formTitle }>تنظیم رمز عبور جدید</h1>
             {/* onSubmit={handleSubmit} */}
-            <Form className={styles.inputGroup}>
-                <div className={styles.formContainer}>
+            <div className="formContainer">
+                <Form className={styles.inputGroup}>
+                    <div className={styles.formContainer}>
 
-                <InputGroup>
-                    <InputGroup.Text className={ styles.inputGroupText }>
-                        <FloatingLabel controlId="floatingPassword" label=" رمز عبور جدید" className={`${selfStyles.floatingLabel}`}>
+                    <InputGroup>
+                        <InputGroup.Text className={ styles.inputGroupText }>
+                            <FloatingLabel controlId="floatingPassword" label=" رمز عبور جدید" className={`${selfStyles.floatingLabel}`}>
+                                <Form.Control
+                                    type="password"
+                                    placeholder="رمز عبور"
+                                    className={selfStyles.formControl}
+                                    // value={password}
+                                    size='lg'
+                                    // onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </FloatingLabel>
+                        </InputGroup.Text>
+                    </InputGroup>
+
+                    <InputGroup>
+                        <InputGroup.Text className={ styles.inputGroupText }>
+                        <FloatingLabel controlId="floatingUsername" label="تکرار رمز عبور جدید" className={`${selfStyles.floatingLabel}`}>
                             <Form.Control
-                                type="password"
-                                placeholder="رمز عبور"
+                                type="text"
+                                placeholder="نام کاربری"
+                                size="lg"
+                                // value={username}
                                 className={selfStyles.formControl}
-                                // value={password}
-                                size='lg'
-                                // onChange={(e) => setPassword(e.target.value)}
+                                // onChange={(e) => setUsername(e.target.value)}
                             />
                         </FloatingLabel>
-                    </InputGroup.Text>
-                </InputGroup>
-
-                <InputGroup>
-                    <InputGroup.Text className={ styles.inputGroupText }>
-                    <FloatingLabel controlId="floatingUsername" label="تکرار رمز عبور جدید" className={`${selfStyles.floatingLabel}`}>
-                        <Form.Control
-                            type="text"
-                            placeholder="نام کاربری"
-                            size="lg"
-                            // value={username}
-                            className={selfStyles.formControl}
-                            // onChange={(e) => setUsername(e.target.value)}
-                        />
-                    </FloatingLabel>
-                    </InputGroup.Text>
-                </InputGroup>
-                <Link type='submit' style={{marginTop: "3.5rem"}}>
-                    <FormButton 
-                        buttonText="تایید" 
-                        buttonColor="--color-orange" 
-                        buttonColorHovered="--color-orange-hovered" 
-                        buttonTextColor="black"
-                        />
-                </Link>
-                </div>
-            </Form>   
+                        </InputGroup.Text>
+                    </InputGroup>
+                    <Link type='submit'>
+                        <FormButton 
+                            buttonText="تایید" 
+                            buttonColor="--color-orange" 
+                            buttonColorHovered="--color-orange-hovered" 
+                            buttonTextColor="black"
+                            />
+                    </Link>
+                    </div>
+                </Form>   
+            </div>
 
             <div style={{ display: "flex",
                         flexDirection: "column",
