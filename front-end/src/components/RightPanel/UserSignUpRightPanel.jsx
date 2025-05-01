@@ -55,7 +55,7 @@ const handleSubmit = async (event) => {
         // alert('کد تأیید برای شما ارسال شد. لطفاً آن را وارد کنید.');
         // console.log(data); 
         localStorage.setItem("pendingPhoneNumber", phoneNumber);
-        navigate('/verify-otp');
+        navigate('/verifyotp');
 
     } catch (error) {
         setErrorMessage('خطایی رخ داده است. لطفاً دوباره تلاش کنید.');
@@ -137,14 +137,13 @@ return (
 
             {errorMessage && <p className="text-danger">{errorMessage}</p>}
             <div className={styles.formContainer}>
-                <Link type='submit' to='/verifyotp'>
                     <FormButton 
                         buttonText="تایید" 
                         buttonColor="--color-orange" 
                         buttonColorHovered="--color-orange-hovered" 
                         buttonTextColor="white"
+                        type="submit"
                         />
-                </Link>
             </div>
         </Form>
     

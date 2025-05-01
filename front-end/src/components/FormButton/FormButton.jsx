@@ -9,6 +9,7 @@ const FormButton = (props) => {
     const buttonColorHovered = props.buttonColorHovered;
     const buttonTextColor = props.buttonTextColor;
     // const handleClick = props.handleClick;
+    const buttonType= props.type; 
 
     const [isHovered, setIsHavered] = useState(false);
 
@@ -16,7 +17,8 @@ const FormButton = (props) => {
         <div className={ styles.formButton} >
             <div className={ styles.buttonGroup }>
                 <Button
-                type="submit" 
+                type={buttonType} 
+                onClick={props.onClick}
                  style={{ backgroundColor: isHovered ? `var(${buttonColorHovered})` : `var(${buttonColor})`,
                                 color: buttonTextColor
                                 }} className={"formButton"}
