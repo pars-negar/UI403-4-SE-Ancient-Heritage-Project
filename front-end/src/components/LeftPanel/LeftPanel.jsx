@@ -12,7 +12,7 @@ const LeftPanel = ( props ) => {
     <div className={ styles.leftPanel }>
       <img className={ styles.leftPanelLogo } src={ logoUrl } alt="left-panel-logo" />
       <div className={ styles.leftPanelContent }>
-        <img className={ styles.leftPanelImage } src={ imageUrl }  alt={ imageTitle } />
+        <img className={ styles.leftPanelImage } src={ imageUrl } alt={ imageTitle } />
         <div className={ styles.rectangles }>
           <div style={{ backgroundColor: `var(${rectanglesColor})` }} className={ styles.leftPanelRectangle }></div>
           <div style={{ backgroundColor: `var(${rectanglesColor})` }} className={ styles.leftPanelRectangle }></div>

@@ -85,13 +85,13 @@ class VerifyOTPView(APIView):
                 User = get_user_model()
                 user_exists = User.objects.filter(phone_number=user_info['phone_number']).first()
                 if not user_exists:
-                    user = User(
-                        phone_number=user_info['phone_number'],
+                    user = User.objects.create_user(
                         username=user_info['username'],
                         email=user_info['email'],
+                        phone_number=user_info['phone_number'],
+                        password=user_info['password']
                     )
-                    user.set_password(user_info['password'])  # هش کردن رمز عبور
-                    user.save()
+
                 else:
                     user = user_exists
             # کاربر رو از مدل User می‌گیریم
