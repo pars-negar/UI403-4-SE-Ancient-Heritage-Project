@@ -8,7 +8,7 @@ const UserSignUpPage = () => {
     return (
         <div className={ styles.userSignUp}>
             <UserSignUpRightPanel />
-            <LeftPanel imageUrl={pic} imageTitle="something" rectanglesColor="#e68a2efb" />
+            <LeftPanel imageUrl={pic} imageTitle="something" rectanglesColor="--color-orange" />
         </div>
     );
 }

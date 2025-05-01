@@ -69,20 +69,31 @@ const PassRecoveryRightPanel = () => {
         ایمیل خود را وارد کنید تا لینک بازیابی برای شما ارسال شود.
       </p>
       <Form className={styles.inputGroup}> 
-        <InputGroup>
-          <InputGroup.Text className={ styles.inputGroupText }>
-              <img src={ emailIcon } alt="email-icon" className={styles.icon}/>
-              <FloatingLabel controlId="floatingEmail" label="ایمیل" className={`${styles.floatingLabel}`}>
-                  <Form.Control
-                      type="email"
-                      placeholder="name@example.com"
-                      className={styles.formControl}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                  />
-              </FloatingLabel>
-          </InputGroup.Text>
-      </InputGroup>
+        <div className={styles.formContainer}>
+          <InputGroup>
+            <InputGroup.Text className={ styles.inputGroupText }>
+                <img src={ emailIcon } alt="email-icon" className={styles.icon}/>
+                <FloatingLabel controlId="floatingEmail" label="ایمیل" className={`${styles.floatingLabel}`}>
+                    <Form.Control
+                        type="email"
+                        placeholder="name@example.com"
+                        className={styles.formControl}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </FloatingLabel>
+            </InputGroup.Text>
+          </InputGroup>
+          <Link type='submit' to='/verifyotp'>
+              <FormButton 
+                buttonText="ارسال لینک" 
+                buttonColor="--color-orange" 
+                buttonColorHovered="--color-orange-hovered" 
+                buttonTextColor="black"
+                onClick={handleSendLink}
+                />
+          </Link>
+        </div>
       </Form>
 
 
@@ -94,15 +105,6 @@ const PassRecoveryRightPanel = () => {
         onChange={handleChange}
       /> */}
 
-      <Link type='submit' to='/verifyotp'>
-          <FormButton 
-            buttonText="ارسال لینک" 
-            buttonColor="--color-orange" 
-            buttonColorHovered="--color-orange-hovered" 
-            buttonTextColor="black"
-            onClick={handleSendLink}
-            />
-      </Link>
 
       <Link to="loginsignup/login" className={ styles.signUpLink } >
         بازگشت به صفحه ورود

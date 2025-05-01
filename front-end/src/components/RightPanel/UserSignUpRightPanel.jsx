@@ -132,11 +132,18 @@ return (
                         </FloatingLabel>
                     </InputGroup.Text>
                 </InputGroup>
-                <p>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
+            </div>
+            <p style={{ marginTop: "0.5rem", marginBottom: 0 }}>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
 
-                {errorMessage && <p className="text-danger">{errorMessage}</p>}
+            {errorMessage && <p className="text-danger">{errorMessage}</p>}
+            <div className={styles.formContainer}>
                 <Link type='submit' to='/verifyotp'>
-                    <FormButton buttonText="تایید" buttonColor="--color-orange" buttonColorHovered="--color-orange-hovered" buttonTextColor="white"/>
+                    <FormButton 
+                        buttonText="تایید" 
+                        buttonColor="--color-orange" 
+                        buttonColorHovered="--color-orange-hovered" 
+                        buttonTextColor="white"
+                        />
                 </Link>
             </div>
         </Form>

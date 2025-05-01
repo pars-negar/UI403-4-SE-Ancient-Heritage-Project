@@ -1,24 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
 
- 
- .container {
-
-     display: flex;
-     width: 100vw;  /* عرض کل صفحه */
-     height: 100vh; /* ارتفاع کل صفحه */
-     background: none; /* پس‌زمینه‌ی جداگانه حذف شد */
-     border-radius: 0; /* گردی کناره‌ها حذف شد که کل صفحه رو بگیره */
-     overflow: hidden;
-     justify-content: space-between;
-     box-shadow: none;
-     
- }
- 
  .rightPanel {
     width: 100vh;
     height: 100vh;
-    background-color: #F6E1C5;
-    color: #2C3A47;
     flex-direction: column;
     padding: 20px;
     position: relative;
@@ -30,7 +13,7 @@
  .header {
      font-size: 40px;
      font-weight: bold;
-     margin-bottom: 100px;
+     margin-bottom: 6.25rem;
      color: #205781;
  }
  
@@ -44,6 +27,7 @@
      justify-content: center;
      gap: 5px;
      direction: ltr;
+     margin-bottom: 6rem;
  }
  
  .codeInput input {

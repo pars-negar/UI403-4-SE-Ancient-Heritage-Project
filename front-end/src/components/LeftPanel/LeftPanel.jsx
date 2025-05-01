@@ -14,9 +14,9 @@ const LeftPanel = ( props ) => {
       <div className={ styles.leftPanelContent }>
         <img className={ styles.leftPanelImage } src={`${ process.env.PUBLIC_URL }${ imageUrl }`} alt={ imageTitle } />
         <div className={ styles.rectangles }>
-          <div style={{ backgroundColor: rectanglesColor }} className={ styles.leftPanelRectangle }></div>
-          <div style={{ backgroundColor: rectanglesColor }} className={ styles.leftPanelRectangle }></div>
-          <div style={{ backgroundColor: rectanglesColor }} className={ styles.leftPanelRectangle }></div>
+          <div style={{ backgroundColor: `var(${rectanglesColor})` }} className={ styles.leftPanelRectangle }></div>
+          <div style={{ backgroundColor: `var(${rectanglesColor})` }} className={ styles.leftPanelRectangle }></div>
+          <div style={{ backgroundColor: `var(${rectanglesColor})` }} className={ styles.leftPanelRectangle }></div>
         </div>
       </div>
       

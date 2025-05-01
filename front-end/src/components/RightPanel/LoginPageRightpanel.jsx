@@ -79,15 +79,16 @@ const RightPanel = () => {
                 </FloatingLabel>
             </InputGroup.Text>
           </InputGroup>
-
-          <Link type='submit' style={{marginTop: "3.5rem"}}>
-              <FormButton 
-                buttonText="ورود" 
-                buttonColor="--color-orange" 
-                buttonColorHovered="--color-orange-hovered" 
-                buttonTextColor="black"
-                />
-          </Link>
+        </div>
+        <div className={ styles.formContainer }>
+        <Link type='submit'>
+            <FormButton 
+              buttonText="ورود" 
+              buttonColor="--color-orange" 
+              buttonColorHovered="--color-orange-hovered" 
+              buttonTextColor="black"
+              />
+        </Link>
         </div>
       </Form>   
 
@@ -104,7 +105,7 @@ const RightPanel = () => {
         </Link>
       </p>
     </div>
-    </div>
+  </div>
   );
 };
 
