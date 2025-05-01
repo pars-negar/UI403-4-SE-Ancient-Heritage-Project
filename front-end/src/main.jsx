@@ -42,7 +42,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         <Route path="/verify-otp" element={< VerificationPage/>} />
-
+{/* aaa */}
         {/* <Route exact path="/" element={ <Navbar />} /> */}
         <Route exact path="/" element={ <Home />}></Route>
         {/* <Route exact path="/" element={<CityAttraction cityName="اصفهان" imageSrc="./assets/images/esf.png" />}></Route> */}
