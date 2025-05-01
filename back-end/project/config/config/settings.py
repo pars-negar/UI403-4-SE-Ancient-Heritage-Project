@@ -3,36 +3,20 @@ import os
 from dotenv import load_dotenv
 from datetime import timedelta
 
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # مدت زمان اعتبار access token
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),     # مدت زمان اعتبار refresh token
-    'AUTH_HEADER_TYPES': ('Bearer',),
-}
-
-# Load environment variables from the .env file
+# Load environment variables from .env
 load_dotenv()
 
-# Enable CORS for all origins (Good for development, restrict in production!)
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-CORS_ALLOW_HEADERS = ["authorization", "content-type"]
-
-
-# Base directory of the project
+# ───── Base Directory ─────
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key secret in production!
-SECRET_KEY = 'django-insecure-r&d$cmdrl5_bgasbkqbu2!lixcwv@o56(3w!^&$)3hj5bikxmy'
+# ───── Security Settings ─────
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-fallback-secret-key')
+DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
+ALLOWED_HOSTS = ['*']  # در production حتما محدود کنید
 
-# DEBUG mode should be False in production
-DEBUG = True
-
-# Hosts allowed to access the project
-ALLOWED_HOSTS = []
-
-# Installed applications (built-in, third-party, and custom apps)
+# ───── Installed Apps ─────
 INSTALLED_APPS = [
-    # Django core apps
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,13 +24,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Third-party apps
+    # Third-party
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_spectacular',
     'corsheaders',
+    'jalali_date',
 
-    # Your custom apps
+    # Custom apps
     'apps.users',
     'apps.wallet',
     'apps.reserve',
@@ -55,18 +40,14 @@ INSTALLED_APPS = [
     'apps.faq',
     'apps.authentication',
     'apps.frontpage',
-     'jalali_date',
-
-         
 ]
 
-
-# Custom user model
+# ───── Custom User Model ─────
 AUTH_USER_MODEL = 'users.CustomUser'
 
-# Middleware configuration
+# ───── Middleware ─────
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # Must be at the top for CORS to work properly
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,14 +57,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# Main URL configuration
+# ───── URL & WSGI ─────
 ROOT_URLCONF = 'config.urls'
+WSGI_APPLICATION = 'config.wsgi.application'
 
-# Templates configuration (for rendering HTML pages if needed)
+# ───── Templates ─────
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # Add your template directories here if needed
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -96,18 +78,19 @@ TEMPLATES = [
     },
 ]
 
-# WSGI entry point
-WSGI_APPLICATION = 'config.wsgi.application'
-
-# Database settings (default is SQLite, change to PostgreSQL/MySQL if needed)
+# ───── Database (PostgreSQL) ─────
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB', 'tour_project'),
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'Sa138319'),
+        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
 
-# Password validation rules
+# ───── Password Validation ─────
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -115,19 +98,21 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization settings
+# ───── Internationalization ─────
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, images)
+# ───── Static & Media ─────
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
-# Default primary key field type for models
+# ───── Default Field Type ─────
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# REST framework global configuration
+# ───── Django REST Framework ─────
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -135,66 +120,34 @@ REST_FRAMEWORK = {
     ),
 }
 
-# drf-spectacular (OpenAPI/Swagger) settings
+# ───── JWT Settings ─────
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+# ───── Swagger / OpenAPI ─────
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Your Project API',
-    'DESCRIPTION': 'Your project description',
+    'TITLE': 'Parsongar Tourism API',
+    'DESCRIPTION': 'API documentation for tourism project',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
 }
 
-# JWT configuration (token lifetime)
-from datetime import timedelta
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-}
+# ───── CORS Settings ─────
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+CORS_ALLOW_HEADERS = ["authorization", "content-type"]
 
-# Media files configuration (for user-uploaded files)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# Email settings (for sending emails like OTP or notifications)
+# ───── Email Settings ─────
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'fatememhdzdeee@gmail.com'
-EMAIL_HOST_PASSWORD = 'cayx vxez ccts revi'
-DEFAULT_FROM_EMAIL = 'test@example.com'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'Parsongar <noreply@parsongar.com>'
 
-
-
+# ───── API URLs for External Use ─────
 HADIR_HAWITY_API_URL = 'http://localhost:8000/api'
-
-ALLOWED_HOSTS = ['*']
-
-CORS_ALLOW_ALL_ORIGINS = [
-    'http://127.0.0.1:8000' ,
-    'http://localhost:8000' ,
-    'http://localhost:8000' ,
-]
-
-CORS_ALLOW_ALL_ORIGINS = True 
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'OPTIONS': {
-            'timeout': 20,
-            'isolation_level': None,
-        }
-    }
-}
-
-import importlib
-import sys
-importlib.reload(sys)
-
-
-
