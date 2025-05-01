@@ -22,6 +22,7 @@ import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery.jsx"
 import TourleaderSignUp from "./pages/TourLeaderSignUp/TourleaderSignUp.jsx"
 import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
+import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -42,7 +43,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         <Route path="/verify-otp" element={< VerificationPage/>} />
-{/* aaa */}
+        {/* <Route path="/success" element={< SuccessMassage/>} /> */}
         {/* <Route exact path="/" element={ <Navbar />} /> */}
         <Route exact path="/" element={ <Home />}></Route>
         {/* <Route exact path="/" element={<CityAttraction cityName="اصفهان" imageSrc="./assets/images/esf.png" />}></Route> */}
