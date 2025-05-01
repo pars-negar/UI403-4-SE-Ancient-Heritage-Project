@@ -51,10 +51,11 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         <Route path="/verifyotp" element={< VerificationPage/>} />
+        <Route path="/success" element={<SuccessMassage/>} />
 
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}
-        {/* <Route exact path="/" element={ <Home />}></Route> */}
+        <Route exact path="/" element={ <Home />}></Route> 
         {/* <Route exact path="/" element={<CityAttraction cityName="اصفهان" imageSrc="./assets/images/esf.png" />}></Route> */}
         {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
         {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}

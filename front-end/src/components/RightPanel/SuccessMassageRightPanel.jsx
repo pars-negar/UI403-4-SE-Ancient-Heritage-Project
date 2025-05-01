@@ -1,20 +1,21 @@
-import styles from './success-massage.module.css';
+import styles from './success-massage-right-panel.module.css';
+import React from 'react';
 import checkPic from '../../assets/images/Subtract.png';
 
-export default function SuccessMassageRightPanel() {
+const PasswordChanged = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        <div className={styles.iconWrapper}>
-          <img src={checkPic} alt="تیک موفقیت" className={styles.icon} />
-        </div>
-        <p className={styles.message}>
-          رمز عبور شما با موفقیت تغییر کرد
-        </p>
-        <button className={styles.button}>
-          صفحه ورود
-        </button>
-      </div>
-    </div>
+    <div className={styles.successContainer}>
+      <img src={checkPic} alt="تغییر موفق" className={styles.checkIcon} />
+      <p className={styles.successmessage}>رمز عبور شما با موفقیت تغییر کرد</p>
+      <FormButton 
+          buttonText="تایید" 
+          buttonColor="--color-orange" 
+          buttonColorHovered="--color-orange-hovered" 
+          buttonTextColor="black"
+      />  
+      </div> 
   );
-}
+};
+
+export default PasswordChanged;
+
