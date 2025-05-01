@@ -37,11 +37,11 @@ createRoot(document.getElementById('root')).render(
         {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
 
         <Route exact path="/LoginSignUp" element={ <LoginSignUp/> }></Route>
-        <Route exact path="/UserSignUp" element={ <UserSignUpPage/> }></Route>
+        <Route exact path="/LoginSignUp/UserSignUp" element={ <UserSignUpPage/> }></Route>
         <Route exact path="/TourleaderSignUp" element={ <TourleaderSignUp/> }></Route>
         <Route exact path="/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
-        <Route path="/verify-otp" element={< VerificationPage/>} />
+        <Route path="/verifyotp" element={< VerificationPage/>} />
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}
         <Route exact path="/" element={ <Home />}></Route>

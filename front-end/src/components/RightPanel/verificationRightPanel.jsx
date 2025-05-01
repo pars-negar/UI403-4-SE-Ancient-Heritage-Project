@@ -69,7 +69,7 @@ const RightPanel = () => {
       <p className={selfStyles.instruction}>لطفاً کدی که به شماره شما ارسال شده را وارد کنید.</p>
       <CodeInput code={code} onCodeChange={handleCodeChange} />      
 
-      <Link type='submit' to='/loginsignup/login'>
+      
         <FormButton 
           buttonText="تایید"
           buttonColor="--color-orange"
@@ -77,8 +77,9 @@ const RightPanel = () => {
           buttonTextColor="black"
           onClick={handleSubmit}
           disabled={!isCodeComplete}
+          type="button"
           />
-      </Link>
+     
       
 
       <a href="https://www.google.com" className={styles.signUpLink}>ویرایش شماره موبایل</a>
