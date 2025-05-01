@@ -19,4 +19,3 @@ const PasswordChanged = () => {
 };
 
 export default PasswordChanged;
-

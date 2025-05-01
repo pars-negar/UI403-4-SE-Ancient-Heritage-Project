@@ -10,9 +10,9 @@ const LeftPanel = ( props ) => {
   
   return (
     <div className={ styles.leftPanel }>
-      <img className={ styles.leftPanelLogo } src={`${ process.env.PUBLIC_URL }${ logoUrl }`} alt="left-panel-logo" />
+      <img className={ styles.leftPanelLogo } src={ logoUrl } alt="left-panel-logo" />
       <div className={ styles.leftPanelContent }>
-        <img className={ styles.leftPanelImage } src={`${ process.env.PUBLIC_URL }${ imageUrl }`} alt={ imageTitle } />
+        <img className={ styles.leftPanelImage } src={ imageUrl } alt={ imageTitle } />
         <div className={ styles.rectangles }>
           <div style={{ backgroundColor: `var(${rectanglesColor})` }} className={ styles.leftPanelRectangle }></div>
           <div style={{ backgroundColor: `var(${rectanglesColor})` }} className={ styles.leftPanelRectangle }></div>

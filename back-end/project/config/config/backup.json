@@ -84,6 +84,27 @@
   }
 },
 {
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "tour",
+    "model": "booking"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "tour",
+    "model": "dailyschedule"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "tour",
+    "model": "review"
+  }
+},
+{
   "model": "sessions.session",
   "pk": "0j7byvc2r84uogbhye8rd7emcslo751z",
   "fields": {
@@ -816,6 +837,138 @@
   }
 },
 {
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add booking",
+    "content_type": [
+      "tour",
+      "booking"
+    ],
+    "codename": "add_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change booking",
+    "content_type": [
+      "tour",
+      "booking"
+    ],
+    "codename": "change_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete booking",
+    "content_type": [
+      "tour",
+      "booking"
+    ],
+    "codename": "delete_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view booking",
+    "content_type": [
+      "tour",
+      "booking"
+    ],
+    "codename": "view_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add daily schedule",
+    "content_type": [
+      "tour",
+      "dailyschedule"
+    ],
+    "codename": "add_dailyschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change daily schedule",
+    "content_type": [
+      "tour",
+      "dailyschedule"
+    ],
+    "codename": "change_dailyschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete daily schedule",
+    "content_type": [
+      "tour",
+      "dailyschedule"
+    ],
+    "codename": "delete_dailyschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view daily schedule",
+    "content_type": [
+      "tour",
+      "dailyschedule"
+    ],
+    "codename": "view_dailyschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add review",
+    "content_type": [
+      "tour",
+      "review"
+    ],
+    "codename": "add_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change review",
+    "content_type": [
+      "tour",
+      "review"
+    ],
+    "codename": "change_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete review",
+    "content_type": [
+      "tour",
+      "review"
+    ],
+    "codename": "delete_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view review",
+    "content_type": [
+      "tour",
+      "review"
+    ],
+    "codename": "view_review"
+  }
+},
+{
   "model": "users.customuser",
   "fields": {
     "password": "pbkdf2_sha256$870000$DJ9AWauI6YybwTp5J4UHiP$CbZ50Wdp/DptSBYf9VzHbO/O2IYPri1HL48oKHm7/TE=",
@@ -841,33 +994,28 @@
   "fields": {
     "tour_name": "تور اصفهان گردی نوروز",
     "description": "توضیحات:  \r\nگردش در زیباترین جاذبه‌های تاریخی و فرهنگی اصفهان در ایام نوروز\r\n\r\nتاریخ شروع: ۱۴۰۴/۰۱/۰۵ ساعت ۰۸:۰۰  \r\nتاریخ پایان: ۱۴۰۴/۰۱/۰۸ ساعت ۲۰:۰۰  \r\nقیمت: ۱٬۵۰۰٬۰۰۰ تومان  \r\nظرفیت: ۳۰ نفر  \r\nمبدا: تهران  \r\nمقصد: اصفهان  \r\nجزئیات وعده غذایی: ۳ صبحانه، ۲ ناهار  \r\nحمل و نقل: اتوبوس VIP  \r\nاقامت: هتل عباسی - ۳ شب  \r\nراهنما: علی رضایی - گردشگری فرهنگی  \r\nبیمه: بیمه کامل سامان  \r\nخدمات گردشگری: راهنما، بلیت، گشت، بیمه  \r\nبرنامه روزانه:  \r\nروز اول: میدان نقش جهان، مسجد امام  \r\nروز دوم: کاخ چهلستون، سی‌وسه پل  \r\nروز سوم: کلیسای وانک، پل خواجو  \r\nنام شرکت: آژانس پارس‌نگار  \r\nتلفن: ۰۲۱۱۲۳۴۵۶۷۸  \r\nایمیل: info@parsnegar.com  \r\nجاذبه‌ها: نقش جهان، مسجد امام، مسجد شیخ لطف‌الله، سی‌وسه پل، پل خواجو، کلیسای وانک، چهلستون",
-    "start_date": "1404-05-01T08:00:00Z",
-    "end_date": "1404-08-01T20:00:00Z",
+    "start_date": "1404-10-17",
+    "end_date": "1404-01-08",
+    "departure_time": null,
+    "return_time": null,
     "price": "1500000.00",
     "capacity": 30,
     "origin": "تهران",
     "destination": "اصفهان",
-    "departure_location": "جاذبه‌ها: نقش جهان، مسجد امام، مسجد شیخ لطف‌الله، سی‌وسه پل، پل خواجو، کلیسای وانک، چهلستون",
+    "main_image": "tours/Group_14_4gjyNo8.png",
+    "accommodation": "",
     "meal_details": "",
     "transportation": "",
+    "travel_insurance": "",
+    "tourism_services": "",
     "tour_guides_info": "راهنما: علی رضایی - گردشگری فرهنگی",
-    "accommodation": "",
-    "image": "",
+    "tour_manager": null,
     "company_name": "شرکت ایران تور",
     "company_address": "",
     "company_phone": null,
     "company_email": null,
     "company_website": null,
-    "travel_insurance": "",
-    "tourism_services": "",
-    "daily_schedule": "",
-    "tour_manager": null,
-    "attractions": [
-      2,
-      3,
-      4,
-      5
-    ],
+    "attractions": [],
     "related_tours": []
   }
 },
@@ -877,32 +1025,28 @@
   "fields": {
     "tour_name": "تور فارس باستان",
     "description": "توضیحات:  \r\nبازدید از تخت جمشید، نقش رستم و پاسارگاد\r\n\r\nتاریخ شروع: ۱۴۰۴/۰۲/۱۰ ساعت ۰۷:۰۰  \r\nتاریخ پایان: ۱۴۰۴/۰۲/۱۲ ساعت ۲۰:۰۰  \r\nقیمت: ۲٬۲۰۰٬۰۰۰ تومان  \r\nظرفیت: ۲۰ نفر  \r\nمبدا: شیراز  \r\nمقصد: مرودشت  \r\nجزئیات وعده غذایی: صبحانه، ناهار، شام  \r\nحمل و نقل: مینی‌بوس VIP  \r\nاقامت: هتل پارس شیراز - ۲ شب  \r\nراهنما: ندا محمدی - دکترای باستان‌شناسی  \r\nبیمه: بیمه کامل سامان  \r\nخدمات گردشگری: راهنما، بلیت، گشت، بیمه  \r\nبرنامه روزانه:  \r\nروز اول: پاسارگاد  \r\nروز دوم: تخت جمشید و نقش رستم  \r\nنام شرکت: آژانس تاریخ‌گرد  \r\nتلفن: ۰۷۱۷۶۵۴۳۲۱  \r\nایمیل: contact@tarikhgard.com  \r\nجاذبه‌ها: تخت جمشید، نقش رستم، پاسارگاد",
-    "start_date": "1404-10-02T07:00:00Z",
-    "end_date": "1404-12-02T20:00:00Z",
-    "price": "2200000.00",
-    "capacity": 20,
-    "origin": "شیراز",
-    "destination": "مرودشت",
-    "departure_location": null,
-    "meal_details": "",
-    "transportation": "",
-    "tour_guides_info": "",
-    "accommodation": "",
-    "image": "",
-    "company_name": "آژانس تاریخ گرد",
-    "company_address": "",
-    "company_phone": null,
-    "company_email": null,
-    "company_website": null,
+    "start_date": "1404-01-05",
+    "end_date": "1404-01-08",
+    "departure_time": "08:00:00",
+    "return_time": "22:00:00",
+    "price": "2500000.00",
+    "capacity": 25,
+    "origin": "تهران",
+    "destination": "اصفهان",
+    "main_image": "",
+    "accommodation": "هتل عباسی اصفهان (۲ شب)",
+    "meal_details": "۲ وعده صبحانه، ۲ وعده ناهار،  ۱ وعده شام",
+    "transportation": "حمل و نقل با اتوبوس VIP و گشت های شهری با مینی بوس",
     "travel_insurance": "",
     "tourism_services": "",
-    "daily_schedule": "",
+    "tour_guides_info": "علی رضایی - کارشناس تاریخ اسلام \r\nنرگس احمدی - کارشناس گردشگری",
     "tour_manager": null,
-    "attractions": [
-      1,
-      6,
-      7
-    ],
+    "company_name": "سیاحت ایرانیان",
+    "company_address": "تهران، خیابان انقلاب، پلاک ۲۲۱",
+    "company_phone": "021-88998899",
+    "company_email": "info@siahatiran.ir",
+    "company_website": null,
+    "attractions": [],
     "related_tours": []
   }
 },
@@ -912,32 +1056,28 @@
   "fields": {
     "tour_name": "شکوه صفویان در قلب اصفهان",
     "description": "توضیحات: سفری سه‌روزه به اصفهان برای بازدید از آثار تاریخی دوران صفویان شامل مسجد شیخ لطف‌الله، پل خواجو و کاخ عالی‌قاپو همراه با راهنمای مجرب.\r\n\r\nتاریخ شروع: 2025-05-15 08:00\r\n\r\nتاریخ پایان: 2025-05-17 20:00\r\n\r\nقیمت: 2,500,000 تومان\r\n\r\nظرفیت: 25 نفر\r\n\r\nمبدا: تهران\r\n\r\nمقصد: اصفهان\r\n\r\nمحل حرکت: پایانه جنوب تهران\r\n\r\nجزئیات وعده‌های غذایی: ۲ وعده صبحانه، ۲ ناهار، ۱ شام\r\n\r\nحمل‌ونقل: اتوبوس VIP + گشت‌های شهری با مینی‌بوس\r\n\r\nراهنمایان تور: علی رضایی - کارشناس تاریخ اسلام / نرگس احمدی - کارشناس گردشگری\r\n\r\nاقامت: هتل عباسی اصفهان (۲ شب)\r\n\r\nجاذبه‌ها:\r\n\r\nمسجد شیخ لطف‌الله\r\n\r\nپل خواجو\r\n\r\nکاخ عالی‌قاپو\r\n\r\nشرکت برگزارکننده: سیاحت ایرانیان\r\n\r\nآدرس شرکت: تهران، خیابان انقلاب، پلاک ۲۲۱\r\n\r\nتلفن: 021-88998899\r\n\r\nایمیل: info@siahatiran.ir\r\n\r\nوبسایت: https://siahatiran.ir\r\n\r\nبیمه سفر: بیمه ایران با پوشش کامل درمان و حادثه\r\n\r\nخدمات گردشگری: بلیت رفت‌وبرگشت، ورودیه‌ها، بیمه، لیدر فارسی‌زبان\r\n\r\nبرنامه روزانه:\r\n\r\nروز اول: حرکت از تهران - ورود به اصفهان - بازدید از مسجد شیخ لطف‌الله و پل خواجو\r\n\r\nروز دوم: بازدید کامل از میدان نقش جهان و کاخ عالی‌قاپو\r\n\r\nروز سوم: خرید سوغاتی و بازگشت",
-    "start_date": "2025-05-15T08:00:00Z",
-    "end_date": "2025-05-17T20:00:00Z",
+    "start_date": "1404-01-05",
+    "end_date": "1404-01-08",
+    "departure_time": "08:00:00",
+    "return_time": "22:00:00",
     "price": "2500000.00",
     "capacity": 25,
     "origin": "تهران",
     "destination": "اصفهان",
-    "departure_location": "پایانه جنوب تهران",
+    "main_image": "",
+    "accommodation": "هتل عباسی اصفهان (۲ شب)",
     "meal_details": "۲ وعده صبحانه، ۲ وعده ناهار،  ۱ وعده شام",
     "transportation": "حمل و نقل با اتوبوس VIP و گشت های شهری با مینی بوس",
+    "travel_insurance": "",
+    "tourism_services": "",
     "tour_guides_info": "علی رضایی - کارشناس تاریخ اسلام \r\nنرگس احمدی - کارشناس گردشگری",
-    "accommodation": "هتل عباسی اصفهان (۲ شب)",
-    "image": "",
+    "tour_manager": null,
     "company_name": "سیاحت ایرانیان",
     "company_address": "تهران، خیابان انقلاب، پلاک ۲۲۱",
     "company_phone": "021-88998899",
     "company_email": "info@siahatiran.ir",
     "company_website": null,
-    "travel_insurance": "",
-    "tourism_services": "",
-    "daily_schedule": "",
-    "tour_manager": null,
-    "attractions": [
-      3,
-      4,
-      5
-    ],
+    "attractions": [],
     "related_tours": []
   }
 },
@@ -1623,6 +1763,42 @@
     "object_repr": "شکوه صفویان در قلب اصفهان",
     "action_flag": 1,
     "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2025-04-29T06:31:02.338Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "object_id": "1",
+    "object_repr": "تور اصفهان گردی نوروز",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Main image\", \"Start date\", \"End date\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2025-04-29T07:38:31.972Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "object_id": "3",
+    "object_repr": "شکوه صفویان در قلب اصفهان",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u062a\\u0627\\u0631\\u06cc\\u062e \\u0634\\u0631\\u0648\\u0639\", \"\\u062a\\u0627\\u0631\\u06cc\\u062e \\u0628\\u0627\\u0632\\u06af\\u0634\\u062a\", \"\\u0633\\u0627\\u0639\\u062a \\u062d\\u0631\\u06a9\\u062a\", \"\\u0633\\u0627\\u0639\\u062a \\u0628\\u0631\\u06af\\u0634\\u062a\"]}}]"
   }
 }
 ]

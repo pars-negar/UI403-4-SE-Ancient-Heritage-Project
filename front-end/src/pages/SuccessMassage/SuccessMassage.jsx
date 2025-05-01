@@ -1,4 +1,4 @@
-import LeftPanel from '../../components/LeftPanel/LeftPanel';
+import LeftPanel from "../../components/LeftPanel/LeftPanel";
 import pic from '../../assets/images/left-panel-set-new-password.png';
 import SuccessMassageRightPanel from "../../components/RightPanel/SuccessMassageRightPanel";
 import styles from './success.module.css'
