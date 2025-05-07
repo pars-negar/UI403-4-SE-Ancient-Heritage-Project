@@ -22,6 +22,7 @@ import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery.jsx"
 import TourleaderSignUp from "./pages/TourLeaderSignUp/TourleaderSignUp.jsx"
 import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
+import SuccessMassage from "./pages/SuccessMassage/SuccessMassage.jsx"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -36,18 +37,29 @@ createRoot(document.getElementById('root')).render(
         {/* <Route exact path="/" element={ <LoginSignUp/> }></Route> */}
         {/* <Route exact path="/" element={ <VerificationPage /> }/> */}
 
+
+        {/* <Route exact path="/LoginSignUp" element={ <LoginSignUp/> }></Route>
+        <Route exact path="/UserSignUp" element={ <UserSignUpPage/> }></Route>
+        <Route exact path="/TourleaderSignUp" element={ <TourleaderSignUp/> }></Route>
+        <Route exact path="/login" element={ <LoginPage/> }></Route>
+        <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
+        <Route path="/verify-otp" element={< VerificationPage/>} /> */}
+
         <Route exact path="/LoginSignUp" element={ <LoginSignUp/> }></Route>
         <Route exact path="/LoginSignUp/UserSignUp" element={ <UserSignUpPage/> }></Route>
         <Route exact path="/TourleaderSignUp" element={ <TourleaderSignUp/> }></Route>
         <Route exact path="/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         <Route path="/verifyotp" element={< VerificationPage/>} />
+        <Route path="/success" element={<SuccessMassage/>} />
+
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}
-        <Route exact path="/" element={ <Home />}></Route>
+        <Route exact path="/" element={ <Home />}></Route> 
         {/* <Route exact path="/" element={<CityAttraction cityName="اصفهان" imageSrc="./assets/images/esf.png" />}></Route> */}
         {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
         {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
+
      
       </Routes>
     </Router>
