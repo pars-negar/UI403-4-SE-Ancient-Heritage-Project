@@ -84,11 +84,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('POSTGRES_DB', 'tour_project'),
         'USER': os.getenv('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'Sa138319'),
-        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'tour1234'),
+        'HOST': os.getenv('POSTGRES_HOST', 'db'),
         'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
+
 
 # ───── Password Validation ─────
 AUTH_PASSWORD_VALIDATORS = [

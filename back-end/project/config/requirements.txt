@@ -1,0 +1,14 @@
+Django>=4.2
+psycopg2-binary
+django-environ
+python-dotenv
+djangorestframework
+djangorestframework_simplejwt==5.5.0
+drf-spectacular==0.23.1
+django-cors-headers==3.11.0
+django-jalali-date
+django-jalali
+requests
+
+
+
