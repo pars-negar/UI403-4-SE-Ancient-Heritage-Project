@@ -22,7 +22,8 @@ import PasswordRecovery from "./pages/PasswordRecovery/PasswordRecovery.jsx"
 import TourleaderSignUp from "./pages/TourLeaderSignUp/TourleaderSignUp.jsx"
 import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
-import SuccessMassage from "./pages/SuccessMassage/SuccessMassage.jsx"
+import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -43,7 +44,9 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/TourleaderSignUp" element={ <TourleaderSignUp/> }></Route>
         <Route exact path="/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
-        <Route path="/verify-otp" element={< VerificationPage/>} /> */}
+        <Route path="/verify-otp" element={< VerificationPage/>} />
+        {/* <Route path="/success" element={< SuccessMassage/>} /> */}
+        <Route path="/verify-otp" element={< VerificationPage/>} />
 
         <Route exact path="/LoginSignUp" element={ <LoginSignUp/> }></Route>
         <Route exact path="/LoginSignUp/UserSignUp" element={ <UserSignUpPage/> }></Route>
@@ -52,7 +55,6 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         <Route path="/verifyotp" element={< VerificationPage/>} />
         <Route path="/success" element={<SuccessMassage/>} />
-
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}
         <Route exact path="/" element={ <Home />}></Route> 

@@ -9,9 +9,9 @@
 }
 
 .checkIcon {
-  margin-top: 3.5rem;
-  width: auto;
-  height: 60%;
+  margin-top: 1.5rem;
+  width: 15%;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,9 +19,9 @@
 }
 
 .successmessage {
-  font-size: 1.1rem;
+  margin-top: 2.5rem;
+  font-size: 1.7rem;
   font-weight: bold;
   color: #1d1d1f;
-  margin-bottom: 4.5rem;
+  margin-bottom: 2.5rem;
 }
-
