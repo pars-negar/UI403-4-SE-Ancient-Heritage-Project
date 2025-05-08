@@ -12,9 +12,13 @@ const Navbar = () => {
                 <ul>
                     <div className='
                         navbar-links 
-                        text-base
-                        font-bold'
-
+                        text-[1.4rem]
+                        
+                        '
+                        style={{
+                            fontFamily: 'Koodak',
+                            fontWeight: '700'
+                        }}
                     >
                         <Link to="/">صفحه‌ی اصلی</Link>
                         <Link to="/">تورها</Link>
@@ -35,6 +39,10 @@ const Navbar = () => {
                         w-[10.125rem]
                         h-[3rem]
                         "
+
+                    style={{
+                        fontFamily: 'Gandom'
+                    }}
                     >
                 ورود/ثبت‌نام</Link>
                         
