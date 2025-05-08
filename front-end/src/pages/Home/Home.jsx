@@ -1,3 +1,5 @@
+import '../../index.css';
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
@@ -49,10 +51,14 @@ const Home = () => {
       <Navbar />
       {/* Carousel Section */}
       <div className={styles.carousel}>
-        <p className={styles.paraone}>
+        <p className={`${styles.paraone}`} >
+          <span style={{fontWeight: '700', fontSize: '4rem'}}>
           سفر به دل تاریخ ایران با پارس نگار، <br />
+          </span>
+          <span style={{fontWeight: '300', fontSize: '2.5rem'}}>
           جایی که هر قدم، روایت‌گر شگفتی‌های باستانی <br />و فرهنگ بی‌پایان این
           سرزمین است!
+          </span>
         </p>
         <img className={styles.imageOne} src={image} alt="header" />
       </div>
@@ -60,8 +66,8 @@ const Home = () => {
       {/* About Section */}
       <div className={styles.about}>
         <h2>درباره سامانه پارس نگار</h2>
-        <div className={styles.paragraphContainer}>
-          <p>
+        <div>
+          <p className="m-[11rem] text-[1.3rem]">
             این سیستم یک وب‌سایت گردشگری است که با هدف نمایش و معرفی آثار
             باستانی ایران طراحی شده است. کاربران می‌توانند اطلاعات جامع و دقیقی
             درباره مکان‌های تاریخی کشور، به همراه عکس‌های معتبر، توضیحات، موقعیت
@@ -71,17 +77,26 @@ const Home = () => {
       </div>
 
       {/* Four Cities Section */}
-      <div className={styles.fourCitySection}>
+      <div className="flex justify-center">
+        <div className="flex column gap-[2rem]">
+        <div className='h-full mt-[3rem] relative'>
+          <h2 
+            className="!mb-[3rem]" 
+            style={{fontFamily: 'Vazirmatn', fontWeight: 700, color: 'var(--color-dark-blue)'}}
+            
+          >جاذبه‌های تاریخی ایران</h2>
+          <p className='' style={{fontFamily: 'Vazirmatn', fontWeight: 400, fontSize: '1.6rem', lineHeight: '1.8'}}>
+            کشف ایران، <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#160;&#160;&#160;لمس تاریخ، <br /> &#160;&#160;&#160;تجربه‌ای فراموش‌نشدنی!
+          </p>
+          <button 
+            className='w-[5rem] absolute !left-10 whitespace-nowrap flex justify-center !rounded-[0.7rem] !mt-[2rem]' 
+            style={{fontFamily: 'Gandom', color: 'var(--color-dark-blue)', border: "2px solid var(--color-dark-blue)", padding: '0.5rem 0.1rem'}}
+          >مشاهده بیشتر</button>
+        </div>
         <div className={styles.fourCity}>
           <FourCityCards />
         </div>
-        <div className={styles.fourCityAbout}>
-          <h2>جاذبه‌های تاریخی ایران</h2>
-          <p className={styles.para}>
-            کشف ایران، <br /> لمس تاریخ، <br /> تجربه‌ای فراموش‌نشدنی!
-          </p>
-          <button className={styles.more}>مشاهده بیشتر</button>
-        </div>
+      </div>
       </div>
 
       {/* SearchBox */}
