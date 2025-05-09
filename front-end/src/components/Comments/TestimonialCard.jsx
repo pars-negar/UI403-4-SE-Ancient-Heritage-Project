@@ -12,12 +12,12 @@ const TestimonialCard = ({ testimonial }) => {
       <div className="testimonial-header">
         <img src={testimonial.image} alt={testimonial.name} className="avatar" />
         <div className="info">
-          <h3>{testimonial.name}</h3>
-          <p className="role">{testimonial.role}</p>
+          <h3 style={{fontFamily: 'Vazirmatn', fontWeight: 700}}>{testimonial.name}</h3>
+          <p className="role" style={{fontFamily: 'Vazirmatn', fontWeight: 400}}>{testimonial.role}</p>
         </div>
         <div className="stars">{stars}</div>
       </div>
-      <p className="testimonial-text">“{testimonial.text}”</p>
+      <p className="testimonial-text" style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>“{testimonial.text}”</p>
     </div>
   );
 };

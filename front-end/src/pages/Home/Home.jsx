@@ -67,7 +67,7 @@ const Home = () => {
       <div className={styles.about}>
         <h2>درباره سامانه پارس نگار</h2>
         <div>
-          <p className="m-[11rem] text-[1.3rem]">
+          <p className="m-[11rem] text-[1.3rem]" style={{fontFamily: 'Vazirmatn', fontWeight: 300}}>
             این سیستم یک وب‌سایت گردشگری است که با هدف نمایش و معرفی آثار
             باستانی ایران طراحی شده است. کاربران می‌توانند اطلاعات جامع و دقیقی
             درباره مکان‌های تاریخی کشور، به همراه عکس‌های معتبر، توضیحات، موقعیت
@@ -82,9 +82,13 @@ const Home = () => {
         <div className='h-full mt-[3rem] relative'>
           <h2 
             className="!mb-[3rem]" 
-            style={{fontFamily: 'Vazirmatn', fontWeight: 700, color: 'var(--color-dark-blue)'}}
-            
-          >جاذبه‌های تاریخی ایران</h2>
+            style={{fontFamily: 'Vazirmatn', fontWeight: 700, color: 'var(--color-dark-blue)'}} 
+          >جاذبه‌های تاریخی ایران
+          <span 
+            className='inline-block w-[0.3rem] h-[3rem] bg-[var(--color-dark-blue)] absolute right-[-0.625rem] rounded-2xl ml-[0.625rem]'>
+          </span>
+          </h2>
+          
           <p className='' style={{fontFamily: 'Vazirmatn', fontWeight: 400, fontSize: '1.6rem', lineHeight: '1.8'}}>
             کشف ایران، <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#160;&#160;&#160;لمس تاریخ، <br /> &#160;&#160;&#160;تجربه‌ای فراموش‌نشدنی!
           </p>
