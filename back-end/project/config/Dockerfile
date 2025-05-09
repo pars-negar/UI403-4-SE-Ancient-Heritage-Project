@@ -1,13 +1,20 @@
-FROM python:3.11-slim
+# استفاده از تصویر پایه Python
+FROM python:3.12-slim
 
-# نصب git و distutils
-RUN apt-get update && apt-get install -y git python3-distutils
-
-# سایر دستورات نصب
+# تنظیم دایرکتوری کاری
 WORKDIR /app
-COPY requirements.txt .
+
+# کپی فایل‌های نیازمندی‌ها
+COPY requirements.txt requirements.txt
+
+# نصب وابستگی‌ها
 RUN pip install --no-cache-dir -r requirements.txt
 
+# کپی بقیه فایل‌های پروژه
 COPY . .
 
+# پورت 8000 رو باز کن
+EXPOSE 8000
+
+# اجرای سرور Django
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
