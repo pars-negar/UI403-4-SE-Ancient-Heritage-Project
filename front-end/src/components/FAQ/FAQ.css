@@ -39,6 +39,7 @@
     color: #222;
     font-family: 'Vazirmatn';
     font-weight: 700;
+    font-size: 1.4rem;
   }
   
   .faq-answer {
@@ -52,6 +53,7 @@
     text-align: justify;
     font-family: 'Vazirmatn';
     font-weight: 400;
+    font-size: 1.2rem;
   }
   
   .icon {
