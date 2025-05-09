@@ -24,6 +24,7 @@
   align-items: center;
   flex-wrap: nowrap;
   flex-direction: row;
+  color: var(--color-gray);
 }
 
 
