@@ -13,7 +13,7 @@ const Footer = () => {
         <div className={ styles.footer }>
             <img className={ styles.footerRectangle } src={ footerRectangle } alt="footer-rectangle" />
             <div className='bg-[var(--color-dark-blue)]'>
-                <div className='flex justify-between mx-[2rem] items-center'> 
+                <div className='flex justify-between ml-[2rem] items-center'> 
                     <div className={ styles.footerLogoContainer }>
                         <div className={ styles.circle }></div>
                         <img className={ styles.footerLogo } src={ logoUrl } alt="footer logo" />
@@ -52,11 +52,12 @@ const Footer = () => {
                         <Link to="/">درباره ما</Link>
                     </div>
                 </ul>
-
-                <p className={ styles.rights}>همه‌ی حقوق این سایت متعلق به سامانه پارس نگار است.</p>
-                <div className={ styles.footerSymbols}>
-                    <img src={samandehi} alt="samandehi.ir" />
-                    <img src={ electronicTrustSymbol } alt="electronic-trust-symbol" />
+                <div className='flex justify-between pb-[2rem]'>
+                    <p className={ styles.rights}>همه‌ی حقوق این سایت متعلق به سامانه پارس نگار است.</p>
+                    <div className={ styles.footerSymbols}>
+                        <img src={samandehi} alt="samandehi.ir" />
+                        <img src={ electronicTrustSymbol } alt="electronic-trust-symbol" />
+                    </div>
                 </div>
             </div>
         </div>
