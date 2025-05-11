@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'apps.faq',
     'apps.authentication',
     'apps.frontpage',
+    
+    'django_admin_interface',  # این رو اضافه کن
+    'colorfield',        # این رو هم اضافه کن
+
 ]
 
 # ───── Custom User Model ─────
@@ -107,9 +111,13 @@ USE_I18N = True
 USE_TZ = True
 
 # ───── Static & Media ─────
-STATIC_URL = 'static/'
+# ───── Static & Media ─────
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # ───── Default Field Type ─────
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

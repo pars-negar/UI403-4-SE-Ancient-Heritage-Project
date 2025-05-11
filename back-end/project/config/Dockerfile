@@ -1,20 +1,15 @@
 # استفاده از تصویر پایه Python
 FROM python:3.12-slim
 
-# تنظیم دایرکتوری کاری
+# تنظیم مسیر کاری به دایرکتوری پروژه که manage.py در آن است
 WORKDIR /app
 
-# کپی فایل‌های نیازمندی‌ها
+# کپی کردن requirements.txt و نصب وابستگی‌ها
 COPY requirements.txt requirements.txt
-
-# نصب وابستگی‌ها
 RUN pip install --no-cache-dir -r requirements.txt
 
-# کپی بقیه فایل‌های پروژه
+# کپی کردن تمام فایل‌ها به کانتینر
 COPY . .
 
-# پورت 8000 رو باز کن
-EXPOSE 8000
-
-# اجرای سرور Django
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# اجرای دستورات Django
+RUN python manage.py collectstatic --noinput

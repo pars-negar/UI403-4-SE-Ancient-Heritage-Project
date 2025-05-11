@@ -13,14 +13,18 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
+      - ./static:/app/static  # اضافه شده
+      - ./media:/app/media     # اضافه شده
     ports:
       - "8000:8000"
     depends_on:
       - db
     environment:
+      DJANGO_SECRET_KEY: "your-secret-key"
+      DEBUG: "false"
       POSTGRES_DB: tour_project
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: tour1234
@@ -29,3 +33,5 @@ services:
 
 volumes:
   postgres_data:
+  static_data:    # اضافه شده
+  media_data:     # اضافه شده
