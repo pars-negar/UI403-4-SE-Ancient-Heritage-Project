@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'apps.authentication',
     'apps.frontpage',
     
-    'django_admin_interface',  # این رو اضافه کن
-    'colorfield',        # این رو هم اضافه کن
+    'django_admin_interface', 
+    'colorfield',    
 
 ]
 
