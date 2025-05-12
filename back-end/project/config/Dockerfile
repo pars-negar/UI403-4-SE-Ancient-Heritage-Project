@@ -13,3 +13,6 @@ COPY . .
 
 # اجرای دستورات Django
 RUN python manage.py collectstatic --noinput
+
+# اجرای Gunicorn برای اجرای اپلیکیشن Django
+CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
