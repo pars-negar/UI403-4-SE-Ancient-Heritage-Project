@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from datetime import timedelta
-
+import dj_database_url
 # Load environment variables from .env
 load_dotenv()
 
@@ -85,12 +85,7 @@ TEMPLATES = [
 # ───── Database (PostgreSQL) ─────
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'tour_project'),
-        'USER': os.getenv('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'tour1234'),
-        'HOST': os.getenv('POSTGRES_HOST', 'db'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
+        dj_database_url.config(default = os.environ.get('DATABASE_URL'))
     }
 }
 
