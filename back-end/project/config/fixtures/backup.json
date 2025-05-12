@@ -1,0 +1,1804 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "users",
+    "model": "customuser"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "authentication",
+    "model": "otpcode"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "users",
+    "model": "tourmanagerprofile"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "tour",
+    "model": "attraction"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "tour",
+    "model": "tour"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "faq",
+    "model": "faq"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "frontpage",
+    "model": "headerimage"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "tour",
+    "model": "booking"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "tour",
+    "model": "dailyschedule"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "tour",
+    "model": "review"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0j7byvc2r84uogbhye8rd7emcslo751z",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm7_sSGkj5niNbeFQ4gW4qTCnF3iJQC2jcz76Um2tYybV2WaWZ1UahOv1ui_JC6A75TvTWdW12XOeld0Qftemwsz-vh_h0U6uVbx3Nw4BODRRvBE6Jl6wwYRkByQTwGQhsGbzBztjJkE5OLApCTSaLeH51nNrE:1tsPma:-fNUMzUWgU47eijEWynlNDF1t_qsAfazXKqQlT7C21A",
+    "expire_date": "2025-03-26T17:22:16.492Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "2whdooxf22g5kh2vfljj97bu9zpr6w5u",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln4F28o6XOGaL27JgFkS3FSIe4OkVJA-2bmvdSI2zqNW5NlnFldlFGn3y0hPaTsgO9YblVTLesyJ70r-qBND5XleT3cv4MJ2_StgbIzKXfSee-iZd_F0JOn3BsCBIg2BmPJYWBMwfecGWIQEbCGM5zV-wPdlDfz:1u3j3v:ieRyOozeSs9VRylZxnr9afYg4Fc818LYqcYt0Jub6yY",
+    "expire_date": "2025-04-26T22:10:55.976Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3zb9c08avijrjsb0hx02uc5soi1iuk5v",
+  "fields": {
+    "session_data": ".eJxVjDEOwjAMRe-SGUVunTjAyM4ZIjd2SAE1UtNOiLtDpQ6w_vfef5nI61Li2nSOo5iz6czhdxs4PXTagNx5ulWb6rTM42A3xe602WsVfV529--gcCvf2vfOYUZCEs3goU-KgsAdBAichqN32nkISsjZIxCJJ6dZJHPqT2TeH8XAN5I:1u3cUH:0pRhbuJSA_DPEJMpsn7B_BQxP8ERS01zCVCNhrp-y50",
+    "expire_date": "2025-04-26T15:09:41.302Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8dzezamao0v428sjo1jhbhc5n5e77c5q",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQRO9CHSGM-aZM7zOg3QWCkwhLxq6i3D1YcpGU8-bNvFmAfSthb2kNc2RXNrDLL0OgZ6pHER9Q7wunpW7rjPxQ-Nk2Pi0xvW6n-3dQoJW-dpjQZ5tAjQOAzGRsRJJeOm3R5U6EB2syaQXSRK170CTQiFHlbBz7fAEJ8Thu:1u3akJ:9zgloUpGeon-OdNPP33S_kcifTqMnD-ScW_R3O0JkOI",
+    "expire_date": "2025-04-26T13:18:07.246Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dk1l9t4uejlye8v6jl3pktaz60j6zocs",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln4F28o6XOGaL27JgFkS3FSIe4OkVJA-2bmvdSI2zqNW5NlnFldlFGn3y0hPaTsgO9YblVTLesyJ70r-qBND5XleT3cv4MJ2_StgbIzKXfSee-iZd_F0JOn3BsCBIg2BmPJYWBMwfecGWIQEbCGM5zV-wPdlDfz:1u3cUJ:rjPvmRSFS3Xnoj1jhqVoZOkjOUC8NlX_LES6iW8UGys",
+    "expire_date": "2025-04-26T15:09:43.926Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "uh82vuvzn8s35kflyyari0jupe8bgdr8",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSFQ3i7d-w1kmAGpGkhKuzL-uzbpQrf3nHNfLMK21riNvMSZ2JlJdvrdEuAjtx3QHdqtc-xtXebEd4UfdPBrp_y8HO7fQYVRvzU6URKmydjsHSgrtVc6JDGV4lAoY8GTdwFIILkSskEyCdFpa7JWSrL3B-oQOA8:1u9dIs:ZL2hjqCsMmYfPqGoWsiLsqbU9Qfhx36k26RUPXAaErg",
+    "expire_date": "2025-05-13T05:14:46.432Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zm0zld8d1szh4qkvx57fi31cm6gbwcj7",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlm7_sSGkj5niNbeFQ4gW4qTCnF3iJQC2jcz76Um2tYybV2WaWZ1UahOv1ui_JC6A75TvTWdW12XOeld0Qftemwsz-vh_h0U6uVbx3Nw4BODRRvBE6Jl6wwYRkByQTwGQhsGbzBztjJkE5OLApCTSaLeH51nNrE:1u3MCi:Byl2BCREmBJjRZ9mycr6-II96Wmc8aUlXW-FJTDncx8",
+    "expire_date": "2025-04-25T21:46:28.550Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zvsaklbla6iyq2qsmgx0bygzfftr7uc6",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSFMizxcuu83kBkYpGogKe3K-O_apAvd3nPOfYmA21rC1nkJcxIXAeL0uxHGB9cdpDvWW5Ox1XWZSe6KPGiXU0v8vB7u30HBXr41aQKjIrEbvbMW_BitN-hBn3nU2ZlIEZ1ToAbQg8WsjVWWfCb2YHIS7w_IhjdV:1u9dpR:LZWwYbkpJUq77wysR4KJ2bbo5GzMe_wfbXFRop8fhdw",
+    "expire_date": "2025-05-13T05:48:25.622Z"
+  }
+},
+{
+  "model": "tour.attraction",
+  "pk": 1,
+  "fields": {
+    "historical_period": "Ilamian",
+    "attraction_name": "نقش رستم؛ گنجینه‌ای تاریخی در دل کوه‌های زاگرس",
+    "description": "معرفی نقش رستم\r\nنقش رستم، یک سایت باستانی و تاریخی مهم است که در دل کوه‌های زاگرس قرار دارد. این مجموعه باستانی در واقع، گورستان شاهان هخامنشی و محل چندین نقش‌برجسته است که تاریخ ایران باستان را روایت می‌کنند. در این مجموعه، مقبره‌های شاهان هخامنشی همچون داریوش بزرگ، خشایارشا و اردشیر اول به‌طور برجسته دیده می‌شوند.\r\n\r\nنقش رستم نه‌تنها مقبره شاهان هخامنشی را به نمایش می‌گذارد، بلکه دارای نقش‌برجسته‌هایی است که پیروزی‌ها، مراسم و شکوه قدرت هخامنشیان را به تصویر می‌کشد. در این مجموعه، نقش‌برجسته‌های عظیم و طراحی‌های هنری بی‌نظیر هخامنشیان می‌تواند بازدیدکنندگان را مجذوب خود کند.\r\n\r\nویژگی‌های برجسته نقش رستم\r\nقدمت: قدمت این مجموعه به دوره هخامنشی (حدود ۵۰۰ پیش از میلاد) باز می‌گردد\r\n\r\nمقبره‌ها: مقبره‌های شاهان هخامنشی مانند داریوش بزرگ، خشایارشا و اردشیر اول\r\n\r\nنقش‌برجسته‌ها: نقش‌های برجسته شاهان و نمایانی از جنگ‌ها و پیروزی‌های هخامنشیان\r\n\r\nپلان معماری: طراحی معماری به سبک هخامنشی با ستون‌های بلند و مقابر در دل کوه\r\n\r\nچهره‌های تاریخی: نمایش چهره‌های تاریخی مانند داریوش بزرگ، خشایارشا و پیروزی‌های آنان در نقش‌برجسته‌ها",
+    "location": "استان فارس، شمال شهرستان مرو دشت، روستای زنگی آباد",
+    "city": "مرودشت",
+    "opening_hours": "همه روزه از ساعت 08:00 صبح تا 06:00 عصر",
+    "entry_fee": "30000.00",
+    "image": "",
+    "built_date": null
+  }
+},
+{
+  "model": "tour.attraction",
+  "pk": 2,
+  "fields": {
+    "historical_period": "Safavid",
+    "attraction_name": "مسجد شاه؛ شکوه معماری اسلامی در دل میدان نقش‌جهان",
+    "description": "معرفی مسجد شاه\r\nمسجد شاه، که در حال حاضر به نام «مسجد امام» شناخته می‌شود، یکی از شاهکارهای معماری اسلامی در ایران است. این مسجد تاریخی که در ضلع جنوبی میدان نقش‌جهان قرار دارد، در دوران صفوی و به دستور شاه عباس اول ساخته شد و نمونه‌ای بی‌بدیل از تلفیق هنر، دین و معماری ایرانی-اسلامی است.\r\nنمای باشکوه، کاشی‌کاری‌های فیروزه‌ای و خطاطی‌های معرق استادانه آن، هر بازدیدکننده‌ای را محو تماشای خود می‌کند.\r\n\r\nویژگی‌های برجسته مسجد شاه\r\nقدمت: ساخت آغاز شده در سال ۱۰۲۰ هجری قمری، در دوران شاه عباس اول\r\n\r\nسبک معماری: سبک صفوی با معماری چهار ایوانی\r\n\r\nتزئینات: کاشی‌کاری هفت‌رنگ، معرق، مقرنس‌کاری، کتیبه‌نویسی با خطوط ثلث و نسخ\r\n\r\nگنبد: گنبدی عظیم به ارتفاع حدود ۵۲ متر با رنگ فیروزه‌ای چشم‌نواز\r\n\r\nمناره‌ها: دو مناره بلند در ورودی و دو مناره بر گنبد اصلی، نماد قدرت و زیبایی",
+    "location": "اصفهان، ورودی غربی دروازه دولت (میدان امام حسین)، خ سپه، میدان نقش‌جهان ، ضلع جنوبی میدان",
+    "city": "اصفهان",
+    "opening_hours": "همه روزه از ساعت 08:00 صبح تا 06:00 عصر",
+    "entry_fee": "5000.00",
+    "image": "",
+    "built_date": null
+  }
+},
+{
+  "model": "tour.attraction",
+  "pk": 3,
+  "fields": {
+    "historical_period": "Safavid",
+    "attraction_name": "کاخ عالی‌قاپو؛ شکوه معماری صفوی در قلب میدان نقش‌جهان",
+    "description": "معرفی کاخ عالی‌قاپو\r\nکاخ عالی‌قاپو، یکی از آثار برجسته دوران صفوی، در ضلع غربی میدان نقش‌جهان قرار دارد و نمونه‌ای بی‌بدیل از معماری باشکوه ایرانی-اسلامی است. این کاخ که به دستور شاه عباس اول ساخته شد، ابتدا به‌عنوان یک ساختمان دولتی و محل برگزاری مراسم رسمی و مهم در دربار صفویان طراحی گردید.\r\nعالی‌قاپو به‌عنوان نمادی از شکوه و عظمت دربار صفوی، در طول تاریخ محل پذیرایی از سفرای خارجی و برگزاری مراسم رسمی سلطنتی بوده است. معماری این کاخ به‌ویژه در طراحی داخلی آن، از جزئیات دقیق و نقاشی‌های دیواری زیبا و منحصر به فردی بهره می‌برد که آن را به یکی از آثار ماندگار دوره صفویه تبدیل کرده است.\r\nاین کاخ علاوه بر ویژگی‌های معماری بی‌نظیر، به دلیل موقعیت ویژه‌اش که در کنار میدان نقش‌جهان قرار دارد، نقشی مهم در جلب توجه بازدیدکنندگان از سراسر جهان ایفا می‌کند.\r\n\r\nویژگی‌های برجسته کاخ عالی‌قاپو\r\nقدمت: ساخت آغاز شده در اوایل قرن ۱۷ میلادی، در دوران شاه عباس اول\r\n\r\nسبک معماری: معماری ایرانی با تأثیرات معماری اسلامی و اروپایی\r\n\r\nتزئینات: نقاشی‌های دیواری، گچبری‌های ظریف، کاشی‌کاری‌های رنگارنگ و مقرنس‌کاری\r\n\r\nگنبد: گنبدی منحصر به‌فرد که با رنگ‌آمیزی‌های زیبا و طراحی خاص خود از سایر گنبدهای ایرانی متمایز است\r\n\r\nپله‌های پیچ‌دار: پله‌های مارپیچی که از طریق آن‌ها به طبقات بالایی کاخ دسترسی پیدا می‌شود\r\n\r\nبالکن‌ها: بالکن‌های وسیع در طبقه آخر، که نمایی شگفت‌انگیز از میدان نقش‌جهان را به نمایش می‌گذارد",
+    "location": "اصفهان، ورودی غربی دروازه دولت (میدان امام حسین)، خ سپه، میدان نقش‌جهان ، ضلع غربی میدان",
+    "city": "اصفهان",
+    "opening_hours": "همه روزه از ساعت 08:00 صبح تا 06:00 عصر",
+    "entry_fee": "5000.00",
+    "image": "",
+    "built_date": null
+  }
+},
+{
+  "model": "tour.attraction",
+  "pk": 4,
+  "fields": {
+    "historical_period": "Safavid",
+    "attraction_name": "مسجد شیخ لطف‌الله؛ شاهکار معماری صفوی در میدان نقش‌جهان",
+    "description": "معرفی مسجد شیخ لطف‌الله\r\nمسجد شیخ لطف‌الله، یکی از بی‌نظیرترین آثار معماری دوران صفوی، در ضلع شرقی میدان نقش‌جهان قرار دارد. این مسجد که به دستور شاه عباس اول و به افتخار شیخ لطف‌الله میسی، از علمای برجسته آن دوره، ساخته شد، برخلاف دیگر مساجد تاریخی ایران، مناره ندارد و به‌عنوان یک مسجد اختصاصی برای خانواده سلطنتی صفوی طراحی شده بود.\r\nآنچه این مسجد را از دیگر بناهای هم‌دوره متمایز می‌کند، کاشی‌کاری‌های خارق‌العاده، هماهنگی بی‌نظیر در تناسبات معماری، و گنبد منحصر‌به‌فرد آن است که با تغییر زاویه تابش نور، رنگ‌های متفاوتی به نمایش می‌گذارد.\r\n\r\nویژگی‌های برجسته مسجد شیخ لطف‌الله\r\nقدمت: ساخت آغاز شده در سال ۱۰۱۱ هجری قمری و تکمیل شده در ۱۰۲۸، در دوران شاه عباس اول\r\n\r\nسبک معماری: معماری صفوی، بدون مناره و با طراحی متفاوت از مساجد عمومی\r\n\r\nتزئینات: کاشی‌کاری معرق، مقرنس‌کاری‌های ظریف، خطاطی‌های استادانه با خطوط نسخ و ثلث\r\n\r\nگنبد: گنبدی کم‌ارتفاع با طراحی ویژه که با تغییر نور، از رنگ کرمی به صورتی و بنفش تغییر می‌کند\r\n\r\nورودی: دارای راهروی پیچ‌دار که زاویه‌ای خاص نسبت به میدان دارد تا جهت قبله را اصلاح کند\r\n\r\nنورپردازی طبیعی: استفاده از نورگیرهای خاص برای ایجاد جلوه‌ای خیره‌کننده از کاشی‌ها در طول روز",
+    "location": "اصفهان، ورودی غربی دروازه دولت (میدان امام حسین)، خ سپه، میدان نقش‌جهان ، ضلع شرقی میدان",
+    "city": "اصفهان",
+    "opening_hours": "همه روزه از ساعت 08:00 صبح تا 06:00 عصر",
+    "entry_fee": "5000.00",
+    "image": "",
+    "built_date": null
+  }
+},
+{
+  "model": "tour.attraction",
+  "pk": 5,
+  "fields": {
+    "historical_period": "Safavid",
+    "attraction_name": "پل خواجو؛ شاهکار مهندسی و معماری صفوی بر زاینده‌رود",
+    "description": "معرفی پل خواجو\r\nپل خواجو یکی از زیباترین و معروف‌ترین پل‌های تاریخی اصفهان است که در دوران شاه عباس دوم صفوی ساخته شد. این پل که بر روی زاینده‌رود قرار دارد، علاوه بر عملکرد ارتباطی، به‌عنوان یک بنای تفریحی و فرهنگی نیز مورد استفاده قرار می‌گرفت.\r\nآنچه پل خواجو را از دیگر پل‌های تاریخی متمایز می‌کند، تزئینات کاشی‌کاری، معماری هوشمندانه و وجود عمارت شاه‌نشین در میانه پل است که محل استقرار شاه عباس و درباریان برای تماشای رودخانه و مراسم‌های ویژه بود.\r\n\r\nویژگی‌های برجسته پل خواجو\r\nقدمت: ساخته شده در سال ۱۰۶۰ هجری قمری، در دوران شاه عباس دوم صفوی\r\n\r\nسبک معماری: ترکیبی از پل و سد با طراحی چندمنظوره\r\n\r\nتزئینات: کاشی‌کاری‌های ظریف با نقوش هندسی و گیاهی، طاق‌های زیبا و کتیبه‌های خوشنویسی‌شده\r\n\r\nتعداد دهانه‌ها: ۲۴ دهانه با طراحی متقارن برای هدایت جریان آب\r\n\r\nعملکرد: علاوه بر پل ارتباطی، به‌عنوان سد برای تنظیم سطح آب زاینده‌رود نیز عمل می‌کرد\r\n\r\nعمارت شاه‌نشین: بخش میانی پل با ایوان‌های باشکوه برای استراحت و تفریح شاه و مهمانان",
+    "location": "اصفهان، میدان خواجو",
+    "city": "اصفهان",
+    "opening_hours": "24 ساعته",
+    "entry_fee": "0.00",
+    "image": "",
+    "built_date": null
+  }
+},
+{
+  "model": "tour.attraction",
+  "pk": 6,
+  "fields": {
+    "historical_period": "Achaemenid",
+    "attraction_name": "پاسارگاد؛ مهد نخستین پایتخت هخامنشیان",
+    "description": "معرفی پاسارگاد\r\nپاسارگاد، پایتخت نخستین شاهان هخامنشی و زادگاه عظمت امپراتوری ایران باستان، یکی از مهم‌ترین و ارزشمندترین آثار باستانی کشورمان به شمار می‌رود. این مجموعه تاریخی که در دشت پاسارگاد، ۱۳۵ کیلومتری شمال شیراز و در استان فارس قرار دارد، به دستور کوروش بزرگ ساخته شد و در دوران اوج خود به عنوان مرکز حکومت هخامنشیان و نمایش‌دهنده عظمت این تمدن درخشان عمل می‌کرد.\r\n\r\nپاسارگاد به‌ویژه به دلیل آرامگاه کوروش بزرگ، بنیان‌گذار شاهنشاهی هخامنشی، شهرت دارد. این مجموعه با آثار معماری عظیم، کاخ‌ها، باغ‌ها و مقبره‌های شاهانه، نشان‌دهنده شکوه و عظمت دوران هخامنشی است و به‌عنوان یکی از مهم‌ترین یادگارهای تاریخ ایران و جهان شناخته می‌شود.\r\n\r\nپاسارگاد به دلیل استفاده از معماری نوآورانه، به‌ویژه در طراحی مقبره کوروش، بر هنر معماری تأثیر عمیقی گذاشته و در فهرست میراث جهانی یونسکو ثبت شده است.\r\n\r\nویژگی‌های برجسته پاسارگاد\r\nقدمت: ساخته شده در اواخر قرن ششم پیش از میلاد، به دستور کوروش بزرگ\r\n\r\nسبک معماری: معماری هخامنشی با استفاده از ستون‌ها و سنگ‌های بزرگ، اولین نمونه‌های معماری شاهانه ایرانی\r\n\r\nآرامگاه کوروش بزرگ: مقبره‌ای با ویژگی‌های منحصر به‌فرد، که یکی از مهم‌ترین آثار معماری ایرانی است\r\n\r\nکاخ‌ها و باغ‌ها: کاخ‌های اختصاصی و باغ‌های سلطنتی که نشان‌دهنده زیبایی و نظم در طراحی شهری دوران هخامنشی\r\n\r\nدروازه ملل: یکی از دروازه‌های ورودی اصلی پاسارگاد که نشان‌دهنده روابط هخامنشیان با اقوام مختلف است\r\n\r\nمجموعه‌های معماری دیگر: شامل کاخ‌های متعدد، ایوان‌ها و ساختمان‌های متعددی که در مجموعه پاسارگاد پراکنده‌اند",
+    "location": "استان فارس، سعادت شهر، کیلومتر ۲۰ جاده اصفهان، مجموعه پاسارگاد",
+    "city": "مرودشت",
+    "opening_hours": "همه روزه  از ساعت ۹ صبح تا ۱۲ ظهر و از ۱۴ ظهر تا ۱۶:۳۰ عصر",
+    "entry_fee": "40000.00",
+    "image": "",
+    "built_date": null
+  }
+},
+{
+  "model": "tour.attraction",
+  "pk": 7,
+  "fields": {
+    "historical_period": "Achaemenid",
+    "attraction_name": "تخت جمشید؛ شکوه جاودان امپراتوری هخامنشی",
+    "description": "معرفی تخت جمشید\r\nتخت جمشید، که در دوران هخامنشیان و به دستور داریوش بزرگ ساخته شد، پایتخت باعظمت امپراتوری هخامنشی و یکی از مهم‌ترین آثار باستانی ایران و جهان به شمار می‌رود. این مجموعه عظیم و باشکوه، که در دشت مرودشت در استان فارس واقع شده، از چندین کاخ، تالار و ستون‌های بلند تشکیل شده است. تخت جمشید نماد قدرت، هنر و تمدن ایران باستان است و به عنوان یک شاهکار معماری و هنری در تاریخ بشر شناخته می‌شود.\r\n\r\nساخت تخت جمشید به‌طور رسمی در سال ۵۱۸ پیش از میلاد آغاز شد و در دوره‌های مختلف توسط شاهان هخامنشی همچون داریوش بزرگ، خشایارشا و اردشیر اول تکمیل و توسعه یافت. این مجموعه، که به‌طور خاص در دوران داریوش بزرگ رونق گرفت، به‌عنوان محلی برای مراسم‌های رسمی، جشن‌ها، دیدارهای دیپلماتیک و حتی ذخیره‌سازی گنجینه‌ها و مستندات حکومتی استفاده می‌شد. به دلیل بزرگی و شکوه بی‌نظیر آن، تخت جمشید همواره در ذهن مردم ایران و جهان به‌عنوان نماد تمدن باستانی ایران باقی مانده است.\r\n\r\nتخت جمشید در دوران خود، به‌عنوان مرکزی برای معرفی قدرت هخامنشیان در دنیای باستان عمل می‌کرد و از نظر هنری نیز با نقوش برجسته و کتیبه‌های میخی منحصر به‌فرد، تاثیرات بسیاری بر معماری و هنر زمان خود داشت. علاوه بر زیبایی معماری، نقش‌برجسته‌های موجود در تخت جمشید به‌ویژه در پلکان ورودی و کاخ‌های مختلف، بیانگر روابط هخامنشیان با دیگر ملت‌ها و اقوام تحت فرمان‌شان است.\r\n\r\nویژگی‌های برجسته تخت جمشید\r\nقدمت: آغاز ساخت در سال ۵۱۸ پیش از میلاد، در دوران داریوش بزرگ\r\n\r\nسبک معماری: معماری هخامنشی با تأثیر از تمدن‌های باستانی همچون مصر و آشور، ترکیب هنر ایرانی با ویژگی‌های منحصر به‌فرد دوران هخامنشی\r\n\r\nمجموعه کاخ‌ها: کاخ آپادانا (تالار جشن‌ها)، کاخ تچر (کاخ خصوصی شاه)، کاخ هدیش (کاخ شاهزادگان)\r\n\r\nپلکان ورودی: پلکانی باشکوه با ۲۴ ستون بزرگ که صحنه‌هایی از نمایندگان ملت‌های مختلف و قدرت شاهان هخامنشی را به نمایش می‌گذارد\r\n\r\nتالار صد ستون: یکی از بزرگ‌ترین سازه‌های تخت جمشید که محل تجمع نظامیان و مقامات بود و نماد عظمت معماری هخامنشی\r\n\r\nکتیبه‌ها و سنگ‌نوشته‌ها: کتیبه‌های میخی داریوش بزرگ، که اعلام می‌کند این مجموعه با هدف نمایش قدرت و عظمت ایران ساخته شده است",
+    "location": "استان فارس، مرودشت، میدان تخت جمشید",
+    "city": "مرودشت",
+    "opening_hours": "همه روزه  از ساعت ۹ صبح تا ۱۲ ظهر و از ۱۴ ظهر تا ۱۶:۳۰ عصر",
+    "entry_fee": "40000.00",
+    "image": "",
+    "built_date": null
+  }
+},
+{
+  "model": "tour.attraction",
+  "pk": 8,
+  "fields": {
+    "historical_period": "Safavid",
+    "attraction_name": "کلیسای وانک؛ شاهکار معماری ارمنی در قلب اصفهان",
+    "description": "معرفی کلیسای وانک\r\nکلیسای وانک، یکی از مهم‌ترین و زیباترین کلیساهای ارمنی در ایران، در دوره صفوی و به دستور شاه عباس دوم ساخته شد. این کلیسا که در محله جلفای اصفهان قرار دارد، یکی از مهم‌ترین مراکز مذهبی ارامنه در ایران محسوب می‌شود و ترکیبی هنرمندانه از معماری ایرانی و اروپایی را به نمایش می‌گذارد.\r\nنقاشی‌های دیواری چشم‌نواز، گنبد طلایی، تزیینات ظریف و معماری منحصربه‌فرد آن، کلیسای وانک را به یکی از جذاب‌ترین جاذبه‌های گردشگری اصفهان تبدیل کرده است.\r\n\r\nویژگی‌های برجسته کلیسای وانک\r\nقدمت: ساخته شده در قرن ۱۷ میلادی، در دوران شاه عباس دوم\r\n\r\nسبک معماری: ترکیبی از معماری ایرانی-ارمنی با تأثیرات اروپایی\r\n\r\nتزئینات: نقاشی‌های دیواری با مضامین مذهبی، گچ‌بری‌های طلایی، کتیبه‌های ارمنی\r\n\r\nگنبد: گنبدی باشکوه با نقاشی‌های الهام‌گرفته از کتاب مقدس\r\n\r\nبرج ناقوس: یکی از برجسته‌ترین عناصر کلیسا که در ورودی اصلی قرار دارد\r\n\r\nموزه و کتابخانه: شامل اسناد تاریخی ارامنه، کتاب‌های خطی و آثار ارزشمند فرهنگی",
+    "location": "اصفهان، محله جلفا",
+    "city": "اصفهان",
+    "opening_hours": "همه روزه  از ساعت ۹ صبح تا ۱۲ ظهر و از ۱۴ ظهر تا ۱۶:۳۰ عصر",
+    "entry_fee": "30000.00",
+    "image": "",
+    "built_date": null
+  }
+},
+{
+  "model": "faq.faq",
+  "pk": 1,
+  "fields": {
+    "question": "1. پارس‌نگار چه نوع خدماتی ارائه می‌دهد؟",
+    "answer": "پارس‌نگار یک وب‌سایت گردشگری است که اطلاعات کاملی از مکان‌های تاریخی ایران ارائه می‌دهد. همچنین امکان مشاهده، بررسی و رزرو تورهای گردشگری از طریق این سامانه فراهم شده است.",
+    "created_at": "2025-04-13T04:57:10.166Z",
+    "updated_at": "2025-04-13T04:57:10.166Z"
+  }
+},
+{
+  "model": "faq.faq",
+  "pk": 2,
+  "fields": {
+    "question": ". چگونه می‌توانم یک تور گردشگری رزرو کنم؟",
+    "answer": "برای رزرو تور، کافی است وارد حساب کاربری خود شوید، مقصد مورد نظر را انتخاب کرده و از میان گزینه‌های موجود، تور دلخواه را انتخاب و هزینه آن را از طریق درگاه بانکی پرداخت کنید.",
+    "created_at": "2025-04-13T04:57:34.540Z",
+    "updated_at": "2025-04-13T04:57:34.540Z"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "codename": "add_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "codename": "change_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "codename": "delete_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "codename": "view_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add otp code",
+    "content_type": [
+      "authentication",
+      "otpcode"
+    ],
+    "codename": "add_otpcode"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change otp code",
+    "content_type": [
+      "authentication",
+      "otpcode"
+    ],
+    "codename": "change_otpcode"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete otp code",
+    "content_type": [
+      "authentication",
+      "otpcode"
+    ],
+    "codename": "delete_otpcode"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view otp code",
+    "content_type": [
+      "authentication",
+      "otpcode"
+    ],
+    "codename": "view_otpcode"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add tour manager profile",
+    "content_type": [
+      "users",
+      "tourmanagerprofile"
+    ],
+    "codename": "add_tourmanagerprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change tour manager profile",
+    "content_type": [
+      "users",
+      "tourmanagerprofile"
+    ],
+    "codename": "change_tourmanagerprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete tour manager profile",
+    "content_type": [
+      "users",
+      "tourmanagerprofile"
+    ],
+    "codename": "delete_tourmanagerprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view tour manager profile",
+    "content_type": [
+      "users",
+      "tourmanagerprofile"
+    ],
+    "codename": "view_tourmanagerprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add attraction",
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "codename": "add_attraction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change attraction",
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "codename": "change_attraction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete attraction",
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "codename": "delete_attraction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view attraction",
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "codename": "view_attraction"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add tour",
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "codename": "add_tour"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change tour",
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "codename": "change_tour"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete tour",
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "codename": "delete_tour"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view tour",
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "codename": "view_tour"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add faq",
+    "content_type": [
+      "faq",
+      "faq"
+    ],
+    "codename": "add_faq"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change faq",
+    "content_type": [
+      "faq",
+      "faq"
+    ],
+    "codename": "change_faq"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete faq",
+    "content_type": [
+      "faq",
+      "faq"
+    ],
+    "codename": "delete_faq"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view faq",
+    "content_type": [
+      "faq",
+      "faq"
+    ],
+    "codename": "view_faq"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add header image",
+    "content_type": [
+      "frontpage",
+      "headerimage"
+    ],
+    "codename": "add_headerimage"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change header image",
+    "content_type": [
+      "frontpage",
+      "headerimage"
+    ],
+    "codename": "change_headerimage"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete header image",
+    "content_type": [
+      "frontpage",
+      "headerimage"
+    ],
+    "codename": "delete_headerimage"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view header image",
+    "content_type": [
+      "frontpage",
+      "headerimage"
+    ],
+    "codename": "view_headerimage"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add booking",
+    "content_type": [
+      "tour",
+      "booking"
+    ],
+    "codename": "add_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change booking",
+    "content_type": [
+      "tour",
+      "booking"
+    ],
+    "codename": "change_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete booking",
+    "content_type": [
+      "tour",
+      "booking"
+    ],
+    "codename": "delete_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view booking",
+    "content_type": [
+      "tour",
+      "booking"
+    ],
+    "codename": "view_booking"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add daily schedule",
+    "content_type": [
+      "tour",
+      "dailyschedule"
+    ],
+    "codename": "add_dailyschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change daily schedule",
+    "content_type": [
+      "tour",
+      "dailyschedule"
+    ],
+    "codename": "change_dailyschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete daily schedule",
+    "content_type": [
+      "tour",
+      "dailyschedule"
+    ],
+    "codename": "delete_dailyschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view daily schedule",
+    "content_type": [
+      "tour",
+      "dailyschedule"
+    ],
+    "codename": "view_dailyschedule"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add review",
+    "content_type": [
+      "tour",
+      "review"
+    ],
+    "codename": "add_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change review",
+    "content_type": [
+      "tour",
+      "review"
+    ],
+    "codename": "change_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete review",
+    "content_type": [
+      "tour",
+      "review"
+    ],
+    "codename": "delete_review"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view review",
+    "content_type": [
+      "tour",
+      "review"
+    ],
+    "codename": "view_review"
+  }
+},
+{
+  "model": "users.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$DJ9AWauI6YybwTp5J4UHiP$CbZ50Wdp/DptSBYf9VzHbO/O2IYPri1HL48oKHm7/TE=",
+    "last_login": "2025-04-29T05:48:25.614Z",
+    "is_superuser": true,
+    "username": "touradmin",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-03-12T17:21:47.230Z",
+    "role": "user",
+    "phone_number": null,
+    "is_verified": false,
+    "email": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "tour.tour",
+  "pk": 1,
+  "fields": {
+    "tour_name": "تور اصفهان گردی نوروز",
+    "description": "توضیحات:  \r\nگردش در زیباترین جاذبه‌های تاریخی و فرهنگی اصفهان در ایام نوروز\r\n\r\nتاریخ شروع: ۱۴۰۴/۰۱/۰۵ ساعت ۰۸:۰۰  \r\nتاریخ پایان: ۱۴۰۴/۰۱/۰۸ ساعت ۲۰:۰۰  \r\nقیمت: ۱٬۵۰۰٬۰۰۰ تومان  \r\nظرفیت: ۳۰ نفر  \r\nمبدا: تهران  \r\nمقصد: اصفهان  \r\nجزئیات وعده غذایی: ۳ صبحانه، ۲ ناهار  \r\nحمل و نقل: اتوبوس VIP  \r\nاقامت: هتل عباسی - ۳ شب  \r\nراهنما: علی رضایی - گردشگری فرهنگی  \r\nبیمه: بیمه کامل سامان  \r\nخدمات گردشگری: راهنما، بلیت، گشت، بیمه  \r\nبرنامه روزانه:  \r\nروز اول: میدان نقش جهان، مسجد امام  \r\nروز دوم: کاخ چهلستون، سی‌وسه پل  \r\nروز سوم: کلیسای وانک، پل خواجو  \r\nنام شرکت: آژانس پارس‌نگار  \r\nتلفن: ۰۲۱۱۲۳۴۵۶۷۸  \r\nایمیل: info@parsnegar.com  \r\nجاذبه‌ها: نقش جهان، مسجد امام، مسجد شیخ لطف‌الله، سی‌وسه پل، پل خواجو، کلیسای وانک، چهلستون",
+    "start_date": "1404-10-17",
+    "end_date": "1404-01-08",
+    "departure_time": null,
+    "return_time": null,
+    "price": "1500000.00",
+    "capacity": 30,
+    "origin": "تهران",
+    "destination": "اصفهان",
+    "main_image": "tours/Group_14_4gjyNo8.png",
+    "accommodation": "",
+    "meal_details": "",
+    "transportation": "",
+    "travel_insurance": "",
+    "tourism_services": "",
+    "tour_guides_info": "راهنما: علی رضایی - گردشگری فرهنگی",
+    "tour_manager": null,
+    "company_name": "شرکت ایران تور",
+    "company_address": "",
+    "company_phone": null,
+    "company_email": null,
+    "company_website": null,
+    "attractions": [],
+    "related_tours": []
+  }
+},
+{
+  "model": "tour.tour",
+  "pk": 2,
+  "fields": {
+    "tour_name": "تور فارس باستان",
+    "description": "توضیحات:  \r\nبازدید از تخت جمشید، نقش رستم و پاسارگاد\r\n\r\nتاریخ شروع: ۱۴۰۴/۰۲/۱۰ ساعت ۰۷:۰۰  \r\nتاریخ پایان: ۱۴۰۴/۰۲/۱۲ ساعت ۲۰:۰۰  \r\nقیمت: ۲٬۲۰۰٬۰۰۰ تومان  \r\nظرفیت: ۲۰ نفر  \r\nمبدا: شیراز  \r\nمقصد: مرودشت  \r\nجزئیات وعده غذایی: صبحانه، ناهار، شام  \r\nحمل و نقل: مینی‌بوس VIP  \r\nاقامت: هتل پارس شیراز - ۲ شب  \r\nراهنما: ندا محمدی - دکترای باستان‌شناسی  \r\nبیمه: بیمه کامل سامان  \r\nخدمات گردشگری: راهنما، بلیت، گشت، بیمه  \r\nبرنامه روزانه:  \r\nروز اول: پاسارگاد  \r\nروز دوم: تخت جمشید و نقش رستم  \r\nنام شرکت: آژانس تاریخ‌گرد  \r\nتلفن: ۰۷۱۷۶۵۴۳۲۱  \r\nایمیل: contact@tarikhgard.com  \r\nجاذبه‌ها: تخت جمشید، نقش رستم، پاسارگاد",
+    "start_date": "1404-01-05",
+    "end_date": "1404-01-08",
+    "departure_time": "08:00:00",
+    "return_time": "22:00:00",
+    "price": "2500000.00",
+    "capacity": 25,
+    "origin": "تهران",
+    "destination": "اصفهان",
+    "main_image": "",
+    "accommodation": "هتل عباسی اصفهان (۲ شب)",
+    "meal_details": "۲ وعده صبحانه، ۲ وعده ناهار،  ۱ وعده شام",
+    "transportation": "حمل و نقل با اتوبوس VIP و گشت های شهری با مینی بوس",
+    "travel_insurance": "",
+    "tourism_services": "",
+    "tour_guides_info": "علی رضایی - کارشناس تاریخ اسلام \r\nنرگس احمدی - کارشناس گردشگری",
+    "tour_manager": null,
+    "company_name": "سیاحت ایرانیان",
+    "company_address": "تهران، خیابان انقلاب، پلاک ۲۲۱",
+    "company_phone": "021-88998899",
+    "company_email": "info@siahatiran.ir",
+    "company_website": null,
+    "attractions": [],
+    "related_tours": []
+  }
+},
+{
+  "model": "tour.tour",
+  "pk": 3,
+  "fields": {
+    "tour_name": "شکوه صفویان در قلب اصفهان",
+    "description": "توضیحات: سفری سه‌روزه به اصفهان برای بازدید از آثار تاریخی دوران صفویان شامل مسجد شیخ لطف‌الله، پل خواجو و کاخ عالی‌قاپو همراه با راهنمای مجرب.\r\n\r\nتاریخ شروع: 2025-05-15 08:00\r\n\r\nتاریخ پایان: 2025-05-17 20:00\r\n\r\nقیمت: 2,500,000 تومان\r\n\r\nظرفیت: 25 نفر\r\n\r\nمبدا: تهران\r\n\r\nمقصد: اصفهان\r\n\r\nمحل حرکت: پایانه جنوب تهران\r\n\r\nجزئیات وعده‌های غذایی: ۲ وعده صبحانه، ۲ ناهار، ۱ شام\r\n\r\nحمل‌ونقل: اتوبوس VIP + گشت‌های شهری با مینی‌بوس\r\n\r\nراهنمایان تور: علی رضایی - کارشناس تاریخ اسلام / نرگس احمدی - کارشناس گردشگری\r\n\r\nاقامت: هتل عباسی اصفهان (۲ شب)\r\n\r\nجاذبه‌ها:\r\n\r\nمسجد شیخ لطف‌الله\r\n\r\nپل خواجو\r\n\r\nکاخ عالی‌قاپو\r\n\r\nشرکت برگزارکننده: سیاحت ایرانیان\r\n\r\nآدرس شرکت: تهران، خیابان انقلاب، پلاک ۲۲۱\r\n\r\nتلفن: 021-88998899\r\n\r\nایمیل: info@siahatiran.ir\r\n\r\nوبسایت: https://siahatiran.ir\r\n\r\nبیمه سفر: بیمه ایران با پوشش کامل درمان و حادثه\r\n\r\nخدمات گردشگری: بلیت رفت‌وبرگشت، ورودیه‌ها، بیمه، لیدر فارسی‌زبان\r\n\r\nبرنامه روزانه:\r\n\r\nروز اول: حرکت از تهران - ورود به اصفهان - بازدید از مسجد شیخ لطف‌الله و پل خواجو\r\n\r\nروز دوم: بازدید کامل از میدان نقش جهان و کاخ عالی‌قاپو\r\n\r\nروز سوم: خرید سوغاتی و بازگشت",
+    "start_date": "1404-01-05",
+    "end_date": "1404-01-08",
+    "departure_time": "08:00:00",
+    "return_time": "22:00:00",
+    "price": "2500000.00",
+    "capacity": 25,
+    "origin": "تهران",
+    "destination": "اصفهان",
+    "main_image": "",
+    "accommodation": "هتل عباسی اصفهان (۲ شب)",
+    "meal_details": "۲ وعده صبحانه، ۲ وعده ناهار،  ۱ وعده شام",
+    "transportation": "حمل و نقل با اتوبوس VIP و گشت های شهری با مینی بوس",
+    "travel_insurance": "",
+    "tourism_services": "",
+    "tour_guides_info": "علی رضایی - کارشناس تاریخ اسلام \r\nنرگس احمدی - کارشناس گردشگری",
+    "tour_manager": null,
+    "company_name": "سیاحت ایرانیان",
+    "company_address": "تهران، خیابان انقلاب، پلاک ۲۲۱",
+    "company_phone": "021-88998899",
+    "company_email": "info@siahatiran.ir",
+    "company_website": null,
+    "attractions": [],
+    "related_tours": []
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-03-12T17:27:28.008Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "sara",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-04-12T15:10:45.765Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "4",
+    "object_repr": "uhwrkjftrk",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-04-12T15:10:51.694Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "4",
+    "object_repr": "uhwrkjftrk",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is verified\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-04-13T01:51:37.900Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "object_id": "1",
+    "object_repr": "نقش رستم؛ گنجینه‌ای تاریخی در دل کوه‌های زاگرس",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-04-13T01:53:09.808Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "object_id": "2",
+    "object_repr": "مسجد شاه؛ شکوه معماری اسلامی در دل میدان نقش‌جهان",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-04-13T01:54:40.245Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "object_id": "3",
+    "object_repr": "کاخ عالی‌قاپو؛ شکوه معماری صفوی در قلب میدان نقش‌جهان",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-04-13T01:56:18.536Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "object_id": "4",
+    "object_repr": "مسجد شیخ لطف‌الله؛ شاهکار معماری صفوی در میدان نقش‌جهان",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-04-13T01:56:26.936Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "object_id": "4",
+    "object_repr": "مسجد شیخ لطف‌الله؛ شاهکار معماری صفوی در میدان نقش‌جهان",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Historical period\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-04-13T01:56:35.105Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "object_id": "3",
+    "object_repr": "کاخ عالی‌قاپو؛ شکوه معماری صفوی در قلب میدان نقش‌جهان",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Historical period\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-04-13T01:57:43.706Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "object_id": "5",
+    "object_repr": "پل خواجو؛ شاهکار مهندسی و معماری صفوی بر زاینده‌رود",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-04-13T01:58:52.708Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "object_id": "6",
+    "object_repr": "پاسارگاد؛ مهد نخستین پایتخت هخامنشیان",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2025-04-13T02:00:02.142Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "object_id": "7",
+    "object_repr": "تخت جمشید؛ شکوه جاودان امپراتوری هخامنشی",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2025-04-13T02:01:07.403Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "attraction"
+    ],
+    "object_id": "8",
+    "object_repr": "کلیسای وانک؛ شاهکار معماری ارمنی در قلب اصفهان",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2025-04-13T04:20:25.731Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "6",
+    "object_repr": "Fara",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2025-04-13T04:20:30.317Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "5",
+    "object_repr": "testuser",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2025-04-13T04:20:34.381Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "4",
+    "object_repr": "uhwrkjftrk",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2025-04-13T04:20:39.883Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "3",
+    "object_repr": "",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2025-04-13T04:20:43.891Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "sara",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2025-04-13T04:20:51.513Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "7",
+    "object_repr": "Sara",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2025-04-13T04:41:02.966Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "object_id": "1",
+    "object_repr": "تور اصفهان گردی نوروز",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2025-04-13T04:49:20.369Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "object_id": "2",
+    "object_repr": "تور فارس باستان",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2025-04-13T04:49:29.064Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "object_id": "1",
+    "object_repr": "تور اصفهان گردی نوروز",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Attractions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2025-04-13T04:57:10.168Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "faq",
+      "faq"
+    ],
+    "object_id": "1",
+    "object_repr": "1. پارس‌نگار چه نوع خدماتی ارائه می‌دهد؟",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2025-04-13T04:57:34.543Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "faq",
+      "faq"
+    ],
+    "object_id": "2",
+    "object_repr": ". چگونه می‌توانم یک تور گردشگری رزرو کنم؟",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2025-04-13T05:01:44.705Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "8",
+    "object_repr": "Sara",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Role\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2025-04-16T06:27:44.298Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "8",
+    "object_repr": "Sara",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2025-04-16T06:29:43.609Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "9",
+    "object_repr": "tour",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2025-04-16T06:30:49.911Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "10",
+    "object_repr": "tour",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2025-04-16T06:34:52.533Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "11",
+    "object_repr": "tour",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is verified\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2025-04-16T06:35:20.132Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "11",
+    "object_repr": "tour",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2025-04-16T06:35:27.153Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "11",
+    "object_repr": "tour",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is verified\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2025-04-16T06:35:46.837Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "11",
+    "object_repr": "tour",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Password\", \"Is verified\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2025-04-26T05:56:08.413Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "11",
+    "object_repr": "tour",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2025-04-26T05:56:13.051Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "12",
+    "object_repr": "Nazanin",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2025-04-26T19:19:41.424Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "15",
+    "object_repr": "sgand",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2025-04-26T19:19:44.713Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "14",
+    "object_repr": "parnian",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2025-04-26T19:19:48.546Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "users",
+      "customuser"
+    ],
+    "object_id": "13",
+    "object_repr": "Sara",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2025-04-29T05:34:51.285Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "object_id": "3",
+    "object_repr": "شکوه صفویان در قلب اصفهان",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2025-04-29T06:31:02.338Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "object_id": "1",
+    "object_repr": "تور اصفهان گردی نوروز",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Main image\", \"Start date\", \"End date\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2025-04-29T07:38:31.972Z",
+    "user": [
+      "touradmin"
+    ],
+    "content_type": [
+      "tour",
+      "tour"
+    ],
+    "object_id": "3",
+    "object_repr": "شکوه صفویان در قلب اصفهان",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u062a\\u0627\\u0631\\u06cc\\u062e \\u0634\\u0631\\u0648\\u0639\", \"\\u062a\\u0627\\u0631\\u06cc\\u062e \\u0628\\u0627\\u0632\\u06af\\u0634\\u062a\", \"\\u0633\\u0627\\u0639\\u062a \\u062d\\u0631\\u06a9\\u062a\", \"\\u0633\\u0627\\u0639\\u062a \\u0628\\u0631\\u06af\\u0634\\u062a\"]}}]"
+  }
+}
+]

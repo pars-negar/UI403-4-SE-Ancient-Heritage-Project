@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ───── Security Settings ─────
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'fallback-secret-key')
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = ['*']  # در production حتما محدود کنید
+ALLOWED_HOSTS = ['*']  
 
 # ───── Installed Apps ─────
 INSTALLED_APPS = [
@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'apps.faq',
     'apps.authentication',
     'apps.frontpage',
-    
-    'django_admin_interface', 
+    'admin_interface',
+  # 'django_admin_interface',
     'colorfield',    
 
 ]
@@ -161,3 +161,21 @@ DEFAULT_FROM_EMAIL = 'Parsongar <noreply@parsongar.com>'
 
 # ───── API URLs for External Use ─────
 HADIR_HAWITY_API_URL = 'http://localhost:8000/api'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
