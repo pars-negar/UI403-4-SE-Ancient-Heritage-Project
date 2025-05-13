@@ -24,14 +24,13 @@ import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
 import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
 import SetNewPassword from './pages/SetNewPassword/SetNewPassword.jsx';
-import UserPanel from './components/UserPanel/UserPanel.jsx';
+import TourInformation from './pages/TourInformation/TourInformation.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
       <Routes>
 
-        <Route exact path="/" element={ < UserPanel/>}></Route>
         {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
         {/*<Route exact path="/" element={ <TourleaderSignUp/> }></Route>}
         {/* <Route exact path="/login" element={ <LoginPage/> }></Route> */}
@@ -57,6 +56,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
         <Route path="/success" element={<SuccessMassage/>} />
+        <Route path="/tourInformation" element={<TourInformation/>} />
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}
         <Route exact path="/" element={ <Home />}></Route> 

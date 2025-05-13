@@ -12,7 +12,7 @@ import logout from '../../assets/icons/logout.svg'
 const UserPanel = () => {
     return (
         <div className='w-[26.25rem]'>
-            <div className='h-full w-full flex items-center justify-center'>
+            <div className='h-full w-full flex items-center pr-[0.5rem] pt-[0.5rem]'>
                 <div className='relative flex items-center ml-[1.375rem]'>
                     <div className='w-[5.9357rem] h-[5.8125rem] rounded-full border !border-[var(--color-orange)]'></div>
                     <img src={ logo } alt="logo" className='absolute right-0 w-[5.59rem] h-[3.9375rem]' />
@@ -23,7 +23,7 @@ const UserPanel = () => {
             <div className='flex flex-col justify-center w-full h-auto mt-[4.25rem] items-center'>
                 <img src={ userAvatar } alt="user-avatar" className='w-[11.1875rem] h-[11.1875rem] rounded'/>
                 <h4 className='!text-3xl !font-bold !mt-[0.875rem]' style={{fontFamily: 'Vazirmatn', fontFamily: 500}}>محمدرضا مرادی</h4>
-                <h4 className='!text-2xl !mt-[0.635rem]' style={{fontFamily: 'Vazirmatn', fontStyle: 400}}>مسئول تور</h4>
+                <h4 className='!text-2xl !mt-[0.635rem] !mb-[2.9375rem]' style={{fontFamily: 'Vazirmatn', fontStyle: 400}}>مسئول تور</h4>
             </div>
             <div className='w-[26.26rem]'>
                 <div className='relative h-[3.2875rem] flex gap-[0.9375rem] items-center pr-[1.4375rem] border-b border-[var(--color-orange)]'>
