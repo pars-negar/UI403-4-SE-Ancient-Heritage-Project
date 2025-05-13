@@ -24,12 +24,14 @@ import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
 import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
 import SetNewPassword from './pages/SetNewPassword/SetNewPassword.jsx';
+import UserPanel from './components/UserPanel/UserPanel.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
       <Routes>
 
+        <Route exact path="/" element={ < UserPanel/>}></Route>
         {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
         {/*<Route exact path="/" element={ <TourleaderSignUp/> }></Route>}
         {/* <Route exact path="/login" element={ <LoginPage/> }></Route> */}
