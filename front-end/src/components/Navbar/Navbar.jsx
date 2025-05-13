@@ -13,7 +13,6 @@ const Navbar = () => {
                     <div className='
                         navbar-links 
                         text-[1.4rem]
-                        
                         '
                         style={{
                             fontFamily: 'Koodak',

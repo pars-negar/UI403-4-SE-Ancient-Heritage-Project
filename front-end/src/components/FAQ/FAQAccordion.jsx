@@ -36,22 +36,28 @@ const FAQAccordion = () => {
   };
 
   return (
-    <div className="faq-section">
-      <h2>سوالات متداول</h2>
-      {faqData.map((item, index) => (
-        <div className="faq-item" key={index}>
-          <button
-            className={`faq-question ${activeIndex === index ? "active" : ""}`}
-            onClick={() => toggleFAQ(index)}
-          >
-            <span>{item.question}</span>
-            <span className="icon">{activeIndex === index ? "˄" : "˅"}</span>
-          </button>
-          {activeIndex === index && (
-            <div className="faq-answer">{item.answer}</div>
-          )}
-        </div>
-      ))}
+    <div className="!p-[1.25rem]">
+      <h2 className="!mr-[3rem] relative" style={{fontFamily: 'Vazirmatn', fontWeight: 700}}>سوالات متداول
+        <span 
+          className='inline-block w-[0.3rem] h-[3rem] bg-[var(--color-dark-blue)] absolute right-[-0.625rem] rounded-2xl'>
+        </span>
+      </h2>
+      <div className="faq-section">
+        {faqData.map((item, index) => (
+          <div className="faq-item" key={index}>
+            <button
+              className={`faq-question ${activeIndex === index ? "active" : ""}`}
+              onClick={() => toggleFAQ(index)}
+            >
+              <span>{item.question}</span>
+              <span className="icon">{activeIndex === index ? "˄" : "˅"}</span>
+            </button>
+            {activeIndex === index && (
+              <div className="faq-answer">{item.answer}</div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

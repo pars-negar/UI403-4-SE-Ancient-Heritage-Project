@@ -12,6 +12,11 @@
     src: url("../../public/assets/fonts/Gandom.ttf");
 } 
 
+@font-face {
+    font-family: 'Nazanin';
+    src: url("../../public/assets/fonts/Far_Nazanin.ttf");
+} 
+
 /* Vazirmatn font weights: */
 @font-face {
     font-family: 'Vazirmatn';

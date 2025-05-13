@@ -82,12 +82,13 @@ const RightPanel = () => {
         </div>
         <div className={ styles.formContainer }>
         <Link type='submit'>
-            <FormButton 
+            {/* <FormButton 
               buttonText="ورود" 
               buttonColor="--color-orange" 
               buttonColorHovered="--color-orange-hovered" 
               buttonTextColor="black"
-              />
+              /> */}
+              <button className={ `${styles.button} !mt-[2rem]` }>ورود</button>
         </Link>
         </div>
       </Form>   
