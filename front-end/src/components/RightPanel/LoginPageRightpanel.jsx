@@ -1,8 +1,16 @@
 import React from "react";
 import axios from 'axios';
 import { useState } from 'react';
-import styles from "./LoginPageRightPanel.module.css";
+import styles from "./right-panel.module.css";
+import selfStyles from './LoginPageRightPanel.module.css'
 import FormButton from "../FormButton/FormButton";
+import { Link } from 'react-router-dom';
+import { Form, InputGroup, FloatingLabel } from 'react-bootstrap';
+
+
+import userIcon from '../../assets/icons/user.svg'
+import passwordIcon from '../../assets/icons/password.svg'
+
 const RightPanel = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -35,33 +43,70 @@ const RightPanel = () => {
     
   };
   return (
-    <div className={styles.rightPanel}>
-      <h2 className={styles.foor}>ورود به حساب کاربری</h2>
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
-      <div className={styles.formGroup}>
-  <span className={styles.icon}>&#128100;</span>
-  <input
-    type="text"
-    placeholder="نام کاربری"
-    value={username}
-    onChange={(e) => setUsername(e.target.value)}
-  />
-</div>
-<div className={styles.formGroup}>
-  <span className={styles.icon}>&#128273;</span>
-  <input
-    type="password"
-    placeholder="رمز عبور"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-  />
-</div>
+    <div className={selfStyles.loginRightPanel}>
+      <h1 className={ styles.formTitle }>ورود به حساب کاربری</h1>
 
-      <button>submit</button>
-      </form>
-      <a href="/" className={styles.linkk}>رمز عبور را فراموش کرده‌اید؟</a>
-      <p>حساب کاربری ندارید؟ <a href="sign-up.html" className={styles.linkk}>ثبت‌نام</a></p>
+      <Form onSubmit={handleSubmit} className={styles.inputGroup}>
+        <div className={styles.formContainer}>
+          <InputGroup>
+            <InputGroup.Text className={ styles.inputGroupText }>
+              <img src={ userIcon } alt="user-icon" className={styles.icon}/>
+              <FloatingLabel controlId="floatingUsername" label="نام کاربری" className={`${styles.floatingLabel}`}>
+                  <Form.Control
+                      type="text"
+                      placeholder="نام کاربری"
+                      size="lg"
+                      value={username}
+                      className={styles.formControl}
+                      onChange={(e) => setUsername(e.target.value)}
+                  />
+              </FloatingLabel>
+            </InputGroup.Text>
+          </InputGroup>
+
+          <InputGroup>
+            <InputGroup.Text className={ styles.inputGroupText }>
+                <img src={ passwordIcon } alt="password-icon" className={styles.icon}/>
+                <FloatingLabel controlId="floatingPassword" label="رمز عبور" className={`${styles.floatingLabel}`}>
+                    <Form.Control
+                        type="password"
+                        placeholder="رمز عبور"
+                        className={styles.formControl}
+                        value={password}
+                        size='lg'
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </FloatingLabel>
+            </InputGroup.Text>
+          </InputGroup>
+        </div>
+        <div className={ styles.formContainer }>
+        <Link type='submit'>
+            {/* <FormButton 
+              buttonText="ورود" 
+              buttonColor="--color-orange" 
+              buttonColorHovered="--color-orange-hovered" 
+              buttonTextColor="black"
+              /> */}
+              <button className={ `${styles.button} !mt-[2rem]` }>ورود</button>
+        </Link>
+        </div>
+      </Form>   
+
+    <div style={{ display: "flex",
+                  flexDirection: "column",
+                  gap: "0.5rem"
+                }}>
+      <Link to="/passwordrecovery" className={ selfStyles.linkk }>
+        رمز عبور را فراموش کرده‌اید؟
+      </Link>
+      <p>حساب کاربری ندارید؟ &nbsp; 
+        <Link to="/loginsignup" className={ styles.signUpLink }>
+          ثبت‌نام
+        </Link>
+      </p>
     </div>
+  </div>
   );
 };
 

@@ -1,0 +1,83 @@
+
+ .rightPanel {
+    width: 100vh;
+    height: 100vh;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ 
+ .header {
+     font-size: 40px;
+     font-weight: bold;
+     margin-bottom: 6.25rem;
+     color: #205781;
+ }
+ 
+ .instruction {
+     font-size: 20px;
+     margin-bottom: 30px;
+     font-family: 'Vazirmatn';
+     font-weight: 400;
+ }
+ 
+ .codeInput {
+     display: flex;
+     justify-content: center;
+     gap: 5px;
+     direction: ltr;
+     margin-bottom: 6rem;
+ }
+ 
+ .codeInput input {
+     width: 40px;
+     height: 40px;
+     text-align: center;
+     font-size: 24px;
+     border: 2px solid #A57C5D;
+     border-radius: 5px;
+     outline: none;
+     box-shadow: 0px 0px 5px #838383;
+ }
+ 
+ .codeInput input:focus {
+     border-color: #E09950;
+ }
+ 
+ .confirmBtn {
+     background: #e68a2efb;
+     box-shadow: 0px 0px 5px #838383;
+     color: white;
+     border:none;
+     padding: 10px 40px;
+     font-size: 20px;
+     border-radius: 5px;
+     cursor: pointer;
+     margin-top: 20px;
+     transition: background 0.3s;
+ }
+ 
+ .confirmBtn:hover {
+     background: #e0d0c0;
+ }
+ 
+ .editNumber, .resendCode {
+     display: block;
+     color: #205781;
+     text-decoration: none;
+     margin-top: 10px;
+     font-size: 16px;
+ }
+ 
+ .editNumber:hover, .resendCode:hover {
+     text-decoration: underline;
+ }
+ 
+ @media screen and (max-width: 850px) {
+     .container {
+         width: 95%;
+     }
+ }

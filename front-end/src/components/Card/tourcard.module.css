@@ -1,0 +1,9 @@
+.verticalLine {
+    display: inline-flex;
+    width: 1px;
+    height: 20px; /* ارتفاع خط عمودی */
+    background-color: #FF8C1A; /* رنگ نارنجی */
+    margin: 0 10px; /* فاصله از متن */
+    margin-bottom: 0;
+  }
+  

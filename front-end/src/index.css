@@ -1,1 +1,97 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import url('./assets/fonts/Koodak/a.ttf'); */
+/* @import url('../public/assets/fonts/Koodak/a.ttf'); */
+
+
+@font-face {
+    font-family: 'Gandom';
+    src: url("../../public/assets/fonts/Gandom.ttf");
+} 
+
+@font-face {
+    font-family: 'Nazanin';
+    src: url("../../public/assets/fonts/Far_Nazanin.ttf");
+} 
+
+/* Vazirmatn font weights: */
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../public/assets/fonts/Vazirmatn/Vazirmatn-Black.woff2');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../public/assets/fonts/Vazirmatn/Vazirmatn-ExtraBold.woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../public/assets/fonts/Vazirmatn/Vazirmatn-Bold.woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../public/assets/fonts/Vazirmatn/Vazirmatn-SemiBold.woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../public/assets/fonts/Vazirmatn/Vazirmatn-Medium.woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../public/assets/fonts/Vazirmatn/Vazirmatn-Regular.woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../public/assets/fonts/Vazirmatn/Vazirmatn-Light.woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../public/assets/fonts/Vazirmatn/Vazirmatn-ExtraLight.woff2');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../public/assets/fonts/Vazirmatn/Vazirmatn-Thin.woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+/* Koodak font weights */
+
+@font-face {
+    font-family: 'Koodak';
+    src: url('../public/assets/fonts/Koodak/B Koodak Bold_0.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Koodak';
+    src: url('../public/assets/fonts/Koodak/B Koodak Outline_0.ttf');
+    font-weight: 100;
+    font-style: normal;
+}

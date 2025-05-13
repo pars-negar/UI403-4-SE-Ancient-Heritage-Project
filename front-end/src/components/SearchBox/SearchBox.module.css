@@ -11,19 +11,20 @@
 }
 
 .title {
-  font-size: 28px;
-  font-weight: bolder;
+  font-family: 'Vazirmatn';
+  font-weight: 700;
   color: rgb(0, 0, 0);
-  /* margin-bottom: 32px; */
+  position: relative;
+  margin-right: 1rem;
 }
 
 .form {
   display: inline-flex;
-  gap: 40px;
+  gap: 1.25rem;
   align-items: center;
   flex-wrap: nowrap;
-  margin-top: 80px;
   flex-direction: row;
+  color: var(--color-gray);
 }
 
 
@@ -34,11 +35,8 @@
   border-radius: 8px;
   width: 200px; 
   box-sizing: border-box;
+  font-family: 'Nazanin';
+  font-size: 1.5rem;
+  font-weight: 560;
 }
 
-
-.button {
-  display:inline-flex;
-  margin-right: 120px;
-
-}

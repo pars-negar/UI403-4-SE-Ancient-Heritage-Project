@@ -1,35 +1,10 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap'); */
-@font-face {
-    font-family: 'Gandom';
-    src: url("../../public/assets/fonts/Gandom.ttf");
-} 
-
-@font-face {
-    font-family: 'VazirRegular';
-    src: url('../../public/assets/fonts/Vazirmatn-Regular.ttf');
-}
-
-@font-face {
-    font-family: 'VazirBold';
-    src: url('../../public/assets/fonts/Vazirmatn-Bold.ttf');
-}
-
-
- /* body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: none;
-    font-family:'Gandom', serif;
-} */
-
 * {
     box-sizing: border-box;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
 body {
     direction: rtl;
 }
@@ -40,7 +15,15 @@ body, html {
 }
 
 :root {
-    --form-title-color: #205781;
-    --form-input-borders: #DDA853;
-    --orange-button-hovered: #D96F00;
+    --color-dark-blue: #205781;
+    --color-light-blue: #D2DDE6;
+    --color-brown: #DDA853;
+    --color-orange: #FB8101;
+    --color-cream: #FAEDE1;
+    --color-gray: #959494;
+    
+    
+    --color-orange-hovered: #E67600;
 }
+
+

@@ -8,26 +8,3 @@
   direction: rtl;
 }
 
-.userFloatingLabel label{
-  text-align: right;
-  width: 100%;
-}
-
-.userFormTitle {
-  color: var(--form-title-color);
-  font-family: 'VazirBold', serif;
-  margin-bottom: 3.5rem;
-}
-
-.formControl {
-  border: solid 1px var(--form-input-borders);
-  border-radius: 6px;
-  border: solid 1px var(--form-input-borders);
-  border-radius: 6px;
-  width: 100%;
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}

@@ -1,31 +1,53 @@
 import "./navbar.css";
 import { Link } from 'react-router-dom';
 import logoUrl from "../../assets/icons/logo.svg"
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import {Navbar as ReactNavbar} from 'react-bootstrap';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import FormButton from "../FormButton/FormButton";
-import styles from './navbar.css';
+import '../../index.css'
 
 
 const Navbar = () => {
     return ( 
-        <Container className={ styles.cn}>
-             <ReactNavbar expand="sm" className="navbar bg-body-tertiary" fluid>
+            <nav className="navbar">
                 <img className="logo" src={ logoUrl }  alt="logo" />
-                <ul className="ul">
-                    <div className='navbar-links'>
-                    <Link to="/">صفحه‌ی اصلی</Link>
-                    <Link to="/">تورها</Link>
-                    <Link to="/">جاذبه‌ها</Link>
-                    <Link to="/">تماس با ما</Link>
-                    <Link to="/">درباره‌ی ما</Link>
+                <ul>
+                    <div className='
+                        navbar-links 
+                        text-[1.4rem]
+                        '
+                        style={{
+                            fontFamily: 'Koodak',
+                            fontWeight: '700'
+                        }}
+                    >
+                        <Link to="/">صفحه‌ی اصلی</Link>
+                        <Link to="/">تورها</Link>
+                        <Link to="/">جاذبه‌ها</Link>
+                        <Link to="/">تماس با ما</Link>
+                        <Link to="/">درباره‌‌ما</Link>
                     </div>
                 </ul>
-                <FormButton className={ styles.navbarButton } buttonText='ورود/ثبت‌نام' buttonColor='#FB8101' buttonTextColor='black' buttonColorHovered="#D96F00"/>
-                </ReactNavbar>
-        </Container> 
+                <Link to='/LoginSignUp' id="button" 
+                    className="
+                        bg-[var(--color-orange)] 
+                        text-black
+                        text-2xl
+                        text-center
+                        font-[499] 
+                        rounded-[40px]
+                        py-[0.125rem]
+                        w-[10.125rem]
+                        h-[3rem]
+                        "
+
+                    style={{
+                        fontFamily: 'Gandom'
+                    }}
+                    >
+                ورود/ثبت‌نام</Link>
+                        
+                <hr className="bottomLine" />
+            </nav>
+      
     );
 }
  
