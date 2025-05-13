@@ -24,7 +24,7 @@ import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
 import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
 import SetNewPassword from './pages/SetNewPassword/SetNewPassword.jsx';
-import TourInformation from './pages/TourInformation/TourInformation.jsx';
+import TourInformation from './pages/ToursList/ToursList.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
