@@ -12,8 +12,9 @@
 
 .formTitle {
   color: var(--color-dark-blue);
-  font-family: 'VazirBold', serif;
   margin-bottom: 3.5rem;
+  font-family: 'Vazirmatn';
+  font-weight: 700;
 }
 
 .formControl {
@@ -28,8 +29,15 @@
   align-items: center;
   flex-direction: column;
   text-indent: 3.125rem;
+  
 }
 
+.floatingLabel input::placeholder {
+  font-family: 'Nazanin' !important;  
+  font-size: 1.5rem !important;
+  font-weight: 560 !important;
+  
+}
 
 
 .formContainer {
@@ -68,4 +76,19 @@
   text-decoration: underline;
   text-underline-offset: 0.3125rem;
   margin-top: 0.5rem;
+  font-family: 'Vazirmatn';
+  font-weight: 400;
+}
+
+
+.button {
+  font-family: 'Gandom';
+  color: black;
+  background-color: var(--color-orange);
+  width: 8.5rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
 }

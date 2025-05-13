@@ -137,13 +137,9 @@ return (
 
             {errorMessage && <p className="text-danger">{errorMessage}</p>}
             <div className={styles.formContainer}>
-                    <FormButton 
-                        buttonText="تایید" 
-                        buttonColor="--color-orange" 
-                        buttonColorHovered="--color-orange-hovered" 
-                        buttonTextColor="white"
-                        type="submit"
-                        />
+                <Link to='/verify-otp'>
+                    <button className={ styles.button }>تایید</button>
+                </Link>
             </div>
         </Form>
     

@@ -84,14 +84,15 @@ const PassRecoveryRightPanel = () => {
                 </FloatingLabel>
             </InputGroup.Text>
           </InputGroup>
-          <Link type='submit' to='/verifyotp'>
-              <FormButton 
+          <Link type='submit' to='/verify-otp'>
+              {/* <FormButton 
                 buttonText="ارسال لینک" 
                 buttonColor="--color-orange" 
                 buttonColorHovered="--color-orange-hovered" 
                 buttonTextColor="black"
                 onClick={handleSendLink}
-                />
+                /> */}
+            <button onClick={ handleSendLink } className={ styles.button }>ارسال لینک</button>
           </Link>
         </div>
       </Form>
@@ -106,7 +107,7 @@ const PassRecoveryRightPanel = () => {
       /> */}
 
 
-      <Link to="loginsignup/login" className={ styles.signUpLink } >
+      <Link to="/loginsignup/login" className={ styles.signUpLink } >
         بازگشت به صفحه ورود
       </Link>
     </div>

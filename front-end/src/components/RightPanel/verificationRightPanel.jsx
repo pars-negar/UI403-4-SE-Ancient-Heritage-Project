@@ -69,19 +69,8 @@ const RightPanel = () => {
       <p className={selfStyles.instruction}>لطفاً کدی که به شماره شما ارسال شده را وارد کنید.</p>
       <CodeInput code={code} onCodeChange={handleCodeChange} />      
 
-      
-        <FormButton 
-          buttonText="تایید"
-          buttonColor="--color-orange"
-          buttonColorHovered="--color-orange-hovered" 
-          buttonTextColor="black"
-          onClick={handleSubmit}
-          disabled={!isCodeComplete}
-          type="button"
-          />
-     
-      
-
+        <button className={ styles.button }>تایید</button>
+  
       <a href="https://www.google.com" className={styles.signUpLink}>ویرایش شماره موبایل</a>
       <a href="https://www.google.com" className={styles.signUpLink}>ارسال مجدد کد</a>
     </div>

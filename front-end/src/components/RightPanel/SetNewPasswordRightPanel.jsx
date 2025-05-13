@@ -42,13 +42,14 @@ const SetNewPassword = () => {
                         </FloatingLabel>
                         </InputGroup.Text>
                     </InputGroup>
-                    <Link type='submit'>
-                        <FormButton 
+                    <Link type='submit' to='/success'>
+                        {/* <FormButton 
                             buttonText="تایید" 
                             buttonColor="--color-orange" 
                             buttonColorHovered="--color-orange-hovered" 
                             buttonTextColor="black"
-                            />
+                            /> */}
+                        <button className={ styles.button }>تایید</button>
                     </Link>
                     </div>
                 </Form>   
@@ -59,7 +60,7 @@ const SetNewPassword = () => {
                         gap: "0.5rem"
                         }}>
             
-            <Link to="/loginsignup" className={ styles.signUpLink } style={{ marginTop: "1rem" }}>
+            <Link to="/loginsignup/login" className={ styles.signUpLink } style={{ marginTop: "1rem" }}>
             بازگشت به صفحه ورود
             </Link>
             

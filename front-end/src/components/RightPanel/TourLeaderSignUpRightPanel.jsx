@@ -56,7 +56,7 @@ const TourLeaderSignUpRightPanel = () => {
     return (
         <div className={selfStyles.tourLeaderSignUpRightPanel}>
             <h1 className={ styles.formTitle }>ثبت‌نام مسئول تور</h1>
-            <p>مسئول گرامی اطلاعات شرکت را با دقت تکمیل کنید.</p>
+            <p style={{fontFamily: 'Vazirmatn', fontWeight: 400}}>مسئول گرامی اطلاعات شرکت را با دقت تکمیل کنید.</p>
             <Form onSubmit={handleSubmit} className={styles.inputGroup}>
                 <div className={styles.formContainer}>
                     <InputGroup>
@@ -178,20 +178,15 @@ const TourLeaderSignUpRightPanel = () => {
                         </InputGroup.Text>
                     </InputGroup>
                 </div>
-                <p style={{ marginTop: "0.5rem", marginBottom: 0 }}>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
+                <p style={{ marginTop: "0.5rem", marginBottom: 0, fontFamily: 'Vazirmatn', fontWeight: 400}}>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
                 <div className={ styles.formContainer }>
-                    <Link type='submit' to='/verifyotp'>
-                        <FormButton 
-                            buttonText="ثبت نام" 
-                            buttonColor="--color-orange" 
-                            buttonColorHovered="--color-orange-hovered" 
-                            buttonTextColor="white"
-                        />
+                    <Link type='submit' to='/verify-otp'>
+                        <button className={ styles.button }>ثبت‌نام</button>
                     </Link>
                 </div>
             </Form>
-            <p style={{ marginTop: "0.5rem", marginBottom: 0 }}>قبلا ثبت‌نام کرده‌اید؟ &nbsp; 
-            <Link to="/loginsignup/login" className={ styles.signUpLink }>
+            <p style={{ marginTop: "0.5rem", marginBottom: 0, fontFamily: 'Vazirmatn', fontWeight: 300}}>قبلا ثبت‌نام کرده‌اید؟ &nbsp; 
+            <Link to="/loginsignup/login" className={ `${styles.signUpLink}` }>
                 ورود
             </Link>
             </p>
