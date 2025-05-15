@@ -26,10 +26,8 @@ import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
 import SetNewPassword from './pages/SetNewPassword/SetNewPassword.jsx';
 
 import TourInformation from './pages/ToursList/ToursList.jsx';
-import TourInfoList from './components/Card/TourInfoList.jsx';
+import TourListPage from './pages/TourListPage/TourListPage.jsx';
 
-import ToursList from './pages/ToursList/ToursList.jsx';
-import TourInformation from './pages/TourInformation/TourInformation.jsx';
 
 
 
@@ -63,8 +61,8 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
         <Route path="/success" element={<SuccessMassage/>} />
-        <Route path="/tourslist" element={<ToursList/>} />
         <Route path="/tourInformation" element={<TourInformation/>} />
+        <Route path="tourlistpage" element={<TourListPage/>}/>
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}
         <Route exact path="/" element={ <Home />}></Route> 
@@ -72,7 +70,7 @@ createRoot(document.getElementById('root')).render(
         {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
         {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
         <Route exact path="/setnewpass" element={ < SetNewPassword/>}></Route>
-        <Route exact path="/tourlist" element={<TourInfoList/>}></Route>
+        {/* <Route exact path="/tourlist" element={<TourList/>}></Route> */}
      
       </Routes>
     </Router>
