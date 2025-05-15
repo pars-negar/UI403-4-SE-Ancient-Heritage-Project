@@ -25,6 +25,7 @@ import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
 import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
 import SetNewPassword from './pages/SetNewPassword/SetNewPassword.jsx';
 import TourInformation from './pages/ToursList/ToursList.jsx';
+import TourInfoList from './components/Card/TourInfoList.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -64,7 +65,7 @@ createRoot(document.getElementById('root')).render(
         {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
         {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
         <Route exact path="/setnewpass" element={ < SetNewPassword/>}></Route>
-
+        <Route exact path="/tourlist" element={<TourInfoList/>}></Route>
      
       </Routes>
     </Router>
