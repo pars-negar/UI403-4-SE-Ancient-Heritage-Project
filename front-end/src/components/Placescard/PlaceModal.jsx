@@ -7,7 +7,10 @@ const PlaceModal = ({ show, onClose, place }) => {
   return (
     <div className="place-modal-overlay">
       <div className="place-modal">
-        <button onClick={onClose} className="place-modal-close"></button>
+      <button onClick={onClose} className="place-modal-close">
+          &times;
+      </button>
+
         <h2>{place.title}</h2>
         <img src={place.image} alt={place.title} />
         <p>{place.details}</p>
@@ -15,5 +18,6 @@ const PlaceModal = ({ show, onClose, place }) => {
     </div>
   );
 };
+
 
 export default PlaceModal;

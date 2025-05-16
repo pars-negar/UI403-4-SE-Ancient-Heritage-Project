@@ -1,10 +1,12 @@
 import React from 'react';
 import PlaceCard from './PlaceCard';
-import '../Placescard/Places.css';
+import '../../components/Placescard/Places.css';
 
-const PlaceSection = ({ places, onMoreInfo }) => {
+const PlaceSection = ({ title, places, onMoreInfo }) => {
   return (
     <div className="my-8">
+      <h2 className="place-section-title">{title}</h2>
+
       <div className="flex flex-wrap justify-center gap-6 place-section-row">
         {places.map((place, idx) => (
           <div key={idx} className="w-full sm:w-[45%] md:w-[30%]">
@@ -17,5 +19,3 @@ const PlaceSection = ({ places, onMoreInfo }) => {
 };
 
 export default PlaceSection;
-
-

@@ -9,6 +9,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import SearchBox from '../../components/SearchBox/SearchBox';
 import HeroSection from '../../components/Placescard/HeroSection';
 
+
 const popularPlaces = [
   {
     title: 'تخت جمشید',

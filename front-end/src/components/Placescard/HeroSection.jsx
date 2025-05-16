@@ -6,7 +6,6 @@ import heroImage from '../../assets/images/HeroSection.png';
 const HeroSection = ({ text, showImage = true }) => {
   return (
     <section dir="rtl" className="w-full bg-white px-4 pt-8">
-      {/* عنوان بالا سمت راست */}
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-start">
           <h2 className="text-base md:text-lg font-bold text-gray-800 flex items-center text-right">
