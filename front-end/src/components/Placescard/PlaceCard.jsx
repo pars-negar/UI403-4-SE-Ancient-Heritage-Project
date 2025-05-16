@@ -1,8 +1,6 @@
 import React from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import '../Placescard/Places.css';
-import './Places.css';
-
 
 const PlaceCard = ({ image, title, description, onMoreInfo }) => {
   return (
@@ -15,10 +13,8 @@ const PlaceCard = ({ image, title, description, onMoreInfo }) => {
         <p className="place-desc-overlay">{description}</p>
       </div>
 
-
-
       <button onClick={onMoreInfo} className="place-button">
-        <FaArrowLeft />
+        <FaArrowLeft style={{ marginLeft: '1px' }} />
       </button>
     </div>
   );
