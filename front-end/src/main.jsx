@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 import PlacesPage from '../src/pages/PlacesPage/PlacesPage.jsx';
+import ReserveTour from '../src/pages/reserveTour/ReserveTour.jsx';
 
 // import TourPage from "./pages/TourPage/TourPage.jsx";
 import Home from './pages/Home/Home.jsx';
@@ -64,6 +65,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
         <Route exact path="/pp" element={ <PlacesPage/> }></Route>
+        <Route exact path="/rt" element={ <ReserveTour/> }></Route>
 
         <Route path="/success" element={<SuccessMassage/>} />
         <Route path="/tourInformation" element={<TourInformation/>} />
