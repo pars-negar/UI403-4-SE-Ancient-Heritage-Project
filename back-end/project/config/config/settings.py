@@ -6,6 +6,9 @@ import dj_database_url
 # Load environment variables from .env
 load_dotenv()
 
+
+DEBUG = False
+
 # ───── Base Directory ─────
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -59,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 # ───── URL & WSGI ─────
@@ -172,3 +177,6 @@ LOGGING = {
         },
     },
 }
+
+
+
