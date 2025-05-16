@@ -7,6 +7,7 @@ import styles from "./PlacesPage.module.css"
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
 import SearchBox from '../../components/SearchBox/SearchBox';
+import HeroSection from '../../components/Placescard/HeroSection';
 
 const popularPlaces = [
   {
@@ -56,7 +57,7 @@ const PlacesPage = () => {
   return (
     <div>
       <Navbar />
-      <img src="/axxx.png" className={styles.headerImg} alt="بنر صفحه" />
+       <HeroSection text="جاذبه‌های تاریخی ایران" showImage={true} />
 
       <div className={styles.editSearch}>
       <SearchBox />

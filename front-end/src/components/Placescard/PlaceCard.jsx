@@ -4,16 +4,23 @@ import '../Placescard/Places.css';
 
 const PlaceCard = ({ image, title, description, onMoreInfo }) => {
   return (
+    
     <div className="place-card">
-      <img src={image} alt={title} />
-      <div className="place-overlay">
-        <h2 className="place-title">{title}</h2>
-        <p className="place-desc">{description}</p>
-      </div>
-      <button onClick={onMoreInfo} className="place-button">
-        <FaArrowLeft size={10} />
-      </button>
-    </div>
+  <img src={image} alt={title} />
+  
+  <div className="place-overlay">
+    <h2 className="place-title">{title}</h2>
+  </div>
+
+  <div className="place-desc-below">
+    <p className="place-desc">{description}</p>
+  </div>
+
+  <button onClick={onMoreInfo} className="place-button">
+    {/* آیکون یا متن دکمه */}
+  </button>
+</div>
+
   );
 };
 

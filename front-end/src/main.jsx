@@ -10,6 +10,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import TourismAttractionCard from "../src/components/Card/tourismAttractionCard.jsx";
 // import HomePage from "./pages/Home/Home.jsx";
 import "./App.css";
+
+import PlacesPage from '../src/pages/PlacesPage/PlacesPage.jsx';
+
 // import TourPage from "./pages/TourPage/TourPage.jsx";
 import Home from './pages/Home/Home.jsx';
 // import Footer from "./components/Footer/Footer.jsx"
@@ -60,6 +63,8 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/LoginSignUp/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
+        <Route exact path="/pp" element={ <PlacesPage/> }></Route>
+
         <Route path="/success" element={<SuccessMassage/>} />
         <Route path="/tourInformation" element={<TourInformation/>} />
         <Route path="tourlistpage" element={<TourListPage/>}/>
