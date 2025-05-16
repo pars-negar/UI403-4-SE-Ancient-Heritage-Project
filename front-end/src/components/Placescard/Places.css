@@ -87,7 +87,7 @@
 }
 
 .place-modal {
-  position: relative; /* مهم! برای جای‌گذاری دکمه */
+  position: relative; 
   background-color: white;
   border-radius: 35px;
   padding: 24px;

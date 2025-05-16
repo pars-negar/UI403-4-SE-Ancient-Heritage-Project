@@ -1,6 +1,7 @@
 // src/pages/ReserveTour.jsx
 import React from 'react';
 import ShoppingCart from '../../components/reserveTour/shopingCart';
+import RoomSelector from '../../components/reserveTour/RoomSelector';
 
 const ReserveTour = () => {
   const tourInfo = `تور تهران به اصفهان
@@ -9,10 +10,19 @@ const ReserveTour = () => {
 قیمت تور به ازای هر مسافر: 4,000,000 تومان`;
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold text-center mb-6" dir="rtl">رزرو تور</h1>
-      
+    <div dir="rtl" className="p-4">
+      <h1 className="text-2xl font-bold text-center mb-6">رزرو تور</h1>
 
+      {/* 🔹 ابتدا: انتخاب اتاق */}
+      <RoomSelector
+        title="اقامتگاه اصفهان"
+        roomData={[
+          { label: "سه نفره", remaining: 2 },
+          { label: "دو نفره", remaining: 2 },
+        ]}
+      />
+
+      {/* 🔹 سپس: سبد خرید */}
       <ShoppingCart
         tourInfo={tourInfo}
         totalPrice={8000000}
