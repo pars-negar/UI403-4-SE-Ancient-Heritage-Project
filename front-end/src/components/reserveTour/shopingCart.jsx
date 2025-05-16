@@ -17,7 +17,7 @@ const ShoppingCart = ({ tourInfo, totalPrice, buttonLink }) => {
       </div>
       <div className="text-center">
         <a href={buttonLink}>
-        <button className="bg-[#205781] hover:bg-[#1a4a6c] text-white py-2 rounded-md w-24">ادامه خرید
+        <button className="bg-[#205781] hover:bg-[#1a4a6c] text-white py-2 rounded-md !w-40">ادامه خرید
             </button>
 
         </a>
