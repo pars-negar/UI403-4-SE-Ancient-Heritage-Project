@@ -6,6 +6,7 @@ import timeRewind from '../../assets/icons/time-rewind.svg'
 import support from '../../assets/icons/support.svg'
 import tourPicture from '../../assets/images/naghshejahan.svg'
 
+
 const TourInformation = () => {
     const origin = "تهران";
     const destination = 'اصفهان';
@@ -13,7 +14,8 @@ const TourInformation = () => {
     const companyName = 'شرکت گردشگری ایران گشت';
     const duration = '3 روز و 2 شب';
     const tourDescription = 'اصفهان، مهد هنر و معماری ایرانی، شهری با کاشی‌کاری‌هایی که نفس را بند می‌آورد. در این تور سه‌روزه، با ما همراه شوید تا قدم در میدان نقش جهان بگذاریم، از مناره‌های زیبای مسجد جامع عکس بگیریم و در خیابان چهارباغ عبور از تاریخ را حس کنیم. نصف جهان اینجاست… منتظر شماست!';
-    const features = "";
+    const features = "لورم ایپسوم سژمدعپپن فگپسضت گهاحظز فرصفکح غنمیف ژشیمکعق لخقبمج هجگک عشنهبظضس دزشکیمیچ بفکجغح ثممگطدخچ جیشژدثعن نژچهذطبط علهطظجخ بطددذلط یزشانللق ژثدزفوم ثحخ ثمغوغجد حوب خپپغوش دثمسسج قذپک ژیثععچغ حرق ضنط دثک لقذسقیغظ سفدفکچقد چخبگنچ ثذشظفجس لصصکس اوزچعب دییتص اجققط ضظدزض بعجچ دصطاامظق صدبطفسحن طبقنکب گعضنمپبش مثگجطقوی جهدلسن دگبهظشا فتپط طنگقسعب رصرطوهژ ظبفطلتت رغمقطپ یصظ غرهمح دتاغصع ژفحشمجهس اپشض فدهشف تطلینژق چشهطیت کحاتکمژ ذنیهژزسع کذحگساثث گهفد طمص حتجط ذتخیض صصخکتط تیزپقذط ژدحگ تثتغعدس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطل ";
+    const dailyPlan = ""
 
     return ( 
         <>
@@ -45,14 +47,14 @@ const TourInformation = () => {
                     </div>
                 </div>
                 
-                <div className="flex justify-center mt-[4.0625rem]">
+                <div className="flex mt-[4.0625rem] mb-[3.9375rem] mr-[11.3125rem]">
                     <div className="w-[80%] h-auto">
                         <span className="text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400 }}>{ tourDescription }</span>
                     </div>
                 </div>
 
-                <div className="flex justify-center">
-
+                <div className="flex justify-center mr-[11.3125rem] w-[69.3125rem] text-xl">
+                    { features }
                 </div>
 
             <Footer />

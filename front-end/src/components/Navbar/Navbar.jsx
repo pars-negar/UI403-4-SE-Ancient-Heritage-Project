@@ -45,7 +45,7 @@ const Navbar = () => {
                     >
                 ورود/ثبت‌نام</Link>
                         
-                <hr className="bottomLine" />
+                <hr className="bottomLine border-none !bg-[var(--color-brown)] opacity-100 !border-[1px]" />
             </nav>
       
     );
