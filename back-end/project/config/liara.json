@@ -1,6 +1,7 @@
 {
   "platform": "python",
   "app": "ancient-heritage",
+  "project": "back-end/project/config",
   "port": 8000,
   "pythonVersion": "3.12",
   "command": "gunicorn config.wsgi:application --bind 0.0.0.0:8000"
