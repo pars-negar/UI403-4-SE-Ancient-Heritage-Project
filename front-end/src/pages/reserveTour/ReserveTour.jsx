@@ -13,7 +13,6 @@ const ReserveTour = () => {
     <div dir="rtl" className="p-4">
       <h1 className="text-2xl font-bold text-center mb-6">رزرو تور</h1>
 
-      {/* 🔹 ابتدا: انتخاب اتاق */}
       <RoomSelector
         title="اقامتگاه اصفهان"
         roomData={[
@@ -21,8 +20,6 @@ const ReserveTour = () => {
           { label: "دو نفره", remaining: 2 },
         ]}
       />
-
-      {/* 🔹 سپس: سبد خرید */}
       <ShoppingCart
         tourInfo={tourInfo}
         totalPrice={8000000}
