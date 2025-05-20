@@ -21,8 +21,8 @@ const RoomSelector = ({ title, roomData }) => {
   };
 
   return (
-    <div className="border-2 border-blue-800 rounded-lg shadow-md p-4 w-fit mx-auto mt-10">
-      <h2 className="text-xl font-bold text-right border-r-4 border-blue-800 pr-2 mb-4">
+    <div className=" rounded-lg shadow-md p-4 w-fit mx-auto mt-10"  style={{borderLeft: "2px solid #205781", border: "2px solid #205781e2",borderBottom: "3px solid #205781e2", boxShadow: "1px 2px 10px 	#585858"}}>
+      <h2 className="!text-2xl font-bold text-right border-r-4 border-blue-800 pr-2 mb-4">
         {title}:
       </h2>
       <div className="flex flex-col md:flex-row gap-4">

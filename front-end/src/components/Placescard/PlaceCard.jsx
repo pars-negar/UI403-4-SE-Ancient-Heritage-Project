@@ -4,11 +4,11 @@ import '../Placescard/Places.css';
 
 const PlaceCard = ({ image, title, description, onMoreInfo }) => {
   return (
-    <div className="place-card">
-      <img src={image} alt={title} />
+    <div className="places-card" style={{backgroundImage: `url(${image})`}}>
+      
 
-      <div className="place-overlay">
-        <h2 className="place-title">{title}</h2>
+      <div className="places-overlay">
+        <h2 className="places-title">{title}</h2>
         <div className="underline-orange"></div>
         <p className="place-desc-overlay">{description}</p>
       </div>

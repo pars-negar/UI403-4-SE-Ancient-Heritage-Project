@@ -2,6 +2,9 @@
 import React from 'react';
 import ShoppingCart from '../../components/reserveTour/shopingCart';
 import RoomSelector from '../../components/reserveTour/RoomSelector';
+import Navbar from '../../components/Navbar/Navbar';
+import Footer from '../../components/Footer/Footer';
+import PassengerForm from '../../components/reserveTour/PassengerForm';
 
 const ReserveTour = () => {
   const tourInfo = `تور تهران به اصفهان
@@ -11,7 +14,15 @@ const ReserveTour = () => {
 
   return (
     <div dir="rtl" className="p-4">
-      <h1 className="text-2xl font-bold text-center mb-6">رزرو تور</h1>
+
+      <Navbar/>
+      <div className="b-10" />
+
+      <PassengerForm
+        tourPath="تورها > تور اصفهان"
+        tourTitle="تور تهران به اصفهان"
+      />
+
 
       <RoomSelector
         title="اقامتگاه اصفهان"
@@ -25,7 +36,10 @@ const ReserveTour = () => {
         totalPrice={8000000}
         buttonLink="/payment"
       />
+      <div className="h-20" />
+      <Footer />
     </div>
+    
   );
 };
 

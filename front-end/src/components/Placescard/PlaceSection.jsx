@@ -4,7 +4,7 @@ import '../../components/Placescard/Places.css';
 
 const PlaceSection = ({ title, places, onMoreInfo }) => {
   return (
-    <div className="my-8">
+    <div className="my-8 ps-50 pe-50">
       <h2 className="place-section-title">{title}</h2>
 
       <div className="flex flex-wrap justify-center gap-6 place-section-row">
