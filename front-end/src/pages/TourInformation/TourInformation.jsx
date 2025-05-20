@@ -20,7 +20,7 @@ const TourInformation = () => {
     return ( 
         <>
             <Navbar />
-                <div className="w-auto h-[5.375rem] flex items-center gap-[1rem] pr-[2.25rem]">
+                <div className="w-auto h-[5.375rem] flex items-center gap-[1rem] pr-[2.25rem] mt-[7.5625rem]">
                     <hr className="h-[3.5rem] bg-[var(--color-orange)] w-[0.4rem] rounded-[8px] opacity-100"/>
                     <h2 className="!text-4xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 700}}>تور { origin } به { destination }</h2>
                 </div>
