@@ -29,4 +29,24 @@ class HomePageAPIView(APIView):
             'headers': HeaderImageSerializer(headers, many=True).data,  
         }
         return Response(data, status=status.HTTP_200_OK)
-print
+
+
+class TourPageAPIView(APIView):
+    def get(self, request):
+        # تورهای برتر (براساس قیمت یا امتیاز یا هر معیاری که دارید)
+        top_tours = Tour.objects.order_by('-price')[:3]
+        
+        # تورهای اخیر (جدیدترین تورها)
+        recent_tours = Tour.objects.order_by('-start_date')[:3]
+        
+        # همه تورها (برای لیست اصلی تورها)
+        all_tours = Tour.objects.all()
+        
+        # آماده کردن داده‌ها برای ارسال به فرانت‌اند
+        data = {
+            'top_tours': TourSerializer(top_tours, many=True).data,
+            'recent_tours': TourSerializer(recent_tours, many=True).data,
+            'all_tours': TourSerializer(all_tours, many=True).data,
+        }
+        
+        return Response(data, status=status.HTTP_200_OK)

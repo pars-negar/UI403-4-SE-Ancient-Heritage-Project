@@ -2,9 +2,12 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from datetime import timedelta
-
+import dj_database_url
 # Load environment variables from .env
 load_dotenv()
+
+
+DEBUG = False
 
 # ───── Base Directory ─────
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -12,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ───── Security Settings ─────
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'fallback-secret-key')
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = ['*']  # در production حتما محدود کنید
+ALLOWED_HOSTS = ['*']  
 
 # ───── Installed Apps ─────
 INSTALLED_APPS = [
@@ -40,6 +43,10 @@ INSTALLED_APPS = [
     'apps.faq',
     'apps.authentication',
     'apps.frontpage',
+    'admin_interface',
+  # 'django_admin_interface',
+    'colorfield',    
+
 ]
 
 # ───── Custom User Model ─────
@@ -55,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 # ───── URL & WSGI ─────
@@ -80,15 +89,9 @@ TEMPLATES = [
 
 # ───── Database (PostgreSQL) ─────
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'tour_project'),
-        'USER': os.getenv('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'tour1234'),
-        'HOST': os.getenv('POSTGRES_HOST', 'db'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
-    }
+    'default': dj_database_url.config(default = os.environ.get('DATABASE_URL'))
 }
+
 
 
 # ───── Password Validation ─────
@@ -106,9 +109,13 @@ USE_I18N = True
 USE_TZ = True
 
 # ───── Static & Media ─────
-STATIC_URL = 'static/'
+# ───── Static & Media ─────
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # ───── Default Field Type ─────
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -152,3 +159,24 @@ DEFAULT_FROM_EMAIL = 'Parsongar <noreply@parsongar.com>'
 
 # ───── API URLs for External Use ─────
 HADIR_HAWITY_API_URL = 'http://localhost:8000/api'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
+
+
+

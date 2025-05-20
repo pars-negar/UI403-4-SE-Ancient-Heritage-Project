@@ -1,13 +1,20 @@
-FROM python:3.11-slim
+# استفاده از تصویر پایه Python
+FROM python:3.12-slim
 
-# نصب git و distutils
-RUN apt-get update && apt-get install -y git python3-distutils
-
-# سایر دستورات نصب
+# تنظیم مسیر کاری به دایرکتوری پروژه که manage.py در آن است
 WORKDIR /app
-COPY requirements.txt .
+
+# کپی کردن requirements.txt و نصب وابستگی‌ها
+COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN pip install gunicorn
+
+# کپی کردن تمام فایل‌ها به کانتینر
 COPY . .
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# اجرای دستورات Django
+RUN python manage.py collectstatic --noinput
+
+# اجرای Gunicorn برای اجرای اپلیکیشن Django
+CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
