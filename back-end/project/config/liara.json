@@ -1,6 +1,6 @@
 {
   "platform": "django",
-  "app": "ancient-heritage",
+  "app": "parsnegar1",
   "project": ".",
   "port": 8000,
   "pythonVersion": "3.12",
