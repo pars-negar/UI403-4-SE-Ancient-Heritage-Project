@@ -22,7 +22,7 @@ const RoomSelector = ({ title, roomData }) => {
 
   return (
     <div className=" rounded-lg shadow-md p-4 w-fit mx-auto mt-10"  style={{borderLeft: "2px solid #205781", border: "2px solid #205781e2",borderBottom: "3px solid #205781e2", boxShadow: "1px 2px 10px 	#585858"}}>
-      <h2 className="!text-2xl font-bold text-right border-r-4 border-blue-800 pr-2 mb-4">
+      <h2 className="!text-2xl font-bold text-right border-r-4 border-blue-800 pr-2 mb-4" style={{fontFamily:'vazirmatn', fontWeight:700}}>
         {title}:
       </h2>
       <div className="flex flex-col md:flex-row gap-4">
@@ -31,7 +31,7 @@ const RoomSelector = ({ title, roomData }) => {
             key={index}
             className="flex items-center justify-between border rounded px-4 py-2 w-80"
           >
-            <div className="text-sm text-gray-700 whitespace-nowrap">
+            <div className="text-sm text-gray-700 whitespace-nowrap" style={{fontFamily:'vazirmatn', fontWeight:500}}>
               {room.label} (باقیمانده: {room.remaining})
             </div>
             <div className="flex items-center gap-2">
@@ -42,10 +42,10 @@ const RoomSelector = ({ title, roomData }) => {
                 –
               </button>
               <span className="w-6 text-center">{counts[index]}</span>
-              <span className="text-sm">اتاق</span>
+              <span className="text-sm"  style={{fontFamily:'vazirmatn', fontWeight:500}}>اتاق</span>
               <button
                 onClick={() => increment(index)}
-                className="text-lg text-blue-700 font-bold"
+                className="text-lg text-blue-700 font-bold"  style={{zIndex:22}}
               >
                 +
               </button>

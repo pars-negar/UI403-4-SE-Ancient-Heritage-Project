@@ -1,5 +1,5 @@
 import React, { useState } from 'react'; // Added React import for completeness
-import { Search } from "lucide-react";
+// import { Search } from "lucide-react";
 
 const periods = [
   "دوره‌ی هخامنشیان",
