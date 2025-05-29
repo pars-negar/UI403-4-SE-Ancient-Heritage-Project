@@ -28,7 +28,7 @@ const Home = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/api/homepage/");
+      const response = await axios.get("http://rethink.ir/api/homepage/");
       if (response && response.status === 200) {
         console.log(response.data);
         setTours(response.data.tours || []);
