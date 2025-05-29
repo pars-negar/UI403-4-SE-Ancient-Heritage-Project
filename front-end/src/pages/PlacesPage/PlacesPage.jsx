@@ -116,7 +116,7 @@ const PlacesPage = () => {
        <HeroSection text="جاذبه‌های تاریخی ایران" showImage={true} />
 
       <div className={styles.editSearch}>
-      {/* <SearchFilter /> */}
+      <SearchFilter />
       </div>
       <div className={styles.compJazebe}>
       <PlaceSection

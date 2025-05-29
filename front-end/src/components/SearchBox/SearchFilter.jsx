@@ -1,5 +1,5 @@
 import React, { useState } from 'react'; // Added React import for completeness
-// import { Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 const periods = [
   "دوره‌ی هخامنشیان",
@@ -40,7 +40,7 @@ function SearchFilter() {
 
   return (
 
-    <div className="!max-w-4xl !mx-auto !mt-16 !p-6 !rounded-2xl !border-4 !border-[var(--color-dark-blue)] !shadow-xl font-['Vazirmatn']" dir="rtl">
+    <div className="!max-w-4xl !mx-auto !mt-50 !p-6 !rounded-2xl !border-4 !border-[var(--color-dark-blue)] !shadow-xl font-['Vazirmatn']" dir="rtl">
       <div className="flex flex-col lg:flex-row justify-between items-center !gap-7">
         <div className="relative !w-full lg:!w-[40%] !rounded-[8px] order-1 lg:order-none"> 
           <input
