@@ -1,0 +1,6 @@
+{
+  "platform": "django",
+  "app": "parsnegarback",
+  "port": 3000,
+  "dockerfile": "Dockerfile"
+}
