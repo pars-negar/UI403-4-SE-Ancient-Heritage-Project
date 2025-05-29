@@ -12,7 +12,7 @@ const periods = [
   "دوره‌ی ایلخانیان",
 ];
 
-export default function SearchFilter() {
+function SearchFilter() {
   const [selectedPeriods, setSelectedPeriods] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProvince, setSelectedProvince] = useState('');
@@ -106,3 +106,4 @@ export default function SearchFilter() {
     </div>
   );
 }
+export default SearchFilter
