@@ -6,8 +6,9 @@ import "../../components/Placescard/Places.css";
 import styles from "./PlacesPage.module.css"
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
-import SearchBox from '../../components/SearchBox/SearchBox';
+import SearchFilter from '../../components/SearchBox/SearchFilter';
 import HeroSection from '../../components/Placescard/HeroSection';
+
 
 
 const popularPlaces = [
@@ -115,7 +116,7 @@ const PlacesPage = () => {
        <HeroSection text="جاذبه‌های تاریخی ایران" showImage={true} />
 
       <div className={styles.editSearch}>
-      <SearchBox />
+      {/* <SearchFilter /> */}
       </div>
       <div className={styles.compJazebe}>
       <PlaceSection

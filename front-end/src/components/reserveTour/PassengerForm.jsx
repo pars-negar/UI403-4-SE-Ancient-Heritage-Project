@@ -24,7 +24,7 @@ const generateYears = () => {
 
 const PassengerForm = ({ tourPath, tourTitle }) => {
   return (
-    <div className="p-0 max-w-4xl mx-auto" dir="rtl">
+    <div className="p-0  " dir="rtl">
       <div className="text-lg text-gray-700 text-right mt-[2.2rem] mb-[3.12rem]"  style={{fontFamily:'vazirmatn', fontWeight:400}}>{tourPath}</div>
 
       <div className="flex items-center text-right mr-0 mb-[9.5rem]">
@@ -32,7 +32,7 @@ const PassengerForm = ({ tourPath, tourTitle }) => {
         <h1 className="!text-3xl font-bold mt-[7.4rem]" style={{fontFamily:'vazirmatn', fontWeight:700}}>{tourTitle}</h1>
       </div>
 
-      <div className=" rounded-xl p-6 " style={{borderLeft: "2px solid #205781", borderBottom: "4px solid #205781e2", borderRight: "2px solid #205781", borderTop: "3px solid #205781", boxShadow: "1px 3px 10px 	#585858"}}>
+      <div className=" rounded-xl p-6 " style={{marginRight:"110px",marginLeft:"90px",borderLeft: "2px solid #205781", borderBottom: "4px solid #205781e2", borderRight: "2px solid #205781", borderTop: "3px solid #205781", boxShadow: "1px 3px 10px 	#585858"}}>
         <h2 className="text-center !text-xl font-semibold mb-4"  style={{fontFamily:'vazirmatn', fontWeight:700}}>
           اطلاعات مسافر
         </h2>
@@ -41,25 +41,25 @@ const PassengerForm = ({ tourPath, tourTitle }) => {
           <input
             type="text"
             placeholder="نام"
-            className=" rounded px-4 py-2 text-sm w-40"
+            className=" rounded px-4 py-2 text-sm w-55"
             style={{border: "2px solid #474747"}}
           />
           <input
             type="text"
             placeholder="نام خانوادگی"
-            className=" rounded px-4 py-2 text-sm w-40"
+            className=" rounded px-4 py-2 text-sm w-55"
             style={{border: "2px solid #474747"}}
           />
           <input
             type="number"
             placeholder="کد ملی"
-            className="rounded px-4 py-2 text-sm w-40"
+            className="rounded px-4 py-2 text-sm w-80"
             style={{border: "2px solid #474747"}}
           />
           <input
             type="tel"
             placeholder="شماره موبایل"
-            className="rounded px-5 py-3 text-base w-64"
+            className="rounded px-5 py-3 text-base w-94"
             style={{border: "2px solid #474747"}}
           />
         </div>
