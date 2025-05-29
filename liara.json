@@ -2,5 +2,5 @@
   "platform": "docker",
   "app": "UI403-4-SE-Ancient-Heritage-Project",
   "port": 3000,
-  "dockerComposePath": "docker-compose.yml"
+  "dockerfile": "Dockerfile"
 }
