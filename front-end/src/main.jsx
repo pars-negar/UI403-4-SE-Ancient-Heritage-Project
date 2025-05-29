@@ -27,7 +27,7 @@ import SetNewPassword from './pages/SetNewPassword/SetNewPassword.jsx';
 
 import TourInformation from './pages/ToursList/ToursList.jsx';
 import TourListPage from './pages/TourListPage/TourListPage.jsx';
-
+import HistoricSearch from './components/SearchBox/SearchFilter.jsx'
 
 
 
@@ -63,6 +63,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/success" element={<SuccessMassage/>} />
         <Route path="/tourInformation" element={<TourInformation/>} />
         <Route path="tourlistpage" element={<TourListPage/>}/>
+        <Route path="/historical" element={<HistoricSearch/>}/>
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}
         <Route exact path="/" element={ <Home />}></Route> 

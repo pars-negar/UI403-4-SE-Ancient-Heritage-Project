@@ -16,6 +16,7 @@
     "bootstrap": "^5.3.5",
     "front-end": "file:",
     "lightningcss": "^1.29.3",
+    "lucide-react": "^0.511.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
