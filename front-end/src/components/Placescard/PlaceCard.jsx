@@ -4,14 +4,17 @@ import '../Placescard/Places.css';
 
 const PlaceCard = ({ image, title, description, onMoreInfo }) => {
   return (
-    <div className="place-card">
-      <img src={image} alt={title} />
-      <div className="place-overlay">
-        <h2 className="place-title">{title}</h2>
-        <p className="place-desc">{description}</p>
+    <div className="places-card" style={{backgroundImage: `url(${image})`}}>
+      
+
+      <div className="places-overlay">
+        <h2 className="places-title">{title}</h2>
+        <div className="underline-orange"></div>
+        <p className="place-desc-overlay">{description}</p>
       </div>
+
       <button onClick={onMoreInfo} className="place-button">
-        <FaArrowLeft size={10} />
+        <FaArrowLeft style={{ marginLeft: '1px' }} />
       </button>
     </div>
   );

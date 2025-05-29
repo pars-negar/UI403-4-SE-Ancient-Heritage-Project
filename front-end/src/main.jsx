@@ -10,6 +10,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import TourismAttractionCard from "../src/components/Card/tourismAttractionCard.jsx";
 // import HomePage from "./pages/Home/Home.jsx";
 import "./App.css";
+
+import PlacesPage from '../src/pages/PlacesPage/PlacesPage.jsx';
+import ReserveTour from '../src/pages/reserveTour/ReserveTour.jsx';
+
 // import TourPage from "./pages/TourPage/TourPage.jsx";
 import Home from './pages/Home/Home.jsx';
 // import Footer from "./components/Footer/Footer.jsx"
@@ -25,7 +29,7 @@ import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
 import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
 import SetNewPassword from './pages/SetNewPassword/SetNewPassword.jsx';
 
-import TourInformation from './pages/ToursList/ToursList.jsx';
+import TourInformation from './pages/TourInformation/TourInformation.jsx';
 import TourListPage from './pages/TourListPage/TourListPage.jsx';
 import HistoricSearch from './components/SearchBox/SearchFilter.jsx'
 
@@ -60,6 +64,9 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/LoginSignUp/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
+        <Route exact path="/pp" element={ <PlacesPage/> }></Route>
+        <Route exact path="/rt" element={ <ReserveTour/> }></Route>
+
         <Route path="/success" element={<SuccessMassage/>} />
         <Route path="/tourInformation" element={<TourInformation/>} />
         <Route path="tourlistpage" element={<TourListPage/>}/>
