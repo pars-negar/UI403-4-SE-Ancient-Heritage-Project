@@ -28,7 +28,7 @@ import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
 import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
 import SetNewPassword from './pages/SetNewPassword/SetNewPassword.jsx';
-
+import ErrorPage from './pages/Error404/ErrorPage.jsx';
 import TourInformation from './pages/TourInformation/TourInformation.jsx';
 import TourListPage from './pages/TourListPage/TourListPage.jsx';
 import HistoricSearch from './components/SearchBox/SearchFilter.jsx'
@@ -64,6 +64,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/LoginSignUp/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
+        <Route exact path="*" element={ <ErrorPage/> }></Route>
         <Route exact path="/pp" element={ <PlacesPage/> }></Route>
         <Route exact path="/rt" element={ <ReserveTour/> }></Route>
 
