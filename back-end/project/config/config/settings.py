@@ -13,7 +13,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ───── Security ─────
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "unsafe-secret-key")
 DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
+ALLOWED_HOSTS = ["*"]
+
 
 # ───── Installed Apps ─────
 INSTALLED_APPS = [
