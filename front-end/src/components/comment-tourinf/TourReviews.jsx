@@ -81,7 +81,7 @@ const ReviewCard = ({
           <div className="flex items-center">
             {/* بلوک اطلاعات کاربر (اسم و تاریخ) */}
             <div className="flex flex-col items-end pt-1"> {/* pt-1 برای کمی پایین آوردن اسم و تاریخ */}
-              <p className="font-semibold text-lg text-gray-800">{userName}</p>
+              <p className="font-semibold text-lg text-gray-800" style={{fontFamily:'vazirmatn',fontWeight:700}}>{userName}</p>
               <p className="text-sm text-gray-500">
                 {toPersianNumber(userProfileDate)}
               </p>
@@ -102,11 +102,11 @@ const ReviewCard = ({
       </div>
 
       {/* متن نظر */}
-      <p className="text-gray-700 leading-relaxed mb-4">{reviewText}</p>
+      <p className="text-gray-700 leading-relaxed mb-4" style={{fontFamily:'vazirmatn',fontWeight:500}}>{reviewText}</p>
 
       {/* بخش لایک و دیسلایک */}
       <div className='flex justify-end'>
-        <span className="ml-4">آیا این نظر مورد پسند شما بود؟</span>
+        <span className="ml-4 text-gray-400" style={{fontFamily:'vazirmatn',fontWeight:500}}>آیا این نظر مورد پسند شما بود؟</span>
       <div className="flex w-24 ltr items-center text-sm text-gray-500">
         <button
           onClick={handleLike}
@@ -130,7 +130,6 @@ const ReviewCard = ({
 };
 
 
-// کامپوننت اصلی TourReviews (بدون تغییر)
 const TourReviews = ({ reviewsData }) => {
   const [visibleReviewsCount, setVisibleReviewsCount] = useState(3);
 
@@ -140,7 +139,7 @@ const TourReviews = ({ reviewsData }) => {
 
   return (
     <div className="font-sans max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-8">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6 border-r-4 border-orange-500 pr-2">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6 border-r-4 border-orange-500 pr-2" style={{fontFamily:'vazirmatn',fontWeight:700}}>
         نظرات کاربران
       </h2>
 
@@ -155,9 +154,6 @@ const TourReviews = ({ reviewsData }) => {
             reviewText={review.reviewText}
             initialLikes={review.initialLikes}
             initialDislikes={review.initialDislikes}
-            // اینجا profileImageSrc به صورت پیش‌فرض از defaultProfilePic استفاده می‌کنه
-            // اگر خواستی برای هر نظر عکس خاصی داشته باشی، باید اینجا پراپ رو پاس بدی
-            // profileImageSrc={review.profileImageSrc}
           />
         ))}
       </div>
