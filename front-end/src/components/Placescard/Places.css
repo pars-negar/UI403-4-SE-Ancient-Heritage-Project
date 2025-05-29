@@ -185,7 +185,7 @@
     background-color: white;
     border-radius: 20px;
     width: 450px;
-    height: 550px;
+    height: 500px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     text-align: right;
@@ -194,13 +194,12 @@
     flex-direction: column;
 }
 
-/* دکمه بستن */
 .place-modal-close {
     position: absolute;
     width: 36px;
     height: 36px;
-    top: 10px;
-    left: 10px;
+    top: 2px;
+    left: 5px;
     background: none;
     color: #FB8101;
     border: none;
@@ -217,12 +216,12 @@
     background-color: #f3f3f3;
 }
 
-/* تصویر بالای مدال */
 .place-modal-image {
     position: relative;
     width: 100%;
-    height: 50%; /* نیمی از مدال را بپوشاند */
+    height: 50%; 
     overflow: hidden;
+    margin-top: 40px;
 }
 
 .place-modal-image img {
@@ -231,19 +230,18 @@
     object-fit: cover;
 }
 
-/* عنوان روی تصویر */
+
 .place-modal-title {
     position: absolute;
-    bottom: -15px; /* فاصله بین عکس و متن */
     right: 16px;
+    top: 10px;
     background-color: white;
     padding: 4px 8px;
     border-radius: 6px;
-    font-size: 16px;
-    color: #FB8101;
+    font-size: 18px;
+    color: black;
 }
 
-/* محتوای اصلی مدال */
 .place-modal-content {
     flex: 1;
     padding: 16px;

@@ -32,7 +32,7 @@ const PlaceSection = ({ title, places, onMoreInfo }) => {
       <div className="place-section-header">
         {" "}
 
-        <h2 className="place-section-title">{title}</h2>
+        <h2 className="place-section-title" style={{ fontFamily: "vazirmatn", fontWeight: 700 }}>{title}</h2>
         <div className="scroll-buttons">
           {" "}
           <button onClick={scrollLeft} className="scroll-button">

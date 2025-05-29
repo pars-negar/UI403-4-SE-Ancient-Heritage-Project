@@ -6,7 +6,7 @@ const PlaceCard = ({ image, title, description, onMoreInfo }) => {
   return (
     <div className="places-card" style={{ backgroundImage: `url(${image})` }}>
       <div className="places-overlay">
-        <h2 className="places-title">{title}</h2>
+        <h2 className="places-title" style={{ fontFamily: "vazirmatn", fontWeight: 500 }}>{title}</h2>
         <div className="underline-orange"></div>
         <p className="place-desc-overlay">{description}</p>
       </div>

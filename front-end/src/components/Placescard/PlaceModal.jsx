@@ -12,7 +12,7 @@ const PlaceModal = ({ show, onClose, place }) => {
         </button>
 
         <div className="place-modal-header">
-          <h2 className="place-modal-title">{place.title}</h2>
+          <h2 className="place-modal-title" style={{ fontFamily: "vazirmatn", fontWeight: 500 }}>{place.title}</h2>
           <div className="place-modal-title-line"></div>
         </div>
 
@@ -20,7 +20,7 @@ const PlaceModal = ({ show, onClose, place }) => {
           <img src={place.image} alt={place.title} />
         </div>
 
-        <div className="place-modal-content">
+        <div className="place-modal-content" style={{ fontFamily: "vazirmatn", fontWeight: 500 }}>
           <p>{place.details}</p>
         </div>
       </div>

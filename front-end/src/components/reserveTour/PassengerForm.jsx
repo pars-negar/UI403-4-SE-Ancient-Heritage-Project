@@ -24,20 +24,19 @@ const generateYears = () => {
 
 const PassengerForm = ({ tourPath, tourTitle }) => {
   return (
-    <div className="p-0 max-w-4xl mx-auto mt-20" dir="rtl">
-      <div className="text-sm text-gray-700 text-right mb-2">{tourPath}</div>
+    <div className="p-0 max-w-4xl mx-auto" dir="rtl">
+      <div className="text-lg text-gray-700 text-right mt-[2.2rem] mb-[3.12rem]"  style={{fontFamily:'vazirmatn', fontWeight:400}}>{tourPath}</div>
 
-      <div className="flex items-center text-right mb-6">
+      <div className="flex items-center text-right mr-0 mb-[9.5rem]">
         <div className="w-1 h-6 bg-blue-700 ml-2"></div>
-        <h1 className="!text-3xl font-bold">{tourTitle}</h1>
+        <h1 className="!text-3xl font-bold mt-[7.4rem]" style={{fontFamily:'vazirmatn', fontWeight:700}}>{tourTitle}</h1>
       </div>
 
       <div className=" rounded-xl p-6 " style={{borderLeft: "2px solid #205781", borderBottom: "4px solid #205781e2", borderRight: "2px solid #205781", borderTop: "3px solid #205781", boxShadow: "1px 3px 10px 	#585858"}}>
-        <h2 className="text-center !text-xl font-semibold mb-4">
+        <h2 className="text-center !text-xl font-semibold mb-4"  style={{fontFamily:'vazirmatn', fontWeight:700}}>
           اطلاعات مسافر
         </h2>
 
-        {/* ردیف اول */}
         <div className="flex flex-wrap gap-4 mb-4 justify-start">
           <input
             type="text"

@@ -1,21 +1,22 @@
 // components/Placescard/HeroAndTitleSection.jsx
-import React from 'react';
-import '../Placescard/Places.css';
-import heroImage from '../../assets/images/HeroSection.png';
+import React from "react";
+import "../Placescard/Places.css";
+import heroImage from "../../assets/images/HeroSection.png";
 
 const HeroSection = ({ text, showImage = true }) => {
   return (
-    <section dir="rtl" className="w-full bg-white px-4 pt-8">
-      <div className="max-w-7xl mx-auto">
+    <section dir="rtl" className="w-full bg-white pt-8">
+      <div className="w-full">
         <div className="flex justify-start">
-          <h2 className="text-base md:text-lg font-bold text-gray-800 flex items-center text-right">
-            <span className="w-1 h-6 bg-orange-500 mr-4 inline-block rounded-sm"></span>
+          <h2
+            className="text-base md:text-lg font-bold !mt-[3.5rem] text-gray-800 flex items-center text-right pr-0 mr-0"
+            style={{ fontFamily: "vazirmatn", fontWeight: 700 }}
+          >
+            <span className="w-1 h-9 bg-orange-500 mr-4 ml-2 inline-block rounded-sm"></span>
             {text}
           </h2>
         </div>
       </div>
-
-      {/* تصویر زیر عنوان (اختیاری) */}
       {showImage && (
         <div className="mt-8 flex justify-center">
           <img
