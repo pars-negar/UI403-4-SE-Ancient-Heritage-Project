@@ -9,15 +9,18 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
   web:
-    build: .
-    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    build:
+      context: ./back-end/project/config
+      dockerfile: Dockerfile
+
+    command: gunicorn config.config.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - .:/app
-      - ./static:/app/static  # اضافه شده
-      - ./media:/app/media     # اضافه شده
+      - ./back-end:/app
+      - ./static:/app/static
+      - ./media:/app/media
     ports:
       - "8000:8000"
     depends_on:
@@ -31,7 +34,12 @@ services:
       POSTGRES_HOST: db
       POSTGRES_PORT: 5432
 
+  frontend:
+    build: ./front-end
+    ports:
+      - "3000:80"
+    depends_on:
+      - web
+
 volumes:
   postgres_data:
-  static_data:    # اضافه شده
-  media_data:     # اضافه شده

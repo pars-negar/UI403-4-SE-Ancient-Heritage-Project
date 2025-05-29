@@ -22,7 +22,7 @@ const UserPanel = () => {
             </div>
             <div className='flex flex-col justify-center w-full h-auto mt-[4.25rem] items-center'>
                 <img src={ userAvatar } alt="user-avatar" className='w-[11.1875rem] h-[11.1875rem] rounded'/>
-                <h4 className='!text-3xl !font-bold !mt-[0.875rem]' style={{fontFamily: 'Vazirmatn', fontFamily: 500}}>محمدرضا مرادی</h4>
+                <h4 className='!text-3xl !font-bold !mt-[0.875rem]' style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>محمدرضا مرادی</h4>
                 <h4 className='!text-2xl !mt-[0.635rem] !mb-[2.9375rem]' style={{fontFamily: 'Vazirmatn', fontStyle: 400}}>مسئول تور</h4>
             </div>
             <div className='w-[26.26rem]'>
