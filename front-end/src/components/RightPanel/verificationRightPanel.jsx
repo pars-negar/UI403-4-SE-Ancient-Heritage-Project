@@ -16,10 +16,7 @@ const RightPanel = () => {
 
   const isCodeComplete = code.every((digit) => digit !== "");
 
-  const handleSubmit = async () => {
-    const phoneNumber = localStorage.getItem("pendingPhoneNumber");
-  alert(phoneNumber)
-  
+
     // بررسی وجود شماره تلفن
     if (!phoneNumber) {
       alert("شماره تلفن یافت نشد.");
@@ -35,7 +32,7 @@ const RightPanel = () => {
     console.log("OTP Code:", fullCode); // برای بررسی
   
     try {
-      const response = await fetch("http://localhost:8000/api/verify-otp/", {
+      const response = await fetch("https://parsnegarback.liara.run/api/verify-otp/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,3 +1,5 @@
+// import TourCard from "./TourCard";
+
 
 
 const TourInfoCard = ({ title, destination, duration, price, imageUrl }) => {

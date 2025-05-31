@@ -34,7 +34,7 @@ const handleSubmit = async (event) => {
     };
 
     try {
-        const response = await fetch('http://localhost:8000/api/userregister/', {
+        const response = await fetch('https://parsnegarback.liara.run/api/userregister/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

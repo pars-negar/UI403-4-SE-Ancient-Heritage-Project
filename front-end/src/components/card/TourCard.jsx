@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./tourcard.module.css";
+// import TourInfoCard from "./TourInfoCard";
 
 const TourCard = ({ tour }) => {
   const stars = "⭐".repeat(tour.rating) + "☆".repeat(5 - tour.rating);
@@ -13,7 +14,7 @@ const TourCard = ({ tour }) => {
 
   return (
     <div className="tour-card">
-      <img src={`http://127.0.0.1:8000${tour.main_image}`} alt={tour.title} />
+      <img src={`http://parsnegarback.liara.run${tour.main_image}`} alt={tour.title} />
       <h3>{tour.title}</h3>
       <div className="stars">{stars}</div>
       <p>
