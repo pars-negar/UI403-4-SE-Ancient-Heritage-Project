@@ -12,7 +12,7 @@ const TourCard = ({ tour }) => {
   
 
   return (
-    <div className="tour-card">
+    <div className={ styles.tourCard }>
       <img src={`http://127.0.0.1:8000${tour.main_image}`} alt={tour.title} />
       <h3>{tour.title}</h3>
       <div className="stars">{stars}</div>
