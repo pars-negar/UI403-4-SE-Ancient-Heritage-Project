@@ -10,7 +10,9 @@ const TourCards = ({ tours }) => {
         <h2>
           تورهای برتر
           <span className={styles.verticalLine}></span>
-          <span style={{ color: "#999", fontWeight: "normal" }}>تورهای اخیر</span>
+          <span style={{ color: "#999", fontWeight: "normal" }}>
+            تورهای اخیر
+          </span>
         </h2>
         <Link to="/tours" className={styles.moreLink}>
           مشاهده بیشتر
@@ -58,4 +60,3 @@ const TourCards = ({ tours }) => {
 };
 
 export default TourCards;
-
