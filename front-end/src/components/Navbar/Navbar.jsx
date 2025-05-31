@@ -34,9 +34,8 @@ const Navbar = () => {
                         text-center
                         font-[499] 
                         rounded-[40px]
-                        py-[0.125rem]
                         w-[10.125rem]
-                        h-[3rem]
+
                         "
 
                     style={{
@@ -45,7 +44,7 @@ const Navbar = () => {
                     >
                 ورود/ثبت‌نام</Link>
                         
-                <hr className="bottomLine" />
+                <hr className="border !border-[var(--color-brown)] opacity-100 w-full h-[0.1rem] m-0" />
             </nav>
       
     );

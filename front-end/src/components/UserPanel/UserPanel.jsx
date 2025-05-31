@@ -4,8 +4,8 @@ import logo from '../../assets/icons/logo.svg'
 import userAvatar from '../../assets/images/user-avatar.png'
 import home from '../../assets/icons/home.svg'
 import userProfile from '../../assets/icons/user-profile.svg'
-import travel from '../../assets/icons/travel.svg'
-import arrowDown from '../../assets/icons/arrow-down.svg'
+// import travel from '../../assets/icons/travel.svg'
+// import arrowDown from '../../assets/icons/arrow-down.svg'
 import logout from '../../assets/icons/logout.svg'
 
 

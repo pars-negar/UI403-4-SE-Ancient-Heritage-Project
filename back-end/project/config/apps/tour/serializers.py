@@ -2,13 +2,6 @@ from rest_framework import serializers
 from .models import Attraction
 from .models import Tour
 
-class TourCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tour
-        fields = '__all__'
-        read_only_fields = ['tour_manager']
-
-
 class Attractionserializers(serializers.ModelSerializer):
     class Meta:
         model=Attraction
@@ -58,10 +51,10 @@ class TourFilterSerializer(serializers.Serializer):
 
 
 # Serializer for the Attraction model - used for serializing and deserializing Attraction instances
-#class Attractionserializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = Attraction  # Specifies the model to serialize
-#         fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
+class Attractionserializers(serializers.ModelSerializer):
+    class Meta:
+        model = Attraction  # Specifies the model to serialize
+        fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
 
 
 

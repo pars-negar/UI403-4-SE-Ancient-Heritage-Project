@@ -55,12 +55,3 @@ a {
     text-decoration: none;
 }
 
-
-.bottomLine {
-    background-color: var(--form-input-borders);
-    height: 0.2rem;
-    border: none;
-    width: 100%;
-    display: block;
-    margin: 0px;
-}

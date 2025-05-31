@@ -10,6 +10,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import TourismAttractionCard from "../src/components/Card/tourismAttractionCard.jsx";
 // import HomePage from "./pages/Home/Home.jsx";
 import "./App.css";
+
+import PlacesPage from '../src/pages/PlacesPage/PlacesPage.jsx';
+import ReserveTour from '../src/pages/reserveTour/ReserveTour.jsx';
+
 // import TourPage from "./pages/TourPage/TourPage.jsx";
 import Home from './pages/Home/Home.jsx';
 // import Footer from "./components/Footer/Footer.jsx"
@@ -24,8 +28,12 @@ import LoginPage from "./pages/LoginPage/LoginPage.jsx"
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
 import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
 import SetNewPassword from './pages/SetNewPassword/SetNewPassword.jsx';
-import ToursList from './pages/ToursList/ToursList.jsx';
+import ErrorPage from './pages/Error404/ErrorPage.jsx';
 import TourInformation from './pages/TourInformation/TourInformation.jsx';
+import TourListPage from './pages/TourListPage/TourListPage.jsx';
+import HistoricSearch from './components/SearchBox/SearchFilter.jsx'
+
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -56,9 +64,14 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/LoginSignUp/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
+        <Route exact path="*" element={ <ErrorPage/> }></Route>
+        <Route exact path="/pp" element={ <PlacesPage/> }></Route>
+        <Route exact path="/rt" element={ <ReserveTour/> }></Route>
+
         <Route path="/success" element={<SuccessMassage/>} />
-        <Route path="/tourslist" element={<ToursList/>} />
         <Route path="/tourInformation" element={<TourInformation/>} />
+        <Route path="tourlistpage" element={<TourListPage/>}/>
+        <Route path="/historical" element={<HistoricSearch/>}/>
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}
         <Route exact path="/" element={ <Home />}></Route> 
@@ -66,7 +79,7 @@ createRoot(document.getElementById('root')).render(
         {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
         {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
         <Route exact path="/setnewpass" element={ < SetNewPassword/>}></Route>
-
+        {/* <Route exact path="/tourlist" element={<TourList/>}></Route> */}
      
       </Routes>
     </Router>
