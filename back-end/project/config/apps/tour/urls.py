@@ -18,5 +18,3 @@ urlpatterns = [
     path('create_tour/', CreateTourAPIView.as_view(), name='create_tour'),
     path('register/<int:tour_id>/', TourRegisterAPIView.as_view(), name='tour-register'),  # اصلاح شد
 ]
-print("gjidgjgjxttkhtkhtkhtkhdddddrth")
-print("gjidgjgjxttkhtkhtkhtkhdddddrth")

@@ -12,3 +12,4 @@ class TourCreateSerializer(serializers.ModelSerializer):
         if request and hasattr(request, 'user'):
             validated_data['tour_manager'] = request.user
         return super().create(validated_data)
+    
