@@ -1,7 +1,7 @@
 
 {
-  "platform": "python",
-  "app": "ancient-heritage",
+  "platform": "django",
+  "app": "parsnegarback",
   "port": 8000,
   "pythonVersion": "3.12",
   "command": "gunicorn config.wsgi --bind 0.0.0.0:8000"

@@ -1,6 +1,0 @@
-{
-  "platform": "docker",
-  "app": "UI403-4-SE-Ancient-Heritage-Project",
-  "port": 3000,
-  "dockerfile": "Dockerfile"
-}
