@@ -51,19 +51,6 @@ urlpatterns = [
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/', include('apps.authentication.urls')),
     path('api/homepage/', include('apps.frontpage.urls')),
-<<<<<<< Updated upstream
-    
-    
-   # path('api/tour/', include('apps.tour.urls')),
 
+    
 ]+ user_urls + FAQ_urls + tour_urls+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-=======
-   # path('api/tour/', include('apps.tour.urls')),# این تازه اضافه شد
-    
-   
-]+ user_urls + FAQ_urls + tour_urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
->>>>>>> Stashed changes
-
-
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
