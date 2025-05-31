@@ -33,12 +33,12 @@ user_urls = [
     path('', include('apps.users.urls')),
     path('api/', include('apps.authentication.urls')),      
 ]
-tour_urls=[
-    path('', include('apps.tour.urls')),
-]
+# tour_urls=[
+#     path('api/tour', include('apps.tour.urls')),
+# ]
 
 FAQ_urls= [
-    path('', include('apps.faq.urls')),
+    path('api/faq', include('apps.faq.urls')),
 ]
 
 urlpatterns = [
@@ -49,8 +49,11 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    path('api/', include('apps.authentication.urls')),
     path('api/homepage/', include('apps.frontpage.urls')),
+    #path('api/tour/', include('apps.tour.urls')),# اینم اضافه شد
 
     
-]+ user_urls + FAQ_urls + tour_urls+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ user_urls + FAQ_urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+ 
