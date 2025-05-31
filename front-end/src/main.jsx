@@ -65,7 +65,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
         <Route exact path="*" element={ <ErrorPage/> }></Route>
-        <Route exact path="/pp" element={ <PlacesPage/> }></Route>
+        <Route exact path="/place" element={ <PlacesPage/> }></Route>
         <Route exact path="/rt" element={ <ReserveTour/> }></Route>
 
         <Route path="/success" element={<SuccessMassage/>} />
