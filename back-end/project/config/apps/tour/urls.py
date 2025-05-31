@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import  AttractionViewSet , TourSearchView , AttractionSearchAPIView
+from .views import  AttractionViewSet , TourSearchView , AttractionSearchAPIView, TourDetailAPIView
 
 router = DefaultRouter()
 router.register(r'attraction', AttractionViewSet, basename='attraction')
@@ -15,5 +15,6 @@ urlpatterns = [
 
     # Custom endpoint for searching tours using filters like origin, destination, dates
     path('api/toursearch/', TourSearchView.as_view(), name='toursearch'),
-]
 
+    path('tours/<int:pk>/', TourDetailAPIView.as_view(), name='tour-detail'),
+]
