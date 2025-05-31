@@ -52,11 +52,7 @@ urlpatterns = [
     path('api/', include('apps.authentication.urls')),
     path('api/homepage/', include('apps.frontpage.urls')),
     
-    
-   # path('api/tour/', include('apps.tour.urls')),
 
 ]+ user_urls + FAQ_urls + tour_urls+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
