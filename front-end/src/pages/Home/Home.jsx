@@ -47,7 +47,7 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
+    <div className="home rtl" >
       <Navbar />
       {/* Carousel Section */}
       <div className={styles.carousel}>
