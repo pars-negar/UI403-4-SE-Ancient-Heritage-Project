@@ -10,11 +10,14 @@ const PlaceModal = ({ show, onClose, place }) => {
         <button onClick={onClose} className="place-modal-close">
           &times;
         </button>
-
-        <div className="place-modal-header">
-          <h2 className="place-modal-title" style={{ fontFamily: "vazirmatn", fontWeight: 500 }}>{place.title}</h2>
-          <div className="place-modal-title-line"></div>
+        <div className="row">
+          <div className="col-7 bg-amber-200">
+              <h2 className="" style={{ fontFamily: "vazirmatn", fontWeight: 500 }}>{place.title}</h2>
+          </div>
+          <div className="col-5 bg-amber-500 h-5"></div>
         </div>
+
+        
 
         <div className="place-modal-image">
           <img src={place.image} alt={place.title} />
