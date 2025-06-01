@@ -1,5 +1,4 @@
 import Toggle from './Toggle'
-
 import logo from '../../assets/icons/logo.svg'
 import userAvatar from '../../assets/images/user-avatar.png'
 import home from '../../assets/icons/home.svg'

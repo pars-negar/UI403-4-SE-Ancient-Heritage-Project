@@ -32,6 +32,7 @@ import ErrorPage from './pages/Error404/ErrorPage.jsx';
 import TourInformation from './pages/TourInformation/TourInformation.jsx';
 import TourListPage from './pages/TourListPage/TourListPage.jsx';
 import HistoricSearch from './components/SearchBox/SearchFilter.jsx'
+import TourRegPage from './pages/TourRegistrationList/TourRegPage.jsx';
 
 
 
@@ -67,6 +68,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="*" element={ <ErrorPage/> }></Route>
         <Route exact path="/place" element={ <PlacesPage/> }></Route>
         <Route exact path="/rt" element={ <ReserveTour/> }></Route>
+        <Route exact path="/trp" element={ <TourRegPage/> }></Route>
 
         <Route path="/success" element={<SuccessMassage/>} />
         <Route path="/tourInformation" element={<TourInformation/>} />
