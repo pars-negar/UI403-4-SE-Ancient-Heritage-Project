@@ -32,6 +32,7 @@ import ErrorPage from './pages/Error404/ErrorPage.jsx';
 import TourInformation from './pages/TourInformation/TourInformation.jsx';
 import TourListPage from './pages/TourListPage/TourListPage.jsx';
 import HistoricSearch from './components/SearchBox/SearchFilter.jsx'
+import ProfileTourListPage from './pages/ProfileTourListPage/ProfileTourListPage.jsx';
 
 
 
@@ -39,6 +40,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
       <Routes>
+       <Route exact path="/profiletour" element={ <ProfileTourListPage/> }></Route>
 
         {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
         {/*<Route exact path="/" element={ <TourleaderSignUp/> }></Route>}
