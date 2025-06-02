@@ -89,7 +89,12 @@ TEMPLATES = [
 
 # ───── Database (PostgreSQL) ─────
 DATABASES = {
-    'default': dj_database_url.config(default = os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL')),
+}
+
+# تنظیم نام دیتابیس تست برای جلوگیری از تداخل
+DATABASES['default']['TEST'] = {
+    'NAME': 'test_' + DATABASES['default']['NAME']
 }
 
 
