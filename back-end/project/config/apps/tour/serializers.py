@@ -2,6 +2,30 @@ from rest_framework import serializers
 from .models import Attraction
 from .models import Tour
 
+
+
+class TourCreateSerializer(serializers.ModelSerializer):
+
+    tour_manager = serializers.PrimaryKeyRelatedField(read_only=True)
+
+    class Meta:
+        model = Tour
+        #exclude = ['tour_manager']  # از کاربر گرفته میشه نه از فرانت
+        
+        fields = '__all__'  # همه فیلدها از جمله tour_manager از فرانت دریافت می‌شن
+
+    def create(self, validated_data):
+        # اگر tour_manager از فرانت نیومده بود، از user لاگین‌شده استفاده کن
+        if 'tour_manager' not in validated_data:
+            request = self.context.get('request')
+            if request and request.user.is_authenticated:
+                validated_data['tour_manager'] = request.user
+        return super().create(validated_data)
+
+
+
+
+
 class Attractionserializers(serializers.ModelSerializer):
     class Meta:
         model=Attraction
@@ -51,10 +75,10 @@ class TourFilterSerializer(serializers.Serializer):
 
 
 # Serializer for the Attraction model - used for serializing and deserializing Attraction instances
-class Attractionserializers(serializers.ModelSerializer):
-    class Meta:
-        model = Attraction  # Specifies the model to serialize
-        fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
+#class Attractionserializers(serializers.ModelSerializer):
+ #   class Meta:
+  #      model = Attraction  # Specifies the model to serialize
+   #     fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
 
 
 
