@@ -2,9 +2,9 @@
 import React from "react";
 import { FaArrowLeftLong } from "react-icons/fa6"; 
 
-const PlaceCard = ({ image, title, description, onMoreInfo }) => {
+const PlaceCard = ({ card_image, title, description, onMoreInfo }) => {
   return (
-    <div className="places-card" style={{ backgroundImage: `url(${image})` }}>
+    <div className="places-card" style={{ backgroundImage: `url(${card_image})` }}>
       <div className="places-overlay">
         <h2 className="places-title" style={{ fontFamily: "vazirmatn", fontWeight: 500 }}>{title}</h2>
         <div className="underline-orange"></div>
