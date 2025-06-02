@@ -31,7 +31,6 @@ const tours = [
 const TourInfoList = () => {
   return (
     <div className="p-8 text-right">
-      <h1 className="text-xl font-bold mb-6 border-r-4 border-[#205781] pr-1.5 ">لیست تورها</h1>
       <div className="flex flex-col content-center items-center mt-5">{tours.map((tour, index) => (
         <TourInfoCard key={index} {...tour} />
       ))}
