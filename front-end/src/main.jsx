@@ -34,6 +34,8 @@ import TourListPage from './pages/TourListPage/TourListPage.jsx';
 import HistoricSearch from './components/SearchBox/SearchFilter.jsx'
 import ProfileTourListPage from './pages/ProfileTourListPage/ProfileTourListPage.jsx';
 import TourRegPage from './pages/TourRegistrationList/TourRegPage.jsx';
+import AddNewTour from './pages/AddNewTourPage/AddNewTour.jsx';
+
 
 
 
@@ -43,6 +45,7 @@ createRoot(document.getElementById('root')).render(
     <Router>
       <Routes>
        <Route exact path="/profiletour" element={ <ProfileTourListPage/> }></Route>
+       <Route exact path="/addtour" element={ <AddNewTour/> }></Route>
 
         {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
         {/*<Route exact path="/" element={ <TourleaderSignUp/> }></Route>}
