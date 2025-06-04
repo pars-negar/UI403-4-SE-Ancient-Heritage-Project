@@ -12,7 +12,7 @@ const Toggle = () => {
         <div className={`${isOpen ? 'bg-[var(--color-orange-light)]' : ''} transition-colors h-auto`}>
             <button 
                 onClick={() => setIsOpen(!isOpen)}
-                className='relative 
+                className={`relative 
                            h-[3.2875rem] 
                            flex 
                            gap-[0.6rem] 
@@ -20,17 +20,15 @@ const Toggle = () => {
                            pr-[1.4375rem]  
                            !m-0 
                            !w-full
-                           !text-[var(--color-gray)]
-                         hover:text-black
-                           hover:font-bold
+                           ${isOpen ? 'text-black font-bold' : '!text-[var(--color-gray)] hover:text-black hover:font-bold'}
                            cursor-pointer
-                           group'
-                >           
+                           group
+            `}>           
                 {/* <img src={ travel } alt="travel" className='w-[1.625rem] h-[1.625rem]' /> */}
-                <ManageIcon className="text-[var(--color-gray)] group-hover:text-black" />
-                <span className='text-[var()] text-xl group-hover:text-black group-hover:font-bold'>مدیریت تورها</span>
+                <ManageIcon className={`${isOpen ? 'text-black' : 'text-[var(--color-gray)] group-hover:text-black'}`} />
+                <span className='text-xl group-hover:text-black group-hover:font-bold'>مدیریت تورها</span>
                 {/* <img src={ arrowDown } alt="arrow-down" className='absolute left-[1.1875rem]' /> */}
-                <DropDownIcon className="text-[var(--color-gray)] group-hover:text-black absolute left-[1.1875rem]"/>
+                <DropDownIcon className={`${isOpen ? 'text-black' : 'text-[var(--color-gray)] group-hover:text-black'} absolute left-[1.1875rem]`}/>
 
             </button>
 
