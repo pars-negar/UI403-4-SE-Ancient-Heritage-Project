@@ -1,4 +1,5 @@
 import UserPanel from "../../components/UserPanel/UserPanel";
+import './profile-tour-leader.css'
 
 const ProfileTourLeader = () => {
     return ( 
@@ -8,13 +9,74 @@ const ProfileTourLeader = () => {
                     <UserPanel />
                 </div>
                 <div className="bg-[var(--color-light-gray)] w-full h-[100vh] flex flex-col justify-center items-center"> 
-                    <div className="flex "> 
-                        <hr className='!w-[5px] !h-[3.5rem] border-none !bg-[var(--color-orange)] opacity-100 rounded-[8px] !ml-[0.4375rem]'/>
-                        <h3 className='!text-4xl' style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>پنل کاربری</h3>
+                    <hr className="bg-[--color-gray] w-full !mt-[2rem]"/>
+                    <div className="flex justify-start items-center w-full mr-[16rem]"> 
+                        <hr className='!w-[5px] !h-[2.75rem] border-none !bg-[var(--color-dark-blue)] opacity-100 rounded-[8px] !ml-[0.4375rem]'/>
+                        <h3 className='!text-4xl' style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>اطلاعات حساب کاربری</h3>
                     </div>
-                    <div className="w-[52.9375rem] h-[40rem] rounded-[30px] bg-white">
-                        <form action="submit">
-
+                    <div className="flex justify-center items-center w-[52.9375rem] h-[36rem] rounded-[30px] bg-white">
+                        <form action="submit" className="">
+                            <div className="w-full flex flex-col gap-[1rem]" style={{ fontFamily: 'Vazirmatn', fontWeight: 700}}>
+                                <div className="flex gap-[3rem]">
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">نام</label>
+                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">نام خانوادگی</label>
+                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                </div>
+                                <div className="flex gap-[3rem]">
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">کد ملی</label>
+                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">تاریخ تولد</label>
+                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                </div>
+                                <div className="flex gap-[3rem]">
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">شماره موبایل</label>
+                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">ایمیل(اختیاری)</label>
+                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                </div>
+                                <div className="flex gap-[3rem]">
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">استان</label>
+                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">شهر</label>
+                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                </div>
+                                <div className="flex gap-[3rem]">
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">نام شرکت</label>
+                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">شماره ثبت شرکت</label>
+                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                </div>
+                                 <div className="flex flex-col gap-[0.3rem]">
+                                    <label htmlFor="">آدرس شرکت</label>
+                                    <input type="text" className="w-full h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                </div>
+                                <div className="flex justify-end w-full profiletourleaderbutton">
+                                    <div className="w-[10rem]">
+                                        <button className="profiletourleaderbutton bg-[var(--color-dark-blue)] text-white !w-[10rem] !h-[3rem] flex justify-center items-center">ثبت اطلاعات</button>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
