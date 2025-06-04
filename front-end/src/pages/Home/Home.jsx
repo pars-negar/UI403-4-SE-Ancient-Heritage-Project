@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import TourCards from "../../components/Card/TourCard";
+import TourCard from "../../components/Card/TourCard";
 import CityAttraction from "../../components/Card/CityAttraction";
 import Comments from "../../components/Comments/Testimonials";
 import FAQAccordion from "../../components/FAQ/FAQAccordion";

@@ -4,31 +4,6 @@ import styles from "./tourcard.module.css";
 
 const TourCards = ({ tours }) => {
   return (
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <div className={ styles.tourCard }>
-      <img src={`http://127.0.0.1:8000${tour.main_image}`} alt={tour.title} />
-=======
-    <div className="tour-card">
-      <img src={`http://parsnegarback.liara.run${tour.main_image}`} alt={tour.title} />
->>>>>>> 8828fe30bcde543f66ced130678f80f248e1566a
-      <h3>{tour.title}</h3>
-      <div className="stars">{stars}</div>
-      <p>
-        هزینه تور
-        <span className={styles.verticalLine}></span>
-        {parseInt(tour.price).toLocaleString("fa-IR")} تومان
-        {tour.duration}
-      </p>
-      <p>
-        مدت زمان
-        <span className={styles.verticalLine}></span>
-        {durationInDays} روز
-      </p>
-      <Link to={`/tour/${tour.id}`}>
-        <button>جزئیات بیشتر</button>
-      </Link>
-=======
     <div>
       {/* عنوان بالا */}
       <div className={styles.sectionHeader}>
@@ -46,7 +21,7 @@ const TourCards = ({ tours }) => {
 
       {/* کارت‌ها */}
       <div className={styles.cardContainer}>
-        {tours.map((tour) => {
+        {tours && tours.map((tour) => {
           const stars = "⭐".repeat(tour.rating) + "☆".repeat(5 - tour.rating);
           const startDate = new Date(tour.start_date);
           const endDate = new Date(tour.end_date);
@@ -80,7 +55,6 @@ const TourCards = ({ tours }) => {
           );
         })}
       </div>
->>>>>>> bddb0ca2bc98ddbc93efc559cf8932a0c902bad4
     </div>
   );
 };
