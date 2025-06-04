@@ -1,5 +1,8 @@
 from django.db import models
 from apps.users.models import CustomUser  
+import django_jalali.db.models as jmodels
+
+
 
 
 class Attraction(models.Model):
@@ -34,27 +37,26 @@ class Attraction(models.Model):
 class Tour(models.Model):
     tour_name = models.CharField(max_length=255)
     description = models.TextField()
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-   # capacity = models.IntegerField()
-    capacity = models.PositiveIntegerField(default=0)  # حداکثر ظرفیت تور (این جدید اضافه شد)
+    start_date = jmodels.jDateField(verbose_name="تاریخ شروع")
+    end_date= jmodels.jDateField(verbose_name="تاریخ بازگشت")
+    departure_time = models.TimeField(null=True, blank=True, verbose_name="ساعت حرکت")
+    return_time = models.TimeField(null=True, blank=True, verbose_name="ساعت برگشت")
     attractions = models.ManyToManyField(Attraction, related_name="tours")
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    capacity = models.PositiveIntegerField()
     origin = models.CharField(max_length=255)
     destination = models.CharField(max_length=255)
-    departure_location = models.CharField(max_length=255, blank=True, null=True)
+    main_image = models.ImageField(upload_to='tours/', null=True, blank=True)
+
+    accommodation = models.TextField(blank=True, null=True)
     meal_details = models.TextField(blank=True, null=True)
     transportation = models.TextField(blank=True, null=True)
-    tour_guides_info = models.TextField(blank=True, null=True, help_text="نام و تخصص و شغل راهنمایان تور را وارد کنید.")
-    accommodation = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='tours/', blank=True, null=True)
-    
-    related_tours = models.ManyToManyField(
-        'self',
-        symmetrical=False,
-        blank=True,
-        related_name='similar_tours',
-        help_text='تورهایی که از نظر مقصد، قیمت یا خدمات مشابه این تور هستند.'
+    travel_insurance = models.TextField(blank=True, null=True)
+    tourism_services = models.TextField(blank=True, null=True)
+    tour_guides_info = models.TextField(blank=True, null=True)
+
+    tour_manager = models.ForeignKey(
+        CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name='managed_tours'
     )
 
     company_name = models.CharField(max_length=255)
@@ -63,39 +65,22 @@ class Tour(models.Model):
     company_email = models.EmailField(blank=True, null=True)
     company_website = models.URLField(blank=True, null=True)
 
-    travel_insurance = models.TextField(blank=True, null=True)
-    tourism_services = models.TextField(blank=True, null=True)
-    daily_schedule = models.TextField(blank=True, null=True)
-
-    tour_manager = models.ForeignKey(
-        CustomUser, 
-        on_delete=models.SET_NULL, 
-        related_name='managed_tours', 
-        null=True, 
-        blank=True
-    )
+    related_tours = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='similar_tours')
 
     def __str__(self):
         return self.tour_name
-    #ا این بخش اضافه شد 
-    @property
-    def is_expired(self):
-        from datetime import datetime
-        return datetime.now() > self.end_date
 
-class TourRegistration(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='tour_registrations') # این اضافه شد
-    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='registrations')
-    registered_at = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        unique_together = ('user', 'tour')  # یک کاربر نمی‌تونه دوبار در یک تور ثبت‌نام کنه
+class DailySchedule(models.Model):
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='daily_schedules')
+    day_number = models.PositiveIntegerField()
+    title = models.CharField(max_length=255, help_text='مثلاً روز اول')
+    description = models.TextField()
+    image = models.ImageField(upload_to='daily_schedules/', null=True, blank=True)
 
     def __str__(self):
-        return f"{self.user.phone_number} -> {self.tour.tour_name}"
+        return f"{self.tour.tour_name} - {self.title}"
 
-<<<<<<< HEAD
-=======
 
 
 class Review(models.Model):
@@ -110,12 +95,11 @@ class Review(models.Model):
 
 
 
-# class Booking(models.Model):
-#     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='bookings')
-#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-#     num_passengers = models.PositiveIntegerField()
-#     booking_date = models.DateTimeField(auto_now_add=True)
+class Booking(models.Model):
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='bookings')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    num_passengers = models.PositiveIntegerField()
+    booking_date = models.DateTimeField(auto_now_add=True)
 
-#     def __str__(self):
-#         return f"{self.user.username} - {self.tour.tour_name}"
->>>>>>> bddb0ca2bc98ddbc93efc559cf8932a0c902bad4
+    def __str__(self):
+        return f"{self.user.username} - {self.tour.tour_name}"
