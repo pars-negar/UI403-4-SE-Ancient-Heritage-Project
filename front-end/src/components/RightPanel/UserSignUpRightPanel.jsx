@@ -34,7 +34,7 @@ const handleSubmit = async (event) => {
     };
 
     try {
-        const response = await fetch('http://localhost:8000/api/userregister/', {
+        const response = await fetch('https://parsnegarback.liara.run/api/userregister/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -137,9 +137,10 @@ return (
 
             {errorMessage && <p className="text-danger">{errorMessage}</p>}
             <div className={styles.formContainer}>
-                <Link to='/verify-otp'>
-                    <button className={ styles.button }>تایید</button>
-                </Link>
+              
+    <button type="submit" className={styles.button}>تایید</button>
+
+
             </div>
         </Form>
     

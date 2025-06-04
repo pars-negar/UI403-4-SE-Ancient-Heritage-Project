@@ -30,7 +30,7 @@ const Home = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get("https://parsnegarback.liara.run/api/homepage/");
+      const response = await axios.get("https://parsnegarback.liara.run/api/homepage");
       if (response && response.status === 200) {
         console.log(response.data);
         setTours(response.data.tours || []);

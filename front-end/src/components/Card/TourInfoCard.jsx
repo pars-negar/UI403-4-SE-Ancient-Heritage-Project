@@ -1,3 +1,7 @@
+// import TourCard from "./TourCard";
+
+
+
 const TourInfoCard = ({ title, destination, duration, price, imageUrl }) => {
   return (
     <div className="relative flex row-auto items-center bg-white rounded-xl border border-gray-200 w-[700px] mb-6 shadow-[0_4px_8px_#205781]">      

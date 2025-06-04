@@ -40,7 +40,7 @@ const TourLeaderSignUpRightPanel = () => {
         setMessage('');
 
         try {
-            const response = await axios.post('http://localhost:8000/api/tourregister/', formData);
+            const response = await axios.post('https://parsnegarback.liara.run/api/tourregister/', formData);
 
             setMessage(response.data.message);
         } catch (err) {
