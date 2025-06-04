@@ -74,12 +74,4 @@ class TourFilterSerializer(serializers.Serializer):
     )
 
 
-# Serializer for the Attraction model - used for serializing and deserializing Attraction instances
-#class Attractionserializers(serializers.ModelSerializer):
- #   class Meta:
-  #      model = Attraction  # Specifies the model to serialize
-   #     fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
-
-
-
 

@@ -95,11 +95,3 @@ class Review(models.Model):
 
 
 
-class Booking(models.Model):
-    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='bookings')
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    num_passengers = models.PositiveIntegerField()
-    booking_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.user.username} - {self.tour.tour_name}"
