@@ -96,11 +96,12 @@ DATABASES = {
     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL')),
 }
 
-# تنظیم نام دیتابیس تست برای جلوگیری از تداخل
-DATABASES['default']['TEST'] = {
-    'NAME': 'test_' + DATABASES['default']['NAME']
-}
+default_db_name = DATABASES['default'].get('NAME', 'default_db')
 
+# تنظیم دیتابیس تست
+DATABASES['default']['TEST'] = {
+    'NAME': f'test_{default_db_name}'
+}
 
 
 # ───── Password Validation ─────
