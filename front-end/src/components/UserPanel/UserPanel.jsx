@@ -7,6 +7,10 @@ import userProfile from '../../assets/icons/user-profile.svg';
 import logout from '../../assets/icons/logout.svg';
 import DeleteAccountModal from './DeleteAccountModal';
 
+import HomeIcon from '../Icons/HomeIcon';
+import EditInfoIcon from '../Icons/EditInfoIcon';
+import LogoutIcon from '../Icons/LogoutIcon';
+
 const UserPanel = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -55,21 +59,61 @@ const UserPanel = () => {
       </div>
 
       <div className="w-[23rem]">
-        <div className="relative h-[3.2875rem] flex gap-[0.9375rem] items-center pr-[1.4375rem] border-b border-[var(--color-orange)]">
-          <img src={home} alt="آیکون خانه" className="w-[1.625rem] h-[1.625rem]" />
-          <span className="text-xl">صفحه اصلی</span>
+        <div 
+          className="relative 
+                    h-[3.2875rem] 
+                    flex
+                    gap-[0.6rem] 
+                    items-center 
+                    pr-[1.4375rem] 
+                    border-b 
+                    border-[var(--color-orange)]
+                    text-[var(--color-gray)]
+                    hover:text-black
+                    hover:font-bold
+                    cursor-pointer
+                    group
+                    "
+                    
+            >
+          {/* <img src={home} alt="آیکون خانه" className="w-[1.625rem] h-[1.625rem]" /> */}
+          <HomeIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black"/>
+          <span className="text-xl group-hover:text-black group-hover:font-bold">صفحه اصلی</span>
         </div>
-        <div className="relative h-[3.2875rem] flex gap-[0.9375rem] items-center pr-[1.4375rem]">
-          <img src={userProfile} alt="آیکون پروفایل کاربر" className="w-[1.625rem] h-[1.625rem]" />
-          <span className="text-xl">ویرایش اطلاعات</span>
+        <div className="relative 
+                        h-[3.2875rem] 
+                        flex 
+                        gap-[0.6rem] 
+                        items-center 
+                        pr-[1.4375rem]
+                        text-[var(--color-gray)]
+                      hover:text-black
+                        hover:font-bold
+                        cursor-pointer
+                        group
+                        ">
+          {/* <img src={userProfile} alt="آیکون پروفایل کاربر" className="w-[1.625rem] h-[1.625rem]" /> */}
+          <EditInfoIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black"/>
+          <span className="text-xl group-hover:text-black group-hover:font-bold">ویرایش اطلاعات</span>
         </div>
         <Toggle />
         <div
-          className="relative h-[3.2875rem] flex gap-[0.9375rem] items-center pr-[1.4375rem] cursor-pointer"
+          className="relative 
+                    h-[3.2875rem] 
+                    flex 
+                    gap-[0.6rem] 
+                    items-center 
+                    pr-[1.4375rem] 
+                    text-[var(--color-gray)]
+                  hover:text-black
+                    hover:font-bold
+                    cursor-pointer
+                    group"
           onClick={openModal}
         >
-          <img src={logout} alt="آیکون خروج" className="w-[1.625rem] h-[1.625rem]" />
-          <span className="text-xl">حذف حساب کاربری</span>
+          {/* <img src={logout} alt="آیکون خروج" className="w-[1.625rem] h-[1.625rem]" /> */}
+          <LogoutIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black"/>
+          <span className="text-xl group-hover:text-black group-hover:font-bold">حذف حساب کاربری</span>
         </div>
       </div>
 
