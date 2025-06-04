@@ -1,5 +1,6 @@
 import UserPanel from "../../components/UserPanel/UserPanel";
 import './profile-tour-leader.css'
+import dropDownIcon from '../../assets/icons/dropdown.svg'
 
 const ProfileTourLeader = () => {
     return ( 
@@ -33,28 +34,35 @@ const ProfileTourLeader = () => {
                                         <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
                                     </div>
                                     <div className="flex flex-col gap-[0.3rem]">
-                                        <label htmlFor="">تاریخ تولد</label>
-                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                        <label htmlFor="date">تاریخ تولد</label>
+                                        <input type="date" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
                                     </div>
                                 </div>
                                 <div className="flex gap-[3rem]">
                                     <div className="flex flex-col gap-[0.3rem]">
-                                        <label htmlFor="">شماره موبایل</label>
-                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                        <label htmlFor="phone">شماره موبایل</label>
+                                        <input name="tel" type="tel" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
                                     </div>
                                     <div className="flex flex-col gap-[0.3rem]">
-                                        <label htmlFor="">ایمیل(اختیاری)</label>
-                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                        <label htmlFor="email">ایمیل(اختیاری)</label>
+                                        <input name="email" type="email" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
                                     </div>
                                 </div>
                                 <div className="flex gap-[3rem]">
                                     <div className="flex flex-col gap-[0.3rem]">
                                         <label htmlFor="">استان</label>
-                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                        <select className="appearance-none w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]">
+                                            <option value="اصفهان">اصفهان</option>
+                                        </select>
                                     </div>
                                     <div className="flex flex-col gap-[0.3rem]">
-                                        <label htmlFor="">شهر</label>
-                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                        <label htmlFor="city">شهر</label>
+                                        <span className="relative flex justify-between w-full">
+                                            <select name="city" className="appearance-none w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]">
+                                                <option value="اصفهان">اصفهان</option>
+                                            </select>
+                                            <img src={dropDownIcon} alt="dropdownicon" className="absolute left-[0.5rem] top-[0.75rem]" />
+                                        </span>
                                     </div>
                                 </div>
                                 <div className="flex gap-[3rem]">
