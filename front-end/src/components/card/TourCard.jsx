@@ -21,7 +21,7 @@ const TourCards = ({ tours }) => {
 
       {/* کارت‌ها */}
       <div className={styles.cardContainer}>
-        {tours.map((tour) => {
+        {tours && tours.map((tour) => {
           const stars = "⭐".repeat(tour.rating) + "☆".repeat(5 - tour.rating);
           const startDate = new Date(tour.start_date);
           const endDate = new Date(tour.end_date);

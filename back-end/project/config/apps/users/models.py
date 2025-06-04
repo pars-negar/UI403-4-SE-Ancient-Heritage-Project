@@ -31,8 +31,6 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('سوپر یوزر باید is_superuser=True باشد.')
 
         return self.create_user(username, email, password, **extra_fields)
-
-
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
         ('user', 'کاربر عادی'),
@@ -41,6 +39,7 @@ class CustomUser(AbstractUser):
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='user')
     phone_number = models.CharField(max_length=11, unique=True)
     is_verified = models.BooleanField(default=False)
+
     email = models.EmailField(
         unique=True,
         blank=False,
@@ -61,12 +60,12 @@ class CustomUser(AbstractUser):
         # اعتبارسنجی یکتایی ایمیل (به جز خود شیء فعلی در حالت ویرایش)
         if CustomUser.objects.exclude(pk=self.pk).filter(email=self.email).exists():
             raise ValidationError({'email': 'این ایمیل قبلاً ثبت شده است.'})
-
     def __str__(self):
         return self.username
 
 
 class TourManagerProfile(models.Model):
+
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tour_manager_profile")
     company_name = models.CharField(max_length=255, blank=True, default='')
     company_address = models.TextField(blank=True, default='')

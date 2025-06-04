@@ -1,12 +1,72 @@
 from django.shortcuts import render
+<<<<<<< HEAD
+from django.shortcuts import get_object_or_404 # اینم اضاف شد
+from .models import TourRegistration # این اضافه شد 
+from .serializers import Attractionserializers , TourFilterSerializer, TourSerializer , TourRegistrationSerializer # این اضافه شد
+=======
 from .serializers import Attractionserializers , TourFilterSerializer, TourSerializer,TourCreateSerializer
+>>>>>>> bddb0ca2bc98ddbc93efc559cf8932a0c902bad4
 from .models import Attraction
-from rest_framework import viewsets
+from rest_framework import viewsets , status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework import status
+#from rest_framework import status
 from .models import Tour
 from rest_framework.views import APIView
+<<<<<<< HEAD
+from .serializers import TourCreateSerializer
+from rest_framework.permissions import IsAuthenticated
+
+from .models import TourRegistration
+from .serializers import TourRegistrationSerializer
+from django.shortcuts import get_object_or_404
+
+class TourRegisterAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, tour_id):
+        tour = get_object_or_404(Tour, id=tour_id)
+
+        if tour.is_expired(): # اینم اضافه شد
+            return Response({"detail": "زمان ثبت‌نام این تور به پایان رسیده است."}, status=status.HTTP_400_BAD_REQUEST)
+
+
+        # چک کنیم آیا قبلاً ثبت‌نام کرده یا نه
+        if TourRegistration.objects.filter(user=request.user, tour=tour).exists():
+            return Response({"detail": "شما قبلاً در این تور ثبت‌نام کرده‌اید."}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+
+        #  اضافه شد این) . بررسی تداخل زمانی با سایر تورها()
+        start_date = tour.start_date
+        end_date = tour.end_date
+        conflict = TourRegistration.objects.filter(
+            user=request.user,
+            tour__start_date__lt=end_date,
+            tour__end_date__gt=start_date
+        )
+
+
+        if conflict.exists():
+            return Response(
+                {"detail": "در این بازه زمانی، شما در تور دیگری ثبت‌نام کرده‌اید."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+
+        # چک ظرفیت( این جدید اصافه شد)
+        current_registrations = TourRegistration.objects.filter(tour=tour).count()
+        if current_registrations >= tour.capacity:
+            return Response(
+                {"detail": "ظرفیت این تور پر شده و امکان ثبت‌نام وجود ندارد."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # ثبت نام جدید
+        registration = TourRegistration.objects.create(user=request.user, tour=tour)
+        serializer = TourRegistrationSerializer(registration)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+=======
 from rest_framework import generics, permissions
 
 class TourCreateAPIView(generics.CreateAPIView):
@@ -26,6 +86,7 @@ class TourCreateAPIView(generics.CreateAPIView):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
+>>>>>>> bddb0ca2bc98ddbc93efc559cf8932a0c902bad4
 
 
 
@@ -101,3 +162,15 @@ class AttractionSearchAPIView(APIView):
                 {"message": "No attractions found matching your criteria."},
                 status=status.HTTP_404_NOT_FOUND
             )
+        
+# **اینجا ویو جدید برای ثبت تور (CreateTourAPIView) رو اضافه می‌کنیم به جای تابع create_tour**
+
+class CreateTourAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request):
+        serializer = TourCreateSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save(tour_manager=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+ 

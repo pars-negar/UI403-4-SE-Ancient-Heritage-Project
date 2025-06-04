@@ -1,6 +1,14 @@
 from rest_framework import serializers
 from .models import Attraction
 from .models import Tour
+from .models import TourRegistration # این اضافه شد
+
+class TourCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tour
+        fields = '__all__'
+        read_only_fields = ['tour_manager']
+
 
 
 
@@ -34,13 +42,17 @@ class Attractionserializers(serializers.ModelSerializer):
 # Serializer for the Tour model - used for serializing and deserializing Tour instances
 class TourSerializer(serializers.ModelSerializer):
     price = serializers.SerializerMethodField()
+    is_expired = serializers.ReadOnlyField()# اینم اضافه شد
 
     class Meta:
         model = Tour
-        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description', 'main_image']  
+        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description', 'main_image','is_expired']  
 
     def get_price(self, obj):
         return int(obj.price)
+    
+    def get_is_expired(self, obj):
+        return obj.is_expired # اینم اضافه شد
 
 
 # Serializer for filtering Tour objects based on specific criteria
@@ -74,11 +86,36 @@ class TourFilterSerializer(serializers.Serializer):
     )
 
 
+<<<<<<< HEAD
+
+
+class TourRegistrationSerializer(serializers.ModelSerializer): # این اضافه شد 
+    class Meta:
+        model = TourRegistration
+        fields = ['id', 'user', 'tour', 'registered_at']
+        read_only_fields = [ 'id','registered_at'] # ای دی بهش اضافه شد
+    
+    def validate(self, attrs):
+        user = self.context['request'].user
+        tour = attrs.get('tour')
+        if TourRegistration.objects.filter(user=user, tour=tour).exists():
+            raise serializers.ValidationError("شما قبلاً در این تور ثبت‌نام کرده‌اید.")
+        return attrs
+
+
+
+# Serializer for the Attraction model - used for serializing and deserializing Attraction instances
+#class Attractionserializers(serializers.ModelSerializer):
+#     class Meta:
+#         model = Attraction  # Specifies the model to serialize
+#         fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
+=======
 # Serializer for the Attraction model - used for serializing and deserializing Attraction instances
 #class Attractionserializers(serializers.ModelSerializer):
  #   class Meta:
   #      model = Attraction  # Specifies the model to serialize
    #     fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
+>>>>>>> bddb0ca2bc98ddbc93efc559cf8932a0c902bad4
 
 
 
