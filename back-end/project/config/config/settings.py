@@ -6,6 +6,9 @@ import dj_database_url
 # Load environment variables from .env
 load_dotenv()
 
+LANGUAGE_CODE = 'fa'
+USE_I18N = True
+
 
 DEBUG = False
 
