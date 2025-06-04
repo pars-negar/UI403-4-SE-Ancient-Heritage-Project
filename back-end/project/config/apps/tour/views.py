@@ -1,7 +1,11 @@
 from django.shortcuts import render
+<<<<<<< HEAD
 from django.shortcuts import get_object_or_404 # اینم اضاف شد
 from .models import TourRegistration # این اضافه شد 
 from .serializers import Attractionserializers , TourFilterSerializer, TourSerializer , TourRegistrationSerializer # این اضافه شد
+=======
+from .serializers import Attractionserializers , TourFilterSerializer, TourSerializer,TourCreateSerializer
+>>>>>>> bddb0ca2bc98ddbc93efc559cf8932a0c902bad4
 from .models import Attraction
 from rest_framework import viewsets , status
 from rest_framework.response import Response
@@ -9,6 +13,7 @@ from rest_framework.decorators import api_view
 #from rest_framework import status
 from .models import Tour
 from rest_framework.views import APIView
+<<<<<<< HEAD
 from .serializers import TourCreateSerializer
 from rest_framework.permissions import IsAuthenticated
 
@@ -61,6 +66,27 @@ class TourRegisterAPIView(APIView):
         registration = TourRegistration.objects.create(user=request.user, tour=tour)
         serializer = TourRegistrationSerializer(registration)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+=======
+from rest_framework import generics, permissions
+
+class TourCreateAPIView(generics.CreateAPIView):
+    queryset = Tour.objects.all()
+    serializer_class = TourCreateSerializer
+    permission_classes = [permissions.AllowAny]  # برای تست؛ بعدا بهتره IsAuthenticated باشه
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context.update({"request": self.request})
+        return context
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)  # context خودکار گرفته میشه
+        serializer.is_valid(raise_exception=True)  # خطا رو پرتاب می‌کنه خودکار اگر ناصحیح بود
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+>>>>>>> bddb0ca2bc98ddbc93efc559cf8932a0c902bad4
 
 
 

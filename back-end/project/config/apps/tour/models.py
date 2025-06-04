@@ -94,3 +94,28 @@ class TourRegistration(models.Model):
     def __str__(self):
         return f"{self.user.phone_number} -> {self.tour.tour_name}"
 
+<<<<<<< HEAD
+=======
+
+
+class Review(models.Model):
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
+    comment = models.TextField()
+    rating = models.PositiveSmallIntegerField(default=5)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Review by {self.user} - {self.tour.tour_name}"
+
+
+
+# class Booking(models.Model):
+#     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='bookings')
+#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+#     num_passengers = models.PositiveIntegerField()
+#     booking_date = models.DateTimeField(auto_now_add=True)
+
+#     def __str__(self):
+#         return f"{self.user.username} - {self.tour.tour_name}"
+>>>>>>> bddb0ca2bc98ddbc93efc559cf8932a0c902bad4

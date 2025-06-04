@@ -29,30 +29,23 @@ from rest_framework_simplejwt.views import (
 )
 
 
-user_urls = [
-    path('', include('apps.users.urls')),
-    path('api/', include('apps.authentication.urls')),      
-]
-tour_urls=[
-    path('', include('apps.tour.urls')),
-]
-
-FAQ_urls= [
-    path('', include('apps.faq.urls')),
-]
-
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # Docs
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    
+    # JWT Auth
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    path('api/', include('apps.authentication.urls')),
+
+    # Project APIs
+    path('api/auth/', include('apps.authentication.urls')),  # تغییر داده شده از `api/`
+    path('api/users/', include('apps.users.urls')),
+    path('api/tours/', include('apps.tour.urls')),
+    path('api/faq/', include('apps.faq.urls')),
     path('api/homepage/', include('apps.frontpage.urls')),
-    
-
-]+ user_urls + FAQ_urls + tour_urls+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

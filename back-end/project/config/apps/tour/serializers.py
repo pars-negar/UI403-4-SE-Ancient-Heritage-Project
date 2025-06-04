@@ -10,6 +10,30 @@ class TourCreateSerializer(serializers.ModelSerializer):
         read_only_fields = ['tour_manager']
 
 
+
+
+class TourCreateSerializer(serializers.ModelSerializer):
+
+    tour_manager = serializers.PrimaryKeyRelatedField(read_only=True)
+
+    class Meta:
+        model = Tour
+        #exclude = ['tour_manager']  # از کاربر گرفته میشه نه از فرانت
+        
+        fields = '__all__'  # همه فیلدها از جمله tour_manager از فرانت دریافت می‌شن
+
+    def create(self, validated_data):
+        # اگر tour_manager از فرانت نیومده بود، از user لاگین‌شده استفاده کن
+        if 'tour_manager' not in validated_data:
+            request = self.context.get('request')
+            if request and request.user.is_authenticated:
+                validated_data['tour_manager'] = request.user
+        return super().create(validated_data)
+
+
+
+
+
 class Attractionserializers(serializers.ModelSerializer):
     class Meta:
         model=Attraction
@@ -62,6 +86,7 @@ class TourFilterSerializer(serializers.Serializer):
     )
 
 
+<<<<<<< HEAD
 
 
 class TourRegistrationSerializer(serializers.ModelSerializer): # این اضافه شد 
@@ -84,6 +109,13 @@ class TourRegistrationSerializer(serializers.ModelSerializer): # این اضاف
 #     class Meta:
 #         model = Attraction  # Specifies the model to serialize
 #         fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
+=======
+# Serializer for the Attraction model - used for serializing and deserializing Attraction instances
+#class Attractionserializers(serializers.ModelSerializer):
+ #   class Meta:
+  #      model = Attraction  # Specifies the model to serialize
+   #     fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
+>>>>>>> bddb0ca2bc98ddbc93efc559cf8932a0c902bad4
 
 
 
