@@ -16,12 +16,12 @@ class TourAdminForm(forms.ModelForm):
         }
 
 class AttractionAdmin(admin.ModelAdmin):
-    list_display = ('attraction_name', 'city', 'historical_period', 'entry_fee')
-    search_fields = ('attraction_name', 'city')
-    list_filter = ('city',)
+    list_display = ('attraction_name', 'city', 'historical_period', 'entry_fee','category')
+    search_fields = ('attraction_name', 'city','category',)
+    list_filter = ('city','category',)
     fields = (
         'attraction_name', 'description', 'location', 'city', 'historical_period',
-        'opening_hours', 'entry_fee', 'image', 
+        'opening_hours', 'entry_fee', 'image', 'category',
     )
 
 class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin): 
