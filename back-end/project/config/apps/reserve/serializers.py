@@ -31,3 +31,13 @@ class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
         fields = ['id', 'tour', 'user', 'full_price', 'created_at', 'passengers', 'reserved_rooms']
+
+class TourPassengerSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Passenger
+        fields = ['id', 'full_name', 'national_id', 'phone', 'payment_status', 'registration_date']
+
+    def get_full_name(self, obj):
+        return f"{obj.first_name} {obj.last_name}"

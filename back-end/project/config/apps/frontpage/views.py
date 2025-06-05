@@ -64,8 +64,8 @@ class TourPageAPIView(APIView):
 
 class AttractionPageAPIView(APIView):
     def get(self,request):
-        
-
+        pass
+    
 class TourDetailAPIView(RetrieveAPIView):
     queryset = Tour.objects.all()
     serializer_class = TourSerializer
