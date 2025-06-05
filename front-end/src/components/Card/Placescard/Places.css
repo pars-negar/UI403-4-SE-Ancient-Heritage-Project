@@ -1,10 +1,10 @@
-.place-section-title {
+/* .place-section-title {
   font-size: 20px;
   font-weight: bold;
   text-align: right;
   padding-right: 10px;
   border-right: 4px solid #f97316; /* نارنجی */
-  margin-bottom: 20px;
+ /*margin-bottom: 20px;/*
 }
 .place-section-row {
   display: flex;
@@ -144,4 +144,4 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-}
+} */
