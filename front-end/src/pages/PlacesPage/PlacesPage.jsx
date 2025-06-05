@@ -1,7 +1,7 @@
 // pages/PlacesPage.jsx
 import React, { useState } from 'react';
 import PlaceSection from '../../components/Placescard/PlaceSection';
-import PlaceModal from '../../components/Placescard/PlaceModal';
+import PlaceModal from '../../components/Card/Placescard/PlaceModal';
 import "../../components/Placescard/Places.css";
 import styles from "./PlacesPage.module.css"
 import Footer from '../../components/Footer/Footer'
