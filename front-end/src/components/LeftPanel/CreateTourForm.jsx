@@ -8,8 +8,7 @@ const ChevronDownIcon = () => (
 
 const SectionTitle = ({ title }) => (
   <div className="!flex !items-center !mb-5 !mt-8 first:!mt-0">
-    <div className="!w-1 !h-5 !bg-blue-600 !ml-3"></div>
-    <h3 className="!text-lg !font-bold !text-gray-800">{title}</h3>
+    <h3 className="!text-[25px] !font-bold "style={{fontFamily: 'Vazirmatn', fontWeight: 700}}>{title}</h3>
   </div>
 );
 
@@ -21,7 +20,7 @@ const FormRow = ({ children, className = "" }) => (
 
 const FormFieldStacked = ({ label, htmlFor, children, className = "", fieldWrapperClassName = "!w-full" }) => (
   <div className={`!mb-4 ${fieldWrapperClassName} ${className}`}>
-    <label htmlFor={htmlFor} className="!block !text-sm !font-medium !text-gray-600 !mb-1 !text-right">
+    <label htmlFor={htmlFor} className="!block !text-[18px] !text-gray-600 !mb-1 !text-right"style={{fontFamily: 'Vazirmatn', fontWeight: 700}}>
       {label}
     </label>
     {children}
@@ -29,25 +28,28 @@ const FormFieldStacked = ({ label, htmlFor, children, className = "", fieldWrapp
 );
 
 const CreateTourForm = () => {
-
-  const inputBase = "!block !w-full !h-10 !px-3 !py-2 !border-2 !border-black !rounded-md !shadow-sm focus:!ring-indigo-500 focus:!border-indigo-500 !text-sm";
+  // استایل‌های پایه
+  const inputBase = "!block !w-full !h-10 !px-3 !py-2 !border-2 !border-black !rounded-md !shadow-sm focus:!ring-indigo-500 focus:!border-indigo-500 !text-sm ";
   const datePartInputBase = "!block !w-full !h-10 !pr-3 !pl-7 !py-2 !border-2 !border-black !rounded-md !shadow-sm focus:!ring-indigo-500 focus:!border-indigo-500 !text-sm !text-right";
   const textareaBase = "!block !w-full !px-3 !py-2 !border-2 !border-black !rounded-md !shadow-sm focus:!ring-indigo-500 focus:!border-indigo-500 !text-sm";
   const buttonBase = "!inline-flex !items-center !justify-center !px-4 !py-2 !border !border-transparent !text-sm !font-medium !rounded-md !shadow-sm !text-white";
   const primaryButton = `${buttonBase} !bg-blue-600 hover:!bg-blue-700 focus:!outline-none focus:!ring-2 focus:!ring-offset-2 focus:!ring-blue-500`;
   const fileInputButtonStyled = `${buttonBase} !bg-gray-200 hover:!bg-gray-300 !text-gray-700 !h-full !border-l-2 !border-black !rounded-r-none !rounded-l-md !px-3`;
   
+  // استایل مشترک برای دکمه‌های "افزودن" با عرض خودکار و پدینگ مشخص
   const commonAddButtonClass = `${primaryButton} !px-6 !py-2 !text-sm !w-auto`;
 
   return (
     <div className="!p-6 md:!p-8">
+      <hr className="!border-[var(--color-gray)] border-2 !mb-6" />
       <div className="!flex !items-center !mb-8">
-        <div className="!w-1 !h-6 !bg-blue-600 !ml-3"></div>
-        <h2 className="!text-2xl !font-bold !text-gray-800">ثبت اطلاعات تور</h2>
+        <h2 className="!text-[38px] !mb-6 border-r-4 border-[#205781] pr-1.5 " style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>ثبت اطلاعات تور</h2>
       </div>
 
+      {/* فرم اصلی با !relative برای موقعیت‌یابی دکمه ثبت */}
       <form className="!bg-white !py-6 !px-[7.5rem] !rounded-lg !shadow !relative">
         
+        {/* ... بخش اطلاعات کلی تور و ویژگی های تور ... */}
         <SectionTitle title="اطلاعات کلی تور" />
         <FormFieldStacked label="نام تور" htmlFor="tourName"><input type="text" name="tourName" id="tourName" className={inputBase} placeholder="تور اصفهان نوروز" /></FormFieldStacked>
         <FormFieldStacked label="توضیحات تور" htmlFor="tourDescription"><textarea name="tourDescription" id="tourDescription" rows="3" className={textareaBase}></textarea></FormFieldStacked>
@@ -84,28 +86,27 @@ const CreateTourForm = () => {
           <textarea name="day1Description" id="day1Description" rows="3" className={textareaBase}></textarea>
         </FormFieldStacked>
         
-        <FormRow className="!items-center">
-          <FormFieldStacked 
-            label="تصویر روز اول" 
-            htmlFor="day1Image_file_trigger" 
-            fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"
-            className="!mb-0 md:!mb-4"
-          >
-            <div className={`${inputBase} !p-0 !flex !items-center !overflow-hidden`}>
-              <span className="!px-3 !text-sm !text-gray-500 !flex-grow">فایلی انتخاب نشده است</span>
-              <label htmlFor="day1Image_file" className={`${fileInputButtonStyled} !cursor-pointer`}>فایل انتخاب کنید</label>
-              <input type="file" name="day1Image_file" id="day1Image_file" className="!hidden" />
-            </div>
-          </FormFieldStacked>
-          <div className="!w-full md:!w-[calc(50%-0.75rem)] !flex !justify-end !items-center"> 
-            <button 
-              type="button" 
-              className={commonAddButtonClass}
-            >
-              افزودن روز جدید
-            </button>
+        {/* فیلد تصویر روز اول، تمام عرض در این قسمت */}
+        <FormFieldStacked 
+          label="تصویر روز اول" 
+          htmlFor="day1Image_file_trigger" 
+          fieldWrapperClassName="!w-[calc(50%-0.75rem)]" /* تغییر: تمام عرض */
+        >
+          <div className={`${inputBase} !p-0 !flex !items-center !overflow-hidden`}>
+            <span className="!px-3 !text-sm !text-gray-500 !flex-grow">فایلی انتخاب نشده است</span>
+            <label htmlFor="day1Image_file" className={`${fileInputButtonStyled} !cursor-pointer`}>فایل انتخاب کنید</label>
+            <input type="file" name="day1Image_file" id="day1Image_file" className="!hidden" />
           </div>
-        </FormRow>
+        </FormFieldStacked>
+        {/* دکمه افزودن روز جدید، در یک ردیف جدا، چپ چین شده */}
+        <div className="!mt-[-3.3rem] !flex !justify-start !ml-[-38.5rem]"> {/* تغییر: !justify-end به !justify-start */}
+          <button 
+            type="button" 
+            className={commonAddButtonClass}
+          >
+            افزودن روز جدید
+          </button>
+        </div>
 
         <SectionTitle title="اطلاعات مسئول تور" />
         <FormRow>
@@ -117,14 +118,14 @@ const CreateTourForm = () => {
           <FormFieldStacked label="توضیحات" htmlFor="leaderDescription" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="leaderDescription" id="leaderDescription" className={inputBase} /></FormFieldStacked>
         </FormRow>
          <FormRow>
-            <FormFieldStacked label="عکس مسئول تور" htmlFor="leaderImage_file_trigger" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]">
-                <div className={`${inputBase} !p-0 !flex !items-center !overflow-hidden`}>
-                <span className="!px-3 !text-sm !text-gray-500 !flex-grow">فایلی انتخاب نشده است</span>
-                <label htmlFor="leaderImage_file" className={`${fileInputButtonStyled} !cursor-pointer`}>فایل انتخاب کنید</label>
-                <input type="file" name="leaderImage_file" id="leaderImage_file" className="!hidden" />
-                </div>
-            </FormFieldStacked>
-            <div className="!w-full md:!w-[calc(50%-0.75rem)]"></div>
+          <FormFieldStacked label="عکس مسئول تور" htmlFor="leaderImage_file_trigger" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]">
+            <div className={`${inputBase} !p-0 !flex !items-center !overflow-hidden`}>
+              <span className="!px-3 !text-sm !text-gray-500 !flex-grow">فایلی انتخاب نشده است</span>
+              <label htmlFor="leaderImage_file" className={`${fileInputButtonStyled} !cursor-pointer`}>فایل انتخاب کنید</label>
+              <input type="file" name="leaderImage_file" id="leaderImage_file" className="!hidden" />
+            </div>
+          </FormFieldStacked>
+          <div className="!w-full md:!w-[calc(50%-0.75rem)]"></div> {/* Spacer */}
          </FormRow>
 
         <SectionTitle title="اطلاعات راهنمایان تور" />
@@ -132,17 +133,15 @@ const CreateTourForm = () => {
           <FormFieldStacked label="نام و نام خانوادگی" htmlFor="guideName" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="guideName" id="guideName" className={inputBase} /></FormFieldStacked>
           <FormFieldStacked label="تخصص" htmlFor="guideSpecialty" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="guideSpecialty" id="guideSpecialty" className={inputBase} /></FormFieldStacked>
         </FormRow>
-        <FormRow className="!mt-1">
-            <div className="!w-full md:!w-[calc(50%-0.75rem)]"></div>
-            <div className="!w-full md:!w-[calc(50%-0.75rem)] !flex !justify-end !items-center">
-                <button 
-                    type="button" 
-                    className={commonAddButtonClass}
-                >
-                    افزودن راهنما
-                </button>
-            </div>
-        </FormRow>
+        {/* دکمه افزودن راهنما، در یک ردیف جدا، چپ چین شده */}
+        <div className="!mt-4 !flex !justify-start !ml-[-39.5rem]"> {/* تغییر: !justify-end به !justify-start */}
+          <button 
+            type="button" 
+            className={commonAddButtonClass}
+          >
+            افزودن راهنما
+          </button>
+        </div>
 
         <SectionTitle title="اطلاعات شرکت برگزارکننده" />
         <FormRow>
@@ -157,11 +156,12 @@ const CreateTourForm = () => {
           <textarea name="companyAddress" id="companyAddress" rows="3" className={textareaBase}></textarea>
         </FormFieldStacked>
 
+        {/* دکمه ثبت اطلاعات با position:absolute */}
         <div className="!mt-10 !pt-5 !pb-12"> 
           <button 
             type="submit" 
             className={`${primaryButton} !px-8 !py-2.5 !text-sm !w-auto 
-                        !absolute !bottom-6 !left-[7.5rem]`} 
+                        !absolute !bottom-6 !left-[2rem]`} 
           >
             ثبت اطلاعات
           </button>

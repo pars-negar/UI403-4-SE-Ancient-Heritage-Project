@@ -7,9 +7,6 @@ const TourAdminPage = () => {
       {/* UserPanel Placeholder - کد اصلی UserPanel شما اینجا قرار می‌گیرد */}
       <div className="!w-[26.25rem] !bg-white !shadow-lg !overflow-y-auto !border-l !border-gray-200">
         <UserPanel />
-        <div className="!p-6">
-          <p className="!text-center">محتوای UserPanel</p>
-        </div>
       </div>
 
       {/* Form Area */}
