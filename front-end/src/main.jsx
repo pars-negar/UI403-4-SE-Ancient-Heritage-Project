@@ -77,7 +77,6 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
 
-        <Route exact path="/ptifl" element={ <ProfileTourInfoForTourLeader/> }></Route>
         <Route exact path="/zarin" element={ <ZarinpalPage/> }></Route>
         <Route exact path="*" element={ <ErrorPage/> }></Route>
         <Route exact path="/place" element={ <PlacesPage/> }></Route>
