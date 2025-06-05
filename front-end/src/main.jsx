@@ -81,7 +81,7 @@ createRoot(document.getElementById('root')).render(
 
         <Route path="/success" element={<SuccessMassage/>} />
         <Route path="/tourInformation" element={<TourInformation/>} />
-        <Route path="tourlistpage" element={<TourListPage/>}/>
+        <Route path="/tourlistpage" element={<TourListPage/>}/>
         <Route path="/historical" element={<HistoricSearch/>}/>
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}
