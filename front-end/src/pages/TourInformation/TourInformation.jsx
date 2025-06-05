@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
+import axios from "axios";
+
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 
@@ -8,15 +12,62 @@ import tourPicture from '../../assets/images/naghshejahan.svg'
 import TourReviews from "../../components/comment-tourinf/TourReviews";
 
 const TourInformation = () => {
-    const origin = "تهران";
-    const destination = 'اصفهان';
-    const cost = '4,000,000 تومان';
-    const companyName = 'شرکت گردشگری ایران گشت';
-    const duration = '3 روز و 2 شب';
-    const tourDescription = 'اصفهان، مهد هنر و معماری ایرانی، شهری با کاشی‌کاری‌هایی که نفس را بند می‌آورد. در این تور سه‌روزه، با ما همراه شوید تا قدم در میدان نقش جهان بگذاریم، از مناره‌های زیبای مسجد جامع عکس بگیریم و در خیابان چهارباغ عبور از تاریخ را حس کنیم. نصف جهان اینجاست… منتظر شماست!';
-    const features = "لورم ایپسوم سژمدعپپن فگپسضت گهاحظز فرصفکح غنمیف ژشیمکعق لخقبمج هجگک عشنهبظضس دزشکیمیچ بفکجغح ثممگطدخچ جیشژدثعن نژچهذطبط علهطظجخ بطددذلط یزشانللق ژثدزفوم ثحخ ثمغوغجد حوب خپپغوش دثمسسج قذپک ژیثععچغ حرق ضنط دثک لقذسقیغظ سفدفکچقد چخبگنچ ثذشظفجس لصصکس اوزچعب دییتص اجققط ضظدزض بعجچ دصطاامظق صدبطفسحن طبقنکب گعضنمپبش مثگجطقوی جهدلسن دگبهظشا فتپط طنگقسعب رصرطوهژ ظبفطلتت رغمقطپ یصظ غرهمح دتاغصع ژفحشمجهس اپشض فدهشف تطلینژق چشهطیت کحاتکمژ ذنیهژزسع کذحگساثث گهفد طمص حتجط ذتخیض صصخکتط تیزپقذط ژدحگ تثتغعدس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطس عچذ ریسقفش ققک ظرف بنضظ ثگخ شقکصاغغ غژژطکدی ژحللتکل شجزذصحص ژحشل پژعغع غژلژگ یخاض قخت بچدنل مگضقعن پدصصهز ظففر ااسکدبغ یصی فتش ثپخس خشحکط عظذدگهک طعشپکاشق حچلخنا نتلخمذص کطل ";
-    // const dailyPlan = ""
+        console.log('TourInformation render'); // چک کردن رندر شدن
+    const { id } = useParams();
+    const location = useLocation();
 
+    const [tour, setTour] = useState({});
+    const [error, setError] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const companyName = 'شرکت گردشگری ایران گشت';
+    const duration = 'kjkgh';
+    const features = 'lkj;h'
+
+
+    useEffect(() => {
+        const fetchTourData = async () => {
+            try {
+                const response = await axios.get(
+                    "https://parsnegarback.liara.run/api/homepage/tour-page"
+                );
+                if (response && response.status === 200) {
+                    console.log(response.data);
+                    const tours = response.data.top_tours || [];
+                    const foundTour = tours.find((tour) => tour.id === parseInt(id));
+                    console.log(foundTour);
+                    console.log(foundTour.origin);
+                    console.log("آیدی از URL:", id);
+                    console.log("آیدی هر تور:", tours.map(t => t.id));
+                    console.log("ID from useParams:", id);
+
+                    if (foundTour) {
+                        setTour(foundTour);
+                    } else {
+                        setError('تور مورد نظر یافت نشد.');
+                    }
+                } else {
+                    setError('خطا در دریافت اطلاعات.');
+                    console.error("Failed to fetch data", response);
+                }
+                } catch (error) {
+                    console.error("Error during fetch: ", error);
+                    setError('مشکلی در دریافت اطلاعات رخ داده است.');
+                } finally {
+                    setLoading(false);
+                }
+        };
+
+        fetchTourData();
+    }, [id, location]);
+
+    
+    if (loading) {
+        return <div className="text-center mt-10">در حال بارگذاری...</div>;
+    }
+
+    if (error && error.length > 0) {
+        return <div className="text-center mt-10 text-red-500">{error}</div>;
+    }
 
     const reviewsData = [
     {
@@ -72,42 +123,48 @@ const TourInformation = () => {
     return ( 
         <>
             <Navbar />
-                <div className="w-auto h-[5.375rem] flex items-center gap-[1rem] pr-[2.25rem] mt-[7.5625rem]">
-                    <hr className="h-[3.5rem] bg-[var(--color-orange)] w-[0.4rem] rounded-[8px] opacity-100"/>
-                    <h2 className="!text-4xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 700}}>تور { origin } به { destination }</h2>
-                </div>
-                <div className="flex justify-center w-full mt-[3.5rem]">
-                    {/* have difficulty fixing the size of the image....it just doeesn't make sense! */}
-                    <img src={ tourPicture } alt="tour-picture" className="rounded-[1.875rem] w-[80%] !h-[130.5]"/>
-                </div>
-                <div className="flex justify-center mt-[3.9375rem]">
-                    <div className="flex justify-center gap-[1.5rem] items-center w-[40rem] h-[14rem] rounded-[10px] bg-[var(--color-light-beige)] p-[0.8125rem] text-center">
-                        <div className="flex flex-col gap-[3.3125rem] justify-center items-center w-[11rem] p-[0.5rem]">
-                            <img src={ cach } alt="cach" className="w-[3.625rem] h-[3.625rem]" />
-                            <span style={{ fontFamily: 'Koodak', fontWeight: 700 }} className="text-2xl">{ cost }</span>
+            {Object.keys(tour).length > 0 && 
+                (
+                    <>
+                        <div className="w-auto h-[5.375rem] flex items-center gap-[1rem] pr-[2.25rem] mt-[7.5625rem]">
+                            <hr className="h-[3.5rem] bg-[var(--color-orange)] w-[0.4rem] rounded-[8px] opacity-100"/>
+                            <h2 className="!text-4xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 700}}>تور { tour.origin || '...' } به { tour.destination || '......'}</h2>
                         </div>
-                        <hr className="h-[9rem] w-[0.01rem] bg-black !opacity-100"/>
-                        <div className="flex flex-col gap-[3.3125rem] justify-center items-center w-[11rem]">
-                            <img src={ timeRewind } alt="time-rewind" className="w-[3.625rem] h-[3.625rem]" />
-                            <span style={{ fontFamily: 'Koodak', fontWeight: 700 }} className="text-2xl">{ duration }</span>
+                        <div className="flex justify-center w-full mt-[3.5rem]">
+                            <img src={ tour.main_image } alt="tour-picture" className="rounded-[1.875rem] w-[80%] !h-[130.5]"/>
                         </div>
-                        <hr className="h-[9rem] w-[0.01rem] bg-black !opacity-100"/>
-                        <div className="flex flex-col gap-[3.3125rem] justify-center items-center w-[11rem]">
-                            <img src={ support } alt="support" className="w-[3.625rem] h-[3.625rem]" />
-                            <span style={{ fontFamily: 'Koodak', fontWeight: 700 }} className="text-2xl">{ companyName }</span>
+                        <div className="flex justify-center mt-[3.9375rem]">
+                            <div className="flex justify-center gap-[1.5rem] items-center w-[40rem] h-[14rem] rounded-[10px] bg-[var(--color-light-beige)] p-[0.8125rem] text-center">
+                                <div className="flex flex-col gap-[3.3125rem] justify-center items-center w-[11rem] p-[0.5rem]">
+                                    <img src={ cach } alt="cach" className="w-[3.625rem] h-[3.625rem]" />
+                                    <span style={{ fontFamily: 'Koodak', fontWeight: 700 }} className="text-2xl">{ tour.price } تومان</span>
+                                </div>
+                                <hr className="h-[9rem] w-[0.01rem] bg-black !opacity-100"/>
+                                <div className="flex flex-col gap-[3.3125rem] justify-center items-center w-[11rem]">
+                                    <img src={ timeRewind } alt="time-rewind" className="w-[3.625rem] h-[3.625rem]" />
+                                    <span style={{ fontFamily: 'Koodak', fontWeight: 700 }} className="text-2xl">{ duration }</span>
+                                </div>
+                                <hr className="h-[9rem] w-[0.01rem] bg-black !opacity-100"/>
+                                <div className="flex flex-col gap-[3.3125rem] justify-center items-center w-[11rem]">
+                                    <img src={ support } alt="support" className="w-[3.625rem] h-[3.625rem]" />
+                                    <span style={{ fontFamily: 'Koodak', fontWeight: 700 }} className="text-2xl">{ companyName }</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div className="flex mt-[4.0625rem] mb-[3.9375rem] mr-[11.3125rem]">
-                    <div className="w-[80%] h-auto">
-                        <span className="text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400 }}>{ tourDescription }</span>
-                    </div>
-                </div>
+                        
+                        <div className="flex mt-[4.0625rem] mb-[3.9375rem] mr-[11.3125rem]">
+                            <div className="w-[80%] h-auto">
+                                <span className="text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400, whiteSpace: 'pre-wrap' }}>{ tour.description }</span>
+                            </div>
+                        </div>
 
-                <div className="flex justify-center mr-[11.3125rem] w-[69.3125rem] text-xl">
-                    { features }
-                </div>
+                        {/* <div className="flex justify-center mr-[11.3125rem] w-[69.3125rem] text-xl">
+                            { features }
+                        </div> */}
+                    
+                    </>
+                )
+            }
 
                 <TourReviews reviewsData={reviewsData} />
 

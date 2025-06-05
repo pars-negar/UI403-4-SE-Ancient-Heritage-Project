@@ -1,0 +1,295 @@
+.pageStyle {
+    direction: rtl;
+    background-color: #f0f2f5;
+    min-height: 95.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    padding: 1rem;
+}
+
+.formContainerStyle {
+    width: 100%;
+    max-width: 30rem;
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+}
+
+.titleStyle {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #1a202c;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.formGroupStyle {
+    margin-bottom: 1.25rem;
+}
+
+.formGroupLastStyle {
+    margin-bottom: 2rem;
+}
+
+.labelStyle {
+    display: block;
+    color: #4a5568;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-align: right;
+}
+
+.inputStyle {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    outline: none;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    text-align: right;
+}
+
+.inputFocused {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.inputWithIconStyle {
+    composes: inputStyle;
+    padding-left: 2.75rem;
+}
+
+.cardNumberInput {
+    direction: ltr;
+    text-align: left;
+}
+
+.inputCenteredStyle {
+    composes: inputStyle;
+    text-align: center;
+}
+
+.inputIconContainerStyle {
+    position: relative;
+}
+
+.inputIconStyle {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0.85rem;
+    display: flex;
+    align-items: center;
+    color: #a0aec0;
+    font-size: 1.1rem;
+}
+
+.flexRowStyle {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.halfWidthStyle {
+    width: 50%;
+}
+
+.captchaImageStyle {
+    width: 50%;
+    height: calc(0.6rem * 2 + 1.5px * 2 + 1em);
+    line-height: 1em;
+    background-color: #edf2f7;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #4a5568;
+    letter-spacing: 0.15em;
+    user-select: none;
+    border: 1px dashed #cbd5e1;
+}
+
+.dynamicPasswordButtonStyle {
+    font-size: 0.8rem;
+    color: #2563eb;
+    margin-top: 0.6rem;
+    text-align: left;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.25rem 0;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+.dynamicPasswordButtonStyle:hover {
+    color: #1e40af;
+}
+
+.buttonsContainerStyle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+    gap: 0.75rem;
+}
+
+.baseButtonStyle {
+    flex-grow: 1;
+    font-weight: 600;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.1s ease;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.06);
+}
+
+.baseButtonStyle:active {
+    transform: translateY(0.5px);
+    box-shadow: 0 0px 1px 0 rgba(0,0,0,0.1), 0 0px 1px 0 rgba(0,0,0,0.06);
+}
+
+.primaryButtonStyle {
+    composes: baseButtonStyle;
+    background-color: #16a34a;
+    color: #ffffff;
+}
+
+.primaryButtonStyle:hover {
+    background-color: #15803d;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    transform: translateY(-1px);
+}
+
+.secondaryButtonStyle {
+    composes: baseButtonStyle;
+    background-color: #dc2626;
+    color: #ffffff;
+}
+
+.secondaryButtonStyle:hover {
+    background-color: #b91c1c;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    transform: translateY(-1px);
+}
+
+.errorMessage {
+    color: #dc2626;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    text-align: right;
+}
+
+.refreshCaptchaButton {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem;
+    border-radius: 4px;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.refreshCaptchaButton:hover {
+    color: #2563eb;
+    background-color: #eff6ff;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.modalContent {
+    background-color: #ffffff;
+    padding: 2.5rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    max-width: 25rem;
+    width: 90%;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUpFadeIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.modalSuccess {
+    border-top: 5px solid #16a34a;
+}
+
+.modalFail {
+    border-top: 5px solid #dc2626;
+}
+
+.modalIconSuccess {
+    color: #16a34a;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    animation: popIn 0.4s ease-out;
+}
+
+.modalIconFail {
+    color: #dc2626;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    animation: popIn 0.4s ease-out;
+}
+
+.modalMessage {
+    font-size: 1.3rem;
+    color: #1a202c;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    80% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
