@@ -107,6 +107,7 @@ class AttractionPageAPIView(APIView):
         return Response(data, status=status.HTTP_200_OK)
 
 
+
 class TourDetailAPIView(RetrieveAPIView):
     queryset = Tour.objects.all()
     serializer_class = TourSerializer

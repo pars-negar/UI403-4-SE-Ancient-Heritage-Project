@@ -29,7 +29,7 @@ import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
 import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
 import SetNewPassword from './pages/SetNewPassword/SetNewPassword.jsx';
 import ErrorPage from './pages/Error404/ErrorPage.jsx';
-import TourInformation from './pages/TourInformation/TourInformation.jsx';
+import TourInformation from './pages/TourInformationPage/TourInformationPage.jsx';
 import TourListPage from './pages/TourListPage/TourListPage.jsx';
 import HistoricSearch from './components/SearchBox/SearchFilter.jsx'
 import ProfileTourListPage from './pages/ProfileTourListPage/ProfileTourListPage.jsx';
@@ -40,6 +40,7 @@ import PlaceModal from './components/Placescard/PlaceModal.jsx';
 import PlaceCard from './components/Placescard/PlaceCard.jsx';
 import PlaceSection from './components/Placescard/PlaceSection.jsx';
 import ZarinpalPage from './pages/ZarinpalPage/ZarinpalPage.jsx';
+import ProfileTourInfoForTourLeader from './pages/ProfileTourInfoForTourLeader/ProfileTourInfoForTourLeader.jsx';
 
 
 
@@ -83,7 +84,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/trp" element={ <TourRegPage/> }></Route>
 
         <Route path="/success" element={<SuccessMassage/>} />
-        <Route path="/tourinformation/:id" element={<TourInformation/>} />
+        <Route path="/tourinformation/:category/:id" element={<TourInformation/>} />
         <Route path="tourlistpage" element={<TourListPage/>}/>
         <Route path="/historical" element={<HistoricSearch/>}/>
 
@@ -95,6 +96,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/setnewpass" element={ < SetNewPassword/>}></Route>
         {/* <Route exact path="/tourlist" element={<TourList/>}></Route> */}
         <Route exact path="/profiletourleader" element={<ProfileTourLeader/>}></Route>
+        <Route exact path="/tourinfofortourleader/:category/:id" element={<ProfileTourInfoForTourLeader/>}></Route>
         <Route exact path="*" element={ <ErrorPage/> }></Route>
      
       </Routes>
