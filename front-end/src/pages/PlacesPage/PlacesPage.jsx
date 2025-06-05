@@ -10,7 +10,6 @@ import SearchFilter from '../../components/SearchBox/SearchFilter';
 import HeroSection from '../../components/Placescard/HeroSection';
 
 
-
 const popularPlaces = [
 
   {
