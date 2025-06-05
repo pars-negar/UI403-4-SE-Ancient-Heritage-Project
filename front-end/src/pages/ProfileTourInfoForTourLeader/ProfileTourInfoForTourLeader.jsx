@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import React, { useState } from 'react';
-import UserPanel from '../../components/UserPanel/UserPanel'
+import TourLeaderPanel from '../../components/UserPanel/TourLeaderPanel'
 import TourInformation from '../../components/TourInformation/TourInformation'
 import DeleteTourModal from './DeleteTourModal'; 
 
@@ -26,7 +26,7 @@ const ProfileTourInfoForTourLeader = () => {
         <div className='flex flex-col bg-[var(--color-light-gray)]'>
             <div className='flex justify-between w-full'>
                 <div className='bg-white !max-h-[80rem]'>
-                    <UserPanel />
+                    <TourLeaderPanel />
                 </div>
                 <div className='flex flex-col justify-center w-full'>
                     <hr className='-mx-9 bg-[var(--color-gray)] !mt-[4rem]'/>

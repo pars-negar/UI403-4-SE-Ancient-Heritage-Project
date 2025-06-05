@@ -1,6 +1,6 @@
 
 import React from 'react';
-import UserPanel from '../../components/UserPanel/UserPanel';
+import TourLeaderPanel from '../../components/UserPanel/TourLeaderPanel';
 import TourRegistrationList from '../../components/UserPanel/TourRegistrationList/TourRegistrationList'; 
 
 const TourRegPage = () => {
@@ -79,9 +79,9 @@ const TourRegPage = () => {
 
   return (
     <div className="flex h-screen bg-gray-100 font-sans text-right" dir="rtl">
-      {/* Right side: UserPanel */}
+      {/* Right side: TourLeaderPanel */}
       <div className="w-[26.25rem] bg-white shadow-lg overflow-y-auto">
-        <UserPanel />
+        <TourLeaderPanel />
       </div>
 
       {/* Left side: TourRegistrationList */}

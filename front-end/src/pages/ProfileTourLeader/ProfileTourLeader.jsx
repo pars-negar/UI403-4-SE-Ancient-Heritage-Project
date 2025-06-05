@@ -1,4 +1,4 @@
-import UserPanel from "../../components/UserPanel/UserPanel";
+import TourLeaderPanel from "../../components/UserPanel/TourLeaderPanel";
 import './profile-tour-leader.css'
 import dropDownIcon from '../../assets/icons/dropdown.svg'
 
@@ -7,7 +7,7 @@ const ProfileTourLeader = () => {
         <>
             <div className="flex min-h-screen">
                 <div>
-                    <UserPanel />
+                    <TourLeaderPanel />
                 </div>
                 <div className="bg-[var(--color-light-gray)] w-full flex flex-col justify-center items-center flex-grow p-[2rem]"> 
                     <hr className="bg-[--color-gray] w-full !mt-[2rem]"/>

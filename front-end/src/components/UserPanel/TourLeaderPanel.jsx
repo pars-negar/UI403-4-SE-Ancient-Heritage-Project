@@ -11,7 +11,7 @@ import HomeIcon from '../Icons/HomeIcon';
 import EditInfoIcon from '../Icons/EditInfoIcon';
 import LogoutIcon from '../Icons/LogoutIcon';
 
-const UserPanel = () => {
+const TourLeaderPanel = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -126,4 +126,4 @@ const UserPanel = () => {
   );
 };
 
-export default UserPanel;
+export default TourLeaderPanel;
