@@ -42,8 +42,8 @@ const UserPanel = () => {
   };
 
   return (
-    <div className="w-[23rem]">
-      <div className="h-full w-full flex items-center pr-[0.5rem] pt-[0.5rem]">
+    <div className="bg-white w-[23rem] h-[30rem] !max-h-3">
+      <div className="flex items-center pr-[0.5rem] pt-[0.5rem] mb-[4rem]">
         <div className="relative flex items-center ml-[1.375rem]">
           <div className="w-[5rem] h-[5rem] rounded-full border !border-[var(--color-orange)]"></div>
           <img src={logo} alt="لوگو" className="absolute right-0 w-[5.59rem] h-[3.9375rem]" />
