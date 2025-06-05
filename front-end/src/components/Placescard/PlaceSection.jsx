@@ -1,7 +1,7 @@
 // components/Placescard/PlaceSection.jsx
 import React, { useRef } from "react";
 import PlaceCard from "./PlaceCard";
-import "../../components/Placescard/Places.css";
+import "./Places.css";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6"; 
 
 const PlaceSection = ({ title, places, onMoreInfo }) => {
