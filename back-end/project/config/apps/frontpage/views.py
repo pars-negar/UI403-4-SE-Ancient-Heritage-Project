@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 
-from .serializer import HeaderImageSerializer, AttractionSerializer, TourSerializer, FAQSerializer
+from .serializer import  AttractionSerializer, TourSerializer
 from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
 
@@ -61,6 +61,10 @@ class TourPageAPIView(APIView):
         
         return Response(data, status=status.HTTP_200_OK)
 
+
+class AttractionPageAPIView(APIView):
+    def get(self,request):
+        
 
 class TourDetailAPIView(RetrieveAPIView):
     queryset = Tour.objects.all()
