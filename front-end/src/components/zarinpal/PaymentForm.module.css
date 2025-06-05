@@ -1,5 +1,3 @@
-/* src/styles/PaymentForm.module.css */
-
 .pageStyle {
     direction: rtl;
     background-color: #f0f2f5;
@@ -46,11 +44,10 @@
     text-align: right;
 }
 
-/* Base input style */
 .inputStyle {
     width: 100%;
     background-color: #ffffff;
-    border: 1.5px solid #cbd5e1; /* Default border color */
+    border: 1.5px solid #cbd5e1;
     border-radius: 8px;
     padding-top: 0.6rem;
     padding-bottom: 0.6rem;
@@ -58,26 +55,28 @@
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     outline: none;
-    padding-right: 0.75rem; /* For inputs without left icon */
+    padding-right: 0.75rem;
     padding-left: 0.75rem;
-    text-align: right; /* Default text alignment for inputs */
+    text-align: right;
 }
 
-/* Focus style for all inputs */
 .inputFocused {
-    border-color: #3b82f6; /* Blue border on focus */
+    border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), inset 0 1px 2px rgba(0,0,0,0.05);
 }
 
-/* Input with icon on left (inherits from inputStyle) */
 .inputWithIconStyle {
-    composes: inputStyle; /* Inherits all styles from .inputStyle */
-    padding-left: 2.75rem; /* More space for icon */
+    composes: inputStyle;
+    padding-left: 2.75rem;
 }
 
-/* Centered input style (inherits from inputStyle) */
+.cardNumberInput {
+    direction: ltr;
+    text-align: left;
+}
+
 .inputCenteredStyle {
-    composes: inputStyle; /* Inherits all styles from .inputStyle */
+    composes: inputStyle;
     text-align: center;
 }
 
@@ -109,7 +108,7 @@
 
 .captchaImageStyle {
     width: 50%;
-    height: calc(0.6rem * 2 + 1.5px * 2 + 1em); /* Calculates height to match input */
+    height: calc(0.6rem * 2 + 1.5px * 2 + 1em);
     line-height: 1em;
     background-color: #edf2f7;
     border-radius: 8px;
@@ -150,7 +149,6 @@
     gap: 0.75rem;
 }
 
-/* Base button style that other buttons will compose from */
 .baseButtonStyle {
     flex-grow: 1;
     font-weight: 600;
@@ -163,42 +161,36 @@
 }
 
 .baseButtonStyle:active {
-    transform: translateY(0.5px); /* Press down effect */
-    box-shadow: 0 0px 1px 0 rgba(0,0,0,0.1), 0 0px 1px 0 rgba(0,0,0,0.06); /* Lighter shadow on active */
+    transform: translateY(0.5px);
+    box-shadow: 0 0px 1px 0 rgba(0,0,0,0.1), 0 0px 1px 0 rgba(0,0,0,0.06);
 }
 
-/* Primary button style */
 .primaryButtonStyle {
     composes: baseButtonStyle;
-    background-color: #16a34a; /* green-600 */
+    background-color: #16a34a;
     color: #ffffff;
 }
 
 .primaryButtonStyle:hover {
-    background-color: #15803d; /* green-700 */
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); /* Larger shadow on hover */
-    transform: translateY(-1px); /* Slight lift on hover */
-}
-
-/* Secondary button style */
-.secondaryButtonStyle {
-    composes: baseButtonStyle;
-    background-color: #dc2626; /* red-600 */
-    color: #ffffff;
-}
-
-.secondaryButtonStyle:hover {
-    background-color: #b91c1c; /* red-700 */
+    background-color: #15803d;
     box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
     transform: translateY(-1px);
 }
 
-/* src/styles/PaymentForm.module.css */
+.secondaryButtonStyle {
+    composes: baseButtonStyle;
+    background-color: #dc2626;
+    color: #ffffff;
+}
 
-/* ... (Existing styles remain) ... */
+.secondaryButtonStyle:hover {
+    background-color: #b91c1c;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    transform: translateY(-1px);
+}
 
 .errorMessage {
-    color: #dc2626; /* red-600 */
+    color: #dc2626;
     font-size: 0.75rem;
     margin-top: 0.5rem;
     text-align: right;
@@ -207,7 +199,7 @@
 .refreshCaptchaButton {
     background: none;
     border: none;
-    color: #3b82f6; /* blue-500 */
+    color: #3b82f6;
     cursor: pointer;
     font-size: 1.2rem;
     display: flex;
@@ -219,11 +211,10 @@
 }
 
 .refreshCaptchaButton:hover {
-    color: #2563eb; /* blue-600 */
-    background-color: #eff6ff; /* blue-50 */
+    color: #2563eb;
+    background-color: #eff6ff;
 }
 
-/* Modal Styles */
 .modalOverlay {
     position: fixed;
     top: 0;
@@ -253,22 +244,22 @@
 }
 
 .modalSuccess {
-    border-top: 5px solid #16a34a; /* green-600 */
+    border-top: 5px solid #16a34a;
 }
 
 .modalFail {
-    border-top: 5px solid #dc2626; /* red-600 */
+    border-top: 5px solid #dc2626;
 }
 
 .modalIconSuccess {
-    color: #16a34a; /* green-600 */
+    color: #16a34a;
     font-size: 3.5rem;
     margin-bottom: 1rem;
     animation: popIn 0.4s ease-out;
 }
 
 .modalIconFail {
-    color: #dc2626; /* red-600 */
+    color: #dc2626;
     font-size: 3.5rem;
     margin-bottom: 1rem;
     animation: popIn 0.4s ease-out;

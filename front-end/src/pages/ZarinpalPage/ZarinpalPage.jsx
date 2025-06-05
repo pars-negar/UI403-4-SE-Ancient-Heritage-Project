@@ -1,6 +1,5 @@
 import React from 'react';
-import PaymentForm from '../../components/zarinpal/PaymentForm'; 
-// import PaymentSuccessModal from '../components/PaymentSuccessModal';
+import PaymentForm from '../../components/zarinpal/PaymentForm';
 
 const ZarinpalPage = () => {
     return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaCreditCard, FaQuestionCircle, FaEnvelope, FaSyncAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import PaymentSuccessModal from './PaymentSuccessModal';
@@ -15,7 +15,7 @@ const PaymentForm = () => {
     const [email, setEmail] = useState('');
     const [focusedField, setFocusedField] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [paymentStatus, setPaymentStatus] = useState(null); // 'success' or 'fail'
+    const [paymentStatus, setPaymentStatus] = useState(null);
 
     const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ const PaymentForm = () => {
         setGeneratedSecurityCode(result);
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         generateRandomSecurityCode();
     }, []);
 
@@ -36,8 +36,8 @@ const PaymentForm = () => {
     const handleBlur = () => setFocusedField(null);
 
     const handleCardNumberChange = (e) => {
-        const value = e.target.value.replace(/\s/g, ''); // Remove existing spaces
-        const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim(); // Add space every 4 digits
+        const value = e.target.value.replace(/\s/g, '');
+        const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim();
         setCardNumber(formattedValue);
     };
 
@@ -71,18 +71,15 @@ const PaymentForm = () => {
 
         try {
             console.log('Sending data to backend:', paymentData);
-            // Simulate API call to backend
-            // Replace this with your actual backend API call (e.g., using axios or fetch)
             const response = await new Promise((resolve) => {
                 setTimeout(() => {
-                    // Simulate success or failure from backend
-                    const success = Math.random() > 0.3; // 70% chance of success
+                    const success = Math.random() > 0.3;
                     if (success) {
                         resolve({ success: true, message: 'پرداخت با موفقیت انجام شد.' });
                     } else {
                         resolve({ success: false, message: 'پرداخت ناموفق بود. لطفاً دوباره تلاش کنید.' });
                     }
-                }, 2000); // Simulate 2-second network delay
+                }, 2000);
             });
 
             if (response.success) {
@@ -90,8 +87,8 @@ const PaymentForm = () => {
                 setShowModal(true);
                 setTimeout(() => {
                     setShowModal(false);
-                    navigate('/rt'); // Redirect to /rt after modal closes
-                }, 3000); // Show modal for 3 seconds
+                    navigate('/rt');
+                }, 3000);
             } else {
                 setPaymentStatus('fail');
                 setShowModal(true);
@@ -130,7 +127,7 @@ const PaymentForm = () => {
                                 name="cardNumber"
                                 value={cardNumber}
                                 onChange={handleCardNumberChange}
-                                className={`${styles.inputWithIconStyle} ${focusedField === 'cardNumber' ? styles.inputFocused : ''}`}
+                                className={`${styles.inputWithIconStyle} ${styles.cardNumberInput} ${focusedField === 'cardNumber' ? styles.inputFocused : ''}`}
                                 placeholder="**** **** **** ****"
                                 maxLength={19}
                                 onFocus={() => handleFocus('cardNumber')}
