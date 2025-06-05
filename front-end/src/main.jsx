@@ -39,6 +39,8 @@ import ProfileTourLeader from './pages/ProfileTourLeader/ProfileTourLeader.jsx';
 import PlaceModal from './components/Placescard/PlaceModal.jsx';
 import PlaceCard from './components/Placescard/PlaceCard.jsx';
 import PlaceSection from './components/Placescard/PlaceSection.jsx';
+import ZarinpalPage from './pages/ZarinpalPage/ZarinpalPage.jsx';
+
 
 
 
@@ -73,6 +75,9 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/LoginSignUp/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
+
+        <Route exact path="/zarin" element={ <ZarinpalPage/> }></Route>
+        <Route exact path="*" element={ <ErrorPage/> }></Route>
         <Route exact path="/place" element={ <PlacesPage/> }></Route>
         <Route exact path="/rt" element={ <ReserveTour/> }></Route>
         <Route exact path="/trp" element={ <TourRegPage/> }></Route>
