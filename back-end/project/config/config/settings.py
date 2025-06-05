@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'admin_interface',
   # 'django_admin_interface',
     'colorfield',    
+    'django_extensions',
 
 ]
 
