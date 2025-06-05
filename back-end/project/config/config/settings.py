@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.faq',
     'apps.authentication',
     'apps.frontpage',
+    'apps.comments',
     'admin_interface',
   # 'django_admin_interface',
     'colorfield',    

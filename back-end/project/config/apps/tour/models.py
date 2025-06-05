@@ -30,6 +30,15 @@ class Attraction(models.Model):
     image = models.ImageField(upload_to='attractions/', blank=True, null=True)   
     built_date = models.CharField(max_length=100, null=True, blank=True)
     
+    CATEGORY_CHOICES = [
+        ('featured', 'پربازدید'),
+        ('hidden', 'کمتر شناخته‌شده'),
+        ('normal', 'معمولی')
+    ]
+
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='normal')
+
+
     def __str__(self):
         return self.attraction_name
 
