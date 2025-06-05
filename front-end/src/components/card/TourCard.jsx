@@ -21,7 +21,7 @@ const TourCards = ({ tours }) => {
 
       {/* کارت‌ها */}
       <div className={styles.cardContainer}>
-        {tours.map((tour) => {
+        {tours && tours.map((tour) => {
           const stars = "⭐".repeat(tour.rating) + "☆".repeat(5 - tour.rating);
           const startDate = new Date(tour.start_date);
           const endDate = new Date(tour.end_date);
@@ -33,7 +33,7 @@ const TourCards = ({ tours }) => {
             <div key={tour.id} className={styles.tourCard}>
               <img
                 className={styles.tourImage}
-                src={`http://parsnegarback.liara.run${tour.main_image}`}
+                src={`http://parsnegarback.liara.run/api/homepage/${tour.main_image}`}
                 alt={tour.title}
               />
               <h3 className={styles.tourTitle}>{tour.title}</h3>

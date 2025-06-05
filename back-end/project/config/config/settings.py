@@ -1,3 +1,4 @@
+
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -5,6 +6,9 @@ from datetime import timedelta
 import dj_database_url
 # Load environment variables from .env
 load_dotenv()
+
+LANGUAGE_CODE = 'fa'
+USE_I18N = True
 
 
 DEBUG = False
@@ -46,6 +50,7 @@ INSTALLED_APPS = [
     'admin_interface',
   # 'django_admin_interface',
     'colorfield',    
+    'django_extensions',
 
 ]
 
@@ -92,11 +97,12 @@ DATABASES = {
     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL')),
 }
 
-# تنظیم نام دیتابیس تست برای جلوگیری از تداخل
-DATABASES['default']['TEST'] = {
-    'NAME': 'test_' + DATABASES['default']['NAME']
-}
+default_db_name = DATABASES['default'].get('NAME', 'default_db')
 
+# تنظیم دیتابیس تست
+DATABASES['default']['TEST'] = {
+    'NAME': f'test_{default_db_name}'
+}
 
 
 # ───── Password Validation ─────

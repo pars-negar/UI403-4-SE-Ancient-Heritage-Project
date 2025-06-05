@@ -35,7 +35,7 @@ import HistoricSearch from './components/SearchBox/SearchFilter.jsx'
 import ProfileTourListPage from './pages/ProfileTourListPage/ProfileTourListPage.jsx';
 import TourRegPage from './pages/TourRegistrationList/TourRegPage.jsx';
 import AddNewTour from './pages/AddNewTourPage/AddNewTour.jsx';
-
+import ProfileTourLeader from './pages/ProfileTourLeader/ProfileTourLeader.jsx';
 
 
 
@@ -88,6 +88,7 @@ createRoot(document.getElementById('root')).render(
         {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
         <Route exact path="/setnewpass" element={ < SetNewPassword/>}></Route>
         {/* <Route exact path="/tourlist" element={<TourList/>}></Route> */}
+        <Route exact path="/profiletourleader" element={<ProfileTourLeader/>}></Route>
      
       </Routes>
     </Router>

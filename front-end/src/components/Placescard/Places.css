@@ -167,14 +167,14 @@
     display: none;
 }
 
-/* Modal Specific Styles */
+
 .place-modal-wrapper {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.6); /* Dark background behind modal */
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -185,34 +185,33 @@
     background-color: #fff;
     border-radius: 20px;
     width: 100%;
-    max-width: 450px; /* Adjusted to be closer to the image's aspect ratio */
-    height: auto; /* Allow height to adjust based on content */
-    max-height: 100vh; /* Max height to prevent overflow on smaller screens */
+    max-width: 450px; 
+    height: auto; 
+    max-height: 100vh;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
-    overflow: hidden; /* For border-radius to apply properly */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     text-align: right;
     direction: rtl;
-    padding: 0; /* Remove internal padding to control layout precisely */
+    padding: 0; 
 }
 
-/* Close button on top-left */
 .place-modal-close {
     position: absolute;
-    top: 0px; /* Distance from top edge */
-    left: 0px; /* Distance from left edge */
+    top: 0px; 
+    left: 0px; 
     background: none;
     border: none;
-    font-size: 2.5rem; /* Large 'x' */
-    color: #f97316; /* Orange color */
+    font-size: 2.5rem; 
+    color: #f97316; 
     cursor: pointer;
-    z-index: 10; /* Ensure it's above other content */
+    z-index: 10; 
     transition: color 0.2s;
-    font-weight: bold; /* Make it bold */
-    padding: 0; /* No internal padding */
-    width: 40px; /* Make the clickable area larger */
+    font-weight: bold;
+    padding: 0;
+    width: 40px; 
     height: 40px;
     display: flex;
     justify-content: center;
@@ -220,103 +219,99 @@
 }
 
 .place-modal-close:hover {
-    color: #e05e00; /* Darker orange on hover */
+    color: #e05e00; 
 }
 
-/* Top section containing image and main details */
 .modal-top-section {
     display: flex;
-    flex-direction: row-reverse; /* Image on right, text on left */
+    flex-direction: row-reverse;
     width: 100%;
-    min-height: 220px; /* Fixed height for this top section like in the image */
+    min-height: 220px;
     position: relative;
     height: 300px;
     overflow: hidden;
     padding: 10px 20px;
-    /* This gradient mimics the amber-200 and amber-500 from your original description */
-    background: white; /* Adjust percentages/colors for exact match if needed */
-    border-top-left-radius: 20px; /* Match modal's top border-radius */
-    border-top-right-radius: 20px; /* Match modal's top border-radius */
+    background: white; 
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .modal-image-container {
-    flex: 0 0 60%; /* Approximately 38% width for the image part (like col-5) */
+    flex: 0 0 60%; 
     display: flex;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    position: relative; /* For absolute positioning of the image */
-    padding-left: 25px; /* Add some padding on the left of the image container */
+    position: relative;
+    padding-left: 25px; 
 }
 
 .modal-main-image {
-    width: 100%; /* Size of the image inside its container */
-    height: 90%; /* Size of the image inside its container */
+    width: 100%; 
+    height: 90%; 
     object-fit: cover;
-    border-radius: 10px; /* Rounded corners for the image itself */
+    border-radius: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: absolute; /* Position the image precisely within its container */
+    position: absolute; 
     top: 50%;
     border-radius: 10px;
-    right: 0; /* Position to the right edge of its container */
-    transform: translate(0, -50%); /* Center vertically */
-    /* Adjust right value to fine-tune image position */
-    right: 15px; /* Pulls image more to the left, inside the orange area */
+    right: 0;
+    transform: translate(0, -50%);
+    right: 15px; 
 }
 
 .modal-info-container {
-    flex: 1; /* Takes remaining space, approx 62% (like col-7) */
-    padding: 20px; /* Padding for text content */
-    color: #000; /* Text color */
+    flex: 1;
+    padding: 20px; 
+    color: #000; 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align content to the top */
+    justify-content: flex-start;
 }
 
 .modal-place-main-title {
     font-family: "Vazirmatn", sans-serif;
-    font-weight: 700; /* Bolder for main title */
-    font-size: 1.6rem; /* Adjusted font size to fit image */
+    font-weight: 700; 
+    font-size: 1.6rem; 
     color: #000;
     margin-bottom: 10px; 
-    line-height: 1.3; /* Better line spacing */
+    line-height: 1.3;
 }
 
 .modal-general-info {
     font-family: "Vazirmatn", sans-serif;
     font-weight: 500;
-    font-size: 0.85rem; /* Slightly smaller font size for general info */
+    font-size: 0.85rem; 
     line-height: 1.6;
 }
 
 .modal-general-info p {
-    margin-bottom: 4px; /* Small margin between info lines */
+    margin-bottom: 4px; 
 }
 
 .info-label {
-    font-weight: 700; /* Bolder for labels */
+    font-weight: 700; 
     color: #555;
-    margin-left: 5px; /* Space between label and value */
+    margin-left: 5px; 
 }
 
-/* Scrollable Description Section */
 .modal-description-scrollable {
-    flex: 1; /* Allows this section to fill remaining height */
-    padding: 20px; /* Padding for the entire description area */
-    overflow-y: auto; /* Enable vertical scrolling */
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto; 
     font-family: "Vazirmatn", sans-serif;
     font-weight: 500;
     color: #444;
 }
 
 .description-section-block {
-    margin-bottom: 20px; /* Space between description sections */
+    margin-bottom: 20px; 
 }
 
 .description-section-heading {
     font-family: "Vazirmatn", sans-serif;
-    font-weight: 700; /* Bolder for section titles */
-    font-size: 1.25rem; /* Slightly larger for section titles */
+    font-weight: 700;
+    font-size: 1.25rem;
     color: #222;
     margin-bottom: 10px;
 }
@@ -324,32 +319,31 @@
 .description-section-text {
     font-family: "Vazirmatn", sans-serif;
     font-weight: 500;
-    font-size: 0.95rem; /* Standard font size for description text */
+    font-size: 0.95rem; 
     line-height: 1.8;
     text-align: justify;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .modal-top-section {
-        flex-direction: column; /* Stack elements vertically on smaller screens */
-        min-height: auto; /* Allow height to adjust */
+        flex-direction: column; 
+        min-height: auto;
         height: auto;
     }
 
     .modal-image-container {
         flex: none;
         width: 100%;
-        height: 180px; /* Fixed height for image container on smaller screens */
+        height: 180px; 
         padding: 10px;
     }
 
     .modal-main-image {
-        position: static; /* Reset absolute positioning */
-        transform: none; /* Reset transform */
+        position: static; 
+        transform: none;
         width: 90%;
         height: 100%;
-        right: auto; /* Reset right property */
+        right: auto;
     }
 
     .modal-info-container {

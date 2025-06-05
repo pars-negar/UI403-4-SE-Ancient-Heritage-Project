@@ -4,16 +4,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import TourCards from "../../components/Card/TourCard";
+import TourCard from "../../components/Card/TourCard";
 import CityAttraction from "../../components/Card/CityAttraction";
 import Comments from "../../components/Comments/Testimonials";
 import FAQAccordion from "../../components/FAQ/FAQAccordion";
 import FourCityCards from "../../components/Card/FourCityCards";
-import ThreeTourismAttractions from "../../components/Card/threeTorismAttraction";
+import TourismAttractions from "../../components/Card/tourismAttractionCard";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import tomb from "../../assets/images/tomb.png";
 import image from "../../assets/images/1.png";
 import styles from "./home.module.css";
+
+import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6"; 
 
 const Home = () => {
   const [tours, setTours] = useState([]);
@@ -136,7 +138,13 @@ const Home = () => {
 
       {/* Tours Section */}
       <div id="home-tour-card">
-        {loading ? <p>در حال بارگذاری...</p> : <TourCards tours={tours} />}
+          <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' ,marginTop:'90px' }}>
+            {loading ? (
+              <p>در حال بارگذاری...</p>
+            ) : (
+              tours && tours.map((tour) => <TourCard key={tour.id} tour={tour} />)
+            )}
+          </div>
       </div>
 
       {/* Middle Image */}
@@ -144,25 +152,24 @@ const Home = () => {
 
       {/* Attractions Section */}
       <div className={styles.attractionsSection}>
-        {loading ? (
-          <p>در حال بارگذاری...</p>
-        ) : (
-          attractions &&
-          attractions.map((attraction) => (
-            <CityAttraction key={attraction.id} attraction={attraction} />
-          ))
-        )}
+            <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' ,marginTop:'90px' }}>
+              { loading ? (
+                  <p>در حال بارگذاری...</p>
+                ) : (
+                  attractions &&
+                  attractions.map((attraction) => (
+                    <TourismAttractions 
+                      key={attraction.id} 
+                      image={attraction} 
+                      title={attraction.name}
+                      description={attraction.description}
+                      backgroundColor="#FF8C1A"
+                      />
+                  ))
+                )}
+            </div>
       </div>
 
-      {/* Highlighted Attractions */}
-      <div>
-        <ThreeTourismAttractions
-          image="/assets/images/takht-jamshid.png"
-          title="تخت جمشید"
-          description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید"
-          backgroundColor="#FF8C1A"
-        />
-      </div>
 
       {/* Comments and FAQ */}
       <Comments />

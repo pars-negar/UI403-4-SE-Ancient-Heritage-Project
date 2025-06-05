@@ -2,6 +2,9 @@ import { useState } from 'react'
 import travel from '../../assets/icons/travel.svg'
 import arrowDown from '../../assets/icons/arrow-down.svg'
 
+import ManageIcon from '../Icons/ManageIcon'
+import DropDownIcon from '../Icons/DropDownIcon'
+
 const Toggle = () => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -9,10 +12,24 @@ const Toggle = () => {
         <div className={`${isOpen ? 'bg-[var(--color-orange-light)]' : ''} transition-colors h-auto`}>
             <button 
                 onClick={() => setIsOpen(!isOpen)}
-                className='relative h-[3.2875rem] flex gap-[0.9375rem] items-center pr-[1.4375rem] text-black !m-0 !w-full'>           
-                <img src={ travel } alt="travel" className='w-[1.625rem] h-[1.625rem]' />
-                <span className='text-[var()] text-xl'>مدیریت تورها</span>
-                <img src={ arrowDown } alt="arrow-down" className='absolute left-[1.1875rem]' />
+                className={`relative 
+                           h-[3.2875rem] 
+                           flex 
+                           gap-[0.6rem] 
+                           items-center 
+                           pr-[1.4375rem]  
+                           !m-0 
+                           !w-full
+                           ${isOpen ? 'text-black font-bold' : '!text-[var(--color-gray)] hover:text-black hover:font-bold'}
+                           cursor-pointer
+                           group
+            `}>           
+                {/* <img src={ travel } alt="travel" className='w-[1.625rem] h-[1.625rem]' /> */}
+                <ManageIcon className={`${isOpen ? 'text-black' : 'text-[var(--color-gray)] group-hover:text-black'}`} />
+                <span className='text-xl group-hover:text-black group-hover:font-bold'>مدیریت تورها</span>
+                {/* <img src={ arrowDown } alt="arrow-down" className='absolute left-[1.1875rem]' /> */}
+                <DropDownIcon className={`${isOpen ? 'text-black' : 'text-[var(--color-gray)] group-hover:text-black'} absolute left-[1.1875rem]`}/>
+
             </button>
 
             {isOpen && (
