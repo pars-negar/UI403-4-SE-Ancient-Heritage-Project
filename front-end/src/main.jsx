@@ -36,6 +36,7 @@ import ProfileTourListPage from './pages/ProfileTourListPage/ProfileTourListPage
 import TourRegPage from './pages/TourRegistrationList/TourRegPage.jsx';
 import AddNewTour from './pages/AddNewTourPage/AddNewTour.jsx';
 import ProfileTourLeader from './pages/ProfileTourLeader/ProfileTourLeader.jsx';
+import ZarinpalPage from './pages/ZarinpalPage/ZarinpalPage.jsx';
 
 
 
@@ -71,6 +72,8 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/LoginSignUp/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
+
+        <Route exact path="/zarin" element={ <ZarinpalPage/> }></Route>
         <Route exact path="*" element={ <ErrorPage/> }></Route>
         <Route exact path="/place" element={ <PlacesPage/> }></Route>
         <Route exact path="/rt" element={ <ReserveTour/> }></Route>
