@@ -83,13 +83,8 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/trp" element={ <TourRegPage/> }></Route>
 
         <Route path="/success" element={<SuccessMassage/>} />
-<<<<<<< HEAD
-        <Route path="/tourInformation" element={<TourInformation/>} />
-        <Route path="/tourlistpage" element={<TourListPage/>}/>
-=======
         <Route path="/tourinformation/:id" element={<TourInformation/>} />
         <Route path="tourlistpage" element={<TourListPage/>}/>
->>>>>>> 3f9b27a0d762fc63aa25e1048fef0ddc56c92692
         <Route path="/historical" element={<HistoricSearch/>}/>
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}

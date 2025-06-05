@@ -1,12 +1,28 @@
-import React from 'react';
-import modalBgImage from '../../assets/images/deleteacc.png'; 
+import React, { useRef } from 'react';
+import modalBgImage from '../../assets/images/deleteacc.png';
 
 const DeleteAccountModal = ({ isOpen, onClose, onDeleteConfirm }) => {
+  const modalRef = useRef();
+
   if (!isOpen) return null;
 
+  const handleClickOutside = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0  bg-opacity-70 flex justify-center items-center z-50 p-4" style={{ backgroundColor:"rgba(0,0,0,0.4)"}}>
-      <div className="relative bg-white shadow-2xl flex overflow-hidden  " style={{ width: '45rem', height: '30rem', borderRadius: "40px" }}>
+    <div
+      className="fixed inset-0 bg-opacity-70 flex justify-center items-center z-50 p-4"
+      style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
+      onClick={handleClickOutside}
+    >
+      <div
+        ref={modalRef}
+        className="relative bg-white shadow-2xl flex overflow-hidden"
+        style={{ width: '45rem', height: '30rem', borderRadius: "40px" }}
+      >
         <div className="w-1/2 h-full flex flex-col items-center justify-center p-8 text-right z-10">
           <p className="text-3xl font-bold text-gray-800 mb-10" style={{ fontFamily: 'Vazirmatn' }}>
             مطمئنی می‌خوای این حساب رو حذف کنی؟
