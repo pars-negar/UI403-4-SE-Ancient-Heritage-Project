@@ -36,6 +36,9 @@ import ProfileTourListPage from './pages/ProfileTourListPage/ProfileTourListPage
 import TourRegPage from './pages/TourRegistrationList/TourRegPage.jsx';
 import AddNewTour from './pages/AddNewTourPage/AddNewTour.jsx';
 import ProfileTourLeader from './pages/ProfileTourLeader/ProfileTourLeader.jsx';
+import PlaceModal from './components/Placescard/PlaceModal.jsx';
+import PlaceCard from './components/Placescard/PlaceCard.jsx';
+import PlaceSection from './components/Placescard/PlaceSection.jsx';
 import ZarinpalPage from './pages/ZarinpalPage/ZarinpalPage.jsx';
 
 
@@ -80,8 +83,13 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/trp" element={ <TourRegPage/> }></Route>
 
         <Route path="/success" element={<SuccessMassage/>} />
+<<<<<<< HEAD
         <Route path="/tourInformation" element={<TourInformation/>} />
         <Route path="/tourlistpage" element={<TourListPage/>}/>
+=======
+        <Route path="/tourinformation/:id" element={<TourInformation/>} />
+        <Route path="tourlistpage" element={<TourListPage/>}/>
+>>>>>>> 3f9b27a0d762fc63aa25e1048fef0ddc56c92692
         <Route path="/historical" element={<HistoricSearch/>}/>
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}
@@ -92,6 +100,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/setnewpass" element={ < SetNewPassword/>}></Route>
         {/* <Route exact path="/tourlist" element={<TourList/>}></Route> */}
         <Route exact path="/profiletourleader" element={<ProfileTourLeader/>}></Route>
+        <Route exact path="*" element={ <ErrorPage/> }></Route>
      
       </Routes>
     </Router>

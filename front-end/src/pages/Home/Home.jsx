@@ -160,12 +160,12 @@ const Home = () => {
                   attractions.map((attraction) => (
                     <TourismAttractions 
                       key={attraction.id} 
-                      image={attraction} 
-                      title={attraction.name}
-                      description={attraction.description}
+                      title={attraction.title}
+                      description={attraction.subtitle}
                       backgroundColor="#FF8C1A"
-                      />
-                  ))
+                    />
+                  )
+                )
                 )}
             </div>
       </div>
