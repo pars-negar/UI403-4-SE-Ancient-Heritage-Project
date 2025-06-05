@@ -5,17 +5,17 @@ import dropDownIcon from '../../assets/icons/dropdown.svg'
 const ProfileTourLeader = () => {
     return ( 
         <>
-            <div className="flex">
+            <div className="flex min-h-screen">
                 <div>
                     <UserPanel />
                 </div>
-                <div className="bg-[var(--color-light-gray)] w-full h-[100vh] flex flex-col justify-center items-center"> 
+                <div className="bg-[var(--color-light-gray)] w-full flex flex-col justify-center items-center flex-grow p-[2rem]"> 
                     <hr className="bg-[--color-gray] w-full !mt-[2rem]"/>
                     <div className="flex justify-start items-center w-full mr-[16rem]"> 
                         <hr className='!w-[5px] !h-[2.75rem] border-none !bg-[var(--color-dark-blue)] opacity-100 rounded-[8px] !ml-[0.4375rem]'/>
                         <h3 className='!text-4xl' style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>اطلاعات حساب کاربری</h3>
                     </div>
-                    <div className="flex justify-center items-center w-[52.9375rem] h-[36rem] rounded-[30px] bg-white">
+                    <div className="flex justify-center items-center w-[52.9375rem] h-full rounded-[30px] bg-white p-[1.5rem]">
                         <form action="submit" className="">
                             <div className="w-full flex flex-col gap-[1rem]" style={{ fontFamily: 'Vazirmatn', fontWeight: 700}}>
                                 <div className="flex gap-[3rem]">
@@ -73,6 +73,16 @@ const ProfileTourLeader = () => {
                                     <div className="flex flex-col gap-[0.3rem]">
                                         <label htmlFor="">شماره ثبت شرکت</label>
                                         <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                </div>
+                                <div className="flex gap-[3rem]">
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">رمز عبور</label>
+                                        <input type="password" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                    </div>
+                                    <div className="flex flex-col gap-[0.3rem]">
+                                        <label htmlFor="">تایید رمز عبور</label>
+                                        <input type="password" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
                                     </div>
                                 </div>
                                  <div className="flex flex-col gap-[0.3rem]">

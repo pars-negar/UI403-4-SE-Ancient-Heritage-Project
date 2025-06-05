@@ -1,7 +1,9 @@
-import "../../index.css";
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+
+import "../../index.css";
+import styles from "./home.module.css";
+
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import TourCard from "../../components/Card/TourCard";
@@ -13,7 +15,9 @@ import TourismAttractions from "../../components/Card/tourismAttractionCard";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import tomb from "../../assets/images/tomb.png";
 import image from "../../assets/images/1.png";
-import styles from "./home.module.css";
+
+import ArrowRight from "../../components/Icons/ArrowRight";
+import ArrowLeft from "../../components/Icons/ArrowLeft";
 
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6"; 
 
@@ -23,6 +27,27 @@ const Home = () => {
   const [faqs, setFaqs] = useState([]);
   const [headers, setHeaders] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const scrollRef = useRef(null);
+  const scrollAmount = 350;
+  
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
   useEffect(() => {
     getData();
@@ -151,25 +176,40 @@ const Home = () => {
       <img className={styles.tomb} src={tomb} alt="tomb" />
 
       {/* Attractions Section */}
-      <div className={styles.attractionsSection}>
-            <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' ,marginTop:'90px' }}>
-              { loading ? (
-                  <p>در حال بارگذاری...</p>
-                ) : (
-                  attractions &&
-                  attractions.map((attraction) => (
-                    <TourismAttractions 
-                      key={attraction.id} 
-                      title={attraction.title}
-                      description={attraction.subtitle}
-                      backgroundColor="#FF8C1A"
-                    />
-                  )
-                )
-                )}
-            </div>
+      <div className="flex justify-between items-center !mb-[1rem]">
+        <div className="flex items-center !mr-[3rem]">
+          <hr className="!w-[5px] !h-[3rem] border-none !bg-[var(--color-dark-blue)] opacity-100 rounded-[8px] !ml-[0.4375rem]" />
+          <h3 className="!text-4xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>جاذبه‌های برتر</h3>
+        </div>
+        <div className="flex gap-[1.75rem] ml-[3rem]">
+          <button onClick={scrollRight}>
+            <ArrowRight defualtColor="black" hoverColor="var(--color-dark-blue)" className="cursor-pointer"/>
+          </button>
+          <button onClick={scrollLeft}>
+            <ArrowLeft defualtColor="black" hoverColor="var(--color-dark-blue)" className="cursor-pointer"/>
+          </button>
+        </div>
       </div>
-
+      <div className={styles.attractionsSection}>
+        <div className="overflow-x-auto scroll-smooth no-scrollbar" ref={scrollRef}>
+        <div className="flex gap-4 mt-20 w-max px-6">
+            { loading ? (
+                <p>در حال بارگذاری...</p>
+              ) : (
+                attractions &&
+                attractions.map((attraction) => (
+                  <TourismAttractions 
+                    key={attraction.id} 
+                    title={attraction.title}
+                    description={attraction.subtitle}
+                    backgroundColor="#FF8C1A"
+                  />
+                )
+              )
+              )}
+          </div>
+        </div>
+      </div>
 
       {/* Comments and FAQ */}
       <Comments />
