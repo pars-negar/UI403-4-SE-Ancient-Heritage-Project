@@ -23,40 +23,29 @@ const TourInformation = () => {
 
 
     useEffect(() => {
-        const fetchTourData = async () => {
-            try {
-                const response = await axios.get(
-                    "https://parsnegarback.liara.run/api/homepage/tour-page"
-                );
-                if (response && response.status === 200) {
-                    console.log(response.data);
-                    const tours = response.data.top_tours || [];
-                    const foundTour = tours.find((tour) => tour.id === parseInt(id));
-                    console.log(foundTour);
-                    console.log(foundTour.origin);
-                    console.log("آیدی از URL:", id);
-                    console.log("آیدی هر تور:", tours.map(t => t.id));
-                    console.log("ID from useParams:", id);
+    const fetchTourData = async () => {
+        try {
+            const response = await axios.get(
+                `https://parsnegarback.liara.run/api/homepage/tour/${id}/`
+            );
+            if (response && response.status === 200) {
+                const foundTour = response.data;
+                setTour(foundTour);
+                setTourPlan(foundTour.daily_schedules || []);
+                setError([]);
+            } else {
+                setError(['خطا در دریافت اطلاعات.']);
+            }
+        } catch (error) {
+            console.error("Error during fetch: ", error);
+            setError(['مشکلی در دریافت اطلاعات رخ داده است.']);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-                    if (foundTour) {
-                        setTour(foundTour);
-                    } else {
-                        setError('تور مورد نظر یافت نشد.');
-                    }
-                } else {
-                    setError('خطا در دریافت اطلاعات.');
-                    console.error("Failed to fetch data", response);
-                }
-                } catch (error) {
-                    console.error("Error during fetch: ", error);
-                    setError('مشکلی در دریافت اطلاعات رخ داده است.');
-                } finally {
-                    setLoading(false);
-                }
-        };
-
-        fetchTourData();
-    }, [id, location]);
+    fetchTourData();
+}, [id]);
 
     
     if (loading) {
