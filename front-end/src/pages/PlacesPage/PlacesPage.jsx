@@ -130,8 +130,9 @@ const PlacesPage = () => {
         try {
             const response = await axios.get(`http://${IP}:8000/remove/` , search);
             if (response.status === 200) {
-                setGems(response.data.gems)
-                 setGems(response.data.popular)
+              setGems(response.data.popular)
+              setGems(response.data.gems)
+                 
             }
           }
           catch (e) {
