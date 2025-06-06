@@ -8,8 +8,6 @@ from rest_framework import status
 from .models import Tour
 from rest_framework.views import APIView
 from rest_framework import generics, permissions
-from .models import Booking  # اگر هنوز اضافه نکردی
-from .serializers import BookingSerializer  # بعداً تعریفش می‌کنی
 from rest_framework import serializers
 
 class TourCreateAPIView(generics.CreateAPIView):

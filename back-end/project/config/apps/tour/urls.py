@@ -12,6 +12,4 @@ urlpatterns = [
     path('attractionsearch/', AttractionSearchAPIView.as_view(), name='attraction-search'),
     path('toursearch/', TourSearchView.as_view(), name='tour-search'),
     path('create/', TourCreateAPIView.as_view(), name='tour-create'),
-    #  این خط برای رزرو تور:
-    path('bookings/create/', BookingCreateAPIView.as_view(), name='booking-create'),
 ]
