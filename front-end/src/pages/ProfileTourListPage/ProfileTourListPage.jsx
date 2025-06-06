@@ -1,4 +1,4 @@
-import UserPanel from "../../components/UserPanel/UserPanel";
+import TourLeaderPanel from "../../components/UserPanel/TourLeaderPanel";
 import ProfiletourListLeft from "../../components/LeftPanel/ProfiletourListLeft";
 
 const ProfileTourListPage = () => {
@@ -7,7 +7,7 @@ const ProfileTourListPage = () => {
     <div className="flex h-screen bg-gray-100" dir="rtl">
 
       <div className="w-[26.25rem] bg-white shadow-lg overflow-y-auto border-l border-gray-200">
-        <UserPanel />
+        <TourLeaderPanel />
       </div>
 
 

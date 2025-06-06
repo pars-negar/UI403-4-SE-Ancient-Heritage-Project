@@ -1,0 +1,4 @@
+# file: C:\Users\ACER\Documents\Modal\Modal1\UI403-4-SE-Ancient-Heritage-Project\back-end\project\config\apps\frontpage\serializer.py
+# hypothesis_version: 6.133.2
+
+['alt_text', 'answer', 'attraction_name', 'city', 'description', 'destination', 'end_date', 'id', 'image', 'location', 'main_image', 'origin', 'price', 'question', 'start_date']

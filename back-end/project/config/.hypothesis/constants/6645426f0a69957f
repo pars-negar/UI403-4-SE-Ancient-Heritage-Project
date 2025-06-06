@@ -1,0 +1,4 @@
+# file: C:\Users\ACER\Documents\Modal\Modal1\UI403-4-SE-Ancient-Heritage-Project\back-end\project\config\apps\tour\admin.py
+# hypothesis_version: 6.133.2
+
+['%H:%M', '__all__', 'accommodation', 'attraction_name', 'capacity', 'city', 'company_address', 'company_email', 'company_name', 'company_phone', 'company_website', 'day_number', 'departure_time', 'description', 'destination', 'end_date', 'entry_fee', 'historical_period', 'image', 'location', 'main_image', 'meal_details', 'opening_hours', 'origin', 'price', 'related_tours', 'return_time', 'start_date', 'title', 'tour', 'tour__tour_name', 'tour_guides_info', 'tour_manager', 'tour_name', 'tourism_services', 'transportation', 'travel_insurance']

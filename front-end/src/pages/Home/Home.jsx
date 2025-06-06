@@ -1,7 +1,9 @@
-import "../../index.css";
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+
+import "../../index.css";
+import styles from "./home.module.css";
+
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import TourCard from "../../components/Card/TourCard";
@@ -13,9 +15,10 @@ import TourismAttractions from "../../components/Card/tourismAttractionCard";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import tomb from "../../assets/images/tomb.png";
 import image from "../../assets/images/1.png";
-import styles from "./home.module.css";
 
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6"; 
+import ArrowRight from "../../components/Icons/ArrowRight";
+import ArrowLeft from "../../components/Icons/ArrowLeft";
+import PlaceModal from "../../components/Placescard/PlaceModal";
 
 const Home = () => {
   const [tours, setTours] = useState([]);
@@ -24,6 +27,30 @@ const Home = () => {
   const [headers, setHeaders] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [selectedAttraction, setSelectedAttraction] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const scrollRef = useRef(null);
+  const scrollAmount = 350;
+  
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -31,10 +58,10 @@ const Home = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        "https://parsnegarback.liara.run/api/homepage"
+        "http://127.0.0.1:8000/api/homepage/"
       );
       if (response && response.status === 200) {
-        console.log(response.data);
+        // console.log(response.data.tours);
         setTours(response.data.tours || []);
         setAttractions(response.data.attractions || []);
         setFaqs(response.data.faqs || []);
@@ -49,7 +76,27 @@ const Home = () => {
       setLoading(false);
     }
   };
+const handleAttractionClick = async (id) => {
+    try {
+      // درخواست جزییات کامل جاذبه از API (آدرس را بر اساس API خودت تنظیم کن)
+      const response = await axios.get(`http://127.0.0.1:8000/api/attractions/${id}`);
+      if (response && response.status === 200) {
+        setSelectedAttraction(response.data);
+        setShowModal(true);
+      } else {
+        alert("مشکل در دریافت اطلاعات جاذبه");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("خطا در دریافت اطلاعات جاذبه");
+    }
+  };
 
+  // بستن مدال
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedAttraction(null);
+  };
   return (
     <div className="home rtl">
       <Navbar />
@@ -142,7 +189,7 @@ const Home = () => {
             {loading ? (
               <p>در حال بارگذاری...</p>
             ) : (
-              tours && tours.map((tour) => <TourCard key={tour.id} tour={tour} />)
+              tours && <TourCard key={tours.id} tours={tours} />
             )}
           </div>
       </div>
@@ -151,31 +198,51 @@ const Home = () => {
       <img className={styles.tomb} src={tomb} alt="tomb" />
 
       {/* Attractions Section */}
-      <div className={styles.attractionsSection}>
-            <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' ,marginTop:'90px' }}>
-              { loading ? (
-                  <p>در حال بارگذاری...</p>
-                ) : (
-                  attractions &&
-                  attractions.map((attraction) => (
-                    <TourismAttractions 
-                      key={attraction.id} 
-                      title={attraction.title}
-                      description={attraction.subtitle}
-                      backgroundColor="#FF8C1A"
-                    />
-                  )
-                )
-                )}
-            </div>
+      <div className="flex justify-between items-center !mb-[1rem]">
+        <div className="flex items-center !mr-[3rem]">
+          <hr className="!w-[5px] !h-[3rem] border-none !bg-[var(--color-dark-blue)] opacity-100 rounded-[8px] !ml-[0.4375rem]" />
+          <h3 className="!text-4xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>جاذبه‌های برتر</h3>
+        </div>
+        <div className="flex gap-[1.75rem] ml-[3rem]">
+          <button onClick={scrollRight}>
+            <ArrowRight defualtColor="black" hoverColor="var(--color-dark-blue)" className="cursor-pointer"/>
+          </button>
+          <button onClick={scrollLeft}>
+            <ArrowLeft defualtColor="black" hoverColor="var(--color-dark-blue)" className="cursor-pointer"/>
+          </button>
+        </div>
       </div>
+      <div className={styles.attractionsSection}>
+        <div className="overflow-x-auto scroll-smooth no-scrollbar" ref={scrollRef}>
+        <div className="flex gap-4 mt-20 w-max px-6">
+            { loading ? (
+                <p>در حال بارگذاری...</p>
+              ) : (
+                attractions &&
+                attractions.map((attraction) => (
+                  <TourismAttractions 
+                    key={attraction.id} 
+                    id={attraction.id} 
+                    title={attraction.title}
+                    image={attraction.image}
+                    description={attraction.subtitle}
+                    onClick={handleAttractionClick} 
 
+                    backgroundColor="#FF8C1A"
+                  />
+                )
+              )
+              )}
+          </div>
+        </div>
+      </div>
 
       {/* Comments and FAQ */}
       <Comments />
       <FAQAccordion />
-
+<PlaceModal show={showModal} onClose={closeModal} place={selectedAttraction} />
       {/* Footer */}
+
       <Footer />
     </div>
   );

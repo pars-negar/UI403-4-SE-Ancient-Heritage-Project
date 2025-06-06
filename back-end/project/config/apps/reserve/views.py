@@ -3,7 +3,7 @@ from .models import Tour, RoomType, Reservation, Passenger, ReservedRoom
 from .serializers import (
     TourSerializer, RoomTypeSerializer,
     ReservationSerializer, PassengerSerializer,
-    ReservedRoomSerializer, TourPassengerSerializer
+    ReservedRoomSerializer, PassengerSerializer
 )
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -33,14 +33,22 @@ class ReservationViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 class PassengerViewSet(viewsets.ModelViewSet):
-    queryset = Passenger.objects.all()
     serializer_class = PassengerSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def get_queryset(self):
+        user = self.request.user
+        return Passenger.objects.filter(reservation__user=user)
+
+
 class ReservedRoomViewSet(viewsets.ModelViewSet):
-    queryset = ReservedRoom.objects.all()
     serializer_class = ReservedRoomSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return ReservedRoom.objects.filter(reservation__user=user)
+
 
 class TourPassengerListAPIView(APIView):
     permission_classes = [IsAuthenticated]

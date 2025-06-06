@@ -1,7 +1,8 @@
 from rest_framework import serializers
+from django.db.models import Sum
 from .models import Attraction
 from .models import Tour
-
+from .models import AttractionImage,TourImage,DailySchedule,Review
 
 
 class TourCreateSerializer(serializers.ModelSerializer):
@@ -12,7 +13,8 @@ class TourCreateSerializer(serializers.ModelSerializer):
         model = Tour
         #exclude = ['tour_manager']  # از کاربر گرفته میشه نه از فرانت
         
-        fields = '__all__'  # همه فیلدها از جمله tour_manager از فرانت دریافت می‌شن
+        fields = [field.name for field in Tour._meta.fields]
+
 
     def create(self, validated_data):
         # اگر tour_manager از فرانت نیومده بود، از user لاگین‌شده استفاده کن
@@ -23,24 +25,108 @@ class TourCreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
+# serializers.py
 
+class AttractionImageSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
 
+    def get_image(self, obj):
+        request = self.context.get('request')
+        if obj.image:
+            return request.build_absolute_uri(obj.image.url)
+        return None
 
-class Attractionserializers(serializers.ModelSerializer):
     class Meta:
-        model=Attraction
-        fields= '__all__'
-        
+        model = AttractionImage
+        fields = ['image_type', 'image']
+
+class TourImageSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = TourImage
+        fields = ['image_type', 'image']
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        if request and obj.image:
+            return request.build_absolute_uri(obj.image.url)
+        return None
+
+class AttractionSerializer(serializers.ModelSerializer):
+    images = AttractionImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Attraction
+        fields = '__all__'  # یا اگر خواستی دقیق‌تر:
+        # fields = ['id', 'attraction_name', ..., 'images']
+
+
+class DailyScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DailySchedule
+        fields = ['day_number', 'title', 'description', 'image']
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()  # نمایش نام کاربر
+
+    class Meta:
+        model = Review
+        fields = ['user', 'comment', 'rating', 'created_at']     
 # Serializer for the Tour model - used for serializing and deserializing Tour instances
 class TourSerializer(serializers.ModelSerializer):
     price = serializers.SerializerMethodField()
+    meals = serializers.SerializerMethodField()
+    guides = serializers.SerializerMethodField()
+    services = serializers.SerializerMethodField()
+    images = TourImageSerializer(many=True, read_only=True)
+    daily_schedules = DailyScheduleSerializer(many=True, read_only=True)
+    reviews = ReviewSerializer(many=True, read_only=True)
 
     class Meta:
         model = Tour
-        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description', 'main_image']  
+        fields = [
+            'id', 'tour_name', 'origin', 'destination', 'start_date', 'end_date',
+            'price', 'description', 'main_image', 'images',
+            'meals', 'guides', 'services',
+            'daily_schedules', 'reviews',
+        ]
 
     def get_price(self, obj):
         return int(obj.price)
+    def get_meals(self, obj):
+        if not obj.meal_details:
+            return {}
+        parts = obj.meal_details.replace('،', ',').split(',')
+        result = {}
+        for part in parts:
+            if 'صبحانه' in part:
+                result['breakfast'] = int(''.join(filter(str.isdigit, part)))
+            elif 'ناهار' in part:
+                result['lunch'] = int(''.join(filter(str.isdigit, part)))
+            elif 'شام' in part:
+                result['dinner'] = int(''.join(filter(str.isdigit, part)))
+        return result
+    def get_guides(self, obj):
+        if not obj.tour_guides_info:
+            return []
+        guides = obj.tour_guides_info.split('،')
+        result = []
+        for guide in guides:
+            parts = guide.split('-')
+            if len(parts) == 2:
+                result.append({
+                    "name": parts[0].strip(),
+                    "type": parts[1].strip()
+                })
+        return result
+    def get_services(self, obj):
+        if not obj.tourism_services:
+            return []
+        return [s.strip() for s in obj.tourism_services.split('،')]
+
+
 
 
 # Serializer for filtering Tour objects based on specific criteria
@@ -72,6 +158,5 @@ class TourFilterSerializer(serializers.Serializer):
         allow_null=True,             # Can be null
         help_text="Enter the end date of the tour. Leave it empty if you don't want to filter by end date."
     )
-
 
 

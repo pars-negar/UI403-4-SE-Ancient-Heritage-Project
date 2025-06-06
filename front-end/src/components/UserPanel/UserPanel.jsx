@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Toggle from './Toggle';
 import logo from '../../assets/icons/logo.svg';
 import userAvatar from '../../assets/images/user-avatar.png';
 import home from '../../assets/icons/home.svg';
@@ -96,7 +95,6 @@ const UserPanel = () => {
           <EditInfoIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black"/>
           <span className="text-xl group-hover:text-black group-hover:font-bold">ویرایش اطلاعات</span>
         </div>
-        <Toggle />
         <div
           className="relative 
                     h-[3.2875rem] 

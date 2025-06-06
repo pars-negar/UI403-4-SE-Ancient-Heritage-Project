@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     # Custom apps
     'apps.users',
     'apps.wallet',
-    'apps.reserve',
     'apps.message',
     'apps.tour',
     'apps.faq',
@@ -49,6 +48,7 @@ INSTALLED_APPS = [
     'apps.frontpage',
     'apps.comments',
     'admin_interface',
+    'apps.reserve.apps.ReserveConfig',
   # 'django_admin_interface',
     'colorfield',    
     'django_extensions',

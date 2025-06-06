@@ -19,43 +19,33 @@ const TourInformation = () => {
     const companyName = 'شرکت گردشگری ایران گشت';
     const duration = 'kjkgh';
     const features = 'lkj;h'
+    const [tourPlan, setTourPlan] = useState([]);
 
 
     useEffect(() => {
-        const fetchTourData = async () => {
-            try {
-                const response = await axios.get(
-                    "https://parsnegarback.liara.run/api/homepage/tour-page"
-                );
-                if (response && response.status === 200) {
-                    console.log(response.data);
-                    const tours = response.data.top_tours || [];
-                    const foundTour = tours.find((tour) => tour.id === parseInt(id));
-                    console.log(foundTour);
-                    console.log(foundTour.origin);
-                    console.log("آیدی از URL:", id);
-                    console.log("آیدی هر تور:", tours.map(t => t.id));
-                    console.log("ID from useParams:", id);
+    const fetchTourData = async () => {
+        try {
+            const response = await axios.get(
+                `http://127.0.0.1:8000/api/homepage/tour/${id}/`
+            );
+            if (response && response.status === 200) {
+                const foundTour = response.data;
+                setTour(foundTour);
+                setTourPlan(foundTour.daily_schedules || []);
+                setError([]);
+            } else {
+                setError(['خطا در دریافت اطلاعات.']);
+            }
+        } catch (error) {
+            console.error("Error during fetch: ", error);
+            setError(['مشکلی در دریافت اطلاعات رخ داده است.']);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-                    if (foundTour) {
-                        setTour(foundTour);
-                    } else {
-                        setError('تور مورد نظر یافت نشد.');
-                    }
-                } else {
-                    setError('خطا در دریافت اطلاعات.');
-                    console.error("Failed to fetch data", response);
-                }
-                } catch (error) {
-                    console.error("Error during fetch: ", error);
-                    setError('مشکلی در دریافت اطلاعات رخ داده است.');
-                } finally {
-                    setLoading(false);
-                }
-        };
-
-        fetchTourData();
-    }, [id, location]);
+    fetchTourData();
+}, [id]);
 
     
     if (loading) {
@@ -99,14 +89,46 @@ const TourInformation = () => {
                         
                         <div className="flex mt-[4.0625rem] mb-[3.9375rem] mr-[11.3125rem]">
                             <div className="w-[80%] h-auto">
-                                <span className="text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400, whiteSpace: 'pre-wrap' }}>{ tour.description }</span>
+                                {/* { tour.description } */}
+                                <div className="text-3xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400, whiteSpace: 'pre-wrap' }}>توضیحات تور</div>
+                                <div>
+                                    <h3 className="!text-3xl font-bold" style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>ویژگی های تور</h3>
+                                    <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>بازدید از اماکن تاریخی:</h4>
+                                    <p>bla bla bla</p>
+                                    <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>اقامت:</h4>
+                                    <p>bla bla bla</p>
+                                    <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>حمل‌ونقل:</h4>
+                                    <p>bla bla bla</p>
+                                    <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>بیمه سفر:</h4>
+                                    <p>bla bla bla</p>
+                                    <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>راهنما و خدمات گردشگری:</h4>
+                                    <p>bla bla bla</p>
+                                </div>
+
+                                <div>
+                                    <h3 className="!text-3xl font-bold" style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>برنامه روزانه</h3>
+                                    
+                                    {tourPlan.map((dayPlan, index) => (
+                                        <div className="tour-day" key={index}>
+                                        <img src={dayPlan.image} alt={dayPlan.day} className="tour-image" />
+                                        <div className="tour-details">
+                                            <h3>{dayPlan.day}</h3>
+                                            <ul>
+                                            {dayPlan.activities.map((activity, i) => (
+                                                <li key={i}>{activity}</li>
+                                            ))}
+                                            </ul>
+                                        </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
                         {/* <div className="flex justify-center mr-[11.3125rem] w-[69.3125rem] text-xl">
                             { features }
                         </div> */}
-                    
+                        
                     </>
                 )
             }

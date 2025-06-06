@@ -69,7 +69,7 @@ class UserRegisterViewSet(viewsets.ViewSet):
                 'password': password
             }, timeout=600)
 
-            otp_api_url = f'{settings.HADIR_HAWITY_API_URL}/send-otp/'
+            otp_api_url = f'{settings.HADIR_HAWITY_API_URL}/auth/send-otp/'
             try:
                 otp_response = requests.post(
                     otp_api_url,
@@ -120,7 +120,7 @@ class TourRegisterViewSet(viewsets.ViewSet):
                 'company_registration_number': company_registration_number,
             }, timeout=600)
 
-            otp_api_url = f'{settings.HADIR_HAWITY_API_URL}/send-otp/'
+            otp_api_url = f'{settings.HADIR_HAWITY_API_URL}/auth/send-otp/'
             try:
                 otp_response = requests.post(
                     otp_api_url,

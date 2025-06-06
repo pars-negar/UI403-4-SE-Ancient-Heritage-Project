@@ -41,6 +41,7 @@ import PlaceCard from './components/Placescard/PlaceCard.jsx';
 import PlaceSection from './components/Placescard/PlaceSection.jsx';
 import ZarinpalPage from './pages/ZarinpalPage/ZarinpalPage.jsx';
 import ProfileTourInfoForTourLeader from './pages/ProfileTourInfoForTourLeader/ProfileTourInfoForTourLeader.jsx';
+import UserProfilePage from './pages/UserProfile/UserProfilePage.jsx';
 
 
 
@@ -51,6 +52,8 @@ createRoot(document.getElementById('root')).render(
       <Routes>
        <Route exact path="/profiletour" element={ <ProfileTourListPage/> }></Route>
        <Route exact path="/addtour" element={ <AddNewTour/> }></Route>
+       <Route exact path="/userpanel" element={ <UserProfilePage/> }></Route>
+
 
         {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
         {/*<Route exact path="/" element={ <TourleaderSignUp/> }></Route>}
@@ -79,7 +82,7 @@ createRoot(document.getElementById('root')).render(
 
         <Route exact path="/zarin" element={ <ZarinpalPage/> }></Route>
         <Route exact path="*" element={ <ErrorPage/> }></Route>
-        <Route exact path="/place" element={ <PlacesPage/> }></Route>
+        <Route exact path="/place/:city?" element={ <PlacesPage/> }></Route>
         <Route exact path="/rt" element={ <ReserveTour/> }></Route>
         <Route exact path="/trp" element={ <TourRegPage/> }></Route>
 
