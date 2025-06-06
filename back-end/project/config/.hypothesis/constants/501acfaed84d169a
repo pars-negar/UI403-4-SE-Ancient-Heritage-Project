@@ -1,0 +1,4 @@
+# file: C:\Users\ACER\Documents\Modal\Modal1\UI403-4-SE-Ancient-Heritage-Project\back-end\project\config\apps\tour\serializers.py
+# hypothesis_version: 6.133.2
+
+['__all__', 'description', 'destination', 'end_date', 'id', 'main_image', 'origin', 'price', 'request', 'start_date', 'tour_manager']

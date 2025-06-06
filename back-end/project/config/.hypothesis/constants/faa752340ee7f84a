@@ -1,0 +1,4 @@
+# file: C:\Users\ACER\Documents\Modal\Modal1\UI403-4-SE-Ancient-Heritage-Project\back-end\project\config\apps\users\views.py
+# hypothesis_version: 6.133.2
+
+[200, 600, 'access', 'company_address', 'company_name', 'email', 'error', 'message', 'password', 'phone_number', 'refresh', 'user', 'username', 'بازیابی رمز عبور', 'خطا در ارسال OTP']

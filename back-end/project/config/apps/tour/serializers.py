@@ -1,7 +1,7 @@
 from rest_framework import serializers
+from django.db.models import Sum
 from .models import Attraction
 from .models import Tour
-from .models import AttractionImage
 
 
 
@@ -92,6 +92,5 @@ class TourFilterSerializer(serializers.Serializer):
         allow_null=True,             # Can be null
         help_text="Enter the end date of the tour. Leave it empty if you don't want to filter by end date."
     )
-
 
 
