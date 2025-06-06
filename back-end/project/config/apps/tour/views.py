@@ -30,8 +30,6 @@ class TourCreateAPIView(generics.CreateAPIView):
 
 
 
-
-
 class AttractionViewSet(viewsets.ModelViewSet):
 
     queryset = Attraction.objects.all()

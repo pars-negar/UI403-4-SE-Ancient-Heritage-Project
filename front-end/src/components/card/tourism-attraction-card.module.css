@@ -23,6 +23,7 @@
 }
 
 .cardImage {
+  background-size: cover;
   width: 100%;
   height: auto;
   display: block;

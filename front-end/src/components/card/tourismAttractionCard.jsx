@@ -1,15 +1,19 @@
 
 import styles from './tourism-attraction-card.module.css';
 
-const TourismAttractionCard = ({ image, title, description, backgroundColor = '#FF9800' }) => {
+const TourismAttractionCard = ({ id, image, title, description, backgroundColor = '#FF9800', onClick }) => {
   return (
-    <div className={styles.cardWrapper}>
+    <div
+      className={styles.cardWrapper}
+      onClick={() => onClick && onClick(id)}  // اینجا attribute هست
+      style={{ cursor: onClick ? 'pointer' : 'default' }}  // اینم attribute هست
+    >
       <div className={styles.imageWrapper}>
         <img src={image} alt={title} className={styles.cardImage} />
       </div>
-      <div className={styles.cardContent} style={{ backgroundColor: backgroundColor}}>
+      <div className={styles.cardContent} style={{ backgroundColor: backgroundColor }} >
         <h2 className={styles.cardTitle}>{title}</h2>
-        <p className={styles.cardDescription} style={{ fontFamily: 'Vazirmatn', fontWeight: 500}}>{description}</p>
+        <p className={styles.cardDescription} style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>{description}</p>
       </div>
     </div>
   );
