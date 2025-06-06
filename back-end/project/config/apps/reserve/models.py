@@ -21,18 +21,16 @@ class Reservation(models.Model):
     created_at = models.DateTimeField("تاریخ ثبت", auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.tour.tour_name}"
+        return f"{self.user.username} - {self.tour.title}"
 
 class Passenger(models.Model):
     reservation = models.ForeignKey(Reservation, verbose_name="رزرو", on_delete=models.CASCADE, related_name='passengers')
-    
     first_name = models.CharField("نام", max_length=100, blank=True, null=True)
     last_name = models.CharField("نام خانوادگی", max_length=100, blank=True, null=True)
     national_id = models.CharField("کد ملی", max_length=10, blank=True, null=True)
     phone = models.CharField("شماره تلفن", max_length=11, blank=True, null=True)
     email = models.EmailField("ایمیل", blank=True, null=True)
     birth_date = models.DateField("تاریخ تولد", blank=True, null=True)
-
     payment_status = models.CharField(
         "وضعیت پرداخت",
         max_length=10,

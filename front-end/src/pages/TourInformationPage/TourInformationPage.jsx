@@ -61,7 +61,9 @@ const TourInformationPage = () => {
     return ( 
         <>
             <Navbar />
-                <TourInformation />
+                <div className="flex justify-center">
+                  <TourInformation />
+                </div>
                 <TourReviews reviewsData={reviewsData} />
 
             <Footer />
