@@ -29,6 +29,8 @@ class TourCreateAPIView(generics.CreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
+
+
 class AttractionViewSet(viewsets.ModelViewSet):
 
     queryset = Attraction.objects.all()

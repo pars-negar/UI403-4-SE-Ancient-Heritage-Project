@@ -6,6 +6,7 @@ from rest_framework.generics import RetrieveAPIView
 from .serializer import  AttractionSerializer, TourSerializer
 from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
+from rest_framework import generics
 
 
 class HomePageAPIView(APIView):
@@ -111,10 +112,9 @@ class AttractionPageAPIView(APIView):
 
 
 
-class TourDetailAPIView(RetrieveAPIView):
+class TourDetailView(generics.RetrieveAPIView):
     queryset = Tour.objects.all()
     serializer_class = TourSerializer
-
 
 class AttractionDetailAPIView(RetrieveAPIView):
     queryset = Attraction.objects.all()
