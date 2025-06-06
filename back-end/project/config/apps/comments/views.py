@@ -1,17 +1,25 @@
-from django.shortcuts import render
 from rest_framework import viewsets, permissions
-from .models import SiteComment
-from .serializers import SiteCommentSerializer
+from .models import SiteComment, TourComment
+from .serializers import SiteCommentSerializer, TourCommentSerializer
+from .permissions import IsOwnerOrReadOnly 
 
 class SiteCommentViewSet(viewsets.ModelViewSet):
-    queryset = SiteComment.objects.filter(is_approved=True).order_by('-created_at')
+    queryset = SiteComment.objects.all().order_by('-created_at')
     serializer_class = SiteCommentSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
+    def perform_create(self, serializer):
+        # موقع ایجاد کامنت، کاربر وارد شده ثبت می‌شود
+        serializer.save(user=self.request.user)
+
+
+class TourCommentViewSet(viewsets.ModelViewSet):
+    queryset = TourComment.objects.all()
+    serializer_class = TourCommentSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        if self.request.user.is_staff:
-            return SiteComment.objects.all()
-        return SiteComment.objects.filter(is_approved=True)
+        return TourComment.objects.all()
