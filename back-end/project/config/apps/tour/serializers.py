@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Attraction
 from .models import Tour
+from .models import AttractionImage
 
 
 
@@ -23,13 +24,32 @@ class TourCreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
+# serializers.py
 
+class AttractionImageSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
 
+    def get_image(self, obj):
+        request = self.context.get('request')
+        if obj.image:
+            return request.build_absolute_uri(obj.image.url)
+        return None
 
-class Attractionserializers(serializers.ModelSerializer):
     class Meta:
-        model=Attraction
-        fields= '__all__'
+        model = AttractionImage
+        fields = ['image_type', 'image']
+
+
+class AttractionSerializer(serializers.ModelSerializer):
+    images = AttractionImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Attraction
+        fields = '__all__'  # یا اگر خواستی دقیق‌تر:
+        # fields = ['id', 'attraction_name', ..., 'images']
+
+
+
         
 # Serializer for the Tour model - used for serializing and deserializing Tour instances
 class TourSerializer(serializers.ModelSerializer):
