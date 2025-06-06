@@ -19,6 +19,7 @@ const TourInformation = () => {
     const companyName = 'شرکت گردشگری ایران گشت';
     const duration = 'kjkgh';
     const features = 'lkj;h'
+    const [tourPlan, setTourPlan] = useState([]);
 
 
     useEffect(() => {
@@ -99,14 +100,46 @@ const TourInformation = () => {
                         
                         <div className="flex mt-[4.0625rem] mb-[3.9375rem] mr-[11.3125rem]">
                             <div className="w-[80%] h-auto">
-                                <span className="text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400, whiteSpace: 'pre-wrap' }}>{ tour.description }</span>
+                                {/* { tour.description } */}
+                                <div className="text-3xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400, whiteSpace: 'pre-wrap' }}>توضیحات تور</div>
+                                <div>
+                                    <h3 className="!text-3xl font-bold" style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>ویژگی های تور</h3>
+                                    <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>بازدید از اماکن تاریخی:</h4>
+                                    <p>bla bla bla</p>
+                                    <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>اقامت:</h4>
+                                    <p>bla bla bla</p>
+                                    <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>حمل‌ونقل:</h4>
+                                    <p>bla bla bla</p>
+                                    <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>بیمه سفر:</h4>
+                                    <p>bla bla bla</p>
+                                    <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>راهنما و خدمات گردشگری:</h4>
+                                    <p>bla bla bla</p>
+                                </div>
+
+                                <div>
+                                    <h3 className="!text-3xl font-bold" style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>برنامه روزانه</h3>
+                                    
+                                    {tourPlan.map((dayPlan, index) => (
+                                        <div className="tour-day" key={index}>
+                                        <img src={dayPlan.image} alt={dayPlan.day} className="tour-image" />
+                                        <div className="tour-details">
+                                            <h3>{dayPlan.day}</h3>
+                                            <ul>
+                                            {dayPlan.activities.map((activity, i) => (
+                                                <li key={i}>{activity}</li>
+                                            ))}
+                                            </ul>
+                                        </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
                         {/* <div className="flex justify-center mr-[11.3125rem] w-[69.3125rem] text-xl">
                             { features }
                         </div> */}
-                    
+                        
                     </>
                 )
             }
