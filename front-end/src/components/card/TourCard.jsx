@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./tourcard.module.css";
 
-const TourCards = ({ tours }) => {
+const TourCards = ( {tours} ) => {
+  console.log(tours);
   return (
     <div>
       {/* عنوان بالا */}
@@ -22,6 +23,8 @@ const TourCards = ({ tours }) => {
       {/* کارت‌ها */}
       <div className={styles.cardContainer}>
         {tours && tours.map((tour) => {
+                    console.log(tour);
+
           const stars = "⭐".repeat(tour.rating) + "☆".repeat(5 - tour.rating);
           const startDate = new Date(tour.start_date);
           const endDate = new Date(tour.end_date);

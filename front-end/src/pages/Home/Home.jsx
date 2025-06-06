@@ -19,7 +19,6 @@ import image from "../../assets/images/1.png";
 import ArrowRight from "../../components/Icons/ArrowRight";
 import ArrowLeft from "../../components/Icons/ArrowLeft";
 
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6"; 
 
 const Home = () => {
   const [tours, setTours] = useState([]);
@@ -59,7 +58,7 @@ const Home = () => {
         "https://parsnegarback.liara.run/api/homepage"
       );
       if (response && response.status === 200) {
-        console.log(response.data);
+        // console.log(response.data.tours);
         setTours(response.data.tours || []);
         setAttractions(response.data.attractions || []);
         setFaqs(response.data.faqs || []);
@@ -167,7 +166,7 @@ const Home = () => {
             {loading ? (
               <p>در حال بارگذاری...</p>
             ) : (
-              tours && tours.map((tour) => <TourCard key={tour.id} tour={tour} />)
+              tours && <TourCard key={tours.id} tours={tours} />
             )}
           </div>
       </div>
