@@ -36,6 +36,8 @@ urlpatterns = [
     path('api/faq/', include('apps.faq.urls')),
     path('api/homepage/', include('apps.frontpage.urls')),
     path('api/reserve/', include('apps.reserve.urls')),
+    path('api/comment/', include('apps.comments.urls')),
+
 ]
 
 if settings.DEBUG:

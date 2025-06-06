@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.faq',
     'apps.authentication',
     'apps.frontpage',
+    'apps.comments',
     'admin_interface',
     'apps.reserve.apps.ReserveConfig',
   # 'django_admin_interface',
