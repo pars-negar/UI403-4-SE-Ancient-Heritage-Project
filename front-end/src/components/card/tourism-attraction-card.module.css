@@ -12,6 +12,7 @@
 
 
 .imageWrapper {
+  height: 250px;
   width: 85%;
   border-radius: 24px;
   overflow: hidden;
