@@ -94,6 +94,20 @@ class Tour(models.Model):
     def __str__(self):
         return self.tour_name
 
+class TourImage(models.Model):
+    IMAGE_TYPE_CHOICES = [
+        ('thumbnail', 'تصویر کارت'),
+        ('detail', 'تصویر جزئیات'),
+        ('card2', 'تصویر کارت دوم'),
+    ]
+
+    tour = models.ForeignKey(Tour, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='tours/images/')
+    image_type = models.CharField(max_length=20, choices=IMAGE_TYPE_CHOICES)
+
+    def __str__(self):
+        return f"{self.tour.tour_name} - {self.image_type}"
+
 
 class DailySchedule(models.Model):
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='daily_schedules')

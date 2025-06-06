@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from jalali_date.admin import ModelAdminJalaliMixin
 from jalali_date.widgets import AdminJalaliDateWidget
-from .models import Attraction, Tour ,DailySchedule,AttractionImage
+from .models import Attraction, Tour ,DailySchedule,AttractionImage,TourImage
 from django.utils.html import format_html
 
 
@@ -36,6 +36,18 @@ class AttractionImageAdmin(admin.ModelAdmin):
         return "-"
     image_tag.short_description = 'پیش‌نمایش تصویر'
 
+class TourImageInline(admin.TabularInline):
+    model = TourImage
+    extra = 1  # چندتا فیلد خالی برای اضافه کردن تصویر جدید
+    fields = ('image', 'image_type', 'image_tag')
+    readonly_fields = ('image_tag',)
+
+    def image_tag(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" width="100" />', obj.image.url)
+        return "-"
+    image_tag.short_description = 'پیش‌نمایش تصویر'
+    
 class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin): 
     form = TourAdminForm
     list_display = (
@@ -51,6 +63,19 @@ class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
         'company_website', 'travel_insurance', 'tourism_services',
         'related_tours', 'tour_manager' , 
     )
+    inlines = [TourImageInline]
+    
+class TourImageInline(admin.TabularInline):
+    model = TourImage
+    extra = 1  # چندتا فیلد خالی برای اضافه کردن تصویر جدید
+    fields = ('image', 'image_type', 'image_tag')
+    readonly_fields = ('image_tag',)
+
+    def image_tag(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" width="100" />', obj.image.url)
+        return "-"
+    image_tag.short_description = 'پیش‌نمایش تصویر'
 class DailyScheduleAdmin(admin.ModelAdmin):
     list_display = ('tour', 'day_number', 'title', 'description')
     search_fields = ('tour__tour_name', 'title')

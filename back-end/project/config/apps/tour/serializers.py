@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Attraction
 from .models import Tour
-from .models import AttractionImage
+from .models import AttractionImage,TourImage
 
 
 
@@ -57,10 +57,23 @@ class TourSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tour
-        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description', 'main_image']  
+        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description', 'main_image','images',]  
 
     def get_price(self, obj):
         return int(obj.price)
+
+
+
+class TourImageSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = TourImage
+        fields = ['image_type', 'image']
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        return request.build_absolute_uri(obj.image.url) if obj.image else None
 
 
 # Serializer for filtering Tour objects based on specific criteria

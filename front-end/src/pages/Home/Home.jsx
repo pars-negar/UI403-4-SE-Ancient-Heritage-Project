@@ -56,7 +56,7 @@ const Home = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        "https://parsnegarback.liara.run/api/homepage"
+        "http://127.0.0.1:8000/api/homepage/"
       );
       if (response && response.status === 200) {
         console.log(response.data);
@@ -201,7 +201,9 @@ const Home = () => {
                   <TourismAttractions 
                     key={attraction.id} 
                     title={attraction.title}
+                    image={attraction.image}
                     description={attraction.subtitle}
+
                     backgroundColor="#FF8C1A"
                   />
                 )
