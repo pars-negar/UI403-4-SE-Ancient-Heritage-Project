@@ -12,7 +12,7 @@ const periods = [
   "دوره‌ی ایلخانیان",
 ];
 
-function SearchFilter() {
+function SearchFilter(props) {
   const [selectedPeriods, setSelectedPeriods] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProvince, setSelectedProvince] = useState('');
@@ -35,6 +35,7 @@ function SearchFilter() {
 
   const handleSearchClick = () => {
     console.log('Searching for:', searchTerm, 'in province:', selectedProvince, 'with periods:', selectedPeriods);
+    props.setSearch({term:searchTerm,province: selectedProvince, periods: selectedPeriods})
   //کدای کانکت
   };
 
@@ -79,8 +80,6 @@ function SearchFilter() {
             <span className="block !text-sm font-bold text-sky-900 whitespace-nowrap">دوره‌های تاریخی:</span>
             <span className="block !text-xs text-blue-700 !mt-1 whitespace-nowrap">(فیلترها {selectedPeriods.length})</span>
         </div>
-
-
         <div className="flex-1 grid grid-cols-4 !gap-x-3 !gap-y-3"> 
           {periods.map((period) => {
             const selected = selectedPeriods.includes(period);
