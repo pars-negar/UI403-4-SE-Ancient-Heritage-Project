@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.db.models import Sum
 from .models import Attraction
-from .models import Tour
+from .models import Tour, DailySchedule, Review
 from .models import AttractionImage,TourImage
 
 
@@ -51,6 +51,34 @@ class AttractionSerializer(serializers.ModelSerializer):
 
 
         
+class DailyScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DailySchedule
+        fields = ['day_number', 'title', 'description', 'image']
+
+class ReviewSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()  # نمایش نام کاربر به جای شناسه
+
+    class Meta:
+        model = Review
+        fields = ['user', 'comment', 'rating', 'created_at']
+
+class TourDetailSerializer(serializers.ModelSerializer):
+    daily_schedules = DailyScheduleSerializer(many=True, read_only=True)
+    reviews = ReviewSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Tour
+        fields = [
+            'id', 'tour_name', 'description', 'start_date', 'end_date',
+            'departure_time', 'return_time', 'price', 'capacity',
+            'origin', 'destination', 'main_image',
+            'accommodation', 'meal_details', 'transportation',
+            'travel_insurance', 'tourism_services', 'tour_guides_info',
+            'company_name', 'company_address', 'company_phone',
+            'company_email', 'company_website', 'daily_schedules', 'reviews'
+        ]
+
 # Serializer for the Tour model - used for serializing and deserializing Tour instances
 class TourSerializer(serializers.ModelSerializer):
     price = serializers.SerializerMethodField()
