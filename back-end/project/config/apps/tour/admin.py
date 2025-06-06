@@ -2,7 +2,9 @@ from django import forms
 from django.contrib import admin
 from jalali_date.admin import ModelAdminJalaliMixin
 from jalali_date.widgets import AdminJalaliDateWidget
-from .models import Attraction, Tour ,DailySchedule
+from .models import Attraction, Tour ,DailySchedule,AttractionImage
+from django.utils.html import format_html
+
 
 class TourAdminForm(forms.ModelForm):
     class Meta:
@@ -23,6 +25,16 @@ class AttractionAdmin(admin.ModelAdmin):
         'attraction_name', 'description', 'location', 'city', 'historical_period',
         'opening_hours', 'entry_fee', 'image', 'category',
     )
+    
+@admin.register(AttractionImage)
+class AttractionImageAdmin(admin.ModelAdmin):
+    list_display = ['attraction', 'image_type', 'image_tag']
+
+    def image_tag(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" width="100" />', obj.image.url)
+        return "-"
+    image_tag.short_description = 'پیش‌نمایش تصویر'
 
 class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin): 
     form = TourAdminForm

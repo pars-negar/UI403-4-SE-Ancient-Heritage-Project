@@ -79,7 +79,7 @@ createRoot(document.getElementById('root')).render(
 
         <Route exact path="/zarin" element={ <ZarinpalPage/> }></Route>
         <Route exact path="*" element={ <ErrorPage/> }></Route>
-        <Route exact path="/place" element={ <PlacesPage/> }></Route>
+        <Route exact path="/place/:city?" element={ <PlacesPage/> }></Route>
         <Route exact path="/rt" element={ <ReserveTour/> }></Route>
         <Route exact path="/trp" element={ <TourRegPage/> }></Route>
 

@@ -43,6 +43,21 @@ class Attraction(models.Model):
         return self.attraction_name
 
 
+
+class AttractionImage(models.Model):
+    IMAGE_TYPE_CHOICES = [
+        ('thumbnail', ' 1تصویر کارت'),
+        ('detail', 'تصویر صفحه جزئیات'),
+        ('card2', 'تصویر کارت2'),
+    ]
+
+    attraction = models.ForeignKey(Attraction, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='attractions/images/')
+    image_type = models.CharField(max_length=20, choices=IMAGE_TYPE_CHOICES)
+
+    def __str__(self):
+        return f"{self.attraction.attraction_name} - {self.image_type}"
+
 class Tour(models.Model):
     tour_name = models.CharField(max_length=255)
     description = models.TextField()

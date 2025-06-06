@@ -8,29 +8,37 @@ from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
 
 
+
 class HomePageAPIView(APIView):
     def get(self, request):
-        attractions_qs = Attraction.objects.values('id', 'attraction_name')[:6]
-
+        attractions_qs = Attraction.objects.all()[:6]
         attractions = []
+
         for attr in attractions_qs:
-            full_name = attr['attraction_name']
+            # جدا کردن عنوان و زیرعنوان
+            full_name = attr.attraction_name
             parts = full_name.split('؛', 1)
             title = parts[0].strip()
             subtitle = parts[1].strip() if len(parts) > 1 else ''
+
+            # گرفتن عکس thumbnail
+            thumbnail = attr.images.filter(image_type='thumbnail').first()
+            image_url = request.build_absolute_uri(thumbnail.image.url) if thumbnail else None
+
             attractions.append({
-                'id': attr['id'],        # اضافه شده
+                'id': attr.id,
                 'title': title,
                 'subtitle': subtitle,
+                'image': image_url,
             })
 
         tours_qs = Tour.objects.order_by('-start_date').values('id', 'destination', 'price', 'start_date', 'end_date')[:6]
-        
+
         tours = []
         for t in tours_qs:
             price = int(t['price'])
             duration = (t['end_date'] - t['start_date']).days if t['end_date'] and t['start_date'] else 0
-            
+
             tours.append({
                 'id': t['id'],
                 'destination': t['destination'],
@@ -38,14 +46,11 @@ class HomePageAPIView(APIView):
                 'duration': duration,
             })
 
-       
-
-        data = {
+        # استفاده از لیست آماده‌شده، نه شیء‌های اصلی مدل
+        return Response({
             'attractions': attractions,
             'tours': tours,
-        }
-        return Response(data, status=status.HTTP_200_OK)
-
+        }, status=status.HTTP_200_OK)
 
 from apps.tour.utils import search_tours
 

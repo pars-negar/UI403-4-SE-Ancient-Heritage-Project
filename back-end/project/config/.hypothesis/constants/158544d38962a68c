@@ -1,0 +1,4 @@
+# file: C:\Users\ACER\Documents\Modal\Modal1\UI403-4-SE-Ancient-Heritage-Project\back-end\project\config\config\urls.py
+# hypothesis_version: 6.133.2
+
+['admin/', 'api/auth/', 'api/docs/', 'api/faq/', 'api/homepage/', 'api/redoc/', 'api/schema/', 'api/token/', 'api/token/refresh/', 'api/token/verify/', 'api/tours/', 'api/users/', 'apps.faq.urls', 'apps.frontpage.urls', 'apps.tour.urls', 'apps.users.urls', 'redoc', 'schema', 'swagger-ui', 'token_obtain_pair', 'token_refresh', 'token_verify']

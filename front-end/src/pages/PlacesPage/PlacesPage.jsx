@@ -1,5 +1,5 @@
 // pages/PlacesPage.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PlaceSection from '../../components/Placescard/PlaceSection';
 import PlaceModal from '../../components/Placescard/PlaceModal';
 import "../../components/Placescard/Places.css";
@@ -8,7 +8,8 @@ import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
 import SearchFilter from '../../components/SearchBox/SearchFilter';
 import HeroSection from '../../components/Placescard/HeroSection';
-
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const popularPlaces = [
 
@@ -117,24 +118,48 @@ const hiddenGems = [
 
 const PlacesPage = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
+  const [gems, setGems] = useState(null);
+  const [popular, setPopular] = useState(null);
+  const param = useParams()
+  const [search, setSearch] = useState(param.city);
+  
 
+  console.log(param)
+  async function get_data() {
+  
+        try {
+            const response = await axios.get(`http://${IP}:8000/remove/` , search);
+            if (response.status === 200) {
+                setGems(response.data.gems)
+                 setGems(response.data.popular)
+            }
+          }
+          catch (e) {
+          console.log(e)}
+
+    
+    }
+
+    useEffect(() => {
+      get_data()
+    });
   return (
     <div>
       <Navbar />
-       <HeroSection text="جاذبه‌های تاریخی ایران" showImage={true} />
+       <HeroSection text={`جاذبه‌های تاریخی ایران${param.city != undefined ? "/" + param.city : ""}`} showImage={true} />
 
       <div className={styles.editSearch}>
-      <SearchFilter />
+      <SearchFilter setSearch={setSearch}/>
       </div>
       <div className={styles.compJazebe}>
       <PlaceSection
-        title="پربازدیدترین مکان‌های تاریخی"
-        places={popularPlaces}
+        title="پربازدیدترین مکان‌های تاریخی"//{`${search.province} , ${search.term} , ${search.periods}`}
+        places={popularPlaces}//{popular}
         onMoreInfo={setSelectedPlace}
       />
       <PlaceSection
         title="کمتر شناخته‌شده اما جذاب"
-        places={hiddenGems}
+        places={hiddenGems}//{gems}
         onMoreInfo={setSelectedPlace}
       />
       <PlaceModal

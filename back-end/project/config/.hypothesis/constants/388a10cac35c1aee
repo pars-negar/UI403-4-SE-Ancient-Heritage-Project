@@ -1,0 +1,4 @@
+# file: C:\Users\ACER\Documents\Modal\Modal1\UI403-4-SE-Ancient-Heritage-Project\back-end\project\config\apps\tour\urls.py
+# hypothesis_version: 6.133.2
+
+['attraction', 'attractionsearch', 'attractionsearch/', 'create/', 'tour-create', 'toursearch', 'toursearch/']
