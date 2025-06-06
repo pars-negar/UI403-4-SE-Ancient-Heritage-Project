@@ -1,0 +1,4 @@
+# file: C:\Users\ACER\Documents\Modal\Modal1\UI403-4-SE-Ancient-Heritage-Project\back-end\project\config\apps\users\serializers.py
+# hypothesis_version: 6.133.2
+
+['^\\d{11}$', '^\\d{3,6}$', 'company_address', 'company_name', 'email', 'id', 'new_password', 'password', 'phone_number', 'role', 'token', 'tour_manager', 'uid', 'user', 'username', 'کاربر معتبر نیست.']

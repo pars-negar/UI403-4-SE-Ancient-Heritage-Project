@@ -1,0 +1,4 @@
+# file: C:\Users\ACER\Documents\Modal\Modal1\UI403-4-SE-Ancient-Heritage-Project\back-end\project\config\apps\users\migrations\0001_initial.py
+# hypothesis_version: 6.133.2
+
+[128, 150, 254, 255, 'CustomUser', 'ID', 'TourManagerProfile', 'abstract', 'active', 'auth', 'auth.group', 'auth.permission', 'company_address', 'company_name', 'date joined', 'date_joined', 'email', 'first name', 'first_name', 'groups', 'id', 'is_active', 'is_staff', 'is_superuser', 'is_verified', 'last login', 'last name', 'last_login', 'last_name', 'objects', 'password', 'phone_number', 'role', 'staff status', 'superuser status', 'tour_manager', 'tour_manager_profile', 'unique', 'user', 'user permissions', 'user_permissions', 'user_set', 'username', 'users', 'verbose_name', 'verbose_name_plural', 'مسئول تور', 'کاربر عادی']
