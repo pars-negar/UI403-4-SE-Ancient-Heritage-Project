@@ -1,6 +1,6 @@
 // components/Placescard/HeroAndTitleSection.jsx
 import React from "react";
-import "../Placescard/Places.css";
+import "./Places.css";
 import heroImage from "../../assets/images/HeroSection.png";
 
 const HeroSection = ({ text, showImage = true }) => {

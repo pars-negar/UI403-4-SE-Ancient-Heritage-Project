@@ -1,9 +1,9 @@
-import UserPanel from "../../components/UserPanel/UserPanel";
+import TourLeaderPanel from "../../components/UserPanel/TourLeaderPanel";
 
 const TourInformation = () => {
     return ( 
         <>
-            <UserPanel />
+            <TourLeaderPanel />
         </>
      );
 }

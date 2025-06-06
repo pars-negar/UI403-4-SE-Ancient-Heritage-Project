@@ -30,9 +30,33 @@ class Attraction(models.Model):
     image = models.ImageField(upload_to='attractions/', blank=True, null=True)   
     built_date = models.CharField(max_length=100, null=True, blank=True)
     
+    CATEGORY_CHOICES = [
+        ('featured', 'پربازدید'),
+        ('hidden', 'کمتر شناخته‌شده'),
+        ('normal', 'معمولی')
+    ]
+
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='normal')
+
+
     def __str__(self):
         return self.attraction_name
 
+
+
+class AttractionImage(models.Model):
+    IMAGE_TYPE_CHOICES = [
+        ('thumbnail', ' 1تصویر کارت'),
+        ('detail', 'تصویر صفحه جزئیات'),
+        ('card2', 'تصویر کارت2'),
+    ]
+
+    attraction = models.ForeignKey(Attraction, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='attractions/images/')
+    image_type = models.CharField(max_length=20, choices=IMAGE_TYPE_CHOICES)
+
+    def __str__(self):
+        return f"{self.attraction.attraction_name} - {self.image_type}"
 
 class Tour(models.Model):
     tour_name = models.CharField(max_length=255)
@@ -70,6 +94,20 @@ class Tour(models.Model):
     def __str__(self):
         return self.tour_name
 
+class TourImage(models.Model):
+    IMAGE_TYPE_CHOICES = [
+        ('thumbnail', 'تصویر کارت'),
+        ('detail', 'تصویر جزئیات'),
+        ('card2', 'تصویر کارت دوم'),
+    ]
+
+    tour = models.ForeignKey(Tour, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='tours/images/')
+    image_type = models.CharField(max_length=20, choices=IMAGE_TYPE_CHOICES)
+
+    def __str__(self):
+        return f"{self.tour.tour_name} - {self.image_type}"
+
 
 class DailySchedule(models.Model):
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='daily_schedules')
@@ -95,11 +133,3 @@ class Review(models.Model):
 
 
 
-class Booking(models.Model):
-    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='bookings')
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    num_passengers = models.PositiveIntegerField()
-    booking_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.user.username} - {self.tour.tour_name}"

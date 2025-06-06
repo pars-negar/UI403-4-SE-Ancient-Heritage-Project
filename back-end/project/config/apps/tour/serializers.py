@@ -1,12 +1,55 @@
 from rest_framework import serializers
+from django.db.models import Sum
 from .models import Attraction
 from .models import Tour, DailySchedule, Review
+from .models import AttractionImage,TourImage
 
 
-class Attractionserializers(serializers.ModelSerializer):
+class TourCreateSerializer(serializers.ModelSerializer):
+
+    tour_manager = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
-        model=Attraction
-        fields= '__all__'
+        model = Tour
+        #exclude = ['tour_manager']  # از کاربر گرفته میشه نه از فرانت
+        
+        fields = '__all__'  # همه فیلدها از جمله tour_manager از فرانت دریافت می‌شن
+
+    def create(self, validated_data):
+        # اگر tour_manager از فرانت نیومده بود، از user لاگین‌شده استفاده کن
+        if 'tour_manager' not in validated_data:
+            request = self.context.get('request')
+            if request and request.user.is_authenticated:
+                validated_data['tour_manager'] = request.user
+        return super().create(validated_data)
+
+
+# serializers.py
+
+class AttractionImageSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        if obj.image:
+            return request.build_absolute_uri(obj.image.url)
+        return None
+
+    class Meta:
+        model = AttractionImage
+        fields = ['image_type', 'image']
+
+
+class AttractionSerializer(serializers.ModelSerializer):
+    images = AttractionImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Attraction
+        fields = '__all__'  # یا اگر خواستی دقیق‌تر:
+        # fields = ['id', 'attraction_name', ..., 'images']
+
+
+
         
 class DailyScheduleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,10 +85,23 @@ class TourSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tour
-        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description', 'main_image']  
+        fields = ['id', 'origin', 'destination', 'start_date', 'end_date', 'price', 'description', 'main_image','images',]  
 
     def get_price(self, obj):
         return int(obj.price)
+
+
+
+class TourImageSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = TourImage
+        fields = ['image_type', 'image']
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        return request.build_absolute_uri(obj.image.url) if obj.image else None
 
 
 # Serializer for filtering Tour objects based on specific criteria
@@ -77,14 +133,5 @@ class TourFilterSerializer(serializers.Serializer):
         allow_null=True,             # Can be null
         help_text="Enter the end date of the tour. Leave it empty if you don't want to filter by end date."
     )
-
-
-# Serializer for the Attraction model - used for serializing and deserializing Attraction instances
-class Attractionserializers(serializers.ModelSerializer):
-    class Meta:
-        model = Attraction  # Specifies the model to serialize
-        fields = ['id', 'attraction_name', 'city', 'historical_period']  # Fields to include
-
-
 
 

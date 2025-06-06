@@ -1,3 +1,4 @@
+
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -5,6 +6,9 @@ from datetime import timedelta
 import dj_database_url
 # Load environment variables from .env
 load_dotenv()
+
+LANGUAGE_CODE = 'fa'
+USE_I18N = True
 
 
 DEBUG = False
@@ -37,15 +41,17 @@ INSTALLED_APPS = [
     # Custom apps
     'apps.users',
     'apps.wallet',
-    'apps.reserve',
     'apps.message',
     'apps.tour',
     'apps.faq',
     'apps.authentication',
     'apps.frontpage',
+    'apps.comments',
     'admin_interface',
+    'apps.reserve.apps.ReserveConfig',
   # 'django_admin_interface',
     'colorfield',    
+    'django_extensions',
 
 ]
 
@@ -89,9 +95,15 @@ TEMPLATES = [
 
 # ───── Database (PostgreSQL) ─────
 DATABASES = {
-    'default': dj_database_url.config(default = os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL')),
 }
 
+default_db_name = DATABASES['default'].get('NAME', 'default_db')
+
+# تنظیم دیتابیس تست
+DATABASES['default']['TEST'] = {
+    'NAME': f'test_{default_db_name}'
+}
 
 
 # ───── Password Validation ─────

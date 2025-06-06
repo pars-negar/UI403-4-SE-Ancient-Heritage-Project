@@ -1,0 +1,4 @@
+# file: C:\Users\ACER\Documents\Modal\Modal1\UI403-4-SE-Ancient-Heritage-Project\back-end\project\config\apps\frontpage\views.py
+# hypothesis_version: 6.133.2
+
+['-price', '-start_date', 'all_tours', 'attractions', 'faqs', 'headers', 'recent_tours', 'top_tours', 'tours']

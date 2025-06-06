@@ -29,9 +29,19 @@ import LoginSignUp from "./pages/LoginSignUp/LoginSignUp.jsx"
 import SuccessMassage from './pages/SuccessMassage/SuccessMassage.jsx';
 import SetNewPassword from './pages/SetNewPassword/SetNewPassword.jsx';
 import ErrorPage from './pages/Error404/ErrorPage.jsx';
-import TourInformation from './pages/TourInformation/TourInformation.jsx';
+import TourInformation from './pages/TourInformationPage/TourInformationPage.jsx';
 import TourListPage from './pages/TourListPage/TourListPage.jsx';
 import HistoricSearch from './components/SearchBox/SearchFilter.jsx'
+import ProfileTourListPage from './pages/ProfileTourListPage/ProfileTourListPage.jsx';
+import TourRegPage from './pages/TourRegistrationList/TourRegPage.jsx';
+import AddNewTour from './pages/AddNewTourPage/AddNewTour.jsx';
+import ProfileTourLeader from './pages/ProfileTourLeader/ProfileTourLeader.jsx';
+import PlaceModal from './components/Placescard/PlaceModal.jsx';
+import PlaceCard from './components/Placescard/PlaceCard.jsx';
+import PlaceSection from './components/Placescard/PlaceSection.jsx';
+import ZarinpalPage from './pages/ZarinpalPage/ZarinpalPage.jsx';
+import ProfileTourInfoForTourLeader from './pages/ProfileTourInfoForTourLeader/ProfileTourInfoForTourLeader.jsx';
+
 
 
 
@@ -39,6 +49,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
       <Routes>
+       <Route exact path="/profiletour" element={ <ProfileTourListPage/> }></Route>
+       <Route exact path="/addtour" element={ <AddNewTour/> }></Route>
 
         {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
         {/*<Route exact path="/" element={ <TourleaderSignUp/> }></Route>}
@@ -64,12 +76,15 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/LoginSignUp/login" element={ <LoginPage/> }></Route>
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
+
+        <Route exact path="/zarin" element={ <ZarinpalPage/> }></Route>
         <Route exact path="*" element={ <ErrorPage/> }></Route>
-        <Route exact path="/place" element={ <PlacesPage/> }></Route>
+        <Route exact path="/place/:city?" element={ <PlacesPage/> }></Route>
         <Route exact path="/rt" element={ <ReserveTour/> }></Route>
+        <Route exact path="/trp" element={ <TourRegPage/> }></Route>
 
         <Route path="/success" element={<SuccessMassage/>} />
-        <Route path="/tourInformation" element={<TourInformation/>} />
+        <Route path="/tourinformation/:category/:id" element={<TourInformation/>} />
         <Route path="tourlistpage" element={<TourListPage/>}/>
         <Route path="/historical" element={<HistoricSearch/>}/>
 
@@ -80,6 +95,9 @@ createRoot(document.getElementById('root')).render(
         {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
         <Route exact path="/setnewpass" element={ < SetNewPassword/>}></Route>
         {/* <Route exact path="/tourlist" element={<TourList/>}></Route> */}
+        <Route exact path="/profiletourleader" element={<ProfileTourLeader/>}></Route>
+        <Route exact path="/tourinfofortourleader/:category/:id" element={<ProfileTourInfoForTourLeader/>}></Route>
+        <Route exact path="*" element={ <ErrorPage/> }></Route>
      
       </Routes>
     </Router>

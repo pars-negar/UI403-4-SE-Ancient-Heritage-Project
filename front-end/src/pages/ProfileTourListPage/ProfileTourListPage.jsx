@@ -1,11 +1,22 @@
-const ProfileTourListPage = () => {
-    return (
-        <div className="text-right mr-3.5">
-        <hr className="border !border-[var(--color-gray)] opacity-100 w-full h-[0.1rem] m-0"/>
-        <h1 className="text-xl font-bold mb-6 mr-1 border-r-4 border-[#205781] pr-1.5 ">لیست تورها</h1>
-        </div>
+import TourLeaderPanel from "../../components/UserPanel/TourLeaderPanel";
+import ProfiletourListLeft from "../../components/LeftPanel/ProfiletourListLeft";
 
-    );
-}
- 
-export default ProfileTourListPage
+const ProfileTourListPage = () => {
+  return (
+
+    <div className="flex h-screen bg-gray-100" dir="rtl">
+
+      <div className="w-[26.25rem] bg-white shadow-lg overflow-y-auto border-l border-gray-200">
+        <TourLeaderPanel />
+      </div>
+
+
+      <div className="flex-1 overflow-y-auto">
+        <ProfiletourListLeft />
+      </div>
+
+    </div>
+  );
+};
+
+export default ProfileTourListPage;

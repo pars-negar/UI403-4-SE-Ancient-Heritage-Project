@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import globalStyles from '../../styles/base.module.css'
+import { useNavigate } from 'react-router-dom';
+
 
 import userIcon from '../../assets/icons/user.svg'
 import callIcon from '../../assets/icons/call.svg'
@@ -26,6 +28,9 @@ const TourLeaderSignUpRightPanel = () => {
         password: '',
     });
 
+    const navigate = useNavigate();
+
+
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
 
@@ -40,7 +45,10 @@ const TourLeaderSignUpRightPanel = () => {
         setMessage('');
 
         try {
-            const response = await axios.post('http://localhost:8000/api/tourregister/', formData);
+            const response = await axios.post('https://parsnegarback.liara.run/api/tourregister/', formData);
+            localStorage.setItem("pendingPhoneNumber", formData.phone_number);
+            navigate('/verify-otp');
+
 
             setMessage(response.data.message);
         } catch (err) {
@@ -180,9 +188,7 @@ const TourLeaderSignUpRightPanel = () => {
                 </div>
                 <p style={{ marginTop: "0.5rem", marginBottom: 0, fontFamily: 'Vazirmatn', fontWeight: 400}}>رمز عبور باید شامل 8 کارکتر و شامل حروف، اعداد و نماها باشد.</p>
                 <div className={ styles.formContainer }>
-                    <Link type='submit' to='/verify-otp'>
-                        <button className={ styles.button }>ثبت‌نام</button>
-                    </Link>
+                    <button type="submit" className={styles.button}>ثبت‌نام</button>
                 </div>
             </Form>
             <p style={{ marginTop: "0.5rem", marginBottom: 0, fontFamily: 'Vazirmatn', fontWeight: 300}}>قبلا ثبت‌نام کرده‌اید؟ &nbsp; 

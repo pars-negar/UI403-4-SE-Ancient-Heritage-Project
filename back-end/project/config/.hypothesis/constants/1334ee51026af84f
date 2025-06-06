@@ -1,0 +1,4 @@
+# file: C:\Users\ACER\Documents\Modal\Modal1\UI403-4-SE-Ancient-Heritage-Project\back-end\project\config\apps\users\admin.py
+# hypothesis_version: 6.133.2
+
+['classes', 'date_joined', 'email', 'fields', 'groups', 'is_active', 'is_staff', 'is_superuser', 'is_verified', 'last_login', 'password', 'password1', 'password2', 'phone_number', 'role', 'tour_manager', 'user', 'user_permissions', 'username', 'wide', 'اطلاعات شخصی', 'اطلاعات شرکت تور', 'تاریخ\u200cها', 'دسترسی\u200cها']
