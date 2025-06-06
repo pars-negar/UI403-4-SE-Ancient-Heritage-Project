@@ -35,11 +35,11 @@ const TourCards = ( {tours} ) => {
           return (
             <div key={tour.id} className={styles.tourCard}>
               <img
-                className={`${styles.tourImage} rounded-full`}
-                src={`http://parsnegarback.liara.run/api/homepage/${tour.main_image}`}
+                className={`${styles.tourImage} rounded-full bg-cover`}
+                src={tour.image}
                 alt={tour.title}
               />
-              <h3 className={styles.tourTitle}>{tour.title}</h3>
+              <h3 className={styles.tourTitle}>{tour.destination}</h3>
               <div className={styles.stars}>{stars}</div>
               <p className={styles.tourInfo}>
                 هزینه تور
@@ -49,7 +49,7 @@ const TourCards = ( {tours} ) => {
               <p className={styles.tourInfo}>
                 مدت زمان
                 <span className={styles.verticalLine}></span>
-                {durationInDays} روز
+                {tour.duration} روز
               </p>
               <Link to={`/tour/${tour.id}`}>
                 <button className={styles.button}>جزئیات بیشتر</button>

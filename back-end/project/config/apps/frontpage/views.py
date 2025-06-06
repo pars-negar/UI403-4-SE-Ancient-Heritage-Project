@@ -8,20 +8,17 @@ from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
 
 
-
 class HomePageAPIView(APIView):
     def get(self, request):
         attractions_qs = Attraction.objects.all()[:6]
         attractions = []
 
         for attr in attractions_qs:
-            # جدا کردن عنوان و زیرعنوان
             full_name = attr.attraction_name
             parts = full_name.split('؛', 1)
             title = parts[0].strip()
             subtitle = parts[1].strip() if len(parts) > 1 else ''
 
-            # گرفتن عکس thumbnail
             thumbnail = attr.images.filter(image_type='thumbnail').first()
             image_url = request.build_absolute_uri(thumbnail.image.url) if thumbnail else None
 
@@ -32,21 +29,22 @@ class HomePageAPIView(APIView):
                 'image': image_url,
             })
 
-        tours_qs = Tour.objects.order_by('-start_date').values('id', 'destination', 'price', 'start_date', 'end_date')[:6]
-
+        tours_qs = Tour.objects.order_by('-start_date')[:6]
         tours = []
-        for t in tours_qs:
-            price = int(t['price'])
-            duration = (t['end_date'] - t['start_date']).days if t['end_date'] and t['start_date'] else 0
+
+        for tour in tours_qs:
+            thumbnail = tour.images.filter(image_type='thumbnail').first()
+            image_url = request.build_absolute_uri(thumbnail.image.url) if thumbnail else None
 
             tours.append({
-                'id': t['id'],
-                'destination': t['destination'],
-                'price': price,
-                'duration': duration,
+                'id': tour.id,
+                'destination': tour.destination,
+                'price': int(tour.price),
+                'start_date': tour.start_date.isoformat() if tour.start_date else None,
+                'end_date': tour.end_date.isoformat() if tour.end_date else None,
+                'image': image_url,
             })
 
-        # استفاده از لیست آماده‌شده، نه شیء‌های اصلی مدل
         return Response({
             'attractions': attractions,
             'tours': tours,
