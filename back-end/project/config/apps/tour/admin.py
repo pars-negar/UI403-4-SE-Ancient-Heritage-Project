@@ -16,6 +16,17 @@ class TourAdminForm(forms.ModelForm):
             'departure_time': forms.TimeInput(format='%H:%M'),  
             'return_time': forms.TimeInput(format='%H:%M'),     
         }
+class AttractionImageInline(admin.TabularInline):
+    model = AttractionImage
+    extra = 1
+    fields = ('image', 'image_type', 'image_tag')
+    readonly_fields = ('image_tag',)
+
+    def image_tag(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" width="100" />', obj.image.url)
+        return "-"
+    image_tag.short_description = 'پیش‌نمایش تصویر'
 
 class AttractionAdmin(admin.ModelAdmin):
     list_display = ('attraction_name', 'city', 'historical_period', 'entry_fee','category')
@@ -25,7 +36,8 @@ class AttractionAdmin(admin.ModelAdmin):
         'attraction_name', 'description', 'location', 'city', 'historical_period',
         'opening_hours', 'entry_fee', 'image', 'category',
     )
-    
+    inlines = [AttractionImageInline]
+
 @admin.register(AttractionImage)
 class AttractionImageAdmin(admin.ModelAdmin):
     list_display = ['attraction', 'image_type', 'image_tag']
@@ -48,7 +60,12 @@ class TourImageInline(admin.TabularInline):
         return "-"
     image_tag.short_description = 'پیش‌نمایش تصویر'
     
-class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin): 
+class DailyScheduleInline(admin.TabularInline):
+    model = DailySchedule
+    extra = 1
+    fields = ('day_number', 'title', 'description', 'image')
+
+class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     form = TourAdminForm
     list_display = (
         'tour_name', 'price', 'start_date', 'end_date', 'capacity', 'tour_manager'
@@ -63,7 +80,8 @@ class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
         'company_website', 'travel_insurance', 'tourism_services',
         'related_tours', 'tour_manager' , 
     )
-    inlines = [TourImageInline]
+    inlines = [TourImageInline, DailyScheduleInline]
+
     
 class TourImageInline(admin.TabularInline):
     model = TourImage

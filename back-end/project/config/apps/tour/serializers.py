@@ -127,18 +127,7 @@ class TourSerializer(serializers.ModelSerializer):
         return [s.strip() for s in obj.tourism_services.split('،')]
 
 
-class DailyScheduleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DailySchedule
-        fields = ['day_number', 'title', 'description', 'image']
 
-
-class ReviewSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()  # نمایش نام کاربر
-
-    class Meta:
-        model = Review
-        fields = ['user', 'comment', 'rating', 'created_at']
 
 # Serializer for filtering Tour objects based on specific criteria
 class TourFilterSerializer(serializers.Serializer):

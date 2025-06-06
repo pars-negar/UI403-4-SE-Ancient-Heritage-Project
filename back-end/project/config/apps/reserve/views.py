@@ -3,7 +3,7 @@ from .models import Tour, RoomType, Reservation, Passenger, ReservedRoom
 from .serializers import (
     TourSerializer, RoomTypeSerializer,
     ReservationSerializer, PassengerSerializer,
-    ReservedRoomSerializer, TourPassengerSerializer
+    ReservedRoomSerializer, PassengerSerializer
 )
 from rest_framework.views import APIView
 from rest_framework.response import Response

@@ -26,7 +26,7 @@ const TourInformation = () => {
     const fetchTourData = async () => {
         try {
             const response = await axios.get(
-                `https://parsnegarback.liara.run/api/homepage/tour/${id}/`
+                `http://127.0.0.1:8000/api/homepage/tour/${id}/`
             );
             if (response && response.status === 200) {
                 const foundTour = response.data;

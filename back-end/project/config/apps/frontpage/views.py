@@ -3,7 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 
-from .serializer import  AttractionSerializer, TourSerializer
+from .serializer import  AttractionSerializer
+from apps.tour.serializers import TourSerializer
 from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
 from rest_framework import generics

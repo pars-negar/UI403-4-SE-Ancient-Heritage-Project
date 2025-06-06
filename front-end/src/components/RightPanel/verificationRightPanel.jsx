@@ -33,7 +33,7 @@ const RightPanel = () => {
     console.log("OTP Code:", fullCode);
 
     try {
-      const response = await fetch("https://parsnegarback.liara.run/api/verify-otp/", {
+      const response = await fetch("http://127.0.0.1:8000/api/auth/verify-otp/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

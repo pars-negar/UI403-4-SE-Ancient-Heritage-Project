@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TourFilterSerializer, TourSerializer, TourDetailSerializer , AttractionSerializer, TourFilterSerializer, TourSerializer,TourCreateSerializer
+from .serializers import TourFilterSerializer, TourSerializer, AttractionSerializer, TourFilterSerializer, TourSerializer,TourCreateSerializer
 from .models import Attraction
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -36,9 +36,6 @@ class AttractionViewSet(viewsets.ModelViewSet):
     queryset = Attraction.objects.all()
     serializer_class = AttractionSerializer
 
-class TourDetailAPIView(RetrieveAPIView):
-    queryset = Tour.objects.all()
-    serializer_class = TourDetailSerializer
 
 
 # View to handle filtered search of tours based on user input
