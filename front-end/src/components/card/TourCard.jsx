@@ -35,7 +35,7 @@ const TourCards = ( {tours} ) => {
           return (
             <div key={tour.id} className={styles.tourCard}>
               <img
-                className={styles.tourImage}
+                className={`${styles.tourImage} rounded-full`}
                 src={`http://parsnegarback.liara.run/api/homepage/${tour.main_image}`}
                 alt={tour.title}
               />
