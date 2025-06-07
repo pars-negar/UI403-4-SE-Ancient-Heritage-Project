@@ -26,6 +26,7 @@ const Navbar = () => {
                         <Link to="/">درباره‌‌ما</Link>
                     </div>
                 </ul>
+                
                 <Link to='/LoginSignUp' id="button" 
                     className="
                         bg-[var(--color-orange)] 

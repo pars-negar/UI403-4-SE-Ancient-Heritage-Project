@@ -98,7 +98,7 @@ const RightPanel = () => {
         <div className={styles.formContainer}>
           <button
             type="submit"
-            className={`${styles.button} mt-[2rem]`} // Tailwind margin top
+            className={`${styles.button} !mt-[2rem]`} // Tailwind margin top
           >
             ورود
           </button>
