@@ -37,9 +37,9 @@ const TourTab = () => {
 
 
     return ( 
-        <Tabs labels={['تورهای اخیر' ,'تورهای برتر']} className="!mt-[10rem] w-full">
+        <Tabs labels={['تورهای اخیر' ,'تورهای برتر']} className=" w-full " >
           <div id="home-tour-card">
-            <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' ,marginTop:'90px' }}>
+            <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' ,marginTop:'0px' }}>
               {loading ? (
                 <p>در حال بارگذاری...</p>
               ) : (

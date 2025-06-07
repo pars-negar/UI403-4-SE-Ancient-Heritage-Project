@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from apps.tour.models import Attraction
-from apps.tour.models import Tour
+from apps.tour.models import Tour, TourImage
 from apps.faq.models import FAQ
 from .models import HeaderImage 
+from rest_framework import serializers
+
 
 class AttractionSerializer(serializers.ModelSerializer):
     class Meta:

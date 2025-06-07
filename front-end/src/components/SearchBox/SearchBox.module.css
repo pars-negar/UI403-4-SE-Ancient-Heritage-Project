@@ -39,4 +39,7 @@
   font-size: 1.5rem;
   font-weight: 560;
 }
-
+.input::placeholder {
+  color: #999999;
+  opacity: 1;
+}
