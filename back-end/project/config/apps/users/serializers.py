@@ -3,10 +3,12 @@ from django.contrib.auth import get_user_model
 from rest_framework.exceptions import ValidationError
 import re
 from django.contrib.auth.tokens import default_token_generator
-
+from apps.tour.models import Tour
+from apps.tour.serializers import TourSerializer
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from apps.users.models import TourManagerProfile
+from .models import CustomUser
 
 
 User = get_user_model()
@@ -163,5 +165,36 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
         user.set_password(self.validated_data['new_password'])
         user.save()
         return user
+    
+class TourLeaderDashboardSerializer(serializers.ModelSerializer):
+    company_name = serializers.CharField(source='tour_manager_profile.company_name', required=False)
+    company_address = serializers.CharField(source='tour_manager_profile.company_address', required=False)
+    company_registration_number = serializers.CharField(source='tour_manager_profile.company_registration_number', required=False)
+    tours = serializers.SerializerMethodField(read_only=True)
 
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'email', 'phone_number', 'role',
+                'company_name', 'company_address', 'company_registration_number', 'tours']
+        read_only_fields = ['id', 'username', 'role', 'tours']
 
+    def get_tours(self, obj):
+        if obj.role == 'tour_manager':
+            tours = Tour.objects.filter(created_by=obj)
+            return TourSerializer(tours, many=True, context=self.context).data
+        return []
+
+    def update(self, instance, validated_data):
+        instance.email = validated_data.get('email', instance.email)
+        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        instance.save()
+
+        profile_data = validated_data.get('tour_manager_profile', {})
+        if hasattr(instance, 'tour_manager_profile'):
+            profile = instance.tour_manager_profile
+            profile.company_name = profile_data.get('company_name', profile.company_name)
+            profile.company_address = profile_data.get('company_address', profile.company_address)
+            profile.company_registration_number = profile_data.get('company_registration_number', profile.company_registration_number)
+            profile.save()
+
+        return instance

@@ -4,6 +4,98 @@ from .models import Attraction
 from .models import Tour
 from .models import AttractionImage,TourImage,DailySchedule,Review
 
+class TourUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tour
+        fields = [
+            'tour_name', 'description', 'start_date', 'end_date', 'departure_time', 'return_time',
+            'price', 'capacity', 'origin', 'destination', 'main_image', 'accommodation', 'meal_details',
+            'transportation', 'travel_insurance', 'tourism_services', 'tour_guides_info',
+            'company_name', 'company_address', 'company_phone', 'company_email', 'company_website',
+        ]
+
+
+class TourListSerializer(serializers.ModelSerializer):
+    card2_image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Tour
+        fields = ['id', 'tour_name', 'destination', 'start_date', 'end_date', 'price', 'card2_image']
+
+    def get_card2_image(self, obj):
+        image = obj.images.filter(image_type='card2').first()
+        if image and image.image:
+            request = self.context.get('request')
+            return request.build_absolute_uri(image.image.url) if request else image.image.url
+        return None
+
+    duration = serializers.SerializerMethodField()
+
+    def get_duration(self, obj):
+        if obj.start_date and obj.end_date:
+            return (obj.end_date - obj.start_date).days + 1  
+        return None
+
+
+class TourDetailSerializer(serializers.ModelSerializer):
+    images = serializers.SerializerMethodField()
+    daily_schedules = serializers.SerializerMethodField()
+    tour_manager_profile = serializers.SerializerMethodField()
+    tour_guides = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Tour
+        fields = [
+            'id', 'tour_name', 'description', 'start_date', 'end_date', 'departure_time', 'return_time',
+            'price', 'capacity', 'origin', 'destination', 'main_image', 'accommodation', 'meal_details',
+            'transportation', 'travel_insurance', 'tourism_services', 'tour_guides',
+            'company_name', 'company_address', 'company_phone', 'company_email', 'company_website',
+            'images', 'daily_schedules', 'tour_manager_profile'
+        ]
+
+    def get_images(self, obj):
+        request = self.context.get('request')
+        return [
+            {
+                'id': img.id,
+                'image_type': img.image_type,
+                'image_url': request.build_absolute_uri(img.image.url) if request else img.image.url
+            } for img in obj.images.all()
+        ]
+
+    def get_daily_schedules(self, obj):
+        request = self.context.get('request')
+        return [
+            {
+                'day_number': sch.day_number,
+                'title': sch.title,
+                'description': sch.description,
+                'image': request.build_absolute_uri(sch.image.url) if sch.image and request else None,
+            } for sch in obj.daily_schedules.all().order_by('day_number')
+        ]
+
+    def get_tour_manager_profile(self, obj):
+        user = obj.tour_manager
+        if user and hasattr(user, 'tour_manager_profile'):
+            profile = user.tour_manager_profile
+            return {
+                'user': {
+                    'id': user.id,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'email': user.email,
+                },
+                'company_name': profile.company_name,
+                'company_address': profile.company_address,
+                'company_registration_number': profile.company_registration_number,
+            }
+        return None
+
+    def get_tour_guides(self, obj):
+        if obj.tour_guides_info:
+            return [g.strip() for g in obj.tour_guides_info.splitlines() if g.strip()]
+        return []
+
 
 class TourCreateSerializer(serializers.ModelSerializer):
 
@@ -76,10 +168,12 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = ['user', 'comment', 'rating', 'created_at']     
 # Serializer for the Tour model - used for serializing and deserializing Tour instances
 class TourSerializer(serializers.ModelSerializer):
-    price = serializers.SerializerMethodField()
-    meals = serializers.SerializerMethodField()
-    guides = serializers.SerializerMethodField()
-    services = serializers.SerializerMethodField()
+    # فیلدهای قابل ویرایش
+    price = serializers.IntegerField(required=True)
+    meals = serializers.JSONField(required=False)  # یا dict، بسته به ساختار مورد نظر
+    guides = serializers.JSONField(required=False)
+    services = serializers.ListField(child=serializers.CharField(), required=False)
+
     images = TourImageSerializer(many=True, read_only=True)
     daily_schedules = DailyScheduleSerializer(many=True, read_only=True)
     reviews = ReviewSerializer(many=True, read_only=True)
@@ -90,41 +184,57 @@ class TourSerializer(serializers.ModelSerializer):
             'id', 'tour_name', 'origin', 'destination', 'start_date', 'end_date',
             'price', 'description', 'main_image', 'images',
             'meals', 'guides', 'services',
-            'daily_schedules', 'reviews', 'transportation', 'travel_insurance',  'accommodation', 'company_name'
+            'daily_schedules', 'reviews', 'transportation', 'travel_insurance', 'accommodation', 'company_name'
         ]
 
-    def get_price(self, obj):
-        return int(obj.price)
-    def get_meals(self, obj):
-        if not obj.meal_details:
-            return {}
-        parts = obj.meal_details.replace('،', ',').split(',')
-        result = {}
-        for part in parts:
-            if 'صبحانه' in part:
-                result['breakfast'] = int(''.join(filter(str.isdigit, part)))
-            elif 'ناهار' in part:
-                result['lunch'] = int(''.join(filter(str.isdigit, part)))
-            elif 'شام' in part:
-                result['dinner'] = int(''.join(filter(str.isdigit, part)))
-        return result
-    def get_guides(self, obj):
-        if not obj.tour_guides_info:
-            return []
-        guides = obj.tour_guides_info.split('،')
-        result = []
+    def create(self, validated_data):
+        meals = validated_data.pop('meals', None)
+        guides = validated_data.pop('guides', None)
+        services = validated_data.pop('services', None)
+
+        if meals:
+            validated_data['meal_details'] = self.meals_dict_to_string(meals)
+        if guides:
+            validated_data['tour_guides_info'] = self.guides_list_to_string(guides)
+        if services:
+            validated_data['tourism_services'] = '،'.join(services)
+
+        tour = Tour.objects.create(**validated_data)
+        return tour
+
+    def update(self, instance, validated_data):
+        meals = validated_data.pop('meals', None)
+        guides = validated_data.pop('guides', None)
+        services = validated_data.pop('services', None)
+
+        if meals:
+            instance.meal_details = self.meals_dict_to_string(meals)
+        if guides:
+            instance.tour_guides_info = self.guides_list_to_string(guides)
+        if services:
+            instance.tourism_services = '،'.join(services)
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        return instance
+
+    def meals_dict_to_string(self, meals):
+        parts = []
+        if 'breakfast' in meals:
+            parts.append(f"صبحانه {meals['breakfast']}")
+        if 'lunch' in meals:
+            parts.append(f"ناهار {meals['lunch']}")
+        if 'dinner' in meals:
+            parts.append(f"شام {meals['dinner']}")
+        return '،'.join(parts)
+
+    def guides_list_to_string(self, guides):
+        parts = []
         for guide in guides:
-            parts = guide.split('-')
-            if len(parts) == 2:
-                result.append({
-                    "name": parts[0].strip(),
-                    "type": parts[1].strip()
-                })
-        return result
-    def get_services(self, obj):
-        if not obj.tourism_services:
-            return []
-        return [s.strip() for s in obj.tourism_services.split('،')]
+            parts.append(f"{guide['name']} - {guide['type']}")
+        return '،'.join(parts)
+
 
 
 

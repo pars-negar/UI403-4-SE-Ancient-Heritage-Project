@@ -4,6 +4,7 @@ import TourInformation from "../../components/TourInformation/TourInformation";
 
 
 import TourReviews from "../../components/comment-tourinf/TourReviews";
+import TourBookingCard from "../../components/Card/TourBookingCard";
 
 const TourInformationPage = () => {
     
@@ -64,6 +65,7 @@ const TourInformationPage = () => {
                 <div className="flex justify-center">
                   <TourInformation />
                 </div>
+                <TourBookingCard/>
                 <TourReviews reviewsData={reviewsData} />
 
             <Footer />

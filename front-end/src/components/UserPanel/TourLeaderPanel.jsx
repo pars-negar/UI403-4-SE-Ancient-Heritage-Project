@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
+import axios from "axios";
+
 import Toggle from './Toggle';
 import logo from '../../assets/icons/logo.svg';
 import userAvatar from '../../assets/images/user-avatar.png';
@@ -12,6 +14,7 @@ import EditInfoIcon from '../Icons/EditInfoIcon';
 import LogoutIcon from '../Icons/LogoutIcon';
 
 const TourLeaderPanel = () => {
+  const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -35,9 +38,30 @@ const TourLeaderPanel = () => {
         alert('خطا: ' + (errorData.message || 'لطفاً دوباره تلاش کنید.'));
       }
     } catch (err) {
-      alert('مشکل در ارتباط با سرور.');
+      alert('مشکل در ارتباط با سرور.');      
     } finally {
       closeModal();
+    }
+  };
+    useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/users/tourleaderdashboard/"
+      );
+      if (response && response.status === 200) {
+        // console.log(response.data.tours);
+        setLoading(false);
+      } else {
+        console.error("Failed to fetch data", response);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Error during fetch: ", error);
+      setLoading(false);
     }
   };
 

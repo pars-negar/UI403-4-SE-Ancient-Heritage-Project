@@ -2,14 +2,64 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
-
-from .serializer import  AttractionSerializer
-from apps.tour.serializers import TourSerializer
+from .serializers import  AttractionSerializer
+from apps.tour.serializers import TourSerializer, TourListSerializer, TourDetailSerializer, TourUpdateSerializer
 from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
 from rest_framework import generics
 from apps.users.permissions import *
 from rest_framework.permissions import *
+from rest_framework.permissions import IsAuthenticated
+from django.utils.timezone import now
+from rest_framework import generics, permissions
+
+class IsTourManagerAndOwner(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return request.user.role == 'tour_manager' and obj.tour_manager == request.user
+
+class TourUpdateAPIView(generics.RetrieveUpdateAPIView):
+    queryset = Tour.objects.all()
+    serializer_class = TourUpdateSerializer
+    permission_classes = [permissions.IsAuthenticated, IsTourManagerAndOwner]
+
+    def get_queryset(self):
+        return Tour.objects.filter(tour_manager=self.request.user)
+
+
+class TourListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        if user.role != 'tour_manager':
+            return Response({'detail': 'دسترسی غیرمجاز'}, status=status.HTTP_403_FORBIDDEN)
+
+        today = now().date()
+        upcoming_tours = Tour.objects.filter(tour_manager=user, start_date__gte=today).order_by('start_date')
+        past_tours = Tour.objects.filter(tour_manager=user, start_date__lt=today).order_by('-start_date')
+
+        upcoming_serializer = TourListSerializer(upcoming_tours, many=True, context={'request': request})
+        past_serializer = TourListSerializer(past_tours, many=True, context={'request': request})
+
+        return Response({
+            'upcoming_tours': upcoming_serializer.data,
+            'past_tours': past_serializer.data,
+        })
+
+
+class TourDetailAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        user = request.user
+        try:
+            tour = Tour.objects.get(pk=pk, tour_manager=user)
+        except Tour.DoesNotExist:
+            return Response({'detail': 'تور پیدا نشد یا دسترسی ندارید'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = TourDetailSerializer(tour, context={'request': request})
+        return Response(serializer.data)
+
 
 
 class HomePageAPIView(APIView):
