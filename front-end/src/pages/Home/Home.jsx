@@ -20,7 +20,7 @@ import image from "../../assets/images/1.png";
 import ArrowRight from "../../components/Icons/ArrowRight";
 import ArrowLeft from "../../components/Icons/ArrowLeft";
 import PlaceModal from "../../components/Placescard/PlaceModal";
-
+import CommentModal from '../../components/Comments/CommentModal';
 const Home = () => {
   const [tours, setTours] = useState([]);
   const [attractions, setAttractions] = useState([]);
@@ -92,6 +92,17 @@ const handleAttractionClick = async (id) => {
     setShowModal(false);
     setSelectedAttraction(null);
   };
+
+
+  //opening new cm modal
+    const [isModalOpen, setModalOpen] = useState(false);
+  
+    const handleOpenModal = () => setModalOpen(true);
+    const handleCloseModal = () => setModalOpen(false);
+  
+    const handleCommentSubmit = (comment) => {
+      console.log("نظر ثبت شده:", comment);
+    };
   return (
     <div className="home rtl">
       <Navbar />
@@ -244,9 +255,16 @@ const handleAttractionClick = async (id) => {
                 border: "2px solid var(--color-dark-blue)",
                 padding: "0.5rem 0.1rem",
               }}
+              onClick={handleOpenModal}
+              aria-label="افزودن نظر جدید"
             >
               افزودن نظر
           </button>
+          <CommentModal
+           isOpen={isModalOpen}
+           onClose={handleCloseModal}
+           onSubmit={handleCommentSubmit}
+          />
       </div>
       <div className="overflow-x-auto scroll-smooth no-scrollbar" ref={scrollRef}>      
         <Comments />
