@@ -16,6 +16,7 @@ class HomePageAPIView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def get(self, request):
+        # ====== Attractions ======
         attractions_qs = Attraction.objects.all()[:6]
         attractions = []
 
@@ -35,9 +36,25 @@ class HomePageAPIView(APIView):
                 'image': image_url,
             })
 
-        tours_qs = Tour.objects.order_by('-start_date')[:6]
-        tours = []
+        # ====== Tour Search Parameters ======
+        origin = request.query_params.get('origin')
+        destination = request.query_params.get('destination')
+        start_date = request.query_params.get('start_date')
+        end_date = request.query_params.get('end_date')
 
+        if origin or destination or start_date or end_date:
+            # ====== Search Tours ======
+            tours_qs = search_tours(
+                origin=origin,
+                destination=destination,
+                start_date=start_date,
+                end_date=end_date
+            )[:6]
+        else:
+            # ====== Default Tours (latest 6) ======
+            tours_qs = Tour.objects.order_by('-start_date')[:6]
+
+        tours = []
         for tour in tours_qs:
             thumbnail = tour.images.filter(image_type='thumbnail').first()
             image_url = request.build_absolute_uri(thumbnail.image.url) if thumbnail else None
@@ -55,6 +72,7 @@ class HomePageAPIView(APIView):
             'attractions': attractions,
             'tours': tours,
         }, status=status.HTTP_200_OK)
+
 
 from apps.tour.utils import search_tours
 
@@ -163,3 +181,14 @@ from apps.tour.models import Attraction
 def get_cities_with_places(request):
     cities = Attraction.objects.values_list('city', flat=True).distinct()
     return Response(cities)
+
+
+@api_view(['GET'])
+def get_origins_and_destinations(request):
+    origins = Tour.objects.values_list('origin', flat=True).distinct()
+    destinations = Tour.objects.values_list('destination', flat=True).distinct()
+    
+    return Response({
+        "origins": list(origins),
+        "destinations": list(destinations),
+    })

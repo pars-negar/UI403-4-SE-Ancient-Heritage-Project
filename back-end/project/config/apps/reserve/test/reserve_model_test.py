@@ -1,3 +1,5 @@
+import pytest
+
 @pytest.mark.django_db
 def test_invalid_tour_id(user, room_type):
     client = APIClient()

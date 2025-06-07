@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import HomePageAPIView ,TourPageAPIView, AttractionDetailAPIView, TourDetailView,AttractionPageAPIView,get_cities_with_places
+from .views import HomePageAPIView ,TourPageAPIView, AttractionDetailAPIView, TourDetailView,AttractionPageAPIView,get_cities_with_places,get_origins_and_destinations
 
 urlpatterns = [
     path('', HomePageAPIView.as_view(), name='homepage'),
@@ -9,5 +9,6 @@ urlpatterns = [
     path('attraction/<int:pk>/', AttractionDetailAPIView.as_view(), name='attraction-detail'),
      path('attraction-page/', AttractionPageAPIView.as_view(), name='attraction-page'),
     path('places/cities/', get_cities_with_places),
+    path('tour-cities/', get_origins_and_destinations, name='tour-cities'),
 
 ]
