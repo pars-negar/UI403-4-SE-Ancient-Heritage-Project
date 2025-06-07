@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 from .serializers import  AttractionSerializer
-from apps.tour.serializers import TourSerializer, TourListSerializer, TourDetailSerializer
+from apps.tour.serializers import TourSerializer, TourListSerializer, TourDetailSerializer, TourUpdateSerializer
 from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
 from rest_framework import generics
@@ -11,6 +11,19 @@ from apps.users.permissions import *
 from rest_framework.permissions import *
 from rest_framework.permissions import IsAuthenticated
 from django.utils.timezone import now
+from rest_framework import generics, permissions
+
+class IsTourManagerAndOwner(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return request.user.role == 'tour_manager' and obj.tour_manager == request.user
+
+class TourUpdateAPIView(generics.RetrieveUpdateAPIView):
+    queryset = Tour.objects.all()
+    serializer_class = TourUpdateSerializer
+    permission_classes = [permissions.IsAuthenticated, IsTourManagerAndOwner]
+
+    def get_queryset(self):
+        return Tour.objects.filter(tour_manager=self.request.user)
 
 
 class TourListAPIView(APIView):
