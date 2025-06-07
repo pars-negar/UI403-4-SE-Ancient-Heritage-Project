@@ -49,13 +49,17 @@ const PlaceSection = ({ title, places, onMoreInfo }) => {
       <div className="place-section-row-wrapper">
         {" "}
         <div className="scroll-container flex overflow-x-auto no-scrollbar gap-2 px-1 md:px-3" ref={scrollRef}>
-          {" "}
-          {places.map((place, idx) => (
-            <div key={idx} className="min-w-[340px] max-w-[340px] mx-0.5">
-              <PlaceCard {...place} onMoreInfo={() => onMoreInfo(place)} />
-            </div>
-          ))}
-        </div>
+        {places.map((place, idx) => (
+          <div key={idx} className="min-w-[340px] max-w-[340px] mx-0.5">
+            <PlaceCard
+              title={place.title}
+              description={place.subtitle}
+              card_image={place.image}
+              onMoreInfo={() => onMoreInfo(place)}
+            />
+          </div>
+        ))}
+      </div>
       </div>
     </div>
   );

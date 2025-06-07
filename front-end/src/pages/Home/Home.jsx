@@ -23,8 +23,6 @@ import PlaceModal from "../../components/Placescard/PlaceModal";
 const Home = () => {
   const [tours, setTours] = useState([]);
   const [attractions, setAttractions] = useState([]);
-  const [faqs, setFaqs] = useState([]);
-  const [headers, setHeaders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [selectedAttraction, setSelectedAttraction] = useState(null);
@@ -64,8 +62,6 @@ const Home = () => {
         // console.log(response.data.tours);
         setTours(response.data.tours || []);
         setAttractions(response.data.attractions || []);
-        setFaqs(response.data.faqs || []);
-        setHeaders(response.data.headers || []);
         setLoading(false);
       } else {
         console.error("Failed to fetch data", response);
@@ -78,7 +74,6 @@ const Home = () => {
   };
 const handleAttractionClick = async (id) => {
     try {
-      // درخواست جزییات کامل جاذبه از API (آدرس را بر اساس API خودت تنظیم کن)
       const response = await axios.get(`http://127.0.0.1:8000/api/attractions/${id}`);
       if (response && response.status === 200) {
         setSelectedAttraction(response.data);
@@ -92,7 +87,6 @@ const handleAttractionClick = async (id) => {
     }
   };
 
-  // بستن مدال
   const closeModal = () => {
     setShowModal(false);
     setSelectedAttraction(null);

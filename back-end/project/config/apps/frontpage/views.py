@@ -97,28 +97,49 @@ from apps.tour.utils import search_attractions
 class AttractionPageAPIView(APIView):
     permission_classes = [permissions.AllowAny]
 
+    def format_attraction(self, request, queryset):
+        formatted = []
+        for attr in queryset:
+            full_name = attr.attraction_name
+            parts = full_name.split('؛', 1)
+            title = parts[0].strip()
+            subtitle = parts[1].strip() if len(parts) > 1 else ''
+
+            thumbnail = attr.images.filter(image_type='card2').first()
+            image_url = request.build_absolute_uri(thumbnail.image.url) if thumbnail else None
+
+            formatted.append({
+                'id': attr.id,
+                'title': title,
+                'subtitle': subtitle,
+                'image': image_url,
+            })
+        return formatted
+
     def get(self, request):
         search_query = request.query_params.get('search', None)
+        city = request.query_params.get('city', None)
+        historical_period = request.query_params.get('historical_period', None)
 
-        if search_query:
-            # استفاده از تابع ماژولار برای جستجو
-            search_results = search_attractions(name=search_query)
+        if not (search_query or city or historical_period):
+            featured = Attraction.objects.filter(category='featured').order_by('-id')[:6]
+            hidden = Attraction.objects.filter(category='hidden').order_by('-id')[:6]
+
             data = {
-                'search_results': AttractionSerializer(search_results, many=True).data
+                'featured': self.format_attraction(request, featured),
+                'hidden': self.format_attraction(request, hidden),
             }
         else:
-            # نمایش دسته‌بندی‌شده جاذبه‌ها
-            featured_attractions = Attraction.objects.filter(category='featured').order_by('-id')[:6]
-            hidden_attractions = Attraction.objects.filter(category='hidden').order_by('-id')[:6]
-           
-
+            results = search_attractions(
+                name=search_query,
+                city=city,
+                historical_period=historical_period
+            ).order_by('-id')
             data = {
-                'featured': AttractionSerializer(featured_attractions, many=True).data,
-                'hidden': AttractionSerializer(hidden_attractions, many=True).data,
+                'search_results': self.format_attraction(request, results)
             }
 
         return Response(data, status=status.HTTP_200_OK)
-
 
 
 class TourDetailView(generics.RetrieveAPIView):
@@ -130,3 +151,15 @@ class AttractionDetailAPIView(RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = Attraction.objects.all()
     serializer_class = AttractionSerializer
+
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+
+from apps.tour.models import Attraction
+
+@api_view(['GET'])
+def get_cities_with_places(request):
+    cities = Attraction.objects.values_list('city', flat=True).distinct()
+    return Response(cities)
