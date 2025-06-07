@@ -15,7 +15,7 @@ def tour(db):
 
 
 @pytest.fixture
-def room_type(tour):
+def room_type(db, tour):
     return RoomType.objects.create(
         tour=tour,
         name="دو نفره",
@@ -27,7 +27,7 @@ def room_type(tour):
 
 
 @pytest.fixture
-def reservation(tour):
+def reservation(db, tour):
     return Reservation.objects.create(
         tour=tour,
         full_price=1800000,
@@ -37,7 +37,7 @@ def reservation(tour):
 
 
 @pytest.fixture
-def reserved_room(reservation, room_type):
+def reserved_room(db, reservation, room_type):
     return ReservedRoom.objects.create(
         reservation=reservation,
         room_type=room_type,

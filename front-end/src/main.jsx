@@ -42,6 +42,8 @@ import PlaceSection from './components/Placescard/PlaceSection.jsx';
 import ZarinpalPage from './pages/ZarinpalPage/ZarinpalPage.jsx';
 import ProfileTourInfoForTourLeader from './pages/ProfileTourInfoForTourLeader/ProfileTourInfoForTourLeader.jsx';
 import UserProfilePage from './pages/UserProfile/UserProfilePage.jsx';
+import TestModal from './components/Comments/TestModal.jsx';
+import TourBookingCard from './components/Card/TourBookingCard.jsx'
 
 
 
@@ -53,6 +55,9 @@ createRoot(document.getElementById('root')).render(
        <Route exact path="/profiletour" element={ <ProfileTourListPage/> }></Route>
        <Route exact path="/addtour" element={ <AddNewTour/> }></Route>
        <Route exact path="/userpanel" element={ <UserProfilePage/> }></Route>
+       <Route exact path="/cmmmm" element={ <TestModal/> }></Route>
+       <Route exact path="/booking" element={ <TourBookingCard/> }></Route>
+
 
 
         {/* <Route exact path="/" element={ <UserSignUpPage/> }></Route> */}
