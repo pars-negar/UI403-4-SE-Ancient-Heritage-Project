@@ -44,7 +44,7 @@ const TourCard = ( {tour} ) => {
               {durationInDays} روز
             </p>
 
-            <button className={styles.more_info_button}>جزئیات بیشتر</button>
+            <a href="/tourinformation/top_tours/3"><button className={styles.more_info_button}>جزئیات بیشتر</button></a>
             
           </div>
         </div>
