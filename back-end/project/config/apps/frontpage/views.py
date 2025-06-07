@@ -5,7 +5,6 @@ from rest_framework.generics import RetrieveAPIView
 from .serializers import  AttractionSerializer
 from apps.tour.serializers import TourSerializer, TourListSerializer, TourDetailSerializer, TourUpdateSerializer
 from apps.tour.models import Attraction, Tour
-from apps.faq.models import FAQ
 from rest_framework import generics
 from apps.users.permissions import *
 from rest_framework.permissions import *
@@ -111,12 +110,17 @@ class HomePageAPIView(APIView):
 
             tours.append({
                 'id': tour.id,
+                'tour_name': tour.tour_name,
                 'destination': tour.destination,
+                'origin': tour.origin,
                 'price': int(tour.price),
                 'start_date': tour.start_date.isoformat() if tour.start_date else None,
                 'end_date': tour.end_date.isoformat() if tour.end_date else None,
                 'image': image_url,
+                'category': tour.category,
+                'rating':tour.rating,
             })
+
 
         return Response({
             'attractions': attractions,
@@ -219,6 +223,18 @@ class AttractionDetailAPIView(RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = Attraction.objects.all()
     serializer_class = AttractionSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+
+        detail= instance.images.filter(image_type='card2').first()
+        image_url = request.build_absolute_uri(detail.image.url) if detail else None
+
+        data = serializer.data
+        data['image'] = image_url
+        return Response(data)
+
 
 
 from rest_framework.decorators import api_view

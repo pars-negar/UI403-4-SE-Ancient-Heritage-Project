@@ -146,12 +146,14 @@ class TourImageSerializer(serializers.ModelSerializer):
         return None
 
 class AttractionSerializer(serializers.ModelSerializer):
-    images = AttractionImageSerializer(many=True, read_only=True)
+    historical_period = serializers.SerializerMethodField()
 
     class Meta:
         model = Attraction
-        fields = '__all__'  # یا اگر خواستی دقیق‌تر:
-        # fields = ['id', 'attraction_name', ..., 'images']
+        fields = '__all__'
+
+    def get_historical_period(self, obj):
+        return obj.get_historical_period_display()
 
 
 class DailyScheduleSerializer(serializers.ModelSerializer):
