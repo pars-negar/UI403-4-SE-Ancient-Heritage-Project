@@ -1,7 +1,7 @@
 
 import styles from './tourism-attraction-card.module.css';
 
-const TourismAttractionCard = ({ id, image, title, description, backgroundColor = '#FF9800', onClick }) => {
+const TourismAttractionCard = ({ id, image, title, description, backgroundColor, onClick }) => {
   return (
     <div
       className={styles.cardWrapper}
