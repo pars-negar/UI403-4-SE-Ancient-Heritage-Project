@@ -19,23 +19,30 @@ const TourCard = ( {tour} ) => {
       <div>
         <div className={styles.cardContainer}>
           <div key={tour.id} className={styles.tourCard}>
-            <img
-              className={`${styles.tourImage} rounded-full bg-cover`}
+            <div className={styles.first_container}>
+              <img
+              className={`${styles.tourImage} bg-cover`}
               src={tour.image}
               alt={tour.title}
-            />
-            <h3 className={styles.tourTitle}>{tour.destination}</h3>
-            <div className={styles.stars}>{stars}</div>
-            <p className={styles.tourInfo}>
+              />
+              <div className={styles.second_container}>
+                <h3 className={styles.tourTitle} style={{fontFamily:"Koodak",fontWeight:"bold"}}>تور {tour.destination}</h3>
+                <div className={styles.stars}>{stars}</div>
+              </div>
+            </div>
+            
+            <p className={styles.tourInfoo} style={{fontFamily:"Koodak",fontWeight:"bold"}}>
               هزینه تور
               <span className={styles.verticalLine}></span>
               {parseInt(tour.price).toLocaleString("fa-IR")} تومان
             </p>
-            <p className={styles.tourInfo}>
-              مدت زمان
+            <p className={styles.tourInfo} style={{fontFamily:"Koodak",fontWeight:"bold"}}>
+              مدت
               <span className={styles.verticalLine}></span>
               {tour.duration} روز
             </p>
+
+            <button className={styles.more_info_button}>جزئیات بیشتر</button>
             
           </div>
         </div>

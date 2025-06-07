@@ -1,7 +1,7 @@
 .tourCard {
   background: #f4e3c3;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 8px;
+  padding: 10px;
   width: 230px;
   text-align: center;
   box-shadow: 0 4px 8px #ccc;
@@ -15,18 +15,15 @@
 }
 
 .tourImage {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 85px;
+  height: 85px;
   display: block;
+  border-radius: 50%;
 }
 
 .tourTitle {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 5px;
 }
 
@@ -39,15 +36,23 @@
   font-size: 14px;
 }
 
-.tourInfo {
-  font-size: 14px;
+.tourInfoo {
+  font-size: 17px;
   margin: 8px 0;
-  color: #333;
+  color: black;
+}
+.tourInfo {
+  font-size: 17px;
+  margin: 8px 0;
+  color: black;
+  text-align: right;
+  padding-right: 40px;
+
 }
 
 .verticalLine {
   display: inline-flex;
-  width: 1px;
+  width: 1.5px !important;
   height: 16px;
   background-color: #FF8C1A;
   margin: 0 10px;
@@ -59,7 +64,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 0 20px;
+  margin: 50px 0 30px;
   margin-right: 1rem;
 }
 
@@ -89,4 +94,25 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+.first_container{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.second_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.more_info_button{
+  background-color: orange;
+  padding: 8px 7px;
+  margin-top: 25px;
+  color: black;
 }
