@@ -92,6 +92,8 @@ const handleAttractionClick = async (id) => {
     setShowModal(false);
     setSelectedAttraction(null);
   };
+
+
   return (
     <div className="home rtl">
       <Navbar />

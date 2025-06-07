@@ -21,8 +21,7 @@ const TourTab = () => {
             );
             // console.log(response)
           if (response && response.status === 200) {
-         //   console.log(response.data);
-            setTours(response.data.tours || []);
+            setTours(response.data.top || []);
             setLoading(false);
           } else {
             console.error("Failed to fetch data", response);
