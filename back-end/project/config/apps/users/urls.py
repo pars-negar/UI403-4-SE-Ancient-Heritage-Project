@@ -13,7 +13,7 @@ router.register(r'tourregister', TourRegisterViewSet, basename='tourregister')
 
 urlpatterns = [
     path('', include(router.urls)),  # حذف 'api/' از اینجا
-    path('tourliderdashboard/', UserDashboardAPIView.as_view(), name='user-dashboard'),
+    path('tourleaderdashboard/', UserDashboardAPIView.as_view(), name='user-dashboard'),
     path('password/reset/', PasswordResetRequestView.as_view(), name='password-reset-request'),
     path('password/reset/confirm/', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
 ]
