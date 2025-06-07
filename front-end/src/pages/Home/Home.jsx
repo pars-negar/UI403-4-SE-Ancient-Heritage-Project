@@ -18,7 +18,7 @@ import image from "../../assets/images/1.png";
 
 import ArrowRight from "../../components/Icons/ArrowRight";
 import ArrowLeft from "../../components/Icons/ArrowLeft";
-
+import PlaceModal from "../../components/Placescard/PlaceModal";
 
 const Home = () => {
   const [tours, setTours] = useState([]);
@@ -26,6 +26,9 @@ const Home = () => {
   const [faqs, setFaqs] = useState([]);
   const [headers, setHeaders] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [selectedAttraction, setSelectedAttraction] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const scrollRef = useRef(null);
   const scrollAmount = 350;
@@ -73,7 +76,27 @@ const Home = () => {
       setLoading(false);
     }
   };
+const handleAttractionClick = async (id) => {
+    try {
+      // درخواست جزییات کامل جاذبه از API (آدرس را بر اساس API خودت تنظیم کن)
+      const response = await axios.get(`http://127.0.0.1:8000/api/attractions/${id}`);
+      if (response && response.status === 200) {
+        setSelectedAttraction(response.data);
+        setShowModal(true);
+      } else {
+        alert("مشکل در دریافت اطلاعات جاذبه");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("خطا در دریافت اطلاعات جاذبه");
+    }
+  };
 
+  // بستن مدال
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedAttraction(null);
+  };
   return (
     <div className="home rtl">
       <Navbar />
@@ -199,9 +222,11 @@ const Home = () => {
                 attractions.map((attraction) => (
                   <TourismAttractions 
                     key={attraction.id} 
+                    id={attraction.id} 
                     title={attraction.title}
                     image={attraction.image}
                     description={attraction.subtitle}
+                    onClick={handleAttractionClick} 
 
                     backgroundColor="#FF8C1A"
                   />
@@ -215,8 +240,9 @@ const Home = () => {
       {/* Comments and FAQ */}
       <Comments />
       <FAQAccordion />
-
+<PlaceModal show={showModal} onClose={closeModal} place={selectedAttraction} />
       {/* Footer */}
+
       <Footer />
     </div>
   );

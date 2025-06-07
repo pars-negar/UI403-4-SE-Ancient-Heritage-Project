@@ -44,7 +44,7 @@ const PassRecoveryRightPanel = () => {
 
     try {
       // Send the request to the backend API for password recovery link
-      const response = await axios.post("http://localhost:8000/api/auth/password/reset/", { email });
+      const response = await axios.post("http://127.0.0.1:8000/api/users/password/reset/", { email });
       
       if (response.status === 200) {
         alert(`لینک بازیابی رمز عبور برای ${email} ارسال شد!`);

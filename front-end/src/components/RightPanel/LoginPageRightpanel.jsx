@@ -22,7 +22,7 @@ const RightPanel = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://parsnegarback.liara.run/api/login/",
+        "http://127.0.0.1:8000/api/users/login/",
         {
           username: username,
           password: password,

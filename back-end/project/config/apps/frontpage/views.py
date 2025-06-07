@@ -3,12 +3,18 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 
-from .serializer import  AttractionSerializer, TourSerializer
+from .serializer import  AttractionSerializer
+from apps.tour.serializers import TourSerializer
 from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
+from rest_framework import generics
+from apps.users.permissions import *
+from rest_framework.permissions import *
 
 
 class HomePageAPIView(APIView):
+    permission_classes = [permissions.AllowAny]
+
     def get(self, request):
         attractions_qs = Attraction.objects.all()[:6]
         attractions = []
@@ -53,6 +59,8 @@ class HomePageAPIView(APIView):
 from apps.tour.utils import search_tours
 
 class TourPageAPIView(APIView):
+    permission_classes = [permissions.AllowAny]
+
     def get(self, request):
         origin = request.query_params.get('origin')
         destination = request.query_params.get('destination')
@@ -87,6 +95,8 @@ class TourPageAPIView(APIView):
 from apps.tour.utils import search_attractions 
 
 class AttractionPageAPIView(APIView):
+    permission_classes = [permissions.AllowAny]
+
     def get(self, request):
         search_query = request.query_params.get('search', None)
 
@@ -111,11 +121,12 @@ class AttractionPageAPIView(APIView):
 
 
 
-class TourDetailAPIView(RetrieveAPIView):
+class TourDetailView(generics.RetrieveAPIView):
+    permission_classes = [permissions.AllowAny]
     queryset = Tour.objects.all()
     serializer_class = TourSerializer
 
-
 class AttractionDetailAPIView(RetrieveAPIView):
+    permission_classes = [permissions.AllowAny]
     queryset = Attraction.objects.all()
     serializer_class = AttractionSerializer

@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     # Custom apps
     'apps.users',
     'apps.wallet',
-    'apps.message',
     'apps.tour',
     'apps.faq',
     'apps.authentication',
@@ -142,8 +141,8 @@ REST_FRAMEWORK = {
 
 # ───── JWT Settings ─────
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=40),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
