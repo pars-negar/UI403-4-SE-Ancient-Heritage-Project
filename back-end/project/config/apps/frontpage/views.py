@@ -16,6 +16,44 @@ from rest_framework import generics, permissions
 from apps.reserve.models import Passenger
 from apps.reserve.serializers import TourPassengerSerializer
 from apps.core.mixins import UserInfoAppendMixin
+from apps.users.serializers import UserProfileCombinedSerializer
+
+class DashboardRedirectAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        if user.role == 'tour_manager':
+            url = '/api/users/tourleaderdashboard'
+        elif user.role == 'user':
+            url = '/api/homepage/profile'
+        else:
+            url = '/api/homepage/profile'  
+
+        return Response({'dashboard_url': url})
+
+
+class UserProfileView(UserInfoAppendMixin, generics.RetrieveUpdateAPIView):
+    serializer_class = UserProfileCombinedSerializer
+    permission_classes = [IsNormalUser]
+
+    def get_object(self):
+        return self.request.user
+
+    def retrieve(self, request, *args, **kwargs):
+        response = super().retrieve(request, *args, **kwargs)
+        return self.append_user_info(response, request)
+
+    def update(self, request, *args, **kwargs):
+        response = super().update(request, *args, **kwargs)
+        return self.append_user_info(response, request)
+
+class UserProfileView(generics.RetrieveUpdateAPIView):
+    serializer_class = UserProfileCombinedSerializer
+    permission_classes = [IsNormalUser]
+
+    def get_object(self):
+        return self.request.user
 
 
 class CreateTourAPIView(UserInfoAppendMixin , generics.CreateAPIView):
