@@ -11,6 +11,49 @@ from rest_framework.permissions import *
 from rest_framework.permissions import IsAuthenticated
 from django.utils.timezone import now
 from rest_framework import generics, permissions
+from apps.reserve.models import Passenger
+from apps.reserve.serializers import TourPassengerSerializer
+
+class RegisteredPassengersListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, tour_id):
+        try:
+            tour = Tour.objects.get(id=tour_id)
+        except Tour.DoesNotExist:
+            return Response({"detail": "تور یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+
+        if tour.tour_manager != request.user:
+            return Response({"detail": "شما اجازه دسترسی به این تور را ندارید."}, status=status.HTTP_403_FORBIDDEN)
+
+        passengers = Passenger.objects.filter(reservation__tour=tour).select_related('reservation')
+
+        serializer = TourPassengerSerializer(passengers, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class TourSoftDeleteAPIView(APIView):  
+                                #  نحوه ارسال درخواست از سمت فرانت    
+                                #  POST /api/my-tours/delete/
+                                # {
+                                #   "tour_id": 5
+                                # }
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):  
+        tour_id = request.data.get('tour_id')
+        try:
+            tour = Tour.objects.get(id=tour_id)
+        except Tour.DoesNotExist:
+            return Response({"detail": "تور یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+
+        if tour.tour_manager != request.user:
+            return Response({"detail": "شما اجازه حذف این تور را ندارید."}, status=status.HTTP_403_FORBIDDEN)
+
+        tour.delete()
+        return Response({"detail": "تور با موفقیت حذف شد."}, status=status.HTTP_200_OK)
+
+
 
 class IsTourManagerAndOwner(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):

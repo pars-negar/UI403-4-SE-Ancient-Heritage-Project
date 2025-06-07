@@ -2,7 +2,7 @@
 from django.urls import path
 from .views import (HomePageAPIView ,TourPageAPIView, AttractionDetailAPIView,
                     TourDetailView,AttractionPageAPIView,get_cities_with_places,
-                    TourDetailAPIView, TourListAPIView, TourUpdateAPIView
+                    TourDetailAPIView, TourListAPIView, TourUpdateAPIView, TourSoftDeleteAPIView
 )
 urlpatterns = [
     path('', HomePageAPIView.as_view(), name='homepage'),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('dashboard/tours/', TourListAPIView.as_view(), name='tour-list'),
     path('dashboard/tours/<int:pk>/', TourDetailAPIView.as_view(), name='tour-detail'),
     path('dashboard/tours/<int:pk>/edit/', TourUpdateAPIView.as_view(), name='tour-update'),
+    path('dashboard/my-tours/delete/', TourSoftDeleteAPIView.as_view(), name='delete-my-tour'),
 
 
 ]
