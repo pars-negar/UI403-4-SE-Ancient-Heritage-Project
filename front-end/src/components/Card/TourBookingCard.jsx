@@ -16,27 +16,27 @@ const TourBookingCard = () => {
   };
 
   return (
-    <div dir="rtl" className="w-[80%] mx-auto my-10 font-sans">
-      <div className="bg-white rounded-xl border border-gray-200 shadow-lg p-6">
+    <div dir="rtl" className=" w-[70%] mx-auto my-10 font-sans ">
+      <div className="bg-white rounded-xl  shadow-lg p-2 !border-[#205781] !border-3">
         
         <div className="flex justify-start items-center w-full"> 
             <hr className='!w-[5px] !h-[2.75rem] border-none !bg-[var(--color-dark-blue)] opacity-100 rounded-[8px] !ml-[0.4375rem]'/>
-            <h3 className='!text-4xl' style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>تور تهران به اصفهان</h3>
+            <h3 className='!text-3xl' style={{fontFamily: 'Vazirmatn', fontWeight: 700}}>تور تهران به اصفهان</h3>
         </div>
         <hr className="bg-[--color-gray] w-full !mt-[1.5rem]"/>
 
         <div className="flex justify-between items-center py-0">
-          <span className="text-lg font-semibold text-gray-600"style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>قیمت برای هر نفر:</span>
+          <span className="mr-3 text-lg font-semibold text-gray-600"style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>قیمت برای هر نفر:</span>
           <span className="text-xl font-bold text-gray-900"style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>4,000,000 تومان</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mt-4">
           
-          <div>
+          <div className='mr-3'>
             <label htmlFor="traveler-count" className="block text-right text-base font-medium text-gray-700 mb-2"style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>
               تعداد مسافر:
             </label>
-            <div className="flex items-center justify-around border border-gray-300 rounded-lg p-1.5">
+            <div className="!w-[90%] flex items-center justify-around border border-gray-300 rounded-lg p-1.5">
               <button
                 onClick={handleIncrement}
                 className="flex justify-end rounded-full p-1 transition-colors "
@@ -54,7 +54,7 @@ const TourBookingCard = () => {
               </button>
             </div>
           </div>
-                  <div>
+            <div className='w-[90%] mr-7'>
             <label htmlFor="room-type" className="block text-right text-base text-gray-700 mb-2"style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>
               نوع اتاق اقامتگاه:
             </label>
@@ -84,7 +84,7 @@ const TourBookingCard = () => {
           >
             رزرو تور
           </button>
-        </div>``
+        </div>
       </div>
     </div>
   );
