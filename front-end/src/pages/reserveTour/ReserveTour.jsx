@@ -34,7 +34,7 @@ const ReserveTour = () => {
       <ShoppingCart
         tourInfo={tourInfo}
         totalPrice={8000000}
-        buttonLink="/payment"
+        buttonLink="/zarin"
       />
       <div className="h-20" />
       <Footer />
