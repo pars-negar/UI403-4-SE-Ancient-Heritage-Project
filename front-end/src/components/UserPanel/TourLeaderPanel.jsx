@@ -50,7 +50,7 @@ const TourLeaderPanel = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8000/api/tourleaderdashboard/"
+        "http://127.0.0.1:8000/api/users/tourleaderdashboard/"
       );
       if (response && response.status === 200) {
         // console.log(response.data.tours);
