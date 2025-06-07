@@ -54,22 +54,6 @@
   margin-bottom: -3px;
 }
 
-.button {
-  margin-top: 20px;
-  margin-left: 1rem;
-  padding: 10px 20px;
-  width: 60%;
-  background: #f58119;
-  border: none;
-  color: black;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 15px;
-  white-space: nowrap;
-  line-height: 1.5;
-  display: inline-block;
-  text-align: center;
-}
 
 .sectionHeader {
   display: flex;
