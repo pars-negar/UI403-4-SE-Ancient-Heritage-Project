@@ -21,7 +21,7 @@ const TourBookingCard = () => {
         
         <div className="flex justify-start items-center w-full"> 
             <hr className='!w-[5px] !h-[2.75rem] border-none !bg-[var(--color-dark-blue)] opacity-100 rounded-[8px] !ml-[0.4375rem]'/>
-            <h3 className='!text-4xl' style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>اطلاعات حساب کاربری</h3>
+            <h3 className='!text-4xl' style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>تور تهران به اصفهان</h3>
         </div>
         <hr className="bg-[--color-gray] w-full !mt-[1.5rem]"/>
 
