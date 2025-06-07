@@ -9,7 +9,7 @@ import tourPicture from '../../assets/images/naghshejahan.svg'
 
 const TourInformation = () => {
     
-    console.log('TourInformation render'); // چک کردن رندر شدن
+  //  console.log('TourInformation render'); // چک کردن رندر شدن
     const { id, category } = useParams();
     const location = useLocation();
 
@@ -29,7 +29,7 @@ const TourInformation = () => {
                 `http://127.0.0.1:8000/api/homepage/tour/${id}/`
             );
             if (response && response.status === 200) {
-                console.log(response.data)
+            //    console.log(response.data)
                 const foundTour = response.data;
                 setTour(foundTour);
                 setTourPlan(foundTour.daily_schedules || []);
