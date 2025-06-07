@@ -20,9 +20,9 @@ const TourTab = () => {
                 // "https://parsnegarback.liara.run/api/homepage"
                 "http://127.0.0.1:8000/api/homepage/"
             );
-            console.log(response)
+            // console.log(response)
           if (response && response.status === 200) {
-            console.log(response.data);
+         //   console.log(response.data);
             setTours(response.data.tours || []);
             setLoading(false);
           } else {
@@ -37,9 +37,9 @@ const TourTab = () => {
 
 
     return ( 
-        <Tabs labels={['تورهای اخیر' ,'تورهای برتر']} className="!mt-[10rem] w-full">
+        <Tabs labels={['تورهای اخیر' ,'تورهای برتر']} className=" w-full " >
           <div id="home-tour-card">
-            <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' ,marginTop:'90px' }}>
+            <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' ,marginTop:'0px' }}>
               {loading ? (
                 <p>در حال بارگذاری...</p>
               ) : (

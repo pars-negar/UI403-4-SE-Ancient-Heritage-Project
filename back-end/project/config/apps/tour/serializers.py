@@ -4,6 +4,98 @@ from .models import Attraction
 from .models import Tour
 from .models import AttractionImage,TourImage,DailySchedule,Review
 
+class TourUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tour
+        fields = [
+            'tour_name', 'description', 'start_date', 'end_date', 'departure_time', 'return_time',
+            'price', 'capacity', 'origin', 'destination', 'main_image', 'accommodation', 'meal_details',
+            'transportation', 'travel_insurance', 'tourism_services', 'tour_guides_info',
+            'company_name', 'company_address', 'company_phone', 'company_email', 'company_website',
+        ]
+
+
+class TourListSerializer(serializers.ModelSerializer):
+    card2_image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Tour
+        fields = ['id', 'tour_name', 'destination', 'start_date', 'end_date', 'price', 'card2_image']
+
+    def get_card2_image(self, obj):
+        image = obj.images.filter(image_type='card2').first()
+        if image and image.image:
+            request = self.context.get('request')
+            return request.build_absolute_uri(image.image.url) if request else image.image.url
+        return None
+
+    duration = serializers.SerializerMethodField()
+
+    def get_duration(self, obj):
+        if obj.start_date and obj.end_date:
+            return (obj.end_date - obj.start_date).days + 1  
+        return None
+
+
+class TourDetailSerializer(serializers.ModelSerializer):
+    images = serializers.SerializerMethodField()
+    daily_schedules = serializers.SerializerMethodField()
+    tour_manager_profile = serializers.SerializerMethodField()
+    tour_guides = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Tour
+        fields = [
+            'id', 'tour_name', 'description', 'start_date', 'end_date', 'departure_time', 'return_time',
+            'price', 'capacity', 'origin', 'destination', 'main_image', 'accommodation', 'meal_details',
+            'transportation', 'travel_insurance', 'tourism_services', 'tour_guides',
+            'company_name', 'company_address', 'company_phone', 'company_email', 'company_website',
+            'images', 'daily_schedules', 'tour_manager_profile'
+        ]
+
+    def get_images(self, obj):
+        request = self.context.get('request')
+        return [
+            {
+                'id': img.id,
+                'image_type': img.image_type,
+                'image_url': request.build_absolute_uri(img.image.url) if request else img.image.url
+            } for img in obj.images.all()
+        ]
+
+    def get_daily_schedules(self, obj):
+        request = self.context.get('request')
+        return [
+            {
+                'day_number': sch.day_number,
+                'title': sch.title,
+                'description': sch.description,
+                'image': request.build_absolute_uri(sch.image.url) if sch.image and request else None,
+            } for sch in obj.daily_schedules.all().order_by('day_number')
+        ]
+
+    def get_tour_manager_profile(self, obj):
+        user = obj.tour_manager
+        if user and hasattr(user, 'tour_manager_profile'):
+            profile = user.tour_manager_profile
+            return {
+                'user': {
+                    'id': user.id,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'email': user.email,
+                },
+                'company_name': profile.company_name,
+                'company_address': profile.company_address,
+                'company_registration_number': profile.company_registration_number,
+            }
+        return None
+
+    def get_tour_guides(self, obj):
+        if obj.tour_guides_info:
+            return [g.strip() for g in obj.tour_guides_info.splitlines() if g.strip()]
+        return []
+
 
 class TourCreateSerializer(serializers.ModelSerializer):
 

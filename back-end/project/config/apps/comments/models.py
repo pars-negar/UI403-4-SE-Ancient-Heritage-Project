@@ -18,6 +18,7 @@ class SiteComment(models.Model):
     comment = models.TextField(verbose_name="متن نظر")
     rating = models.PositiveSmallIntegerField(default=5, verbose_name="امتیاز (از ۵)")
     created_at = jmodels.jDateField(auto_now_add=True, verbose_name="تاریخ ارسال")
+    is_approved = models.BooleanField(default=False, verbose_name="آیا تأیید شده است؟")
 
     def save(self, *args, **kwargs):
         if self.user and not self.user_role:
