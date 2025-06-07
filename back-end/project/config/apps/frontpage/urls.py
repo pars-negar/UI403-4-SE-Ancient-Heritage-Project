@@ -1,7 +1,9 @@
 
 from django.urls import path
-from .views import HomePageAPIView ,TourPageAPIView, AttractionDetailAPIView, TourDetailView,AttractionPageAPIView,get_cities_with_places
-
+from .views import (HomePageAPIView ,TourPageAPIView, AttractionDetailAPIView,
+                    TourDetailView,AttractionPageAPIView,get_cities_with_places,
+                    TourDetailAPIView, TourListAPIView, TourUpdateAPIView
+)
 urlpatterns = [
     path('', HomePageAPIView.as_view(), name='homepage'),
      path('tour-page', TourPageAPIView.as_view(), name='tour-page'),
@@ -9,5 +11,9 @@ urlpatterns = [
     path('attraction/<int:pk>/', AttractionDetailAPIView.as_view(), name='attraction-detail'),
      path('attraction-page/', AttractionPageAPIView.as_view(), name='attraction-page'),
     path('places/cities/', get_cities_with_places),
+    path('dashboard/tours/', TourListAPIView.as_view(), name='tour-list'),
+    path('dashboard/tours/<int:pk>/', TourDetailAPIView.as_view(), name='tour-detail'),
+    path('dashboard/tours/<int:pk>/edit/', TourUpdateAPIView.as_view(), name='tour-update'),
+
 
 ]
