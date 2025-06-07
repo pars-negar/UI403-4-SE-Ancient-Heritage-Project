@@ -160,3 +160,68 @@ class TourFilterSerializer(serializers.Serializer):
     )
 
 
+class TourDetailSerializer(serializers.ModelSerializer):
+    price = serializers.SerializerMethodField()
+    meals = serializers.SerializerMethodField()
+    guides = serializers.SerializerMethodField()
+    services = serializers.SerializerMethodField()
+    images = TourImageSerializer(many=True, read_only=True)
+    daily_schedules = DailyScheduleSerializer(many=True, read_only=True)
+    reviews = ReviewSerializer(many=True, read_only=True)
+    tour_manager = serializers.StringRelatedField()
+    related_tours = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = Tour
+        fields = [
+            'id', 'tour_name', 'description', 'start_date', 'end_date',
+            'departure_time', 'return_time',
+            'origin', 'destination', 'price', 'capacity',
+            'main_image', 'images',
+            'accommodation', 'meal_details', 'meals',
+            'transportation', 'travel_insurance',
+            'tourism_services', 'services',
+            'tour_guides_info', 'guides',
+            'daily_schedules', 'reviews',
+            'tour_manager',
+            'company_name', 'company_address', 'company_phone',
+            'company_email', 'company_website',
+            'related_tours',
+        ]
+
+    def get_price(self, obj):
+        return int(obj.price)
+
+    def get_meals(self, obj):
+        if not obj.meal_details:
+            return {}
+        parts = obj.meal_details.replace('،', ',').split(',')
+        result = {}
+        for part in parts:
+            if 'صبحانه' in part:
+                result['breakfast'] = int(''.join(filter(str.isdigit, part)))
+            elif 'ناهار' in part:
+                result['lunch'] = int(''.join(filter(str.isdigit, part)))
+            elif 'شام' in part:
+                result['dinner'] = int(''.join(filter(str.isdigit, part)))
+        return result
+
+    def get_guides(self, obj):
+        if not obj.tour_guides_info:
+            return []
+        guides = obj.tour_guides_info.split('،')
+        result = []
+        for guide in guides:
+            parts = guide.split('-')
+            if len(parts) == 2:
+                result.append({
+                    "name": parts[0].strip(),
+                    "type": parts[1].strip()
+                })
+        return result
+
+    def get_services(self, obj):
+        if not obj.tourism_services:
+            return []
+        return [s.strip() for s in obj.tourism_services.split('،')]
+
