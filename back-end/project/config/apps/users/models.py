@@ -49,6 +49,7 @@ class CustomUser(AbstractUser):
             'invalid': 'لطفاً یک ایمیل معتبر وارد کنید.'
         }
     )
+    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
 
     objects = CustomUserManager()
 
@@ -70,6 +71,9 @@ class TourManagerProfile(models.Model):
     company_name = models.CharField(max_length=255, blank=True, default='')
     company_address = models.TextField(blank=True, default='')
     company_registration_number = models.CharField(max_length=255, blank=True, default='')
+    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
+    company_phone_number = models.CharField(max_length=11, blank=True, default='')
+
 
     def __str__(self):
         return f"{self.user.username} - {self.company_name}"

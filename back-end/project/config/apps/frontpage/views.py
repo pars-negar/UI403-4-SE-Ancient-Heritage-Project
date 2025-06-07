@@ -33,11 +33,7 @@ class RegisteredPassengersListAPIView(APIView):
 
 
 class TourSoftDeleteAPIView(APIView):  
-                                #  نحوه ارسال درخواست از سمت فرانت    
-                                #  POST /api/my-tours/delete/
-                                # {
-                                #   "tour_id": 5
-                                # }
+
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):  
@@ -103,16 +99,12 @@ class TourDetailAPIView(APIView):
         return Response(serializer.data)
 
 
-
 class HomePageAPIView(APIView):
     permission_classes = [permissions.AllowAny]
 
-    def get(self, request):
-        # ====== Attractions ======
-        attractions_qs = Attraction.objects.all()[:6]
-        attractions = []
-
-        for attr in attractions_qs:
+    def format_attractions(self, request, queryset):
+        formatted = []
+        for attr in queryset:
             full_name = attr.attraction_name
             parts = full_name.split('؛', 1)
             title = parts[0].strip()
@@ -121,12 +113,38 @@ class HomePageAPIView(APIView):
             thumbnail = attr.images.filter(image_type='thumbnail').first()
             image_url = request.build_absolute_uri(thumbnail.image.url) if thumbnail else None
 
-            attractions.append({
+            formatted.append({
                 'id': attr.id,
                 'title': title,
                 'subtitle': subtitle,
                 'image': image_url,
             })
+        return formatted
+
+    def format_tours(self, request, queryset):
+        formatted = []
+        for tour in queryset:
+            thumbnail = tour.images.filter(image_type='thumbnail').first()
+            image_url = request.build_absolute_uri(thumbnail.image.url) if thumbnail else None
+
+            formatted.append({
+                'id': tour.id,
+                'tour_name': tour.tour_name,
+                'destination': tour.destination,
+                'origin': tour.origin,
+                'price': int(tour.price),
+                'start_date': tour.start_date.isoformat() if tour.start_date else None,
+                'end_date': tour.end_date.isoformat() if tour.end_date else None,
+                'image': image_url,
+                'category': tour.category,
+                'rating': tour.rating,
+            })
+        return formatted
+
+    def get(self, request):
+        # ====== Attractions ======
+        attractions_qs = Attraction.objects.all()[:6]
+        attractions = self.format_attractions(request, attractions_qs)
 
         # ====== Tour Search Parameters ======
         origin = request.query_params.get('origin')
@@ -142,33 +160,25 @@ class HomePageAPIView(APIView):
                 start_date=start_date,
                 end_date=end_date
             )[:6]
+
+            tours = self.format_tours(request, tours_qs)
+            data = {
+                'attractions': attractions,
+                'search_results': tours
+            }
         else:
-            # ====== Default Tours (latest 6) ======
-            tours_qs = Tour.objects.order_by('-start_date')[:6]
+            # ====== Latest Tours (6) ======
+            latest_tours = Tour.objects.order_by('-start_date')[:6]
+            # ====== Top Tours (6) ======
+            top_tours = Tour.objects.order_by('-rating')[:6]
 
-        tours = []
-        for tour in tours_qs:
-            thumbnail = tour.images.filter(image_type='thumbnail').first()
-            image_url = request.build_absolute_uri(thumbnail.image.url) if thumbnail else None
+            data = {
+                'attractions': attractions,
+                'latest': self.format_tours(request, latest_tours),
+                'top': self.format_tours(request, top_tours)
+            }
 
-            tours.append({
-                'id': tour.id,
-                'tour_name': tour.tour_name,
-                'destination': tour.destination,
-                'origin': tour.origin,
-                'price': int(tour.price),
-                'start_date': tour.start_date.isoformat() if tour.start_date else None,
-                'end_date': tour.end_date.isoformat() if tour.end_date else None,
-                'image': image_url,
-                'category': tour.category,
-                'rating':tour.rating,
-            })
-
-
-        return Response({
-            'attractions': attractions,
-            'tours': tours,
-        }, status=status.HTTP_200_OK)
+        return Response(data, status=status.HTTP_200_OK)
 
 
 from apps.tour.utils import search_tours
