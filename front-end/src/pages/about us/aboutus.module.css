@@ -1,0 +1,194 @@
+.aboutUsPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.aboutUsContent {
+    flex-grow: 1;
+    width: 90%;
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.aboutUsHero {
+    text-align: center;
+    padding: 70px 20px;
+    background: linear-gradient(135deg, #a8dadc 0%, #457b9d 100%);
+    color: #fff;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.aboutUsHero h1 {
+    font-family: 'Arial Rounded MT Bold', sans-serif; /* فرض بر یک فونت گوگولی تر */
+    font-size: 4em;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+    letter-spacing: 2px;
+}
+
+.aboutUsHero p {
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    font-size: 1.5em;
+    opacity: 0.95;
+    margin-top: 10px;
+}
+
+.aboutUsContent h2 {
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    font-size: 3em;
+    color: #FB8101;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.aboutUsContent h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 6px;
+    background-color: #205781;
+    border-radius: 3px;
+}
+
+.aboutUsDescription p,
+.aboutUsVision p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    line-height: 2;
+    text-align: justify;
+    margin-bottom: 25px;
+    padding: 0 25px;
+    color: #4a4a4a;
+}
+
+.featureGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+    padding: 0 25px;
+}
+
+.featureItem {
+    background-color: #c4c4fba2; 
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 2px solid #4d5aa5;
+}
+.featureItem h3{
+    color: black !important;
+}
+.featureItem:hover {
+    transform: translateY(-8px) rotateZ(1deg);
+    box-shadow: 0 15px 40px rgba(38, 184, 214, 0.301);
+    border-color: #0795bc;
+}
+
+.featureItem h3 {
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    color: #FB8101;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #205781;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.featureItem p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+}
+
+/* Specific styling for inputs (assuming they might appear in other components, but adding here as a general example) */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    border: 2px solid #205781;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 1em;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border-color: #FB8101;
+    box-shadow: 0 0 0 4px rgba(251, 129, 1, 0.2);
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .aboutUsHero h1 {
+        font-size: 3em;
+    }
+
+    .aboutUsHero p {
+        font-size: 1.2em;
+    }
+
+    .aboutUsContent h2 {
+        font-size: 2.5em;
+    }
+
+    .featureGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .aboutUsContent {
+        width: 95%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .aboutUsHero {
+        padding: 50px 15px;
+    }
+
+    .aboutUsHero h1 {
+        font-size: 2.5em;
+    }
+
+    .aboutUsHero p {
+        font-size: 1.1em;
+    }
+
+    .aboutUsContent h2 {
+        font-size: 2em;
+    }
+    
+    .aboutUsDescription p,
+    .aboutUsVision p {
+        font-size: 1em;
+    }
+
+    .featureItem {
+        padding: 20px;
+    }
+}
