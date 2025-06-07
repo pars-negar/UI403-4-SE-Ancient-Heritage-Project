@@ -3,7 +3,8 @@ from django.contrib.auth import get_user_model
 from rest_framework.exceptions import ValidationError
 import re
 from django.contrib.auth.tokens import default_token_generator
-
+from apps.tour.models import Tour
+from apps.tour.serializers import TourSerializer
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from apps.users.models import TourManagerProfile
@@ -165,3 +166,34 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
         return user
 
 
+class UserDashboardSerializer(serializers.ModelSerializer):
+    company_name = serializers.SerializerMethodField()
+    company_address = serializers.SerializerMethodField()
+    company_registration_number = serializers.SerializerMethodField()
+    tours = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'phone_number', 'role',
+                  'company_name', 'company_address', 'company_registration_number', 'tours']
+
+    def get_company_name(self, obj):
+        if obj.role == 'tour_manager' and hasattr(obj, 'tourmanagerprofile'):
+            return obj.tourmanagerprofile.company_name
+        return None
+
+    def get_company_address(self, obj):
+        if obj.role == 'tour_manager' and hasattr(obj, 'tourmanagerprofile'):
+            return obj.tourmanagerprofile.company_address
+        return None
+
+    def get_company_registration_number(self, obj):
+        if obj.role == 'tour_manager' and hasattr(obj, 'tourmanagerprofile'):
+            return obj.tourmanagerprofile.company_registration_number
+        return None
+
+    def get_tours(self, obj):
+        if obj.role == 'tour_manager':
+            tours = Tour.objects.filter(created_by=obj)
+            return TourSerializer(tours, many=True, context=self.context).data
+        return []

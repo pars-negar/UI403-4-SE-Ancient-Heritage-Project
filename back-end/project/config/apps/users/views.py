@@ -9,6 +9,7 @@ from .serializers import (
     TourRegisterSerializer,
     PasswordResetRequestSerializer,
     PasswordResetConfirmSerializer,
+    UserDashboardSerializer,
 )
 
 from rest_framework.views import APIView
@@ -205,3 +206,9 @@ class PasswordResetConfirmView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class UserDashboardAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserDashboardSerializer(request.user, context={'request': request})
+        return Response(serializer.data)
