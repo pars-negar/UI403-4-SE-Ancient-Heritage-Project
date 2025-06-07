@@ -6,6 +6,8 @@ from rest_framework import status
 from random import randint
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.tokens import RefreshToken
+from apps.users.permissions import *
+from rest_framework.permissions import *
 
 
 GHASEDAK_API_KEY = "78a33e51203b08913a6cef083b92d212c713a74b603afc50af0e10370c7a1465QkEAodV6AH7WLUaR"
@@ -13,6 +15,7 @@ good_line_number_for_sending_otp = '30005088'
 sms_url = "https://gateway.ghasedak.me/rest/api/v1/WebService/SendOtpWithParams"
 
 class SendOTPView(APIView):
+    permission_classes = [IsNotAuthenticated]
     def post(self, request, *args, **kwargs):
         phone_number = request.data.get('phone_number')
         username = request.data.get('username') 
@@ -61,6 +64,7 @@ class SendOTPView(APIView):
     
 
 class VerifyOTPView(APIView):
+    permission_classes = [IsNotAuthenticated]
     def post(self, request, *args, **kwargs):
         phone_number = request.data.get('phone_number')
         otp = request.data.get('otp_code')

@@ -20,6 +20,8 @@ from django.conf import settings
 import requests
 from django.core.cache import cache
 import logging
+from .permissions import *
+from rest_framework.permissions import IsAuthenticated
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -27,6 +29,7 @@ logger = logging.getLogger(__name__)
 
 # ViewSet for user login
 class LoginViewSet(viewsets.ViewSet):
+    permission_classes = [permissions.AllowAny]
     def create(self, request):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
@@ -46,12 +49,14 @@ class LoginViewSet(viewsets.ViewSet):
 
 # Read-only view for all users
 class CustomUserViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes = [permissions.IsAdminUser]
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
 
 
 # ViewSet for normal user registration (with OTP)
 class UserRegisterViewSet(viewsets.ViewSet):
+    permission_classes = [permissions.AllowAny]
     def create(self, request):
         serializer = UserRegisterSerializer(data=request.data)
         if serializer.is_valid():
@@ -69,7 +74,7 @@ class UserRegisterViewSet(viewsets.ViewSet):
                 'password': password
             }, timeout=600)
 
-            otp_api_url = f'{settings.HADIR_HAWITY_API_URL}/send-otp/'
+            otp_api_url = f'{settings.HADIR_HAWITY_API_URL}/auth/send-otp/'
             try:
                 otp_response = requests.post(
                     otp_api_url,
@@ -97,6 +102,7 @@ class UserRegisterViewSet(viewsets.ViewSet):
 
 # ViewSet for handling tour manager registration (with OTP)
 class TourRegisterViewSet(viewsets.ViewSet):
+    permission_classes = [permissions.AllowAny]
     def create(self, request):
         serializer = TourRegisterSerializer(data=request.data)
         if serializer.is_valid():
@@ -120,7 +126,7 @@ class TourRegisterViewSet(viewsets.ViewSet):
                 'company_registration_number': company_registration_number,
             }, timeout=600)
 
-            otp_api_url = f'{settings.HADIR_HAWITY_API_URL}/send-otp/'
+            otp_api_url = f'{settings.HADIR_HAWITY_API_URL}/auth/send-otp/'
             try:
                 otp_response = requests.post(
                     otp_api_url,
@@ -158,6 +164,7 @@ class TourRegisterViewSet(viewsets.ViewSet):
 
 # View to handle password reset requests.
 class PasswordResetRequestView(APIView):
+    permission_classes = [permissions.AllowAny]
     def post(self, request):
         serializer = PasswordResetRequestSerializer(data=request.data)
         if serializer.is_valid():
@@ -189,6 +196,7 @@ class PasswordResetRequestView(APIView):
 
 # Handles POST requests for confirming password reset.
 class PasswordResetConfirmView(APIView):
+    permission_classes = [permissions.AllowAny]
     def post(self, request):
         serializer = PasswordResetConfirmSerializer(data=request.data)
         if serializer.is_valid():

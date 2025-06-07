@@ -45,7 +45,7 @@ const TourLeaderSignUpRightPanel = () => {
         setMessage('');
 
         try {
-            const response = await axios.post('https://parsnegarback.liara.run/api/tourregister/', formData);
+            const response = await axios.post('http://127.0.0.1:8000/api/users/tourregister/', formData);
             localStorage.setItem("pendingPhoneNumber", formData.phone_number);
             navigate('/verify-otp');
 
