@@ -1,47 +1,53 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import TestimonialCard from "./TestimonialCard";
 import "../Comments/testimonials.css";
 
-const testimonials = [
-  {
-    id: 1,
-    name: "نگار شریف",
-    role: "کاربر سامانه",
-    image: "/prof.png",
-    rating: 5,
-    text: "بخش معرفی آثار تاریخی واقعاً کامل و آموزنده‌ست. توضیحات نه خیلی خشک بود، نه خیلی ساده. به جزییاتی هم اطلاعات کافی داده شده که لذت بردم.",
-    borderColor: "#0d4a79",
-  },
-  {
-    id: 2,
-    name: "سما محمدی",
-    role: "مسئول تور",
-    image: "/prof.png",
-    rating:3,
-    text: "واقعاً از زمانی که از این سامانه برای مدیریت تورها استفاده می‌کنیم، کارهامون خیلی سریع‌تر و دقیق‌تر پیش میره. ثبت‌نام، بررسی مدارک و مدیریت گروه‌ها همه در یک پنل جمع شده. خیلی راضیم!",
-    borderColor: "#f2994a",
-  },
-  {
-    id: 3,
-    name: "علی موسوی",
-    role: "کاربر سامانه",
-    image: "/prof.png",
-    rating: 4,
-    text: "سامانه خیلی کاربردیه و استفاده از اون آسونه. امکانات خوبی داره برای رزرو و مشاهده تورها. فقط ای کاش اپلیکیشن موبایل هم داشت.",
-    borderColor: "#0d4a79",
-  },
-];
-
 const Testimonials = () => {
+    const[testimonials , settest] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/comment/site-comments"
+      );
+      if (response && response.status === 200) {
+        // console.log(response.data.tours);
+        settest(response.data);
+        setLoading(false);
+      } else {
+        console.error("Failed to fetch data", response);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Error during fetch: ", error);
+      setLoading(false);
+    }
+  };
   return (
     <div className="testimonials-wrapper">
-      <h2 className="section-title">
-        نظرات کاربران <span className="section-accent" />
-      </h2>
       <div className="testimonials-container">
-        {testimonials.map((item) => (
+        {/* {testimonials.map((item) => (
           <TestimonialCard key={item.id} testimonial={item} />
-        ))}
+        ))} */}
+          
+          {testimonials.map((item, index) => {
+            let color = ""
+          if (index % 2 === 0) {
+              color="#205781";
+          }
+
+          if (index % 2 !== 0) {
+              color="#FB8101";
+
+          }
+
+          return <TestimonialCard key={item.id} testimonial={item} color={color}/>;
+        })}
       </div>
     </div>
   );
