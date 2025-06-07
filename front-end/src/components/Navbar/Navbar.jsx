@@ -24,10 +24,10 @@ const Navbar = () => {
                         }}
                     >
                         <Link to="/">صفحه‌ی اصلی</Link>
-                        <Link to="/">تورها</Link>
-                        <Link to="/">جاذبه‌ها</Link>
-                        <Link to="/">تماس با ما</Link>
-                        <Link to="/">درباره‌‌ما</Link>
+                        <Link to="/tourlistpage">تورها</Link>
+                        <Link to="/place">جاذبه‌ها</Link>
+                        {/* <Link to="/">تماس با ما</Link> */}
+                        <Link to="/aboutus">درباره‌‌ما</Link>
                     </div>
                 </ul>
 

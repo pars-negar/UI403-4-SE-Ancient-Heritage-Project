@@ -7,6 +7,7 @@ from apps.tour.serializers import (TourSerializer, TourListSerializer, TourDetai
                                     TourUpdateSerializer, TourCreateSerializer)
 from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
+from rest_framework import generics
 from apps.users.permissions import *
 from rest_framework.permissions import *
 from rest_framework.permissions import IsAuthenticated
@@ -14,6 +15,15 @@ from django.utils.timezone import now
 from rest_framework import generics, permissions
 from apps.reserve.models import Passenger
 from apps.reserve.serializers import TourPassengerSerializer
+
+from users.serializers import SimpleUserInfoSerializer
+
+class UserInfoAppendMixin:
+    def append_user_info(self, response, request):
+        if hasattr(response, 'data') and isinstance(response.data, dict):
+            user_serializer = SimpleUserInfoSerializer(request.user, context={'request': request})
+            response.data['user_info'] = user_serializer.data
+        return response
 
 class CreateTourAPIView(generics.CreateAPIView):
     queryset = Tour.objects.all()
@@ -162,12 +172,17 @@ class HomePageAPIView(APIView):
 
             tours.append({
                 'id': tour.id,
+                'tour_name': tour.tour_name,
                 'destination': tour.destination,
+                'origin': tour.origin,
                 'price': int(tour.price),
                 'start_date': tour.start_date.isoformat() if tour.start_date else None,
                 'end_date': tour.end_date.isoformat() if tour.end_date else None,
                 'image': image_url,
+                'category': tour.category,
+                'rating':tour.rating,
             })
+
 
         return Response({
             'attractions': attractions,
@@ -270,6 +285,18 @@ class AttractionDetailAPIView(RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = Attraction.objects.all()
     serializer_class = AttractionSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+
+        detail= instance.images.filter(image_type='card2').first()
+        image_url = request.build_absolute_uri(detail.image.url) if detail else None
+
+        data = serializer.data
+        data['image'] = image_url
+        return Response(data)
+
 
 
 from rest_framework.decorators import api_view

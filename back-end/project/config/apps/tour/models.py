@@ -59,6 +59,13 @@ class AttractionImage(models.Model):
         return f"{self.attraction.attraction_name} - {self.image_type}"
 
 class Tour(models.Model):
+    CATEGORY_CHOICES = [
+        ('featured', 'پربازدید'),
+        ('hidden', 'کمتر شناخته‌شده'),
+        ('normal', 'معمولی'),
+    ]
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='normal')
+
     tour_name = models.CharField(max_length=255)
     description = models.TextField()
     start_date = jmodels.jDateField(verbose_name="تاریخ شروع")
@@ -90,6 +97,7 @@ class Tour(models.Model):
     company_website = models.URLField(blank=True, null=True)
 
     related_tours = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='similar_tours')
+    rating = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.tour_name

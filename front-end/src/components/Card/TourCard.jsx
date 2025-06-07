@@ -6,12 +6,14 @@ const TourCard = ( {tour} ) => {
   if (!tour) return null;
   
     console.log(tour)
-    const stars = "⭐".repeat(tour.rating) + "☆".repeat(5 - tour.rating);
-    const startDate = new Date(tour.start_date);
-    const endDate = new Date(tour.end_date);
-    const durationInDays = Math.ceil(
-      (endDate - startDate) / (1000 * 60 * 60 * 24)
-    );
+  const rating = Math.min(Math.max(parseInt(tour.rating) || 0, 0), 5);
+  const stars = "⭐".repeat(rating) + "☆".repeat(5 - rating);
+
+  const startDate = new Date(tour.start_date);
+  const endDate = new Date(tour.end_date);
+  const durationInDays = Math.ceil(
+    (endDate - startDate) / (1000 * 60 * 60 * 24)
+  );
 
   
   return (
@@ -39,7 +41,7 @@ const TourCard = ( {tour} ) => {
             <p className={styles.tourInfo} style={{fontFamily:"Koodak",fontWeight:"bold"}}>
               مدت
               <span className={styles.verticalLine}></span>
-              {tour.duration} روز
+              {durationInDays} روز
             </p>
 
             <button className={styles.more_info_button}>جزئیات بیشتر</button>
