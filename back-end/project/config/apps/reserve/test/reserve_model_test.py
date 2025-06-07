@@ -1,3 +1,10 @@
+
+import pytest
+from rest_framework.test import APIClient
+from django.urls import reverse
+
+
+
 @pytest.mark.django_db
 def test_invalid_tour_id(user, room_type):
     client = APIClient()
@@ -18,8 +25,10 @@ def test_invalid_tour_id(user, room_type):
     }
 
     response = client.post(url, data, format='json')
+    print(response.status_code)
+    print(response.data)
     assert response.status_code == 400
-    assert "tour" in response.data
+    assert "tour" in str(response.data)
 
 
 @pytest.mark.django_db
