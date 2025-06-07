@@ -7,9 +7,14 @@ from rest_framework import serializers
 
 
 class AttractionSerializer(serializers.ModelSerializer):
+    historical_period = serializers.SerializerMethodField()
+
     class Meta:
         model = Attraction
-        fields = ['id', 'attraction_name', 'description', 'location', 'city', 'image']
+        fields = '__all__'
+
+    def get_historical_period(self, obj):
+        return obj.get_historical_period_display()
 
 
 

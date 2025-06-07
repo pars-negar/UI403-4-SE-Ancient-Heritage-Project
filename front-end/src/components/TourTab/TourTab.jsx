@@ -20,9 +20,9 @@ const TourTab = () => {
                 // "https://parsnegarback.liara.run/api/homepage"
                 "http://127.0.0.1:8000/api/homepage/"
             );
-            console.log(response)
+            // console.log(response)
           if (response && response.status === 200) {
-            console.log(response.data);
+         //   console.log(response.data);
             setTours(response.data.tours || []);
             setLoading(false);
           } else {

@@ -75,7 +75,7 @@ const Home = () => {
   };
 const handleAttractionClick = async (id) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/attractions/${id}`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/homepage/attraction/${id}/`);
       if (response && response.status === 200) {
         setSelectedAttraction(response.data);
         setShowModal(true);

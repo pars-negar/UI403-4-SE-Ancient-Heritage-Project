@@ -3,7 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 from .serializers import  AttractionSerializer
-from apps.tour.serializers import TourSerializer, TourListSerializer, TourDetailSerializer, TourUpdateSerializer
+from apps.tour.serializers import (TourSerializer, TourListSerializer, TourDetailSerializer,
+                                    TourUpdateSerializer, TourCreateSerializer)
 from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
 from rest_framework import generics
@@ -12,6 +13,66 @@ from rest_framework.permissions import *
 from rest_framework.permissions import IsAuthenticated
 from django.utils.timezone import now
 from rest_framework import generics, permissions
+from apps.reserve.models import Passenger
+from apps.reserve.serializers import TourPassengerSerializer
+
+from users.serializers import SimpleUserInfoSerializer
+
+class UserInfoAppendMixin:
+    def append_user_info(self, response, request):
+        if hasattr(response, 'data') and isinstance(response.data, dict):
+            user_serializer = SimpleUserInfoSerializer(request.user, context={'request': request})
+            response.data['user_info'] = user_serializer.data
+        return response
+
+class CreateTourAPIView(generics.CreateAPIView):
+    queryset = Tour.objects.all()
+    serializer_class = TourCreateSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(tour_manager=self.request.user)
+
+class RegisteredPassengersListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, tour_id):
+        try:
+            tour = Tour.objects.get(id=tour_id)
+        except Tour.DoesNotExist:
+            return Response({"detail": "تور یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+
+        if tour.tour_manager != request.user:
+            return Response({"detail": "شما اجازه دسترسی به این تور را ندارید."}, status=status.HTTP_403_FORBIDDEN)
+
+        passengers = Passenger.objects.filter(reservation__tour=tour).select_related('reservation')
+
+        serializer = TourPassengerSerializer(passengers, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class TourSoftDeleteAPIView(APIView):  
+                                #  نحوه ارسال درخواست از سمت فرانت    
+                                #  POST /api/my-tours/delete/
+                                # {
+                                #   "tour_id": 5
+                                # }
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):  
+        tour_id = request.data.get('tour_id')
+        try:
+            tour = Tour.objects.get(id=tour_id)
+        except Tour.DoesNotExist:
+            return Response({"detail": "تور یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+
+        if tour.tour_manager != request.user:
+            return Response({"detail": "شما اجازه حذف این تور را ندارید."}, status=status.HTTP_403_FORBIDDEN)
+
+        tour.delete()
+        return Response({"detail": "تور با موفقیت حذف شد."}, status=status.HTTP_200_OK)
+
+
 
 class IsTourManagerAndOwner(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
@@ -111,12 +172,17 @@ class HomePageAPIView(APIView):
 
             tours.append({
                 'id': tour.id,
+                'tour_name': tour.tour_name,
                 'destination': tour.destination,
+                'origin': tour.origin,
                 'price': int(tour.price),
                 'start_date': tour.start_date.isoformat() if tour.start_date else None,
                 'end_date': tour.end_date.isoformat() if tour.end_date else None,
                 'image': image_url,
+                'category': tour.category,
+                'rating':tour.rating,
             })
+
 
         return Response({
             'attractions': attractions,
@@ -219,6 +285,18 @@ class AttractionDetailAPIView(RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = Attraction.objects.all()
     serializer_class = AttractionSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+
+        detail= instance.images.filter(image_type='card2').first()
+        image_url = request.build_absolute_uri(detail.image.url) if detail else None
+
+        data = serializer.data
+        data['image'] = image_url
+        return Response(data)
+
 
 
 from rest_framework.decorators import api_view

@@ -44,6 +44,7 @@ import ProfileTourInfoForTourLeader from './pages/ProfileTourInfoForTourLeader/P
 import UserProfilePage from './pages/UserProfile/UserProfilePage.jsx';
 import TestModal from './components/Comments/TestModal.jsx';
 import TourBookingCard from './components/Card/TourBookingCard.jsx'
+import AboutUs from './pages/about us/aboutUs.jsx';
 
 
 
@@ -85,6 +86,7 @@ createRoot(document.getElementById('root')).render(
         <Route exact path="/passwordRecovery" element={ <PasswordRecovery/> }></Route>
         
 
+        <Route exact path="/aboutus" element={ <AboutUs/> }></Route>
         <Route exact path="/zarin" element={ <ZarinpalPage/> }></Route>
         <Route exact path="*" element={ <ErrorPage/> }></Route>
         <Route exact path="/place/:city?" element={ <PlacesPage/> }></Route>
@@ -93,7 +95,7 @@ createRoot(document.getElementById('root')).render(
 
         <Route path="/success" element={<SuccessMassage/>} />
         <Route path="/tourinformation/:category/:id" element={<TourInformation/>} />
-        <Route path="tourlistpage" element={<TourListPage/>}/>
+        <Route path="/tourlistpage" element={<TourListPage/>}/>
         <Route path="/historical" element={<HistoricSearch/>}/>
 
         {/* <Route exact path="/" element={ <Navbar />} /> */}
