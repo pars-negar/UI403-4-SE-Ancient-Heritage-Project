@@ -13,9 +13,10 @@ import FAQAccordion from "../../components/FAQ/FAQAccordion";
 import FourCityCards from "../../components/Card/FourCityCards";
 import TourismAttractions from "../../components/Card/tourismAttractionCard";
 import SearchBox from "../../components/SearchBox/SearchBox";
+import TourTab from "../../components/TourTab/TourTab";
+
 import tomb from "../../assets/images/tomb.png";
 import image from "../../assets/images/1.png";
-
 import ArrowRight from "../../components/Icons/ArrowRight";
 import ArrowLeft from "../../components/Icons/ArrowLeft";
 import PlaceModal from "../../components/Placescard/PlaceModal";
@@ -23,8 +24,6 @@ import PlaceModal from "../../components/Placescard/PlaceModal";
 const Home = () => {
   const [tours, setTours] = useState([]);
   const [attractions, setAttractions] = useState([]);
-  const [faqs, setFaqs] = useState([]);
-  const [headers, setHeaders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [selectedAttraction, setSelectedAttraction] = useState(null);
@@ -64,8 +63,6 @@ const Home = () => {
         // console.log(response.data.tours);
         setTours(response.data.tours || []);
         setAttractions(response.data.attractions || []);
-        setFaqs(response.data.faqs || []);
-        setHeaders(response.data.headers || []);
         setLoading(false);
       } else {
         console.error("Failed to fetch data", response);
@@ -78,7 +75,6 @@ const Home = () => {
   };
 const handleAttractionClick = async (id) => {
     try {
-      // درخواست جزییات کامل جاذبه از API (آدرس را بر اساس API خودت تنظیم کن)
       const response = await axios.get(`http://127.0.0.1:8000/api/attractions/${id}`);
       if (response && response.status === 200) {
         setSelectedAttraction(response.data);
@@ -92,7 +88,6 @@ const handleAttractionClick = async (id) => {
     }
   };
 
-  // بستن مدال
   const closeModal = () => {
     setShowModal(false);
     setSelectedAttraction(null);
@@ -183,16 +178,7 @@ const handleAttractionClick = async (id) => {
         <SearchBox />
       </div>
 
-      {/* Tours Section */}
-      <div id="home-tour-card">
-          <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' ,marginTop:'90px' }}>
-            {loading ? (
-              <p>در حال بارگذاری...</p>
-            ) : (
-              tours && <TourCard key={tours.id} tours={tours} />
-            )}
-          </div>
-      </div>
+      <TourTab />
 
       {/* Middle Image */}
       <img className={styles.tomb} src={tomb} alt="tomb" />
