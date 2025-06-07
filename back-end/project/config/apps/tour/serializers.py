@@ -90,7 +90,7 @@ class TourSerializer(serializers.ModelSerializer):
             'id', 'tour_name', 'origin', 'destination', 'start_date', 'end_date',
             'price', 'description', 'main_image', 'images',
             'meals', 'guides', 'services',
-            'daily_schedules', 'reviews',
+            'daily_schedules', 'reviews', 'transportation', 'travel_insurance',  'accommodation', 'company_name'
         ]
 
     def get_price(self, obj):
