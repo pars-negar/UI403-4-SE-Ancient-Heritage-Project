@@ -17,7 +17,8 @@ const TourTab = () => {
     const getData = async () => {
         try {
             const response = await axios.get(
-                "https://parsnegarback.liara.run/api/homepage"
+                // "https://parsnegarback.liara.run/api/homepage"
+                "http://127.0.0.1:8000/api/homepage/"
             );
             console.log(response)
           if (response && response.status === 200) {
