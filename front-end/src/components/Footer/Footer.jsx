@@ -38,7 +38,7 @@ const Footer = () => {
 
                 <ul className={ styles.footerUrl }>
                     <div className={ styles.footerLinks }>
-                        <Link to="/" className='relative ml-[0.625rem]'>جاذبه‌ها
+                        <Link to="/place" className='relative ml-[0.625rem]'>جاذبه‌ها
                             <span 
                                 className='inline-block w-[0.15rem] h-[2rem] bg-[var(--color-orange)] absolute left-[-0.625rem]'>
                             </span>
@@ -49,7 +49,7 @@ const Footer = () => {
                                 className='inline-block w-[0.15rem] h-[2rem] bg-[var(--color-orange)] absolute left-[-0.625rem]'>
                             </span>
                         </Link>
-                        <Link to="/">درباره ما</Link>
+                        <Link to="/aboutus">درباره ما</Link>
                     </div>
                 </ul>
                 <div className='flex justify-between pb-[2rem]'>

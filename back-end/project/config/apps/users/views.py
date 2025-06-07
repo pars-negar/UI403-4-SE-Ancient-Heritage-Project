@@ -29,6 +29,21 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
+class DeleteAccountAPIView(APIView):
+                # درخواست فرانت به صورت: 
+                #    Endpoint: DELETE /account/delete/
+
+                # نیاز به هیچ body نداره.
+
+                # فقط توکن احراز هویت توی header باشه (Authorization: Token ... یا Bearer ...)
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request):
+        user = request.user
+        user.delete()
+        return Response({"detail": "حساب کاربری با موفقیت حذف شد."}, status=status.HTTP_204_NO_CONTENT)
+
+
 # ViewSet for user login
 class LoginViewSet(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]

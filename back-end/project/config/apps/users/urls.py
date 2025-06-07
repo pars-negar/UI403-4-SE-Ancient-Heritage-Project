@@ -2,7 +2,8 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
     LoginViewSet, CustomUserViewSet, UserRegisterViewSet, TourRegisterViewSet,
-    PasswordResetRequestView, PasswordResetConfirmView, TourLeaderDashboardAPIView
+    PasswordResetRequestView, PasswordResetConfirmView, TourLeaderDashboardAPIView,
+    DeleteAccountAPIView
 )
 
 router = DefaultRouter()
@@ -16,4 +17,5 @@ urlpatterns = [
     path('tourleaderdashboard/', TourLeaderDashboardAPIView.as_view(), name='tour-leader-dashboard'),
     path('password/reset/', PasswordResetRequestView.as_view(), name='password-reset-request'),
     path('password/reset/confirm/', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
+    path('account/delete/', DeleteAccountAPIView.as_view(), name='delete-account'), #این هم برا کاربر عادی هم تورلیدر
 ]
