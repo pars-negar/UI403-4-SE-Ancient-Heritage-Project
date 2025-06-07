@@ -2,6 +2,14 @@ from django.db.models import Sum, Q
 from rest_framework import serializers
 from .models import Tour, RoomType, Reservation, Passenger, ReservedRoom
 
+
+
+class TourPassengerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Passenger
+        fields = ['id', 'first_name', 'last_name', 'national_id', 'phone', 'email']
+
+
 class TourSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tour
