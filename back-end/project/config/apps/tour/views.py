@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TourFilterSerializer, TourSerializer, TourDetailSerializer , AttractionSerializer, TourFilterSerializer, TourSerializer,TourCreateSerializer
+from .serializers import TourFilterSerializer, TourSerializer, AttractionSerializer, TourFilterSerializer, TourSerializer,TourCreateSerializer
 from .models import Attraction
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -10,11 +10,15 @@ from rest_framework.views import APIView
 from rest_framework.generics import RetrieveAPIView
 from rest_framework import generics, permissions
 from rest_framework import serializers
+from apps.users.permissions import *
+from rest_framework.permissions import IsAuthenticated
 
 class TourCreateAPIView(generics.CreateAPIView):
     queryset = Tour.objects.all()
     serializer_class = TourCreateSerializer
-    permission_classes = [permissions.AllowAny]  # برای تست؛ بعدا بهتره IsAuthenticated باشه
+    permission_classes = [IsAuthenticated, IsTourManager]
+
+
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
@@ -35,16 +39,15 @@ class AttractionViewSet(viewsets.ModelViewSet):
 
     queryset = Attraction.objects.all()
     serializer_class = AttractionSerializer
-
-class TourDetailAPIView(RetrieveAPIView):
-    queryset = Tour.objects.all()
-    serializer_class = TourDetailSerializer
+    permission_classes = [IsAdminOrReadOnly]
 
 
 # View to handle filtered search of tours based on user input
 from .utils import search_tours ,search_attractions
 
 class TourSearchView(APIView):
+    permission_classes = [permissions.AllowAny]
+
     def post(self, request):
         serializer = TourFilterSerializer(data=request.data)
 
@@ -67,6 +70,8 @@ class TourSearchView(APIView):
 
 
 class AttractionSearchAPIView(APIView):
+    permission_classes = [permissions.AllowAny]
+
     def post(self, request):
         name = request.data.get('name')
         city = request.data.get('city')
