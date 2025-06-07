@@ -40,7 +40,7 @@ class TourComment(models.Model):
 
     likes = models.PositiveIntegerField(default=0, verbose_name="تعداد لایک")
     dislikes = models.PositiveIntegerField(default=0, verbose_name="تعداد دیسلایک")
-
+    is_approved = models.BooleanField(default=False)
     class Meta:
         ordering = ['-created_at']
         verbose_name = "tour comment"
