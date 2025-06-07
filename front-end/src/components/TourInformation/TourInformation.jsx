@@ -29,6 +29,7 @@ const TourInformation = () => {
                 `http://127.0.0.1:8000/api/homepage/tour/${id}/`
             );
             if (response && response.status === 200) {
+                console.log(response.data)
                 const foundTour = response.data;
                 setTour(foundTour);
                 setTourPlan(foundTour.daily_schedules || []);
@@ -82,45 +83,52 @@ const TourInformation = () => {
                                 <hr className="h-[9rem] w-[0.01rem] bg-black !opacity-100"/>
                                 <div className="flex flex-col gap-[3.3125rem] justify-center items-center w-[11rem]">
                                     <img src={ support } alt="support" className="w-[3.625rem] h-[3.625rem]" />
-                                    <span style={{ fontFamily: 'Koodak', fontWeight: 700 }} className="text-2xl">{ companyName }</span>
+                                    <span style={{ fontFamily: 'Koodak', fontWeight: 700 }} className="text-2xl">{ tour.company_name }</span>
                                 </div>
                             </div>
                         </div>
                         
+                        {/* { tour.description } */}
+                        <div className="flex justify-center">
+                            <div 
+                                className="text-2xl w-[90%] mt-[4rem]" 
+                                style={{ fontFamily: 'Vazirmatn', fontWeight: 400, whiteSpace: 'pre-wrap' }}
+                            >{ tour.description }</div>
+                        </div>
+                        
                         <div className="flex mt-[4.0625rem] mb-[3.9375rem] mr-[11.3125rem]">
-                            <div className="w-[80%] h-auto">
-                                {/* { tour.description } */}
-                                <div className="text-3xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400, whiteSpace: 'pre-wrap' }}>توضیحات تور</div>
-                                <div>
+                            <div className="w-[80%] h-auto whitespace-pre-line">
+                                <div className="mt-[2rem]">
                                     <h3 className="!text-3xl font-bold" style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>ویژگی های تور</h3>
-                                    <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>بازدید از اماکن تاریخی:</h4>
-                                    <p>bla bla bla</p>
+                                    <h4 className="!text-2xl !mt-[2rem]" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>بازدید از اماکن تاریخی:</h4>
+                                    <p className="text-xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400}}>bla bla bla</p>
                                     <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>اقامت:</h4>
-                                    <p>bla bla bla</p>
+                                    <p className="text-xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400}}>{ tour.accommodation }</p>
                                     <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>حمل‌ونقل:</h4>
-                                    <p>bla bla bla</p>
+                                    <p className="text-xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400}}>{ tour.transportation }</p>
                                     <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>بیمه سفر:</h4>
-                                    <p>bla bla bla</p>
+                                    <p className="text-xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400}}>{ tour.travel_insurance }</p>
                                     <h4 className="!text-2xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>راهنما و خدمات گردشگری:</h4>
-                                    <p>bla bla bla</p>
+                                    <p className="text-xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400}}>{ tour.services }</p>
                                 </div>
 
                                 <div>
-                                    <h3 className="!text-3xl font-bold" style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>برنامه روزانه</h3>
+                                    <h3 className="!text-3xl font-bold !mt-[8rem]" style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>برنامه روزانه</h3>
                                     
-                                    {tourPlan.map((dayPlan, index) => (
-                                        <div className="tour-day" key={index}>
-                                        <img src={dayPlan.image} alt={dayPlan.day} className="tour-image" />
-                                        <div className="tour-details">
-                                            <h3>{dayPlan.day}</h3>
-                                            <ul>
-                                            {dayPlan.activities.map((activity, i) => (
-                                                <li key={i}>{activity}</li>
-                                            ))}
-                                            </ul>
-                                        </div>
+                                    {tourPlan.map((dayPlan) => (
+                                        <div className="tour-day w-full flex justify-center" key={dayPlan.day_number}>
+                                            <div className="flex w-full justify-between items-center">
+                                                <div className="tour-details">
+                                                    <h3>{dayPlan.day}</h3>
+                                                    <p className="text-xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 400}}>{ dayPlan.description }</p>
+                                                </div>
+                                                <img src={dayPlan.image} alt={dayPlan.day} className="tour-image w-[15rem] h-[15rem] rounded-[30px] mb-[4rem] shadow-[0_-10px_15px_-3px_rgba(0,0,0,1)]" />
+
+                                            </div>
                                         </div>
                                     ))}
+
+                                    
                                 </div>
                             </div>
                         </div>

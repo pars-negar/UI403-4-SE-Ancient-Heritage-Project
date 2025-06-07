@@ -13,9 +13,10 @@ import FAQAccordion from "../../components/FAQ/FAQAccordion";
 import FourCityCards from "../../components/Card/FourCityCards";
 import TourismAttractions from "../../components/Card/tourismAttractionCard";
 import SearchBox from "../../components/SearchBox/SearchBox";
+import TourTab from "../../components/TourTab/TourTab";
+
 import tomb from "../../assets/images/tomb.png";
 import image from "../../assets/images/1.png";
-
 import ArrowRight from "../../components/Icons/ArrowRight";
 import ArrowLeft from "../../components/Icons/ArrowLeft";
 import PlaceModal from "../../components/Placescard/PlaceModal";
@@ -177,16 +178,7 @@ const handleAttractionClick = async (id) => {
         <SearchBox />
       </div>
 
-      {/* Tours Section */}
-      <div id="home-tour-card">
-          <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', flexWrap: 'wrap' ,marginTop:'90px' }}>
-            {loading ? (
-              <p>در حال بارگذاری...</p>
-            ) : (
-              tours && <TourCard key={tours.id} tours={tours} />
-            )}
-          </div>
-      </div>
+      <TourTab />
 
       {/* Middle Image */}
       <img className={styles.tomb} src={tomb} alt="tomb" />
