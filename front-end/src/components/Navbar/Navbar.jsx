@@ -51,7 +51,7 @@ const Navbar = () => {
                             fontFamily: 'Gandom'
                         }}
                         >
-                    ورود/ثبت‌نام</Link>
+                    ورود/ثبت‌نام</Link>  
                 )
             }
 
