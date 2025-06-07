@@ -23,6 +23,7 @@ from django.core.cache import cache
 import logging
 from .permissions import *
 from rest_framework.permissions import IsAuthenticated
+from apps.frontpage.views import UserInfoAppendMixin
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -208,7 +209,7 @@ class PasswordResetConfirmView(APIView):
 
 
 
-class TourLeaderDashboardAPIView(APIView):
+class TourLeaderDashboardAPIView(UserInfoAppendMixin, APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
@@ -216,7 +217,8 @@ class TourLeaderDashboardAPIView(APIView):
             return Response({'detail': 'دسترسی غیرمجاز'}, status=status.HTTP_403_FORBIDDEN)
 
         serializer = TourLeaderDashboardSerializer(request.user, context={'request': request})
-        return Response(serializer.data)
+        response = Response(serializer.data)
+        return self.append_user_info(response, request)
 
     def patch(self, request):
         if request.user.role != 'tour_manager':
@@ -225,32 +227,6 @@ class TourLeaderDashboardAPIView(APIView):
         serializer = TourLeaderDashboardSerializer(request.user, data=request.data, partial=True, context={'request': request})
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            response = Response(serializer.data)
+            return self.append_user_info(response, request)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
-class UserProfileAPIView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        user = request.user
-        profile_image_url = request.build_absolute_uri(user.profile_image.url) if user.profile_image else None
-
-        data = {
-            'username': user.username,
-            'email': user.email,
-            'role': user.role,
-            'profile_image': profile_image_url,
-        }
-
-        # اگر کاربر مسئول تور است، اطلاعات اضافی شرکت را هم اضافه کن
-        if user.role == 'tour_manager':
-            data.update({
-                'company_name': user.company_name,
-                'company_address': user.company_address,
-                'company_registration_number': user.company_registration_number,
-                # هر فیلد مرتبط دیگری
-            })
-
-        return Response(data)

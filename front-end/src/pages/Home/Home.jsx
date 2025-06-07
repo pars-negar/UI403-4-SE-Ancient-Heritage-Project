@@ -205,18 +205,26 @@ const handleAttractionClick = async (id) => {
                 <p>در حال بارگذاری...</p>
               ) : (
                 attractions &&
-                attractions.map((attraction) => (
-                  <TourismAttractions 
+                attractions.map((attraction , index) => {
+                  let backgroundColor="";
+                  if (index % 2 === 0) {
+                    backgroundColor="#FF8C1A"
+                  }
+
+                  if (index % 2 !== 0) {
+                    backgroundColor="#DDA853"
+
+                  }
+                  return <TourismAttractions 
                     key={attraction.id} 
                     id={attraction.id} 
                     title={attraction.title}
                     image={attraction.image}
                     description={attraction.subtitle}
                     onClick={handleAttractionClick} 
-
-                    backgroundColor="#FF8C1A"
+                    backgroundColor ={backgroundColor}
                   />
-                )
+                }
               )
               )}
           </div>
@@ -224,9 +232,37 @@ const handleAttractionClick = async (id) => {
       </div>
 
       {/* Comments and FAQ */}
-      <Comments />
+      <div className="mt-5 flex gap-[1.75rem] ml-[3rem]">
+        <h2 className="section-title">
+             نظرات کاربران <span className="section-accent" />
+        </h2>
+          <button
+              className="!w-[9rem] absolute !left-10 whitespace-nowrap flex justify-center !rounded-[0.7rem] !mt-[2rem]"
+              style={{
+                fontFamily: "Gandom",
+                color: "var(--color-dark-blue)",
+                border: "2px solid var(--color-dark-blue)",
+                padding: "0.5rem 0.1rem",
+              }}
+            >
+              افزودن نظر
+          </button>
+      </div>
+      <div className="overflow-x-auto scroll-smooth no-scrollbar" ref={scrollRef}>      
+        <Comments />
+      </div>
+      <div className="flex justify-center !mb-[1rem]">
+        <div className="flex gap-[1.75rem]">
+          <button onClick={scrollRight}>
+            <ArrowRight defualtColor="black" hoverColor="var(--color-dark-blue)" className="cursor-pointer"/>
+          </button>
+          <button onClick={scrollLeft}>
+            <ArrowLeft defualtColor="black" hoverColor="var(--color-dark-blue)" className="cursor-pointer"/>
+          </button>
+        </div>
+      </div>
       <FAQAccordion />
-<PlaceModal show={showModal} onClose={closeModal} place={selectedAttraction} />
+      <PlaceModal show={showModal} onClose={closeModal} place={selectedAttraction} />
       {/* Footer */}
 
       <Footer />

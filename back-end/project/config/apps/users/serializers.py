@@ -9,9 +9,16 @@ from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from apps.users.models import TourManagerProfile
 from .models import CustomUser
-
+from rest_framework import serializers
+from .models import CustomUser  
 
 User = get_user_model()
+
+class SimpleUserInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'role', 'profile_image']
+
 
 class BaseUserValidationMixin:
 
