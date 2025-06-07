@@ -104,6 +104,7 @@ useEffect(() => {
           places={hiddenGems}
           onMoreInfo={setSelectedPlace}
         />
+        
         <PlaceModal
           show={!!selectedPlace}
           place={selectedPlace}

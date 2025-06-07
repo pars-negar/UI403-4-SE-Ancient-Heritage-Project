@@ -23,9 +23,25 @@ from django.core.cache import cache
 import logging
 from .permissions import *
 from rest_framework.permissions import IsAuthenticated
+from apps.frontpage.views import UserInfoAppendMixin
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
+
+
+class DeleteAccountAPIView(APIView):
+                # درخواست فرانت به صورت: 
+                #    Endpoint: DELETE /account/delete/
+
+                # نیاز به هیچ body نداره.
+
+                # فقط توکن احراز هویت توی header باشه (Authorization: Token ... یا Bearer ...)
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request):
+        user = request.user
+        user.delete()
+        return Response({"detail": "حساب کاربری با موفقیت حذف شد."}, status=status.HTTP_204_NO_CONTENT)
 
 
 # ViewSet for user login
@@ -50,7 +66,7 @@ class LoginViewSet(viewsets.ViewSet):
 
 # Read-only view for all users
 class CustomUserViewSet(viewsets.ReadOnlyModelViewSet):
-    permission_classes = [permissions.IsAdminUser]
+    #permission_classes = [permissions.IsAdminUser]
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
 
@@ -177,7 +193,7 @@ class PasswordResetRequestView(APIView):
 
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             token = default_token_generator.make_token(user)
-            reset_link = f"http://yourdomain.com/reset-password/{uid}/{token}/"
+            reset_link = f"http://localhost:5173/setnewpass/{uid}/{token}/"
 
             try:
                 send_mail(
@@ -208,7 +224,7 @@ class PasswordResetConfirmView(APIView):
 
 
 
-class TourLeaderDashboardAPIView(APIView):
+class TourLeaderDashboardAPIView(UserInfoAppendMixin, APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
@@ -216,7 +232,8 @@ class TourLeaderDashboardAPIView(APIView):
             return Response({'detail': 'دسترسی غیرمجاز'}, status=status.HTTP_403_FORBIDDEN)
 
         serializer = TourLeaderDashboardSerializer(request.user, context={'request': request})
-        return Response(serializer.data)
+        response = Response(serializer.data)
+        return self.append_user_info(response, request)
 
     def patch(self, request):
         if request.user.role != 'tour_manager':
@@ -225,5 +242,6 @@ class TourLeaderDashboardAPIView(APIView):
         serializer = TourLeaderDashboardSerializer(request.user, data=request.data, partial=True, context={'request': request})
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            response = Response(serializer.data)
+            return self.append_user_info(response, request)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

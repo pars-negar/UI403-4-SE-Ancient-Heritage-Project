@@ -21,7 +21,7 @@ function SearchBox() {
   useEffect(() => {
     const fetchCities = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/homepage/tour-cities/");
+        const response = await fetch("http://127.0.0.1:8000/api/homepage/tour/cities/");
         const data = await response.json();
         if (Array.isArray(data.origins)) setOrigins(data.origins);
         if (Array.isArray(data.destinations)) setDestinations(data.destinations);
@@ -43,7 +43,7 @@ function SearchBox() {
 
     console.log("داده‌های جستجو:", searchData);
 
-    /*
+    
     try {
       const response = await fetch("http://127.0.0.1:8000/api/your-search-endpoint/", {
         method: "POST",
@@ -55,8 +55,10 @@ function SearchBox() {
     } catch (err) {
       console.error("خطا در جستجوی تور:", err);
     }
-    */
+    
   };
+
+  
 
   return (
     <div className={styles.container}>

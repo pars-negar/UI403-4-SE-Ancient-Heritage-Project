@@ -38,7 +38,7 @@ const CommentModal = ({ isOpen, onClose, onSubmit }) => {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg relative border-4 border-[#205781]"
+        className="bg-white rounded-3xl shadow-xl p-6 w-full max-w-lg relative border-4 border-[#205781]"
         onClick={(e) => e.stopPropagation()} 
       >
         <h2 className="text-xl mb-4 text-gray-800" style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>ثبت نظر جدید</h2>
@@ -58,12 +58,6 @@ const CommentModal = ({ isOpen, onClose, onSubmit }) => {
           >
             ثبت نظر
           </button>
-          {/* <button
-            onClick={onClose}
-            className="bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-lg hover:bg-gray-300 transition duration-200"
-          >
-            انصراف
-          </button> */}
         </div>
       </div>
     </div>

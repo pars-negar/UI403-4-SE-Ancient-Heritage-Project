@@ -4,6 +4,16 @@ from .models import Attraction
 from .models import Tour
 from .models import AttractionImage,TourImage,DailySchedule,Review
 
+class TourCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tour
+        exclude = ['tour_manager', 'related_tours']
+
+    def validate(self, data):
+        if data['end_date'] < data['start_date']:
+            raise serializers.ValidationError("تاریخ بازگشت نمی‌تواند قبل از تاریخ شروع باشد.")
+        return data
+
 class TourUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tour
@@ -146,12 +156,14 @@ class TourImageSerializer(serializers.ModelSerializer):
         return None
 
 class AttractionSerializer(serializers.ModelSerializer):
-    images = AttractionImageSerializer(many=True, read_only=True)
+    historical_period = serializers.SerializerMethodField()
 
     class Meta:
         model = Attraction
-        fields = '__all__'  # یا اگر خواستی دقیق‌تر:
-        # fields = ['id', 'attraction_name', ..., 'images']
+        fields = '__all__'
+
+    def get_historical_period(self, obj):
+        return obj.get_historical_period_display()
 
 
 class DailyScheduleSerializer(serializers.ModelSerializer):

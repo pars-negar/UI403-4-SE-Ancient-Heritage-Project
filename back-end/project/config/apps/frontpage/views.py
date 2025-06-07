@@ -3,7 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 from .serializers import  AttractionSerializer
-from apps.tour.serializers import TourSerializer, TourListSerializer, TourDetailSerializer, TourUpdateSerializer
+from apps.tour.serializers import (TourSerializer, TourListSerializer, TourDetailSerializer,
+                                    TourUpdateSerializer, TourCreateSerializer)
 from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
 from rest_framework import generics
@@ -12,12 +13,66 @@ from rest_framework.permissions import *
 from rest_framework.permissions import IsAuthenticated
 from django.utils.timezone import now
 from rest_framework import generics, permissions
+from apps.reserve.models import Passenger
+from apps.reserve.serializers import TourPassengerSerializer
+from apps.core.mixins import UserInfoAppendMixin
+
+
+class CreateTourAPIView(UserInfoAppendMixin , generics.CreateAPIView):
+    queryset = Tour.objects.all()
+    serializer_class = TourCreateSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(tour_manager=self.request.user)
+
+    def finalize_response(self, request, response, *args, **kwargs):
+        response = super().finalize_response(request, response, *args, **kwargs)
+        return self.append_user_info(response, request)
+
+class RegisteredPassengersListAPIView(UserInfoAppendMixin, APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, tour_id):
+        try:
+            tour = Tour.objects.get(id=tour_id)
+        except Tour.DoesNotExist:
+            return Response({"detail": "تور یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+
+        if tour.tour_manager != request.user:
+            return Response({"detail": "شما اجازه دسترسی به این تور را ندارید."}, status=status.HTTP_403_FORBIDDEN)
+
+        passengers = Passenger.objects.filter(reservation__tour=tour).select_related('reservation')
+        serializer = TourPassengerSerializer(passengers, many=True)
+        response = Response(serializer.data, status=status.HTTP_200_OK)
+        return self.append_user_info(response, request)
+    
+class TourSoftDeleteAPIView(UserInfoAppendMixin, APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):  
+        tour_id = request.data.get('tour_id')
+        try:
+            tour = Tour.objects.get(id=tour_id)
+        except Tour.DoesNotExist:
+            response = Response({"detail": "تور یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+            return self.append_user_info(response, request)
+
+        if tour.tour_manager != request.user:
+            response = Response({"detail": "شما اجازه حذف این تور را ندارید."}, status=status.HTTP_403_FORBIDDEN)
+            return self.append_user_info(response, request)
+
+        tour.delete()
+        response = Response({"detail": "تور با موفقیت حذف شد."}, status=status.HTTP_200_OK)
+        return self.append_user_info(response, request)
+
+
 
 class IsTourManagerAndOwner(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         return request.user.role == 'tour_manager' and obj.tour_manager == request.user
 
-class TourUpdateAPIView(generics.RetrieveUpdateAPIView):
+class TourUpdateAPIView(UserInfoAppendMixin, generics.RetrieveUpdateAPIView):
     queryset = Tour.objects.all()
     serializer_class = TourUpdateSerializer
     permission_classes = [permissions.IsAuthenticated, IsTourManagerAndOwner]
@@ -25,14 +80,22 @@ class TourUpdateAPIView(generics.RetrieveUpdateAPIView):
     def get_queryset(self):
         return Tour.objects.filter(tour_manager=self.request.user)
 
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+        return self.append_user_info(response, request)
 
-class TourListAPIView(APIView):
+    def patch(self, request, *args, **kwargs):
+        response = super().patch(request, *args, **kwargs)
+        return self.append_user_info(response, request)
+
+class TourListAPIView(UserInfoAppendMixin, APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
         user = request.user
         if user.role != 'tour_manager':
-            return Response({'detail': 'دسترسی غیرمجاز'}, status=status.HTTP_403_FORBIDDEN)
+            response = Response({'detail': 'دسترسی غیرمجاز'}, status=status.HTTP_403_FORBIDDEN)
+            return self.append_user_info(response, request)
 
         today = now().date()
         upcoming_tours = Tour.objects.filter(tour_manager=user, start_date__gte=today).order_by('start_date')
@@ -41,13 +104,14 @@ class TourListAPIView(APIView):
         upcoming_serializer = TourListSerializer(upcoming_tours, many=True, context={'request': request})
         past_serializer = TourListSerializer(past_tours, many=True, context={'request': request})
 
-        return Response({
+        response = Response({
             'upcoming_tours': upcoming_serializer.data,
             'past_tours': past_serializer.data,
         })
+        return self.append_user_info(response, request)
 
 
-class TourDetailAPIView(APIView):
+class TourDetailAPIView(UserInfoAppendMixin, APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, pk):
@@ -55,22 +119,20 @@ class TourDetailAPIView(APIView):
         try:
             tour = Tour.objects.get(pk=pk, tour_manager=user)
         except Tour.DoesNotExist:
-            return Response({'detail': 'تور پیدا نشد یا دسترسی ندارید'}, status=status.HTTP_404_NOT_FOUND)
+            response = Response({'detail': 'تور پیدا نشد یا دسترسی ندارید'}, status=status.HTTP_404_NOT_FOUND)
+            return self.append_user_info(response, request)
 
         serializer = TourDetailSerializer(tour, context={'request': request})
-        return Response(serializer.data)
-
+        response = Response(serializer.data)
+        return self.append_user_info(response, request)
 
 
 class HomePageAPIView(APIView):
     permission_classes = [permissions.AllowAny]
 
-    def get(self, request):
-        # ====== Attractions ======
-        attractions_qs = Attraction.objects.all()[:6]
-        attractions = []
-
-        for attr in attractions_qs:
+    def format_attractions(self, request, queryset):
+        formatted = []
+        for attr in queryset:
             full_name = attr.attraction_name
             parts = full_name.split('؛', 1)
             title = parts[0].strip()
@@ -79,12 +141,38 @@ class HomePageAPIView(APIView):
             thumbnail = attr.images.filter(image_type='thumbnail').first()
             image_url = request.build_absolute_uri(thumbnail.image.url) if thumbnail else None
 
-            attractions.append({
+            formatted.append({
                 'id': attr.id,
                 'title': title,
                 'subtitle': subtitle,
                 'image': image_url,
             })
+        return formatted
+
+    def format_tours(self, request, queryset):
+        formatted = []
+        for tour in queryset:
+            thumbnail = tour.images.filter(image_type='thumbnail').first()
+            image_url = request.build_absolute_uri(thumbnail.image.url) if thumbnail else None
+
+            formatted.append({
+                'id': tour.id,
+                'tour_name': tour.tour_name,
+                'destination': tour.destination,
+                'origin': tour.origin,
+                'price': int(tour.price),
+                'start_date': tour.start_date.isoformat() if tour.start_date else None,
+                'end_date': tour.end_date.isoformat() if tour.end_date else None,
+                'image': image_url,
+                'category': tour.category,
+                'rating': tour.rating,
+            })
+        return formatted
+
+    def get(self, request):
+        # ====== Attractions ======
+        attractions_qs = Attraction.objects.all()[:6]
+        attractions = self.format_attractions(request, attractions_qs)
 
         # ====== Tour Search Parameters ======
         origin = request.query_params.get('origin')
@@ -100,28 +188,25 @@ class HomePageAPIView(APIView):
                 start_date=start_date,
                 end_date=end_date
             )[:6]
+
+            tours = self.format_tours(request, tours_qs)
+            data = {
+                'attractions': attractions,
+                'search_results': tours
+            }
         else:
-            # ====== Default Tours (latest 6) ======
-            tours_qs = Tour.objects.order_by('-start_date')[:6]
+            # ====== Latest Tours (6) ======
+            latest_tours = Tour.objects.order_by('-start_date')[:6]
+            # ====== Top Tours (6) ======
+            top_tours = Tour.objects.order_by('-rating')[:6]
 
-        tours = []
-        for tour in tours_qs:
-            thumbnail = tour.images.filter(image_type='thumbnail').first()
-            image_url = request.build_absolute_uri(thumbnail.image.url) if thumbnail else None
+            data = {
+                'attractions': attractions,
+                'latest': self.format_tours(request, latest_tours),
+                'top': self.format_tours(request, top_tours)
+            }
 
-            tours.append({
-                'id': tour.id,
-                'destination': tour.destination,
-                'price': int(tour.price),
-                'start_date': tour.start_date.isoformat() if tour.start_date else None,
-                'end_date': tour.end_date.isoformat() if tour.end_date else None,
-                'image': image_url,
-            })
-
-        return Response({
-            'attractions': attractions,
-            'tours': tours,
-        }, status=status.HTTP_200_OK)
+        return Response(data, status=status.HTTP_200_OK)
 
 
 from apps.tour.utils import search_tours
@@ -219,6 +304,18 @@ class AttractionDetailAPIView(RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = Attraction.objects.all()
     serializer_class = AttractionSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+
+        detail= instance.images.filter(image_type='card2').first()
+        image_url = request.build_absolute_uri(detail.image.url) if detail else None
+
+        data = serializer.data
+        data['image'] = image_url
+        return Response(data)
+
 
 
 from rest_framework.decorators import api_view

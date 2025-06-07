@@ -4,12 +4,18 @@ from apps.tour.models import Tour, TourImage
 from apps.faq.models import FAQ
 from .models import HeaderImage 
 from rest_framework import serializers
+from apps.users.models import CustomUser
 
 
 class AttractionSerializer(serializers.ModelSerializer):
+    historical_period = serializers.SerializerMethodField()
+
     class Meta:
         model = Attraction
-        fields = ['id', 'attraction_name', 'description', 'location', 'city', 'image']
+        fields = '__all__'
+
+    def get_historical_period(self, obj):
+        return obj.get_historical_period_display()
 
 
 

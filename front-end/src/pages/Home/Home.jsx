@@ -20,7 +20,7 @@ import image from "../../assets/images/1.png";
 import ArrowRight from "../../components/Icons/ArrowRight";
 import ArrowLeft from "../../components/Icons/ArrowLeft";
 import PlaceModal from "../../components/Placescard/PlaceModal";
-
+import CommentModal from '../../components/Comments/CommentModal';
 const Home = () => {
   const [tours, setTours] = useState([]);
   const [attractions, setAttractions] = useState([]);
@@ -75,7 +75,7 @@ const Home = () => {
   };
 const handleAttractionClick = async (id) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/attractions/${id}`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/homepage/attraction/${id}/`);
       if (response && response.status === 200) {
         setSelectedAttraction(response.data);
         setShowModal(true);
@@ -92,6 +92,17 @@ const handleAttractionClick = async (id) => {
     setShowModal(false);
     setSelectedAttraction(null);
   };
+
+
+  //opening new cm modal
+    const [isModalOpen, setModalOpen] = useState(false);
+  
+    const handleOpenModal = () => setModalOpen(true);
+    const handleCloseModal = () => setModalOpen(false);
+  
+    const handleCommentSubmit = (comment) => {
+      console.log("نظر ثبت شده:", comment);
+    };
   return (
     <div className="home rtl">
       <Navbar />
@@ -205,18 +216,26 @@ const handleAttractionClick = async (id) => {
                 <p>در حال بارگذاری...</p>
               ) : (
                 attractions &&
-                attractions.map((attraction) => (
-                  <TourismAttractions 
+                attractions.map((attraction , index) => {
+                  let backgroundColor="";
+                  if (index % 2 === 0) {
+                    backgroundColor="#FF8C1A"
+                  }
+
+                  if (index % 2 !== 0) {
+                    backgroundColor="#DDA853"
+
+                  }
+                  return <TourismAttractions 
                     key={attraction.id} 
                     id={attraction.id} 
                     title={attraction.title}
                     image={attraction.image}
                     description={attraction.subtitle}
                     onClick={handleAttractionClick} 
-
-                    backgroundColor="#FF8C1A"
+                    backgroundColor ={backgroundColor}
                   />
-                )
+                }
               )
               )}
           </div>
@@ -224,9 +243,44 @@ const handleAttractionClick = async (id) => {
       </div>
 
       {/* Comments and FAQ */}
-      <Comments />
+      <div className="mt-5 flex gap-[1.75rem] ml-[3rem]">
+        <h2 className="section-title">
+             نظرات کاربران <span className="section-accent" />
+        </h2>
+          <button
+              className="!w-[9rem] absolute !left-10 whitespace-nowrap flex justify-center !rounded-[0.7rem] !mt-[2rem]"
+              style={{
+                fontFamily: "Gandom",
+                color: "var(--color-dark-blue)",
+                border: "2px solid var(--color-dark-blue)",
+                padding: "0.5rem 0.1rem",
+              }}
+              onClick={handleOpenModal}
+              aria-label="افزودن نظر جدید"
+            >
+              افزودن نظر
+          </button>
+          <CommentModal
+           isOpen={isModalOpen}
+           onClose={handleCloseModal}
+           onSubmit={handleCommentSubmit}
+          />
+      </div>
+      <div className="overflow-x-auto scroll-smooth no-scrollbar" ref={scrollRef}>      
+        <Comments />
+      </div>
+      <div className="flex justify-center !mb-[1rem]">
+        <div className="flex gap-[1.75rem]">
+          <button onClick={scrollRight}>
+            <ArrowRight defualtColor="black" hoverColor="var(--color-dark-blue)" className="cursor-pointer"/>
+          </button>
+          <button onClick={scrollLeft}>
+            <ArrowLeft defualtColor="black" hoverColor="var(--color-dark-blue)" className="cursor-pointer"/>
+          </button>
+        </div>
+      </div>
       <FAQAccordion />
-<PlaceModal show={showModal} onClose={closeModal} place={selectedAttraction} />
+      <PlaceModal show={showModal} onClose={closeModal} place={selectedAttraction} />
       {/* Footer */}
 
       <Footer />
