@@ -23,6 +23,7 @@ from django.core.cache import cache
 import logging
 from .permissions import *
 from rest_framework.permissions import IsAuthenticated
+from apps.frontpage.views import UserInfoAppendMixin
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -208,7 +209,7 @@ class PasswordResetConfirmView(APIView):
 
 
 
-class TourLeaderDashboardAPIView(APIView):
+class TourLeaderDashboardAPIView(UserInfoAppendMixin, APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
@@ -216,7 +217,8 @@ class TourLeaderDashboardAPIView(APIView):
             return Response({'detail': 'دسترسی غیرمجاز'}, status=status.HTTP_403_FORBIDDEN)
 
         serializer = TourLeaderDashboardSerializer(request.user, context={'request': request})
-        return Response(serializer.data)
+        response = Response(serializer.data)
+        return self.append_user_info(response, request)
 
     def patch(self, request):
         if request.user.role != 'tour_manager':
@@ -225,5 +227,6 @@ class TourLeaderDashboardAPIView(APIView):
         serializer = TourLeaderDashboardSerializer(request.user, data=request.data, partial=True, context={'request': request})
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            response = Response(serializer.data)
+            return self.append_user_info(response, request)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

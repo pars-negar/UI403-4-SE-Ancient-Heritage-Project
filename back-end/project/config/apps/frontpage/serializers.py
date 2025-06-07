@@ -4,6 +4,7 @@ from apps.tour.models import Tour, TourImage
 from apps.faq.models import FAQ
 from .models import HeaderImage 
 from rest_framework import serializers
+from apps.users.models import CustomUser
 
 
 class AttractionSerializer(serializers.ModelSerializer):
