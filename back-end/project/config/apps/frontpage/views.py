@@ -15,6 +15,23 @@ from rest_framework import generics, permissions
 from apps.reserve.models import Passenger
 from apps.reserve.serializers import TourPassengerSerializer
 
+class RegisteredPassengersListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, tour_id):
+        try:
+            tour = Tour.objects.get(id=tour_id)
+        except Tour.DoesNotExist:
+            return Response({"detail": "تور یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
+
+        if tour.tour_manager != request.user:
+            return Response({"detail": "شما اجازه دسترسی به این تور را ندارید."}, status=status.HTTP_403_FORBIDDEN)
+
+        passengers = Passenger.objects.filter(reservation__tour=tour).select_related('reservation')
+
+        serializer = TourPassengerSerializer(passengers, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class TourSoftDeleteAPIView(APIView):  
                                 #  نحوه ارسال درخواست از سمت فرانت    
