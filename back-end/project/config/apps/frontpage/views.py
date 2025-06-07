@@ -3,10 +3,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 from .serializers import  AttractionSerializer
-from apps.tour.serializers import TourSerializer, TourListSerializer, TourDetailSerializer, TourUpdateSerializer
+from apps.tour.serializers import (TourSerializer, TourListSerializer, TourDetailSerializer,
+                                    TourUpdateSerializer, TourCreateSerializer)
 from apps.tour.models import Attraction, Tour
 from apps.faq.models import FAQ
-from rest_framework import generics
 from apps.users.permissions import *
 from rest_framework.permissions import *
 from rest_framework.permissions import IsAuthenticated
@@ -14,6 +14,14 @@ from django.utils.timezone import now
 from rest_framework import generics, permissions
 from apps.reserve.models import Passenger
 from apps.reserve.serializers import TourPassengerSerializer
+
+class CreateTourAPIView(generics.CreateAPIView):
+    queryset = Tour.objects.all()
+    serializer_class = TourCreateSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(tour_manager=self.request.user)
 
 class RegisteredPassengersListAPIView(APIView):
     permission_classes = [IsAuthenticated]
