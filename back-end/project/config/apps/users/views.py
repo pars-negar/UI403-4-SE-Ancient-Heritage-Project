@@ -66,7 +66,7 @@ class LoginViewSet(viewsets.ViewSet):
 
 # Read-only view for all users
 class CustomUserViewSet(viewsets.ReadOnlyModelViewSet):
-    permission_classes = [permissions.IsAdminUser]
+    #permission_classes = [permissions.IsAdminUser]
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
 
