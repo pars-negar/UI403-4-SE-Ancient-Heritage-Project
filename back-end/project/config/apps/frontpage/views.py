@@ -6,7 +6,6 @@ from .serializers import  AttractionSerializer,TourReservationSerializer
 from apps.tour.serializers import (TourSerializer, TourListSerializer, TourDetailSerializer,
                                     TourUpdateSerializer, TourCreateSerializer)
 from apps.tour.models import Attraction, Tour
-from apps.faq.models import FAQ
 from rest_framework import generics
 from apps.users.permissions import *
 from rest_framework.permissions import *
@@ -153,7 +152,7 @@ class TourSoftDeleteAPIView(UserInfoAppendMixin, APIView):
 class TourUpdateAPIView(UserInfoAppendMixin, generics.RetrieveUpdateAPIView):
     queryset = Tour.objects.all()
     serializer_class = TourUpdateSerializer
-    permission_classes = [permissions.IsAuthenticated, IsTourManagerAndOwner]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return Tour.objects.filter(tour_manager=self.request.user)
