@@ -68,12 +68,6 @@ class UserProfileView(UserInfoAppendMixin, generics.RetrieveUpdateAPIView):
         response = super().update(request, *args, **kwargs)
         return self.append_user_info(response, request)
 
-class UserProfileView(generics.RetrieveUpdateAPIView):
-    serializer_class = UserProfileCombinedSerializer
-    permission_classes = [IsNormalUser]
-
-    def get_object(self):
-        return self.request.user
 
 
 
@@ -354,10 +348,7 @@ class AttractionPageAPIView(APIView):
         return Response(data, status=status.HTTP_200_OK)
 
 
-class TourDetailView(generics.RetrieveAPIView):
-    permission_classes = [permissions.AllowAny]
-    queryset = Tour.objects.all()
-    serializer_class = TourSerializer
+
 
 class AttractionDetailAPIView(RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
