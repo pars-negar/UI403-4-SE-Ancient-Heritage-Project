@@ -5,7 +5,7 @@ from apps.faq.models import FAQ
 from .models import HeaderImage 
 from rest_framework import serializers
 from apps.users.models import CustomUser
-
+from apps.reserve.serializers import PassengerSerializer
 
 class AttractionSerializer(serializers.ModelSerializer):
     historical_period = serializers.SerializerMethodField()
@@ -29,3 +29,18 @@ class HeaderImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = HeaderImage
         fields = ['id', 'image', 'alt_text']
+        
+class TourReservationSerializer(serializers.Serializer):
+    tour_id = serializers.IntegerField()
+    passengers = PassengerSerializer(many=True)
+    reserved_rooms = serializers.ListField(
+        child=serializers.DictField(child=serializers.IntegerField())
+    )
+
+    def validate_reserved_rooms(self, value):
+        for room in value:
+            if 'room_type_id' not in room or 'count' not in room:
+                raise serializers.ValidationError("هر اتاق باید شامل 'room_type_id' و 'count' باشد.")
+            if room['count'] <= 0:
+                raise serializers.ValidationError("تعداد اتاق‌ها باید بیشتر از صفر باشد.")
+        return value

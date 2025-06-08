@@ -15,6 +15,7 @@
     "axios": "^1.9.0",
     "bootstrap": "^5.3.5",
     "front-end": "file:",
+    "jwt-decode": "^4.0.0",
     "lightningcss": "^1.29.3",
     "lucide-react": "^0.511.0",
     "react": "^19.0.0",

@@ -103,7 +103,7 @@ createRoot(document.getElementById('root')).render(
         {/* <Route exact path="/" element={<CityAttraction cityName="اصفهان" imageSrc="./assets/images/esf.png" />}></Route> */}
         {/* <Route exact path="/" element={<TourismAttractionCard image="./assets/images/takht-jamshid.png" title="تخت جمشید" description="!شکوه بی‌همتای امپراتوری هخامنشی را از نزدیک لمس کنید" backgroundColor="#FF8C1A"/>}></Route> */}
         {/* <Route exact path="/" element={ < FourCityCards/>}></Route> */}
-        <Route exact path="/setnewpass" element={ < SetNewPassword/>}></Route>
+        <Route path="/setnewpass/:uid/:token" element={<SetNewPassword />} />
         {/* <Route exact path="/tourlist" element={<TourList/>}></Route> */}
         <Route exact path="/profiletourleader" element={<ProfileTourLeader/>}></Route>
         <Route exact path="/tourinfofortourleader/:category/:id" element={<ProfileTourInfoForTourLeader/>}></Route>
