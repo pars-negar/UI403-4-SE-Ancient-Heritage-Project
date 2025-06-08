@@ -134,7 +134,7 @@ class TourSoftDeleteAPIView(UserInfoAppendMixin, APIView):
 class TourUpdateAPIView(UserInfoAppendMixin, generics.RetrieveUpdateAPIView):
     queryset = Tour.objects.all()
     serializer_class = TourUpdateSerializer
-    permission_classes = [permissions.IsAuthenticated, IsTourManagerAndOwner]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return Tour.objects.filter(tour_manager=self.request.user)
