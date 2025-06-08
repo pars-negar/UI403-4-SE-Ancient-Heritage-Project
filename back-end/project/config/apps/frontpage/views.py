@@ -40,6 +40,25 @@ from apps.users.serializers import UserProfileCombinedSerializer
 
 
 
+@api_view(['GET'])
+def get_cities_with_places(request):
+    cities = Attraction.objects.values_list('city', flat=True).distinct()
+    return Response({'cities': list(cities)}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def get_origins_and_destinations(request):
+    origins = Tour.objects.values_list('origin', flat=True).distinct()
+    destinations = Tour.objects.values_list('destination', flat=True).distinct()
+    
+    return Response({
+        "origins": list(origins),
+        "destinations": list(destinations),
+    })
+import jdatetime
+
+
+
 class TourDetailView(generics.RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = Tour.objects.all()
@@ -460,23 +479,6 @@ class TourReservationAPIView(APIView):
             "reserved_rooms": reserved_rooms_data,
         }, status=status.HTTP_201_CREATED)
 
-
-@api_view(['GET'])
-def get_cities_with_places(request):
-    cities = Attraction.objects.values_list('city', flat=True).distinct()
-    return Response({'cities': list(cities)}, status=status.HTTP_200_OK)
-
-
-@api_view(['GET'])
-def get_origins_and_destinations(request):
-    origins = Tour.objects.values_list('origin', flat=True).distinct()
-    destinations = Tour.objects.values_list('destination', flat=True).distinct()
-    
-    return Response({
-        "origins": list(origins),
-        "destinations": list(destinations),
-    })
-import jdatetime
 
 class SearchTourAPIView(APIView):
     def post(self, request):
