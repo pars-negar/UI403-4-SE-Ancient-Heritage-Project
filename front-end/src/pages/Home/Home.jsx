@@ -60,7 +60,6 @@ const Home = () => {
         "http://127.0.0.1:8000/api/homepage/"
       );
       if (response && response.status === 200) {
-        // console.log(response.data.tours);
         setTours(response.data.tours || []);
         setAttractions(response.data.attractions || []);
         setLoading(false);

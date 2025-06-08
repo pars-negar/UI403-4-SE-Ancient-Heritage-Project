@@ -77,7 +77,7 @@ const PlaceModal = ({ show, onClose, place }) => {
 
   return (
     <div className="place-modal-wrapper">
-      <div className="place-modal">
+      <div className="place-modal !w-[40%]">
         {/* دکمه بستن */}
         <button onClick={onClose} className="place-modal-close">
           &times;

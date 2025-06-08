@@ -1,14 +1,70 @@
-import "./navbar.css";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import { jwtDecode } from 'jwt-decode';
+
 import logoUrl from "../../assets/icons/logo.svg"
 import FormButton from "../FormButton/FormButton";
+import "./navbar.css";
 import '../../index.css'
-
 
 const Navbar = () => {
 
     const token = localStorage.getItem("access_token");
     console.log("listen listen" + token)
+    console.log("Access Token:", token);
+
+    const [user, setUser] = useState({});
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        fetchUser();
+    }, []);
+    
+    const fetchUser = async () => {
+        if (!token) return;
+        
+        let decoded;
+        try {
+            decoded = jwtDecode(token)
+        } catch (err) {
+            console.error("Invalid token");
+            return;
+        }
+        
+        const role = decoded.role;
+        const endpoint =
+        role === "tour_leader"
+        ? "/api/users/tourleaderdashboard/"
+        : "/api/homepage/profile/";
+        
+        try {
+            //   const token = localStorage.getItem("access_token");
+            const response = await axios.get(
+                `http://127.0.0.1:8000${endpoint}`,
+                // "http://127.0.0.1:8000/api/homepage/profile/",
+                {
+                    headers: { Authorization: `Bearer ${token}`,}
+                }
+            );
+            if (response && response.status === 200) {
+                console.log("hey you" + response.data);
+                console.log(jwtDecode(token).exp, Date.now()/1000);
+                setUser({ ...response.data, role });
+                setLoading(false);
+                console.log("\nbla bla bla\n " + user);
+          } else {
+            console.error("Failed to fetch data", response);
+            setLoading(false);
+          }
+        } catch (error) {
+          console.error("Error during fetch: ", error);
+          setLoading(false);
+        }
+      };
+
+      useEffect(() => {
+        console.log("State user updated:", user);
+        }, [user]);
 
     return ( 
             <nav className="navbar">
@@ -32,8 +88,10 @@ const Navbar = () => {
                 </ul>
 
                 {token ? (
-                    
-                    <h1>you are logged in!!! Yay!!!!</h1>
+                    <div className="flex flex-col gap-[0.75rem]">
+                        <h3>سلام {user.username}</h3>
+                        <p>نقش: {user.role === "tour_leader" ? "تورلیدر" : "کاربر عادی"}</p>
+                    </div>
                 ) : (
                     <Link to='/LoginSignUp' id="button" 
                         className="
@@ -51,7 +109,7 @@ const Navbar = () => {
                             fontFamily: 'Gandom'
                         }}
                         >
-                    ورود/ثبت‌نام</Link>
+                    ورود/ثبت‌نام</Link>  
                 )
             }
 

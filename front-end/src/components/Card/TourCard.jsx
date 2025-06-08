@@ -5,7 +5,7 @@ import styles from "./tourcard.module.css";
 const TourCard = ( {tour} ) => {
   if (!tour) return null;
   
-    console.log(tour)
+    // console.log(tour)
   const rating = Math.min(Math.max(parseInt(tour.rating) || 0, 0), 5);
   const stars = "⭐".repeat(rating) + "☆".repeat(5 - rating);
 
