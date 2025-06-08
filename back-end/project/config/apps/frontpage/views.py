@@ -121,9 +121,9 @@ class TourSoftDeleteAPIView(UserInfoAppendMixin, APIView):
 
 
 
-class IsTourManagerAndOwner(permissions.BasePermission):
-    def has_object_permission(self, request, view, obj):
-        return request.user.role == 'tour_manager' and obj.tour_manager == request.user
+# class IsTourManagerAndOwner(permissions.BasePermission):
+#     def has_object_permission(self, request, view, obj):
+#         return request.user.role == 'tour_manager' and obj.tour_manager == request.user
 
 class TourUpdateAPIView(UserInfoAppendMixin, generics.RetrieveUpdateAPIView):
     queryset = Tour.objects.all()
