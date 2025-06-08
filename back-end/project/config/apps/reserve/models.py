@@ -12,7 +12,7 @@ class RoomType(models.Model):
     price_per_room = models.PositiveIntegerField("قیمت هر اتاق")
 
     def __str__(self):
-        return f"{self.name} - {self.tour.title}"
+        return f"{self.name} - {self.tour.tour_name}"
 
 class Reservation(models.Model):
     tour = models.ForeignKey(Tour, verbose_name="تور", on_delete=models.CASCADE)
@@ -21,7 +21,7 @@ class Reservation(models.Model):
     created_at = models.DateTimeField("تاریخ ثبت", auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.tour.title}"
+        return f"{self.user.username} - {self.tour.tour_name}"
 
 class Passenger(models.Model):
     reservation = models.ForeignKey(Reservation, verbose_name="رزرو", on_delete=models.CASCADE, related_name='passengers')
@@ -48,4 +48,4 @@ class ReservedRoom(models.Model):
     count = models.PositiveIntegerField("تعداد رزرو شده")
 
     def __str__(self):
-        return f"{self.room_type.name} x {self.count} - {self.reservation.tour.title}"
+        return f"{self.room_type.name} x {self.count} - {self.reservation.tour.tour_name}"
