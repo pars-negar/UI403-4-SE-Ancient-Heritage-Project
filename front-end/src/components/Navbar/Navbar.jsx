@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
 import axios from "axios";
-// import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 import logoUrl from "../../assets/icons/logo.svg"
 import FormButton from "../FormButton/FormButton";
@@ -41,7 +41,6 @@ const Navbar = () => {
             //   const token = localStorage.getItem("access_token");
             const response = await axios.get(
                 `http://127.0.0.1:8000${endpoint}`,
-                // "http://127.0.0.1:8000/api/homepage/profile/",
                 {
                     headers: { Authorization: `Bearer ${token}`,}
                 }

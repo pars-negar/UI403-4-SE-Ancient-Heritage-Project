@@ -5,6 +5,8 @@ import django_jalali.db.models as jmodels
 
 
 
+
+
 class Attraction(models.Model):
     # Define the available historical period choices as (value, display name) tuples
     PERIOD_CHOICES = [

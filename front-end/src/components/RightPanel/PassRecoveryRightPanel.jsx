@@ -84,7 +84,7 @@ const PassRecoveryRightPanel = () => {
                 </FloatingLabel>
             </InputGroup.Text>
           </InputGroup>
-          <Link type='submit' to='/verify-otp'>
+          <Link type='submit' to='/setnewpass'>
               {/* <FormButton 
                 buttonText="ارسال لینک" 
                 buttonColor="--color-orange" 
