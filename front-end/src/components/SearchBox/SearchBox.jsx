@@ -34,31 +34,31 @@ function SearchBox() {
   }, []);
 
   const handleSearch = async () => {
-    const searchData = {
-      origin: selectedOrigin,
-      destination: selectedDestination,
-      start_date: formatDate(startDate),
-      end_date: formatDate(endDate),
-    };
-
-    console.log("داده‌های جستجو:", searchData);
-
-    
-    try {
-      const response = await fetch("http://127.0.0.1:8000/api/your-search-endpoint/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(searchData),
-      });
-      const result = await response.json();
-      console.log("نتیجه جستجو:", result);
-    } catch (err) {
-      console.error("خطا در جستجوی تور:", err);
-    }
-    
+  const searchData = {
+    origin: selectedOrigin,
+    destination: selectedDestination,
+    start_date: formatDate(startDate),
+    end_date: formatDate(endDate),
   };
 
-  
+  console.log("داده‌های جستجو:", searchData);
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/tours/search/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(searchData),
+    });
+
+    const result = await response.json();
+    console.log("نتیجه جستجو:", result);
+  } catch (err) {
+    console.error("خطا در جستجوی تور:", err);
+  }
+};
+
 
   return (
     <div className={styles.container}>

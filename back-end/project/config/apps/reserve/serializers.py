@@ -12,7 +12,7 @@ class TourPassengerSerializer(serializers.ModelSerializer):
 class TourSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tour
-        fields = ['id', 'title', 'start_date', 'base_price']
+        fields = ['id', 'tour_name', 'start_date', 'price']
 
 class RoomTypeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,7 +23,7 @@ class PassengerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Passenger
         fields = [
-            'id', 'reservation', 'first_name', 'last_name', 'national_id',
+            'id', 'first_name', 'last_name', 'national_id',
             'phone', 'email', 'birth_date', 'payment_status', 'registration_date'
         ]
 
