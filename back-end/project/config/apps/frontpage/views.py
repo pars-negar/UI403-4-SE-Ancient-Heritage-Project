@@ -6,7 +6,6 @@ from .serializers import  AttractionSerializer,TourReservationSerializer
 from apps.tour.serializers import (TourSerializer, TourListSerializer, TourDetailSerializer,
                                     TourUpdateSerializer, TourCreateSerializer)
 from apps.tour.models import Attraction, Tour
-from apps.faq.models import FAQ
 from rest_framework import generics
 from apps.users.permissions import *
 from rest_framework.permissions import *
@@ -38,6 +37,31 @@ from apps.reserve.models import  RoomType, Reservation, Passenger, ReservedRoom
 
 from apps.users.serializers import UserProfileCombinedSerializer
 
+
+
+@api_view(['GET'])
+def get_cities_with_places(request):
+    cities = Attraction.objects.values_list('city', flat=True).distinct()
+    return Response({'cities': list(cities)}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def get_origins_and_destinations(request):
+    origins = Tour.objects.values_list('origin', flat=True).distinct()
+    destinations = Tour.objects.values_list('destination', flat=True).distinct()
+    
+    return Response({
+        "origins": list(origins),
+        "destinations": list(destinations),
+    })
+import jdatetime
+
+
+
+class TourDetailView(generics.RetrieveAPIView):
+    permission_classes = [permissions.AllowAny]
+    queryset = Tour.objects.all()
+    serializer_class = TourSerializer
 class DashboardRedirectAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -121,14 +145,14 @@ class TourSoftDeleteAPIView(UserInfoAppendMixin, APIView):
 
 
 
-class IsTourManagerAndOwner(permissions.BasePermission):
-    def has_object_permission(self, request, view, obj):
-        return request.user.role == 'tour_manager' and obj.tour_manager == request.user
+# class IsTourManagerAndOwner(permissions.BasePermission):
+#     def has_object_permission(self, request, view, obj):
+#         return request.user.role == 'tour_manager' and obj.tour_manager == request.user
 
 class TourUpdateAPIView(UserInfoAppendMixin, generics.RetrieveUpdateAPIView):
     queryset = Tour.objects.all()
     serializer_class = TourUpdateSerializer
-    permission_classes = [permissions.IsAuthenticated, IsTourManagerAndOwner]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return Tour.objects.filter(tour_manager=self.request.user)
@@ -319,7 +343,14 @@ class AttractionPageAPIView(APIView):
                 'title': title,
                 'subtitle': subtitle,
                 'image': image_url,
-            })
+  "historical_period": "دوره صفویه",
+  "city": "اصفهان، محله جلفا",
+  "location": "مرکز محله جلفای اصفهان",
+  "opening_hours": "همه روزه 9 صبح تا 5 عصر",
+  "entry_fee": "30,000 تومان (برای ایرانیان)",
+  "details": "معرفی\nکلیسای وانک یکی از مهم‌ترین و مشهورترین کلیساهای ارامنه در ایران است که در دوره صفویه و در زمان شاه عباس دوم ساخته شد. این کلیسا در محله تاریخی جلفای اصفهان قرار دارد و تلفیقی از معماری ایرانی و اروپایی را به نمایش می‌گذارد.\n\nویژگی‌ها\nکلیسای وانک دارای گنبدی زیبا، دیوارهایی با نقاشی‌های مذهبی و طلایی‌کاری چشم‌نواز است. همچنین موزه‌ای در این مجموعه قرار دارد که آثار تاریخی، نسخ خطی، لباس‌های مذهبی و ابزار چاپ قدیمی را به نمایش می‌گذارد.\n\nقدمت\nساخت این کلیسا در سال ۱۶۵۵ میلادی آغاز و در سال ۱۶۶۴ میلادی به پایان رسید. این مکان نمادی از حضور و فرهنگ جامعه ارامنه در ایران به‌شمار می‌رود."
+
+ })
         return formatted
 
     def get(self, request):
@@ -348,10 +379,7 @@ class AttractionPageAPIView(APIView):
         return Response(data, status=status.HTTP_200_OK)
 
 
-class TourDetailView(generics.RetrieveAPIView):
-    permission_classes = [permissions.AllowAny]
-    queryset = Tour.objects.all()
-    serializer_class = TourSerializer
+
 
 class AttractionDetailAPIView(RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
@@ -368,6 +396,8 @@ class AttractionDetailAPIView(RetrieveAPIView):
         data = serializer.data
         data['image'] = image_url
         return Response(data)
+
+
 
 class TourReservationAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -455,23 +485,6 @@ class TourReservationAPIView(APIView):
             "reserved_rooms": reserved_rooms_data,
         }, status=status.HTTP_201_CREATED)
 
-
-@api_view(['GET'])
-def get_cities_with_places(request):
-    cities = Attraction.objects.values_list('city', flat=True).distinct()
-    return Response({'cities': list(cities)}, status=status.HTTP_200_OK)
-
-
-@api_view(['GET'])
-def get_origins_and_destinations(request):
-    origins = Tour.objects.values_list('origin', flat=True).distinct()
-    destinations = Tour.objects.values_list('destination', flat=True).distinct()
-    
-    return Response({
-        "origins": list(origins),
-        "destinations": list(destinations),
-    })
-import jdatetime
 
 class SearchTourAPIView(APIView):
     def post(self, request):

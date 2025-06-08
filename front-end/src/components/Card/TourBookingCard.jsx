@@ -77,13 +77,13 @@ const TourBookingCard = () => {
         </div>
 
         <div className="mt-4 flex justify-center">
-          <button
+          <a href="/rt"><button
             type="button"
-            className="!text-[25px] !w-[15%] !bg-[var(--color-dark-blue)] text-white font-bold !py-2 !px-4 rounded-lg !hover:bg-[#123D5E] focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-300"
+            className="!text-[25px] !w-[80%] !h-[60%] !bg-[var(--color-dark-blue)] text-white font-bold !py-2 !px-4 rounded-lg !hover:bg-[#123D5E] focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-300"
             style={{ fontFamily: 'Gandom', fontWeight: 400 }}
           >
             رزرو تور
-          </button>
+          </button></a>
         </div>
       </div>
     </div>
