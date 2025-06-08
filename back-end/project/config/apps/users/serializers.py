@@ -93,7 +93,7 @@ class BaseUserValidationMixin:
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'role')
+        fields = ('id', 'username', 'role' , 'phone_number' , 'email', 'password') 
 
 
 class LoginSerializer(serializers.Serializer):
