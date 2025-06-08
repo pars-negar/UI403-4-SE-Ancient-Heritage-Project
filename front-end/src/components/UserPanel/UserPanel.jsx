@@ -9,6 +9,7 @@ import DeleteAccountModal from './DeleteAccountModal';
 import HomeIcon from '../Icons/HomeIcon';
 import EditInfoIcon from '../Icons/EditInfoIcon';
 import LogoutIcon from '../Icons/LogoutIcon';
+import { Link } from 'react-router-dom';
 
 const UserPanel = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
