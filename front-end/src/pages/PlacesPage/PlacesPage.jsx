@@ -11,9 +11,24 @@ import HeroSection from '../../components/Placescard/HeroSection';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+const modal_info ={
+    "id": 6,
+    "title": "پاسارگاد",
+    "subtitle": "شهر نخستین پایتخت هخامنشیان",
+    "image": "http://127.0.0.8:8000/media/attractions/images/581570_779.jpg",
+    "historical_period": "دوره هخامنشیان",
+    "city": "مرودشت، استان فارس",
+    "location": "۱۳۰ کیلومتری شمال شرقی شیراز",
+    "opening_hours": "همه روزه 8 صبح تا 6 عصر",
+    "entry_fee": "20,000 تومان (برای ایرانیان)",
+    "details": "معرفی\nپاسارگاد مجموعه‌ای از سازه‌های باستانی بر جای‌مانده از دوران هخامنشی است که در شهرستان پاسارگاد در استان فارس جای گرفته‌است. این مجموعه شامل آرامگاه کوروش بزرگ، مسجد پاسارگاد، باغ شاهی پاسارگاد، کاخ دروازه، پل، کاخ بارعام، کاخ اختصاصی، و زندان سلیمان است.\n\nویژگی‌ها\nاین مجموعه به دلیل اهمیت تاریخی و فرهنگی خود در سال ۱۳۸۲ به عنوان پنجمین اثر ایران در فهرست میراث جهانی یونسکو ثبت شد.\n\nقدمت\nتاریخ ساخت این مجموعه به قرن ششم پیش از میلاد باز می‌گردد و اولین پایتخت امپراتوری هخامنشیان بوده است."
+}
+
+
 const PlacesPage = () => {
   const param = useParams();
   const [selectedPlace, setSelectedPlace] = useState(null);
+  const [selectedPlace_test, setSelectedPlaceTest] = useState(modal_info);
   const [hiddenGems, setGems] = useState([]);
   const [popularPlaces, setPopular] = useState([]);
   const [search, setSearch] = useState({
@@ -96,6 +111,7 @@ const PlacesPage = () => {
       setSelectedPlace(placeSummary); 
     }
   };
+  
 
 
   useEffect(() => {

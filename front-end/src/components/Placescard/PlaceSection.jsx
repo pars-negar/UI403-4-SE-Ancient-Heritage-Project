@@ -27,6 +27,10 @@ const PlaceSection = ({ title, places, onMoreInfo }) => {
     }
   };
 
+
+
+
+
   return (
     <div className="my-8 ps-50 pe-50">
       <div className="place-section-header">
