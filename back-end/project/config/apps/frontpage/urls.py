@@ -12,7 +12,9 @@ from .views import (
     TourSoftDeleteAPIView,
     CreateTourAPIView,
     TourReservationAPIView,
-    SearchTourAPIView
+    SearchTourAPIView,
+    DashboardRedirectAPIView,
+    UserProfileView
 )
 
 urlpatterns = [
@@ -32,6 +34,12 @@ urlpatterns = [
     path('dashboard/tours/', TourListAPIView.as_view(), name='tour-list'),
     path('dashboard/tours/<int:pk>/', TourDetailAPIView.as_view(), name='dashboard-tour-detail'),
     path('dashboard/tours/<int:pk>/edit/', TourUpdateAPIView.as_view(), name='tour-update'),
+    path('profile/', UserProfileView.as_view(), name='user-profile'),
     path('dashboard/my-tours/delete/', TourSoftDeleteAPIView.as_view(), name='delete-my-tour'),
+    path('tour/cities/', get_origins_and_destinations),
+    path('dashboard/my-tours/delete/', TourSoftDeleteAPIView.as_view(), name='delete-my-tour'), 
     path('dashboard/tours/create/', CreateTourAPIView.as_view(), name='create-tour'),
+    path('dashboard-url/', DashboardRedirectAPIView.as_view(), name='dashboard-url'),
+
+
 ]

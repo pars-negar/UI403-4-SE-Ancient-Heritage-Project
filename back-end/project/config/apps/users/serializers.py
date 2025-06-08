@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers, permissions
 from django.contrib.auth import get_user_model
 from rest_framework.exceptions import ValidationError
 import re
@@ -13,6 +13,43 @@ from rest_framework import serializers
 from .models import CustomUser  
 
 User = get_user_model()
+
+class IsNormalUser(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.role == 'user'
+
+
+class UserProfileCombinedSerializer(serializers.ModelSerializer):
+    new_password = serializers.CharField(write_only=True, required=False)
+    confirm_password = serializers.CharField(write_only=True, required=False)
+
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'email', 'phone_number', 'profile_image', 'new_password', 'confirm_password']
+
+    def validate(self, data):
+        new_pass = data.get('new_password')
+        confirm_pass = data.get('confirm_password')
+
+        if new_pass or confirm_pass:
+            if new_pass != confirm_pass:
+                raise serializers.ValidationError("رمز جدید با تکرار آن یکسان نیست.")
+            if len(new_pass) < 8:
+                raise serializers.ValidationError("رمز عبور باید حداقل ۸ کاراکتر باشد.")
+        return data
+
+    def update(self, instance, validated_data):
+        new_password = validated_data.pop('new_password', None)
+        validated_data.pop('confirm_password', None)
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        if new_password:
+            instance.set_password(new_password)
+
+        instance.save()
+        return instance
 
 class SimpleUserInfoSerializer(serializers.ModelSerializer):
     class Meta:

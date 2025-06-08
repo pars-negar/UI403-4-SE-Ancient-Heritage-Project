@@ -27,7 +27,6 @@ const TourListPage = () => {
         try {
           const response = await axios.get("https://parsnegarback.liara.run/api/homepage/tour-page");
           if (response && response.status === 200) {
-            console.log(response.data);
             setAllTours(response.data.all_tours || []);
             setLoading(false); // Change loading state to false when data is loaded
           } else {
