@@ -14,14 +14,15 @@ from .views import (
     TourReservationAPIView,
     SearchTourAPIView,
     DashboardRedirectAPIView,
-    UserProfileView
+    UserProfileView,
+    TourDetailView
 )
 
 urlpatterns = [
     path('', HomePageAPIView.as_view(), name='homepage'),
     
     path('tour-page', TourPageAPIView.as_view(), name='tour-page'),
-    path('tour/<int:pk>/', TourDetailAPIView.as_view(), name='tour-detail'),
+    path('tour/<int:pk>/', TourDetailView.as_view(), name='tour-detail'),
     path('tour/cities/', get_origins_and_destinations, name='tour-cities'),
     path('tour-reservations/', TourReservationAPIView.as_view(), name='tour-reservation'),
      path('tours/search/', SearchTourAPIView.as_view(), name='search-tours'),
