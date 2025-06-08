@@ -79,6 +79,7 @@ const handleAttractionClick = async (id) => {
       if (response && response.status === 200) {
         setSelectedAttraction(response.data);
         setShowModal(true);
+        console.log(response.data)
       } else {
         alert("مشکل در دریافت اطلاعات جاذبه");
       }
