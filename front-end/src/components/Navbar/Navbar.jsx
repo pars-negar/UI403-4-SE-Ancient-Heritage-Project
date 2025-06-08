@@ -51,17 +51,17 @@ const Navbar = () => {
                 setUser({ ...response.data, role });
                 setLoading(false);
                 console.log("\nbla bla bla\n " + user);
-          } else {
-            console.error("Failed to fetch data", response);
-            setLoading(false);
-          }
+            } else {
+                console.error("Failed to fetch data", response);
+                setLoading(false);
+            }
         } catch (error) {
-          console.error("Error during fetch: ", error);
-          setLoading(false);
+            console.error("Error during fetch: ", error);
+            setLoading(false);
         }
-      };
+    };
 
-      useEffect(() => {
+    useEffect(() => {
         console.log("State user updated:", user);
         }, [user]);
 
@@ -81,7 +81,7 @@ const Navbar = () => {
                         <Link to="/">صفحه‌ی اصلی</Link>
                         <Link to="/tourlistpage">تورها</Link>
                         <Link to="/place">جاذبه‌ها</Link>
-                        {/* <Link to="/">تماس با ما</Link> */}
+                        <Link to="/addtour">اضافه کردن تور</Link> {/* این خط جدید است */}
                         <Link to="/aboutus">درباره‌‌ما</Link>
                     </div>
                 </ul>
@@ -94,28 +94,54 @@ const Navbar = () => {
                 ) : (
                     <Link to='/LoginSignUp' id="button" 
                         className="
-                            bg-[var(--color-orange)] 
-                            text-black
-                            text-2xl
-                            text-center
-                            font-[499] 
-                            rounded-[40px]
-                            w-[10.125rem]
+                                bg-[var(--color-orange)] 
+                                text-black
+                                text-2xl
+                                text-center
+                                font-[499] 
+                                rounded-[40px]
+                                w-[10.125rem]
 
-                            "
+                                "
 
                         style={{
                             fontFamily: 'Gandom'
                         }}
                         >
                     ورود/ثبت‌نام</Link>  
-                )
-            }
-
-                        
+                )}
+                <a 
+                    href="/some-path" 
+                    className="
+                        ml-4 
+                        w-12 
+                        h-12 
+                        rounded-full 
+                        bg-blue-500 
+                        flex 
+                        items-center 
+                        justify-center 
+                        text-white 
+                        text-lg 
+                        font-bold
+                    "
+                    style={{
+                        position: 'absolute',
+                        left: '20px', 
+                        top: '50%',
+                        transform: 'translateY(-50%)'
+                    }}
+                >
+                    <span className="
+                    text-[1.4rem]
+                    "
+                    style={{
+                        fontFamily: 'Koodak',
+                        fontWeight: '700'
+                    }}>&#x2B;</span> 
+                </a>
                 <hr className="border !border-[var(--color-brown)] opacity-100 w-full h-[0.1rem] m-0" />
             </nav>
-      
     );
 }
  
