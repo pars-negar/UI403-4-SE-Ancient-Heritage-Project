@@ -21,16 +21,18 @@ const Navbar = () => {
     }, []);
     
     const fetchUser = async () => {
-        if (!token) return;
+        if (!token) return("dkfjlsdjfdsjf");
+        
         
         let decoded;
         try {
             decoded = jwtDecode(token)
+            
         } catch (err) {
+            console.log(token);
             console.error("Invalid token");
             return;
         }
-        
         const role = decoded.role;
         const endpoint =
         role === "tour_leader"
