@@ -1,15 +1,18 @@
-import React from "react";
-import "./Places.css"; // استایل‌ها را از این فایل می‌گیریم
+import React, { useEffect } from "react";
+import "./Places.css"; 
 
 const PlaceModal = ({ show, onClose, place }) => {
   if (!show || !place) return null;
-
+    useEffect(()=>{
+    console.log(place)
+    console.log(show)
+    })
   const renderDescriptionContent = (detailsString) => {
     if (!detailsString) return null;
 
     const sections = [];
     let currentSection = { sectionTitle: null, sectionContent: [] };
-
+    
     const lines = detailsString.split("\n");
 
     lines.forEach((line) => {
@@ -52,13 +55,15 @@ const PlaceModal = ({ show, onClose, place }) => {
       });
     }
 
-    // اگر هیچ بخش‌بندی نداشت، همه رو به عنوان یک بخش نشون بده
+    
     if (sections.length === 0 && detailsString) {
       sections.push({
         sectionTitle: null,
         sectionContent: detailsString,
       });
     }
+
+    
 
     return sections.map((section, index) => (
       <div key={index} className="description-section-block">
