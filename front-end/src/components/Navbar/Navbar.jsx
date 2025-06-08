@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import { jwtDecode } from 'jwt-decode';
+// import { jwtDecode } from 'jwt-decode';
 
 import logoUrl from "../../assets/icons/logo.svg";
 import "./navbar.css";
@@ -9,16 +9,18 @@ import '../../index.css';
 
 const Navbar = () => {
     const token = localStorage.getItem("access_token");
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    console.log("listen listen" + token)
+    console.log("Access Token:", token);
 
+    const [user, setUser] = useState({});
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetchUser();
     }, []);
-
+    
     const fetchUser = async () => {
         if (!token) return;
-
+        
         let decoded;
         try {
             decoded = jwtDecode(token);
@@ -31,7 +33,7 @@ const Navbar = () => {
             console.error("توکن منقضی شده");
             return;
         }
-
+        
         const role = decoded.role;
         const endpoint =
             role === "tour_manager"
@@ -57,17 +59,30 @@ const Navbar = () => {
         }
     };
 
-    return (
-        <nav className="navbar">
-            <img className="logo" src={logoUrl} alt="logo" />
-            <ul>
-                <div className='navbar-links text-[1.4rem]' style={{ fontFamily: 'Koodak', fontWeight: '700' }}>
-                    <Link to="/">صفحه‌ی اصلی</Link>
-                    <Link to="/tourlistpage">تورها</Link>
-                    <Link to="/place">جاذبه‌ها</Link>
-                    <Link to="/aboutus">درباره‌‌ما</Link>
-                </div>
-            </ul>
+      useEffect(() => {
+        console.log("State user updated:", user);
+        }, [user]);
+
+    return ( 
+            <nav className="navbar">
+                <img className="logo" src={ logoUrl }  alt="logo" />
+                <ul>
+                    <div className='
+                        navbar-links 
+                        text-[1.4rem]
+                        '
+                        style={{
+                            fontFamily: 'Koodak',
+                            fontWeight: '700'
+                        }}
+                    >
+                        <Link to="/">صفحه‌ی اصلی</Link>
+                        <Link to="/tourlistpage">تورها</Link>
+                        <Link to="/place">جاذبه‌ها</Link>
+                        {/* <Link to="/">تماس با ما</Link> */}
+                        <Link to="/aboutus">درباره‌‌ما</Link>
+                    </div>
+                </ul>
 
             {token && user ? (
                 <div className="flex flex-col gap-[0.75rem]">
