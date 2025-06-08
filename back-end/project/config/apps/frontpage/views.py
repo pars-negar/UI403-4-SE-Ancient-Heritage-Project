@@ -492,13 +492,13 @@ class SearchTourAPIView(APIView):
         destination = request.data.get('destination')
         start_date = request.data.get('start_date')
         end_date = request.data.get('end_date')
+        print("⚙️ Received Search POST:", request.data)
 
         tours = Tour.objects.all()
-
         if origin:
-            tours = tours.filter(origin__name__icontains=origin)
+            tours = tours.filter(origin__icontains=origin)
         if destination:
-            tours = tours.filter(destination__name__icontains=destination)
+            tours = tours.filter(destination__icontains=destination)
         if start_date:
             tours = tours.filter(start_date__gte=jdatetime.date.fromisoformat(start_date))
         if end_date:

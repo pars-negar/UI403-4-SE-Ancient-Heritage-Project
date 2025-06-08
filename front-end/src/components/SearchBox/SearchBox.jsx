@@ -34,31 +34,36 @@ function SearchBox() {
   }, []);
 
   const handleSearch = async () => {
-  const searchData = {
-    origin: selectedOrigin,
-    destination: selectedDestination,
-    start_date: formatDate(startDate),
-    end_date: formatDate(endDate),
+    console.log("🔍 handleSearch فراخوانی شد");
+
+    const searchData = {
+      origin: selectedOrigin,
+      destination: selectedDestination,
+      start_date: formatDate(startDate),
+      end_date: formatDate(endDate),
+    };
+
+    console.log("🧭 داده‌های جستجو:", searchData);
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/homepage/tours/search/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(searchData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`خطای شبکه (${response.status})`);
+      }
+
+      const result = await response.json();
+      console.log("✅ نتیجه جستجو:", result);
+    } catch (err) {
+      console.error("خطا در جستجوی تور:", err);
+    }
   };
-
-  console.log("داده‌های جستجو:", searchData);
-
-  try {
-    const response = await fetch("http://127.0.0.1:8000/api/tours/search/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(searchData),
-    });
-
-    const result = await response.json();
-    console.log("نتیجه جستجو:", result);
-  } catch (err) {
-    console.error("خطا در جستجوی تور:", err);
-  }
-};
-
 
   return (
     <div className={styles.container}>
@@ -69,7 +74,6 @@ function SearchBox() {
 
       <div className='flex mt-[4rem] gap-[5rem]'>
         <div className={styles.form}>
-          {/* انتخاب مبدا */}
           <select
             className={styles.input}
             value={selectedOrigin}
@@ -81,7 +85,6 @@ function SearchBox() {
             ))}
           </select>
 
-          {/* انتخاب مقصد */}
           <select
             className={styles.input}
             value={selectedDestination}
@@ -93,45 +96,40 @@ function SearchBox() {
             ))}
           </select>
 
-         <DatePicker
-  calendar={persian}
-  locale={arabic_fa}
-  value={startDate}
-  onChange={setStartDate}
-  format="YYYY/MM/DD"
-  render={(value, openCalendar) => {
-    return (
-      <input
-        onFocus={openCalendar}
-        value={value}
-        readOnly
-        placeholder="تاریخ رفت"
-        className={styles.input}
-      />
-    );
-  }}
-/>
+          <DatePicker
+            calendar={persian}
+            locale={arabic_fa}
+            value={startDate}
+            onChange={setStartDate}
+            format="YYYY/MM/DD"
+            render={(value, openCalendar) => (
+              <input
+                onFocus={openCalendar}
+                value={value}
+                readOnly
+                placeholder="تاریخ رفت"
+                className={styles.input}
+              />
+            )}
+          />
 
-<DatePicker
-  calendar={persian}
-  locale={arabic_fa}
-  value={endDate}
-  onChange={setEndDate}
-  format="YYYY/MM/DD"
-  render={(value, openCalendar) => {
-    return (
-      <input
-        onFocus={openCalendar}
-        value={value}
-        readOnly
-        placeholder="تاریخ برگشت"
-        className={styles.input}
-      />
-    );
-  }}
-/>
+          <DatePicker
+            calendar={persian}
+            locale={arabic_fa}
+            value={endDate}
+            onChange={setEndDate}
+            format="YYYY/MM/DD"
+            render={(value, openCalendar) => (
+              <input
+                onFocus={openCalendar}
+                value={value}
+                readOnly
+                placeholder="تاریخ برگشت"
+                className={styles.input}
+              />
+            )}
+          />
 
-          {/* دکمه جستجو */}
           <div>
             <button
               onClick={handleSearch}
