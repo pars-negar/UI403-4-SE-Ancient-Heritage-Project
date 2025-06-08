@@ -1,5 +1,16 @@
 from django.contrib import admin
-from .models import Reservation, Passenger, ReservedRoom
+from .models import Reservation, Passenger, ReservedRoom, RoomType
+
+class RoomTypeInline(admin.TabularInline):  # یا StackedInline برای نمایش متفاوت
+    model = RoomType
+    extra = 1  # تعداد فرم‌های خالی که نمایش داده می‌شوند
+
+class TourAdmin(admin.ModelAdmin):
+    list_display = ('tour_name', 'start_date', 'end_date')  # فیلدهای موردنیاز
+    inlines = [RoomTypeInline]
+
+admin.site.register(RoomType)  # اگر بخوای به صورت مستقل هم نمایش داده بشه
+
 
 class PassengerInline(admin.TabularInline):
     model = Passenger
