@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
-from .serializers import  AttractionSerializer
+from .serializers import  AttractionSerializer,TourReservationSerializer
 from apps.tour.serializers import (TourSerializer, TourListSerializer, TourDetailSerializer,
                                     TourUpdateSerializer, TourCreateSerializer)
 from apps.tour.models import Attraction, Tour
@@ -16,6 +16,23 @@ from rest_framework import generics, permissions
 from apps.reserve.models import Passenger
 from apps.reserve.serializers import TourPassengerSerializer
 from apps.core.mixins import UserInfoAppendMixin
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from apps.tour.utils import search_tours
+
+from apps.tour.models import Attraction
+from apps.reserve.models import Reservation, Passenger
+from apps.reserve.serializers import PassengerSerializer
+from apps.tour.models import Tour
+from django.db import transaction
+from apps.core.mixins import UserInfoAppendMixin
+
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from django.db import transaction
+from apps.reserve.models import  RoomType, Reservation, Passenger, ReservedRoom
 
 
 class CreateTourAPIView(UserInfoAppendMixin , generics.CreateAPIView):
@@ -209,7 +226,7 @@ class HomePageAPIView(APIView):
         return Response(data, status=status.HTTP_200_OK)
 
 
-from apps.tour.utils import search_tours
+
 
 class TourPageAPIView(APIView):
     permission_classes = [permissions.AllowAny]
@@ -316,18 +333,97 @@ class AttractionDetailAPIView(RetrieveAPIView):
         data['image'] = image_url
         return Response(data)
 
+class TourReservationAPIView(APIView):
+    permission_classes = [IsAuthenticated]
 
+    @transaction.atomic
+    def post(self, request):
+        serializer = TourReservationSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+        data = serializer.validated_data
+        user = request.user
 
+        # دریافت تور
+        try:
+            tour = Tour.objects.get(id=data["tour_id"])
+        except Tour.DoesNotExist:
+            return Response({"detail": "تور یافت نشد."}, status=status.HTTP_404_NOT_FOUND)
 
-from apps.tour.models import Attraction
+        passengers_data = data["passengers"]
+        reserved_rooms_data = data["reserved_rooms"]
+
+        passenger_count = len(passengers_data)
+
+        # دریافت همه room_type های مربوط به این تور
+        room_type_ids = [room['room_type_id'] for room in reserved_rooms_data]
+        room_types = RoomType.objects.filter(id__in=room_type_ids, tour=tour)
+        room_type_map = {rt.id: rt for rt in room_types}
+
+        total_capacity = 0
+        total_price = 0
+
+        for room in reserved_rooms_data:
+            room_type = room_type_map.get(room['room_type_id'])
+            if not room_type:
+                return Response({"detail": f"اتاق با شناسه {room['room_type_id']} برای این تور وجود ندارد."},
+                                status=status.HTTP_400_BAD_REQUEST)
+
+            count = room['count']
+            if room_type.remaining < count:
+                return Response({"detail": f"اتاق {room_type.name} به تعداد کافی موجود نیست."},
+                                status=status.HTTP_400_BAD_REQUEST)
+
+            total_capacity += room_type.capacity * count
+            total_price += room_type.price_per_room * count
+
+        # اعتبارسنجی ظرفیت اتاق‌ها
+        if total_capacity < passenger_count:
+            return Response({"detail": "ظرفیت کل اتاق‌ها کمتر از تعداد مسافران است."}, status=status.HTTP_400_BAD_REQUEST)
+
+        if total_capacity > passenger_count + 2:
+            return Response({"detail": "ظرفیت کل اتاق‌ها نمی‌تواند بیشتر از تعداد مسافران + ۲ باشد."},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        # محاسبه قیمت نهایی (مثلاً قیمت پایه هر نفر)
+        total_price += passenger_count * tour.base_price
+
+        # ایجاد رزرو
+        reservation = Reservation.objects.create(user=user, tour=tour, full_price=total_price)
+
+        # ایجاد مسافران
+        for p_data in passengers_data:
+            p_serializer = PassengerSerializer(data=p_data)
+            if p_serializer.is_valid():
+                p_serializer.save(reservation=reservation)
+            else:
+                transaction.set_rollback(True)
+                return Response(p_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # ذخیره اتاق‌ها و به‌روزرسانی ظرفیت باقی‌مانده
+        for room in reserved_rooms_data:
+            room_type = room_type_map[room['room_type_id']]
+            count = room['count']
+
+            room_type.remaining -= count
+            room_type.save()
+
+            ReservedRoom.objects.create(reservation=reservation, room_type=room_type, count=count)
+
+        return Response({
+            "detail": "رزرو با موفقیت انجام شد.",
+            "reservation_id": reservation.id,
+            "total_price": total_price,
+            "passenger_count": passenger_count,
+            "reserved_rooms": reserved_rooms_data,
+        }, status=status.HTTP_201_CREATED)
+
 
 @api_view(['GET'])
 def get_cities_with_places(request):
     cities = Attraction.objects.values_list('city', flat=True).distinct()
-    return Response(cities)
+    return Response({'cities': list(cities)}, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
@@ -339,3 +435,25 @@ def get_origins_and_destinations(request):
         "origins": list(origins),
         "destinations": list(destinations),
     })
+import jdatetime
+
+class SearchTourAPIView(APIView):
+    def post(self, request):
+        origin = request.data.get('origin')
+        destination = request.data.get('destination')
+        start_date = request.data.get('start_date')
+        end_date = request.data.get('end_date')
+
+        tours = Tour.objects.all()
+
+        if origin:
+            tours = tours.filter(origin__name__icontains=origin)
+        if destination:
+            tours = tours.filter(destination__name__icontains=destination)
+        if start_date:
+            tours = tours.filter(start_date__gte=jdatetime.date.fromisoformat(start_date))
+        if end_date:
+            tours = tours.filter(end_date__lte=jdatetime.date.fromisoformat(end_date))
+
+        serializer = TourSerializer(tours, many=True)
+        return Response(serializer.data)
