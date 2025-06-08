@@ -26,10 +26,11 @@
 }
 
 .testimonials-container {
+  width: 100%;
   display: flex;
   justify-content: center;
   gap: 24px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   font-size: 10px;
 }
 

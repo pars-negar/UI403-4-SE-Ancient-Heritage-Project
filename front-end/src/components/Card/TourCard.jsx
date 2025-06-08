@@ -1,13 +1,13 @@
-import React from "react";
+ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./tourcard.module.css";
 
-const TourCard = ( {tour} ) => {
+const TourCard = ( {tour, isTop} ) => {
   if (!tour) return null;
   
     // console.log(tour)
   const rating = Math.min(Math.max(parseInt(tour.rating) || 0, 0), 5);
-  const stars = "⭐".repeat(rating) + "☆".repeat(5 - rating);
+  const stars = "⭐️".repeat(rating) + "☆".repeat(5 - rating);
 
   const startDate = new Date(tour.start_date);
   const endDate = new Date(tour.end_date);
@@ -43,8 +43,9 @@ const TourCard = ( {tour} ) => {
               <span className={styles.verticalLine}></span>
               {durationInDays} روز
             </p>
+            
 
-            <a href="/tourinformation/top_tours/3"><button className={styles.more_info_button}>جزئیات بیشتر</button></a>
+            <Link to={`/tourinformation/${isTop ? `top/3` : `latest/3`}`}><button className={styles.more_info_button}>جزئیات بیشتر</button></Link>
             
           </div>
         </div>

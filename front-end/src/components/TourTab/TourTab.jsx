@@ -30,7 +30,7 @@ const TourTab = () => {
     }
   };
 
-  const renderTours = (tours) => (
+  const renderTours = (tours,isTop) => (
     <div
       style={{
         display: "flex",
@@ -42,7 +42,7 @@ const TourTab = () => {
       {loading ? (
         <p>در حال بارگذاری...</p>
       ) : tours && tours.length > 0 ? (
-        tours.map((tour) => <TourCard key={tour.id} tour={tour} />)
+        tours.map((tour) => <TourCard key={tour.id} tour={tour} isTop={isTop}/>)
       ) : (
         <p>هیچ توری یافت نشد.</p>
       )}
@@ -51,8 +51,8 @@ const TourTab = () => {
 
   return (
     <Tabs labels={["تورهای اخیر", "تورهای برتر"]} className="w-full">
-      <div id="home-tour-card">{renderTours(latestTours)}</div>
-      <div>{renderTours(topTours)}</div>
+      <div id="home-tour-card">{renderTours(latestTours,false)}</div>
+      <div>{renderTours(topTours,true)}</div>
     </Tabs>
   );
 };
