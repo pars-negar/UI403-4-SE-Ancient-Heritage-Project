@@ -2,7 +2,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .models import Reservation
-from .utils import send_sms
+#from .utils import send_sms
 
 @receiver(post_save, sender=Reservation)
 def send_sms_on_reservation(sender, instance, created, **kwargs):
