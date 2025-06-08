@@ -38,6 +38,12 @@ from apps.reserve.models import  RoomType, Reservation, Passenger, ReservedRoom
 
 from apps.users.serializers import UserProfileCombinedSerializer
 
+
+
+class TourDetailView(generics.RetrieveAPIView):
+    permission_classes = [permissions.AllowAny]
+    queryset = Tour.objects.all()
+    serializer_class = TourSerializer
 class DashboardRedirectAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -365,6 +371,8 @@ class AttractionDetailAPIView(RetrieveAPIView):
         data = serializer.data
         data['image'] = image_url
         return Response(data)
+
+
 
 class TourReservationAPIView(APIView):
     permission_classes = [IsAuthenticated]
