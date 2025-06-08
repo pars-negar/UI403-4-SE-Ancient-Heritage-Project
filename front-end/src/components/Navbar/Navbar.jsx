@@ -81,7 +81,7 @@ const Navbar = () => {
                         <Link to="/">صفحه‌ی اصلی</Link>
                         <Link to="/tourlistpage">تورها</Link>
                         <Link to="/place">جاذبه‌ها</Link>
-                        <Link to="/addtour">اضافه کردن تور</Link> {/* این خط جدید است */}
+                        {/* <Link to="/addtour">اضافه کردن تور</Link> این خط جدید است */}
                         <Link to="/aboutus">درباره‌‌ما</Link>
                     </div>
                 </ul>

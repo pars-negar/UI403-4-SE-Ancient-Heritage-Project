@@ -25,7 +25,7 @@ const ProfileTourLeader = () => {
                                     </div>
                                     <div className="flex flex-col gap-[0.3rem]">
                                         <label htmlFor="">نام خانوادگی</label>
-                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                        <input type="text" placeholder="محمدرضا مرادی" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
                                     </div>
                                 </div>
                                 <div className="flex gap-[3rem]">
@@ -41,7 +41,7 @@ const ProfileTourLeader = () => {
                                 <div className="flex gap-[3rem]">
                                     <div className="flex flex-col gap-[0.3rem]">
                                         <label htmlFor="phone">شماره موبایل</label>
-                                        <input name="tel" type="tel" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                        <input name="tel" type="tel" placeholder="09124785500" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
                                     </div>
                                     <div className="flex flex-col gap-[0.3rem]">
                                         <label htmlFor="email">ایمیل(اختیاری)</label>
