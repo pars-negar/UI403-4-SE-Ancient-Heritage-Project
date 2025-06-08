@@ -12,17 +12,17 @@ const Navbar = () => {
 
     const token = localStorage.getItem("access_token");
     console.log("listen listen" + token)
+    console.log("Access Token:", token);
 
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
-
     useEffect(() => {
         fetchUser();
-      }, []);
+    }, []);
     
-      const fetchUser = async () => {
+    const fetchUser = async () => {
         if (!token) return;
-
+        
         let decoded;
         try {
             decoded = jwtDecode(token)
@@ -30,27 +30,28 @@ const Navbar = () => {
             console.error("Invalid token");
             return;
         }
-
+        
         const role = decoded.role;
         const endpoint =
-            role === "tour_leader"
-            ? "/api/users/tourleaderdashboard/"
-            : "/api/homepage/profile";
-
+        role === "tour_leader"
+        ? "/api/users/tourleaderdashboard/"
+        : "/api/homepage/profile/";
+        
         try {
-        //   const token = localStorage.getItem("access_token");
-          const response = await axios.get(
-            `http://127.0.0.1:8000/${endpoint}`,
-            {
-                headers: {
-                    ...(token && {Authorization: `Bearer ${token}`}),
-                },
-            }
-          );
-          if (response && response.status === 200) {
-            // console.log(response.data);
-            setUser({ ...response.data, role });
-            setLoading(false);
+            //   const token = localStorage.getItem("access_token");
+            const response = await axios.get(
+                `http://127.0.0.1:8000${endpoint}`,
+                // "http://127.0.0.1:8000/api/homepage/profile/",
+                {
+                    headers: { Authorization: `Bearer ${token}`,}
+                }
+            );
+            if (response && response.status === 200) {
+                console.log("hey you" + response.data);
+                console.log(jwtDecode(token).exp, Date.now()/1000);
+                setUser({ ...response.data, role });
+                setLoading(false);
+                console.log("\nbla bla bla\n " + user);
           } else {
             console.error("Failed to fetch data", response);
             setLoading(false);
@@ -60,6 +61,10 @@ const Navbar = () => {
           setLoading(false);
         }
       };
+
+      useEffect(() => {
+        console.log("State user updated:", user);
+        }, [user]);
 
     return ( 
             <nav className="navbar">
