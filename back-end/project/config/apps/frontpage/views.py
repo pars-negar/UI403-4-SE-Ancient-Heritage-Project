@@ -48,12 +48,6 @@ class UserProfileView(UserInfoAppendMixin, generics.RetrieveUpdateAPIView):
         response = super().update(request, *args, **kwargs)
         return self.append_user_info(response, request)
 
-class UserProfileView(generics.RetrieveUpdateAPIView):
-    serializer_class = UserProfileCombinedSerializer
-    permission_classes = [IsNormalUser]
-
-    def get_object(self):
-        return self.request.user
 
 
 class CreateTourAPIView(UserInfoAppendMixin , generics.CreateAPIView):
