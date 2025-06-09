@@ -48,7 +48,7 @@ const ProfileTourInfoForTourLeader = () => {
                 >
                     حذف تور
                 </button>
-                <button className='bg-[var(--color-dark-blue)] rounded-[13px] !w-[10rem] whitespace-nowrap !h-[2.5rem] flex items-center justify-center !text-xl m-0' style={{ fontFamily: 'Gandom'}}>مشاهده خریداران</button>
+                <a href="/trp"><button className='bg-[var(--color-dark-blue)] rounded-[13px] !w-[10rem] whitespace-nowrap !h-[2.5rem] flex items-center justify-center !text-xl m-0' style={{ fontFamily: 'Gandom'}}>مشاهده خریداران</button></a>
             </div>
             <DeleteTourModal
                 isOpen={isDeleteModalOpen}

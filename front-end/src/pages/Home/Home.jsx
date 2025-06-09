@@ -109,7 +109,7 @@ const handleAttractionClick = async (id) => {
       <Navbar />
 
       {/* Carousel Section */}
-      <div className={styles.carousel}>
+      {/* <div className={styles.carousel}>
         <p className={`${styles.paraone}`}>
           <span style={{ fontWeight: "700", fontSize: "4rem" }}>
             سفر به دل تاریخ ایران با پارس نگار، <br />
@@ -120,7 +120,7 @@ const handleAttractionClick = async (id) => {
           </span>
         </p>
         <img className={styles.imageOne} src={image} alt="header" />
-      </div>
+      </div> */}
 
       {/* About Section */}
       <div className={styles.about}>
