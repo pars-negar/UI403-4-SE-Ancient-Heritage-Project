@@ -5,15 +5,6 @@ from apps.users.models import CustomUser
 import django_jalali.db.models as jmodels
 from django.db import models
 from django.conf import settings
-from rest_framework import serializers
-
-
-
-class UserPublicSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUser
-        fields = ['id', 'username', 'profile_image']  # اینجا هر چیزی که لازمه رو بذار
-
 
 class SiteComment(models.Model):
     ROLE_CHOICES = (

@@ -3,16 +3,27 @@ from django.db.models import Sum
 from .models import Attraction
 from .models import Tour
 from .models import AttractionImage,TourImage,DailySchedule,Review
+from apps.users.models import TourManagerProfile
+
 
 class TourCreateSerializer(serializers.ModelSerializer):
+    tour_manager = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = Tour
-        exclude = ['tour_manager', 'related_tours']
+        fields = [field.name for field in Tour._meta.fields if field.name != 'related_tours']
 
     def validate(self, data):
         if data['end_date'] < data['start_date']:
             raise serializers.ValidationError("تاریخ بازگشت نمی‌تواند قبل از تاریخ شروع باشد.")
         return data
+
+    def create(self, validated_data):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            validated_data['tour_manager'] = request.user
+        return super().create(validated_data)
+
 
 class TourUpdateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -107,26 +118,6 @@ class TourDetailSerializer(serializers.ModelSerializer):
         return []
 
 
-class TourCreateSerializer(serializers.ModelSerializer):
-
-    tour_manager = serializers.PrimaryKeyRelatedField(read_only=True)
-
-    class Meta:
-        model = Tour
-        #exclude = ['tour_manager']  # از کاربر گرفته میشه نه از فرانت
-        
-        fields = [field.name for field in Tour._meta.fields]
-
-
-    def create(self, validated_data):
-        # اگر tour_manager از فرانت نیومده بود، از user لاگین‌شده استفاده کن
-        if 'tour_manager' not in validated_data:
-            request = self.context.get('request')
-            if request and request.user.is_authenticated:
-                validated_data['tour_manager'] = request.user
-        return super().create(validated_data)
-
-
 # serializers.py
 
 class AttractionImageSerializer(serializers.ModelSerializer):
@@ -179,17 +170,33 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = ['user', 'comment', 'rating', 'created_at']     
 # Serializer for the Tour model - used for serializing and deserializing Tour instances
+
+class TourManagerProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TourManagerProfile
+        fields = [
+            'company_name',
+            'company_address',
+            'company_registration_number',
+            'profile_image',
+            'company_phone_number',
+            'first_name_fa',
+            'last_name_fa',
+        ]
+
 class TourSerializer(serializers.ModelSerializer):
-    # فیلدهای قابل ویرایش
+    # فیلدهای فعلی
     price = serializers.IntegerField(required=True)
-    meals = serializers.JSONField(required=False)  # یا dict، بسته به ساختار مورد نظر
+    meals = serializers.JSONField(required=False)
     guides = serializers.JSONField(required=False)
     services = serializers.ListField(child=serializers.CharField(), required=False)
 
     images = TourImageSerializer(many=True, read_only=True)
     daily_schedules = DailyScheduleSerializer(many=True, read_only=True)
     reviews = ReviewSerializer(many=True, read_only=True)
-    
+
+    # اضافه کردن فیلد مربوط به پروفایل مسئول تور
+    tour_manager_profile = serializers.SerializerMethodField()
 
     class Meta:
         model = Tour
@@ -197,8 +204,15 @@ class TourSerializer(serializers.ModelSerializer):
             'id', 'tour_name', 'origin', 'destination', 'start_date', 'end_date',
             'price', 'description', 'main_image', 'images',
             'meals', 'guides', 'services',
-            'daily_schedules', 'reviews', 'transportation', 'travel_insurance', 'accommodation', 'company_name'
+            'daily_schedules', 'reviews', 'transportation', 'travel_insurance', 'accommodation', 'company_name',
+            'tour_manager_profile'  # اضافه شد
         ]
+
+    def get_tour_manager_profile(self, obj):
+        if obj.tour_manager and hasattr(obj.tour_manager, 'tour_manager_profile'):
+            profile = obj.tour_manager.tour_manager_profile
+            return TourManagerProfileSerializer(profile).data
+        return None
 
     def create(self, validated_data):
         meals = validated_data.pop('meals', None)
