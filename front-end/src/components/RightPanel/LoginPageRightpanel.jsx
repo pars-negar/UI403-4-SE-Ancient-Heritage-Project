@@ -33,7 +33,7 @@ const RightPanel = () => {
       localStorage.setItem("access_token", access);
       localStorage.setItem("refresh_token", refresh);
 
-      navigate("/"); // ورود موفق → برو به صفحه اصلی یا کاربری
+      navigate("/test"); // ورود موفق → برو به صفحه اصلی یا کاربری
     } catch (error) {
       if (error.response?.data?.error) {
         setAlertMessage(error.response.data.error);
@@ -95,7 +95,6 @@ const RightPanel = () => {
           </InputGroup>
         </div>
 
-        <Link to="/test">
           <div className={styles.formContainer}>
             <button
               type="submit"
@@ -104,7 +103,6 @@ const RightPanel = () => {
               ورود
             </button>
           </div>
-        </Link>
       </Form>
 
       {showAlert && (

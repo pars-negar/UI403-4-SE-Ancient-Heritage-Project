@@ -45,7 +45,7 @@ import UserProfilePage from './pages/UserProfile/UserProfilePage.jsx';
 import TestModal from './components/Comments/TestModal.jsx';
 import TourBookingCard from './components/Card/TourBookingCard.jsx'
 import AboutUs from './pages/about us/aboutUs.jsx';
-
+import Test from "./pages/Test"; 
 
 
 
@@ -55,6 +55,7 @@ createRoot(document.getElementById('root')).render(
       <Routes>
        <Route exact path="/profiletour" element={ <ProfileTourListPage/> }></Route>
        <Route exact path="/addtour" element={ <AddNewTour/> }></Route>
+       <Route path="/test" element={<Test />} />
        <Route exact path="/userpanel" element={ <UserProfilePage/> }></Route>
        <Route exact path="/cmmmm" element={ <TestModal/> }></Route>
        <Route exact path="/booking" element={ <TourBookingCard/> }></Route>
@@ -107,6 +108,7 @@ createRoot(document.getElementById('root')).render(
         {/* <Route exact path="/tourlist" element={<TourList/>}></Route> */}
         <Route exact path="/profiletourleader" element={<ProfileTourLeader/>}></Route>
         <Route exact path="/tourinfofortourleader/:category/:id" element={<ProfileTourInfoForTourLeader/>}></Route>
+        <Route exact path="/test" element={<Test/>}></Route>
         <Route exact path="*" element={ <ErrorPage/> }></Route>
      
       </Routes>
