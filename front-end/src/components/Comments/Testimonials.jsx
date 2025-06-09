@@ -28,9 +28,9 @@ const Testimonials = () => {
       setLoading(false);
     }
   };
-  return (
-    <div className="testimonials-wrapper">
-      <div className="testimonials-container">
+  return ( 
+    <div className="testimonials-wrapper overflow-x-auto scroll-smooth no-scrollbar">
+      <div className="flex testimonials-container overflow-x-auto scroll-smooth no-scrollbar">
         {/* {testimonials.map((item) => (
           <TestimonialCard key={item.id} testimonial={item} />
         ))} */}
