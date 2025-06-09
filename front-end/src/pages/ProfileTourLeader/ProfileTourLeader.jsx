@@ -1,8 +1,57 @@
 import TourLeaderPanel from "../../components/UserPanel/TourLeaderPanel";
 import './profile-tour-leader.css'
 import dropDownIcon from '../../assets/icons/dropdown.svg'
+import { useState } from 'react';
 
 const ProfileTourLeader = () => {
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setMessage(''); 
+
+        // اینجا منطق ارسال اطلاعات به بک‌اند رو اضافه می‌کنید.
+        // مثلاً با استفاده از fetch یا axios
+        try {
+            // فرض کنید اینجا داده‌ها رو از فرم می‌گیرید
+            const formData = {
+                firstName: e.target[0].value,
+                lastName: e.target[1].value,
+                nationalCode: e.target[2].value,
+                birthDate: e.target[3].value,
+                phoneNumber: e.target[4].value,
+                email: e.target[5].value,
+                province: e.target[6].value,
+                city: e.target[7].value,
+                companyName: e.target[8].value,
+                companyRegistrationNumber: e.target[9].value,
+                password: e.target[10].value,
+                confirmPassword: e.target[11].value,
+                companyAddress: e.target[12].value,
+            };
+            
+            // یک درخواست فرضی به بک‌اند
+            const response = await new Promise(resolve => setTimeout(() => {
+                // شبیه سازی موفقیت یا شکست
+                const success = true; // این رو بر اساس پاسخ واقعی بک‌اند تنظیم کنید
+                if (success) {
+                    resolve({ ok: true });
+                } else {
+                    resolve({ ok: false, status: 400 });
+                }
+            }, 1000)); 
+
+
+            if (response.ok) {
+                setMessage('اطلاعات با موفقیت تغییر یافت!');
+            } else {
+                setMessage('خطا در ارسال اطلاعات. لطفا دوباره تلاش کنید.');
+            }
+        } catch (error) {
+            setMessage('خطا در ارسال اطلاعات. لطفا دوباره تلاش کنید.');
+        }
+    };
+
     return ( 
         <>
             <div className="flex min-h-screen">
@@ -16,7 +65,7 @@ const ProfileTourLeader = () => {
                         <h3 className='!text-4xl' style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>اطلاعات حساب کاربری</h3>
                     </div>
                     <div className="flex justify-center items-center w-[52.9375rem] h-full rounded-[30px] bg-white p-[1.5rem]">
-                        <form action="submit" className="">
+                        <form onSubmit={handleSubmit} className="">
                             <div className="w-full flex flex-col gap-[1rem]" style={{ fontFamily: 'Vazirmatn', fontWeight: 700}}>
                                 <div className="flex gap-[3rem]">
                                     <div className="flex flex-col gap-[0.3rem]">
@@ -25,7 +74,7 @@ const ProfileTourLeader = () => {
                                     </div>
                                     <div className="flex flex-col gap-[0.3rem]">
                                         <label htmlFor="">نام خانوادگی</label>
-                                        <input type="text" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                        <input type="text" placeholder="محمدرضا مرادی" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
                                     </div>
                                 </div>
                                 <div className="flex gap-[3rem]">
@@ -41,7 +90,7 @@ const ProfileTourLeader = () => {
                                 <div className="flex gap-[3rem]">
                                     <div className="flex flex-col gap-[0.3rem]">
                                         <label htmlFor="phone">شماره موبایل</label>
-                                        <input name="tel" type="tel" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
+                                        <input name="tel" type="tel" placeholder="09124785500" className="w-[18rem] h-[2.5rem] border-[1.6px] border-black border-solid rounded-[8px]"/>
                                     </div>
                                     <div className="flex flex-col gap-[0.3rem]">
                                         <label htmlFor="email">ایمیل(اختیاری)</label>
@@ -91,9 +140,14 @@ const ProfileTourLeader = () => {
                                 </div>
                                 <div className="flex justify-end w-full profiletourleaderbutton">
                                     <div className="w-[10rem]">
-                                        <button className="profiletourleaderbutton bg-[var(--color-dark-blue)] text-white !w-[10rem] !h-[3rem] flex justify-center items-center">ثبت اطلاعات</button>
+                                        <button type="submit" className="profiletourleaderbutton bg-[var(--color-dark-blue)] text-white !w-[10rem] !h-[3rem] flex justify-center items-center">ثبت اطلاعات</button>
                                     </div>
                                 </div>
+                                {message && (
+                                    <p className="text-center mt-4" style={{ fontFamily: 'Vazirmatn', fontWeight: 500, color: message.includes('موفقیت') ? 'green' : 'red' }}>
+                                        {message}
+                                    </p>
+                                )}
                             </div>
                         </form>
                     </div>
