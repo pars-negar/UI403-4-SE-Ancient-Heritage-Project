@@ -189,6 +189,7 @@ class TourSerializer(serializers.ModelSerializer):
     images = TourImageSerializer(many=True, read_only=True)
     daily_schedules = DailyScheduleSerializer(many=True, read_only=True)
     reviews = ReviewSerializer(many=True, read_only=True)
+    
 
     class Meta:
         model = Tour
@@ -246,6 +247,7 @@ class TourSerializer(serializers.ModelSerializer):
         for guide in guides:
             parts.append(f"{guide['name']} - {guide['type']}")
         return '،'.join(parts)
+    
 
 
 

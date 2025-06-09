@@ -10,7 +10,16 @@ const TestimonialCard = ({ testimonial,color }) => {
       style={{ border: `2px solid ${color}` }}
     >
       <div className="testimonial-header">
-        <img src={testimonial.image} alt={testimonial.username} className="avatar" />
+        <img
+  src={
+    testimonial.profile_image
+      ? `http://localhost:8000${testimonial.profile_image}`
+      : "/default-avatar.png"
+  }
+  alt={testimonial.username}
+  className="avatar"
+/>
+
         <div className="info">
           <h3 style={{fontFamily: 'Vazirmatn', fontWeight: 700}}>{testimonial.username}</h3>
           <p className="role" style={{fontFamily: 'Vazirmatn', fontWeight: 400}}>{testimonial.user_role}</p>

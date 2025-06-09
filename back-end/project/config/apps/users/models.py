@@ -50,6 +50,10 @@ class CustomUser(AbstractUser):
         }
     )
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
+    first_name_fa = models.CharField(max_length=100, blank=True, verbose_name='نام فارسی')
+    last_name_fa = models.CharField(max_length=100, blank=True, verbose_name='نام خانوادگی فارسی')
+
+    
 
     objects = CustomUserManager()
 
@@ -73,6 +77,9 @@ class TourManagerProfile(models.Model):
     company_registration_number = models.CharField(max_length=255, blank=True, default='')
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
     company_phone_number = models.CharField(max_length=11, blank=True, default='')
+    first_name_fa = models.CharField(max_length=100, blank=True, verbose_name='نام فارسی')
+    last_name_fa = models.CharField(max_length=100, blank=True, verbose_name='نام خانوادگی فارسی')
+
 
 
     def __str__(self):

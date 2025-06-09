@@ -23,21 +23,29 @@ const TourListPage = () => {
       }, []);
 
     
-      const getTourList = async () => {
-        try {
-          const response = await axios.get("http://127.0.0.1:8000/api/homepage/tour-page");
-          if (response && response.status === 200) {
-            setAllTours(response.data.all_tours || []);
-            setLoading(false); // Change loading state to false when data is loaded
-          } else {
-            console.error("Failed to fetch data", response);
-            setLoading(false);
-          }
-        } catch (error) {
-          console.error("Error during fetch: ", error);
-          setLoading(false); // Even in case of error, set loading to false
+    const getTourList = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/homepage/tour-page");
+        if (response && response.status === 200) {
+          const toursWithCard2 = (response.data.all_tours || []).map(tour => {
+            // پیدا کردن تصویر card2
+            const card2ImageObj = tour.images?.find(img => img.image_type === "card2");
+            return {
+              ...tour,
+              card2ImageUrl: card2ImageObj ? card2ImageObj.image : null,
+            };
+          });
+          setAllTours(toursWithCard2);
+          setLoading(false);
+        } else {
+          console.error("Failed to fetch data", response);
+          setLoading(false);
         }
-      };
+      } catch (error) {
+        console.error("Error during fetch: ", error);
+        setLoading(false);
+      }
+    };
 
 
       
@@ -67,9 +75,9 @@ const TourListPage = () => {
                               key={tour.id}
                               // title={tour.title}
                               destination={tour.destination}
-                              duration={tour.duration}
+                              duration={tour.duration ? `${tour.duration} روز` : null}
                               price={tour.price}
-                              imageUrl={tour.imageUrl}
+                              imageUrl={tour.card2ImageUrl}
                           />
                       </div>
             )))}
