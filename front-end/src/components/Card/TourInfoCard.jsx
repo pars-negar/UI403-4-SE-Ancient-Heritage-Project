@@ -22,7 +22,7 @@ const TourInfoCard = ({ title, destination, duration, price, imageUrl }) => {
             <p className="text-[18px] font-bold mb-8">
             <span style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>هزینه تور:</span> {price} تومان
             </p>
-            <Link type='submit' to='/tourinformation/all-tours/1'><button className="absolute w-auto h-7 !text-[22px] flex flex-row items-center left-2.5 bottom-4  bg-[#205781]  hover:bg-[#0f3a5b] transition " style={{fontFamily: 'Gandom', fontWeight: 400}}>
+            <Link type='submit' to="/tourinfofortourleader/top_tours/3"><button className="absolute w-auto h-7 !text-[22px] flex flex-row items-center left-2.5 bottom-4  bg-[#205781]  hover:bg-[#0f3a5b] transition " style={{fontFamily: 'Gandom', fontWeight: 400}}>
             جزئیات بیشتر
             </button>
             </Link>
