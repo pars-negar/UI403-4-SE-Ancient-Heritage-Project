@@ -35,13 +35,17 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .serializers import UserBasicInfoSerializer
 
+
 class UserInfoAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
+        auth_header = request.headers.get('Authorization')
+        if auth_header:
+            print("توکن دریافت‌شده:", auth_header)  # چاپ توکن در لاگ
+
         serializer = UserBasicInfoSerializer(request.user)
         return Response(serializer.data)
-
 
 
 class DeleteAccountAPIView(APIView):
