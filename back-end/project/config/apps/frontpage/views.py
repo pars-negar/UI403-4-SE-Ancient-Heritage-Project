@@ -62,6 +62,7 @@ class TourDetailView(generics.RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = Tour.objects.all()
     serializer_class = TourSerializer
+    
 class DashboardRedirectAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
