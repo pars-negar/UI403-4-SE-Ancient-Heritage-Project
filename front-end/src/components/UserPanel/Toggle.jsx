@@ -35,12 +35,12 @@ const Toggle = () => {
             {isOpen && (
               <div className="h-auto flex flex-col">
                 <div className='flex justify-center w-full items-center pr-[1.0625rem]'>
-                    <a href="/tours/list" className="pr-[1.9375rem] no-underline text-lg px-[0.5rem] py-[0.75rem] text-black hover:bg-[var(--color-orange)] w-[22.5rem] h-[3.1875rem]">
+                    <a href="/profiletour" className="pr-[1.9375rem] no-underline text-lg px-[0.5rem] py-[0.75rem] text-black hover:bg-[var(--color-orange)] w-[22.5rem] h-[3.1875rem]">
                     لیست تورها
                     </a>
                 </div>
                 <div className='flex justify-center w-full items-center pr-[1.0625rem]'>
-                    <a href="/tours/create" className="pr-[1.9375rem] no-underline text-lg px-[0.5rem] py-[0.75rem] text-black hover:bg-[var(--color-orange)] w-[22.5rem] h-[3.1875rem]">
+                    <a href="/addtour" className="pr-[1.9375rem] no-underline text-lg px-[0.5rem] py-[0.75rem] text-black hover:bg-[var(--color-orange)] w-[22.5rem] h-[3.1875rem]">
                         ایجاد تور جدید
                     </a>
                 </div>

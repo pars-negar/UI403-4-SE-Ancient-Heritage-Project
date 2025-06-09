@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     LoginViewSet, CustomUserViewSet, UserRegisterViewSet, TourRegisterViewSet,
     PasswordResetRequestView, PasswordResetConfirmView, TourLeaderDashboardAPIView,
-    DeleteAccountAPIView
+    DeleteAccountAPIView, UserInfoAPIView
 )
 
 router = DefaultRouter()
@@ -13,6 +13,7 @@ router.register(r'userregister', UserRegisterViewSet, basename='userregister')
 router.register(r'tourregister', TourRegisterViewSet, basename='tourregister')
 
 urlpatterns = [
+    path('oneuser/', UserInfoAPIView.as_view(), name='user-info'),
     path('', include(router.urls)), 
     path('tourleaderdashboard/', TourLeaderDashboardAPIView.as_view(), name='tour-leader-dashboard'),
     path('password/reset/', PasswordResetRequestView.as_view(), name='password-reset-request'),

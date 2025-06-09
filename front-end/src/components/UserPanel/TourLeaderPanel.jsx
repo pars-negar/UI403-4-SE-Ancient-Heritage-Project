@@ -118,7 +118,7 @@ const TourLeaderPanel = () => {
                         ">
           {/* <img src={userProfile} alt="آیکون پروفایل کاربر" className="w-[1.625rem] h-[1.625rem]" /> */}
           <EditInfoIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black"/>
-          <span className="text-xl group-hover:text-black group-hover:font-bold">ویرایش اطلاعات</span>
+          <a href="/profiletourleader"><span className="text-xl group-hover:text-black group-hover:font-bold text-black ">ویرایش اطلاعات</span></a>
         </div>
         <Toggle />
         <div

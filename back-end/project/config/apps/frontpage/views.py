@@ -62,6 +62,7 @@ class TourDetailView(generics.RetrieveAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = Tour.objects.all()
     serializer_class = TourSerializer
+    
 class DashboardRedirectAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -357,7 +358,7 @@ class AttractionPageAPIView(APIView):
         search_query = request.query_params.get('search', None)
         city = request.query_params.get('city', None)
         historical_period = request.query_params.get('historical_period', None)
-
+        print(historical_period,city)
         if not (search_query or city or historical_period):
             featured = Attraction.objects.filter(category='featured').order_by('-id')[:6]
             hidden = Attraction.objects.filter(category='hidden').order_by('-id')[:6]
@@ -375,6 +376,8 @@ class AttractionPageAPIView(APIView):
             data = {
                 'search_results': self.format_attraction(request, results)
             }
+            print(historical_period)
+            print(results)
 
         return Response(data, status=status.HTTP_200_OK)
 
@@ -492,13 +495,13 @@ class SearchTourAPIView(APIView):
         destination = request.data.get('destination')
         start_date = request.data.get('start_date')
         end_date = request.data.get('end_date')
+        print("⚙️ Received Search POST:", request.data)
 
         tours = Tour.objects.all()
-
         if origin:
-            tours = tours.filter(origin__name__icontains=origin)
+            tours = tours.filter(origin__icontains=origin)
         if destination:
-            tours = tours.filter(destination__name__icontains=destination)
+            tours = tours.filter(destination__icontains=destination)
         if start_date:
             tours = tours.filter(start_date__gte=jdatetime.date.fromisoformat(start_date))
         if end_date:

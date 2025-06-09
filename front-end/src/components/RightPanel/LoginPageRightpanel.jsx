@@ -95,14 +95,16 @@ const RightPanel = () => {
           </InputGroup>
         </div>
 
-        <div className={styles.formContainer}>
-          <button
-            type="submit"
-            className={`${styles.button} !mt-[2rem]`} // Tailwind margin top
-          >
-            ورود
-          </button>
-        </div>
+        <Link to="/test">
+          <div className={styles.formContainer}>
+            <button
+              type="submit"
+              className={`${styles.button} !mt-[2rem]`} // Tailwind margin top
+            >
+              ورود
+            </button>
+          </div>
+        </Link>
       </Form>
 
       {showAlert && (
