@@ -1,5 +1,5 @@
-# در attractions/utils.py
 from .models import Attraction  
+
 def search_attractions(name=None, city=None, historical_period=None):
     queryset = Attraction.objects.all()
     
@@ -10,7 +10,9 @@ def search_attractions(name=None, city=None, historical_period=None):
         queryset = queryset.filter(city__icontains=city)
 
     if historical_period:
-        queryset = queryset.filter(historical_period=historical_period)
+        if isinstance(historical_period, str):
+            historical_period = historical_period.split(',')
+        queryset = queryset.filter(historical_period__in=historical_period)
 
     return queryset
 
