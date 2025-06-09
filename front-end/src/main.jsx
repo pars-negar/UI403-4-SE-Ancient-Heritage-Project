@@ -46,6 +46,8 @@ import TestModal from './components/Comments/TestModal.jsx';
 import TourBookingCard from './components/Card/TourBookingCard.jsx'
 import AboutUs from './pages/about us/aboutUs.jsx';
 
+import Test from './pages/Test.jsx';
+
 
 
 
@@ -107,6 +109,7 @@ createRoot(document.getElementById('root')).render(
         {/* <Route exact path="/tourlist" element={<TourList/>}></Route> */}
         <Route exact path="/profiletourleader" element={<ProfileTourLeader/>}></Route>
         <Route exact path="/tourinfofortourleader/:category/:id" element={<ProfileTourInfoForTourLeader/>}></Route>
+        <Route exact path="/test" element={<Test/>}></Route>
         <Route exact path="*" element={ <ErrorPage/> }></Route>
      
       </Routes>
