@@ -35,22 +35,18 @@ const Test = () => {
   };
 
     return ( 
-        <>
-             { loading ? (
-                <p>در حال بارگذاری...</p>
-              ) : (
-                oneUser && oneUser.map((user) => {
-                    return 
-                    <>
-                        <h1>{ oneUser.name }</h1>
-                        <h2>{ oneUser.role }</h2>
-                
-                    </>
+  <>
+    {loading ? (
+      <p>در حال بارگذاری...</p>
+    ) : (
+      <div>
+        <h1>{oneUser.username}</h1>
+        <h2>{oneUser.role}</h2>
+      </div>
+    )}
+  </>
+);
 
-                })
-            )}   
-        </>
-     );
 }
  
 export default Test;

@@ -46,7 +46,6 @@ import TestModal from './components/Comments/TestModal.jsx';
 import TourBookingCard from './components/Card/TourBookingCard.jsx'
 import AboutUs from './pages/about us/aboutUs.jsx';
 import Test from "./pages/Test"; 
-import Test from './pages/Test.jsx';
 
 
 
