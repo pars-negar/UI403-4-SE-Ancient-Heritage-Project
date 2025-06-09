@@ -22,8 +22,8 @@ const Footer = () => {
                         <img src={ instagram } alt="instagram-icon" className='w-[5rem] h-[5rem]' />
                         <img src={ telegram } alt="telegram-icon" className='w-[4rem] h-[5rem]'/>
                     </div>
-                    <div className='flex flex-col text-white' style={{fontFamily: 'Koodak', fontWeight: 700, fontSize: '1.5rem'}}>
-                        <p className='relative'>parsnegar@email.com
+                    <div className='flex flex-col text-white' style={{fontFamily: 'Koodak', fontWeight: 700, fontSize: '1.2rem'}}>
+                        <p className='relative'>parsnegar.ui403@gmail.com
                             <span 
                                 className='inline-block w-[0.15rem] h-[2rem] bg-[var(--color-orange)] absolute left-[-0.625rem]'>
                             </span>
@@ -44,11 +44,11 @@ const Footer = () => {
                             </span>
                         
                         </Link>
-                        <Link to="/" className='relative ml-[0.625rem]'>تماس با ما
+                        {/* <Link to="/" className='relative ml-[0.625rem]'>تماس با ما
                             <span 
                                 className='inline-block w-[0.15rem] h-[2rem] bg-[var(--color-orange)] absolute left-[-0.625rem]'>
                             </span>
-                        </Link>
+                        </Link> */}
                         <Link to="/aboutus">درباره ما</Link>
                     </div>
                 </ul>
