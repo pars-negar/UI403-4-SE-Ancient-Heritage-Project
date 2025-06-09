@@ -41,7 +41,7 @@ const ShoppingCart = ({ tourInfo, totalPrice, buttonLink }) => {
         </span>
       </div>
       <div className="text-center">
-        <a href={buttonLink}>
+        <a href="/zarin">
           <button
             className="bg-[#205781] hover:bg-[#1a4a6c] text-white py-2 rounded-md !w-40"
             style={{ fontFamily: "gandom", fontWeight: 500 }}
