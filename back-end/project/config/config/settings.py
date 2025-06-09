@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+
 
     # Third-party
     'rest_framework',
@@ -67,9 +69,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  
 
 ]
+
+# ───── session ─────
+SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SECURE = False
+
 
 # ───── URL & WSGI ─────
 ROOT_URLCONF = 'config.urls'
@@ -137,11 +146,16 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-'DEFAULT_PERMISSION_CLASSES': (
-    'rest_framework.permissions.AllowAny',  # ← این همه چیزو عمومی می‌کنه، توصیه نمی‌شه مگر برای پروژه تستی
-),
-
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        # اگر دوست داری، می‌تونی TokenAuthentication رو هم اینجا نگه داری
+        # 'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
+
 
 # ───── JWT Settings ─────
 SIMPLE_JWT = {
@@ -162,6 +176,9 @@ SPECTACULAR_SETTINGS = {
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 CORS_ALLOW_HEADERS = ["authorization", "content-type"]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # آدرس فرانت React تو
+]
 
 # ───── Email Settings ─────
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

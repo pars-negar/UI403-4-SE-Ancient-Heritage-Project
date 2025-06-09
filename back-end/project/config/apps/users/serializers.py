@@ -13,6 +13,15 @@ from rest_framework import serializers
 from .models import CustomUser  
 
 User = get_user_model()
+#______test______
+from rest_framework import serializers
+from .models import CustomUser
+
+class UserBasicInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'role']
+
 
 class IsNormalUser(permissions.BasePermission):
     def has_permission(self, request, view):
