@@ -33,7 +33,7 @@ const RightPanel = () => {
       localStorage.setItem("access_token", access);
       localStorage.setItem("refresh_token", refresh);
 
-      navigate("/test"); // ورود موفق → برو به صفحه اصلی یا کاربری
+      navigate("/"); // ورود موفق → برو به صفحه اصلی یا کاربری
     } catch (error) {
       if (error.response?.data?.error) {
         setAlertMessage(error.response.data.error);
