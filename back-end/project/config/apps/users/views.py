@@ -30,15 +30,12 @@ logger = logging.getLogger(__name__)
 
 
 class DeleteAccountAPIView(APIView):
-                # درخواست فرانت به صورت: 
-                #    Endpoint: DELETE /account/delete/
-
-                # نیاز به هیچ body نداره.
-
-                # فقط توکن احراز هویت توی header باشه (Authorization: Token ... یا Bearer ...)
     permission_classes = [IsAuthenticated]
 
     def delete(self, request):
+        print("[Token Header]:", request.headers.get('Authorization'))
+        print("[Authenticated User]:", request.user)
+
         user = request.user
         user.delete()
         return Response({"detail": "حساب کاربری با موفقیت حذف شد."}, status=status.HTTP_204_NO_CONTENT)
@@ -66,7 +63,7 @@ class LoginViewSet(viewsets.ViewSet):
 
 # Read-only view for all users
 class CustomUserViewSet(viewsets.ReadOnlyModelViewSet):
-    #permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
 
@@ -228,6 +225,9 @@ class TourLeaderDashboardAPIView(UserInfoAppendMixin, APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
+        print("[Token Header]:", request.headers.get('Authorization'))
+        print("[Authenticated User]:", request.user)
+
         if request.user.role != 'tour_manager':
             return Response({'detail': 'دسترسی غیرمجاز'}, status=status.HTTP_403_FORBIDDEN)
 
@@ -236,6 +236,9 @@ class TourLeaderDashboardAPIView(UserInfoAppendMixin, APIView):
         return self.append_user_info(response, request)
 
     def patch(self, request):
+        print("[Token Header]:", request.headers.get('Authorization'))
+        print("[Authenticated User]:", request.user)
+
         if request.user.role != 'tour_manager':
             return Response({'detail': 'دسترسی غیرمجاز'}, status=status.HTTP_403_FORBIDDEN)
 

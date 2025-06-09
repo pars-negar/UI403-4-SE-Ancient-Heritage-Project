@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Search } from "lucide-react";
+
 
 const periods = [
   "دوره‌ی هخامنشیان",
@@ -11,20 +12,56 @@ const periods = [
   "دوره‌ی تیموریان",
   "دوره‌ی ایلخانیان",
 ];
+const PERSIAN_TO_CODE = {
+  "دوره‌ی هخامنشیان": "Achaemenid",
+  "دوره‌ی اشکانیان": "Parthian",
+  "دوره‌ی ساسانیان": "Sassanid",
+  "دوره‌ی صفویان": "Safavid",
+  "دوره‌ی قاجار": "Qajar",
+  "دوره‌ی سلجوقیان": "Seljuk",
+  "دوره‌ی تیموریان": "Timurid",
+  "دوره‌ی ایلخانیان": "Ilkhanid",
+};
+
 
 function SearchFilter(props) {
   const cities = props.cities || [];
-  const [selectedPeriods, setSelectedPeriods] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedProvince, setSelectedProvince] = useState('');
 
-  const togglePeriod = (period) => {
-    setSelectedPeriods((prev) =>
-      prev.includes(period)
-        ? prev.filter((p) => p !== period)
-        : [...prev, period]
-    );
-  };
+  const [selectedPeriods, setSelectedPeriods] = useState(props.search?.periods || []);
+  const [searchTerm, setSearchTerm] = useState(props.search?.term || '');
+  const [selectedProvince, setSelectedProvince] = useState(props.search?.province || '');
+console.log("🟡 مقدار جستجو در زمان کلیک:", {
+  term: searchTerm,
+  province: selectedProvince,
+  periods: selectedPeriods
+});
+
+  useEffect(() => {
+  props.setSearch({
+    term: searchTerm,
+    province: selectedProvince,
+    periods: selectedPeriods
+  });
+}, [searchTerm, selectedProvince, selectedPeriods]);
+
+
+console.log(props)
+useEffect(() => {
+  setSelectedProvince(props.search?.province || '');
+  setSelectedPeriods(props.search?.periods || []);
+  setSearchTerm(props.search?.term || '');  // اضافه کن این خط رو
+}, [props.search]);
+
+
+    const togglePeriod = (persianPeriod) => {
+      const code = PERSIAN_TO_CODE[persianPeriod];
+      setSelectedPeriods((prev) =>
+        prev.includes(code)
+          ? prev.filter((p) => p !== code)
+          : [...prev, code]
+      );
+    };
+
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -83,12 +120,13 @@ function SearchFilter(props) {
             <span className="block !text-xs text-blue-700 !mt-1 whitespace-nowrap">(فیلترها {selectedPeriods.length})</span>
         </div>
         <div className="flex-1 grid grid-cols-4 !gap-x-3 !gap-y-3"> 
-          {periods.map((period) => {
-            const selected = selectedPeriods.includes(period);
+          {periods.map((persianPeriod) => {
+            const code = PERSIAN_TO_CODE[persianPeriod];
+            const selected = selectedPeriods.includes(code);
             return (
               <button
-                key={period}
-                onClick={() => togglePeriod(period)}
+                key={code}
+                onClick={() => togglePeriod(persianPeriod)}
                 className={`
                   !text-xs !px-2 !py-2 !rounded-lg !border !transition-all !duration-200 !w-full !text-center
                   focus:!outline-none focus:!ring-2 focus:!ring-offset-1
@@ -98,10 +136,11 @@ function SearchFilter(props) {
                   }
                 `}
               >
-                {period}
+                {persianPeriod}
               </button>
             );
           })}
+
         </div>
       </div>
     </div>
