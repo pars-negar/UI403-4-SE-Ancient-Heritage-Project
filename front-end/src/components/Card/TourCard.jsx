@@ -45,8 +45,8 @@ const TourCard = ( {tour, isTop} ) => {
             </p>
             
 
-            <Link to={`/tourinformation/${isTop ? `top/3` : `latest/3`}`}><button className={styles.more_info_button}>جزئیات بیشتر</button></Link>
-            
+            <Link to="/tourlistpage"><button className={styles.more_info_button}>جزئیات بیشتر</button></Link>
+            {/* to={`/tourinformation/${isTop ? `top/3` : `latest/3`}`} */}
           </div>
         </div>
       </div>

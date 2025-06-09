@@ -78,7 +78,7 @@ const UserPanel = () => {
             >
           {/* <img src={home} alt="آیکون خانه" className="w-[1.625rem] h-[1.625rem]" /> */}
           <HomeIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black"/>
-          <span className="text-xl group-hover:text-black group-hover:font-bold">صفحه اصلی</span>
+          <a href="/"><span className="text-xl group-hover:text-black group-hover:font-bold">صفحه اصلی</span></a>
         </div>
         <div className="relative 
                         h-[3.2875rem] 
