@@ -28,6 +28,8 @@ const PlacesPage = () => {
  console.log("filtering with search:", search);
 const getData = async () => {
   setLoading(true);
+  const token = localStorage.getItem('accessToken');
+
   console.log("🟢 sending request with:", {
     term: search.term,
     province: search.province,
@@ -36,8 +38,12 @@ const getData = async () => {
 
   try {
     const response = await axios.get(
+      
       "http://127.0.0.1:8000/api/homepage/attraction-page/",
       {
+          headers: {
+    Authorization: `Bearer ${token}`,  // حتماً 'Bearer' باشد
+  },
 params: {
   search: search.term,
   city: search.province,  // چون بک‌اند انتظار city داره نه province
@@ -67,8 +73,14 @@ params: {
 
 
 const getCities = async () => {
+  const token = localStorage.getItem('accessToken'); 
   try {
-    const response = await axios.get("http://127.0.0.1:8000/api/homepage/places/cities/");
+      const response = await axios.get("http://127.0.0.1:8000/api/homepage/places/cities/", {
+        headers: {
+          Authorization: `Bearer ${token}`,  // حتماً 'Bearer' باشد
+        }
+      });
+
     if (response.status === 200) {
       console.log("🔍 response.data:", response.data);
       if (Array.isArray(response.data.cities) && response.data.cities.length > 0) {
