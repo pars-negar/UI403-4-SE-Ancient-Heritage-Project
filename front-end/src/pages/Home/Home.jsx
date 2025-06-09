@@ -34,6 +34,7 @@ const Home = () => {
   
   const scrollLeft = () => {
     if (scrollRef.current) {
+      // console.log( scrollRef )
       scrollRef.current.scrollBy({
         left: -scrollAmount,
         behavior: "smooth",
