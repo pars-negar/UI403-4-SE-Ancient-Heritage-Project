@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-// import axios from "axios"; // نیازی به axios نیست چون اطلاعات از سرور نمیگیریم
-// import { jwtDecode } from 'jwt-decode'; // نیازی به jwtDecode نیست
 
 import logoUrl from "../../assets/icons/logo.svg";
 import "./navbar.css";
 import '../../index.css';
+
+import loginUserAvatar from '../../assets/icons/login-user-avatar.svg'
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -64,34 +64,65 @@ const Navbar = () => {
                     <Link to="/place">جاذبه‌ها</Link>
                     {/* این لینک رو میتونیم بر اساس نقش شبیه سازی شده نمایش بدیم */}
                     {/* {user.role === "tour_leader" && <Link to="/addtour">اضافه کردن تور</Link>} */}
-                    <Link to="/addtour">اضافه کردن تور</Link> {/* فعلا بدون شرط نقش نمایش میدیم */}
                     <Link to="/aboutus">درباره‌‌ما</Link>
                 </div>
             </ul>
 
             {isLoggedIn ? (
-                // اگر کاربر وارد شده بود (isLoggedIn = true):
-                <div className="flex flex-col gap-[0.75rem] items-end">
-                    <h3>سلام {user.username}</h3>
-                    <p>نقش: {user.role}</p> {/* نقش شبیه سازی شده */}
-                    <button
-                        onClick={handleLogout} // با کلیک روی دکمه، تابع handleLogout اجرا میشه
-                        className="
-                            bg-red-500 // رنگ دکمه خروج
-                            text-white
-                            text-base
-                            font-bold
-                            py-2 px-4
-                            rounded-[40px]
-                            whitespace-nowrap
-                            "
-                        style={{
-                            fontFamily: 'Gandom',
-                            cursor: 'pointer'
-                        }}
-                    >
-                        خروج از حساب کاربری
-                    </button>
+                <div className="flex !items-center justify-center gap-[3rem]">
+                    <div>
+                            <a
+                            href="/profiletourleader"
+                            className="
+                                w-12
+                                h-12
+                                rounded-full
+                                flex
+                                items-center
+                                justify-center
+                                text-white
+                                text-lg
+                                font-bold
+                                "
+                            style={{
+                                backgroundImage: `url(${ loginUserAvatar })`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                            }}
+                        >
+                            <img src={ loginUserAvatar } alt="" />
+                            <span className="
+                                text-[1.4rem]
+                                "
+                                style={{
+                                    fontFamily: 'Koodak',
+                                    fontWeight: '700'
+                                }}>&#x2B;</span>
+                        </a>
+                    </div>
+                    <div className="flex gap-[0.5rem] items-end">
+                        <button
+                            onClick={handleLogout}
+                            className="
+                                bg-red-500 // رنگ دکمه خروج
+                                text-white
+                                text-base
+                                font-bold
+                                py-2 px-4
+                                !w-40
+                                rounded-[40px]
+                                whitespace-nowrap
+                                flex
+                                justify-center
+                                "
+                            style={{
+                                fontFamily: 'Gandom',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            خروج از حساب کاربری
+                        </button>
+                    </div>
                 </div>
             ) : (
                 // اگر کاربر وارد نشده بود (isLoggedIn = false):
@@ -115,36 +146,7 @@ const Navbar = () => {
                 </Link>
             )}
 
-            <a
-                href="/some-path"
-                className="
-                    ml-4
-                    w-12
-                    h-12
-                    rounded-full
-                    bg-blue-500
-                    flex
-                    items-center
-                    justify-center
-                    text-white
-                    text-lg
-                    font-bold
-                    "
-                style={{
-                    position: 'absolute',
-                    left: '20px',
-                    top: '50%',
-                    transform: 'translateY(-50%)'
-                }}
-            >
-                <span className="
-                    text-[1.4rem]
-                    "
-                    style={{
-                        fontFamily: 'Koodak',
-                        fontWeight: '700'
-                    }}>&#x2B;</span>
-            </a>
+           
             <hr className="border !border-[var(--color-brown)] opacity-100 w-full h-[0.1rem] m-0" />
         </nav>
     );
