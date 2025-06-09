@@ -4,6 +4,7 @@ from .models import SiteComment, TourComment
 class SiteCommentSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
     user_role = serializers.CharField(source='get_user_role_display', read_only=True)
+    profile_image = serializers.SerializerMethodField()
 
     class Meta:
         model = SiteComment
@@ -15,9 +16,17 @@ class SiteCommentSerializer(serializers.ModelSerializer):
             'comment',
             'rating',
             'created_at',
+            'profile_image',
         ]
-        read_only_fields = ['user', 'username', 'user_role', 'created_at']
+        read_only_fields = ['user', 'username', 'user_role', 'created_at', 'profile_image']
 
+    def get_profile_image(self, obj):
+        user = obj.user
+        if user.role == 'tour_manager' and hasattr(user, 'tour_manager_profile') and user.tour_manager_profile.profile_image:
+            return user.tour_manager_profile.profile_image.url
+        elif user.profile_image:
+            return user.profile_image.url
+        return None
 class TourCommentSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
     tour_name = serializers.CharField(source='tour.tour_name', read_only=True)

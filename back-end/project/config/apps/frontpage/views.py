@@ -289,16 +289,17 @@ class HomePageAPIView(APIView):
 
 
 
+from datetime import datetime
+
 class TourPageAPIView(APIView):
     permission_classes = [permissions.AllowAny]
-
+    
     def get(self, request):
         origin = request.query_params.get('origin')
         destination = request.query_params.get('destination')
         start_date = request.query_params.get('start_date')
         end_date = request.query_params.get('end_date')
-
-        # اگر حداقل یکی از فیلدها ارسال شده باشد، جستجو انجام بده
+        
         if origin or destination or start_date or end_date:
             search_results = search_tours(
                 origin=origin,
@@ -306,22 +307,32 @@ class TourPageAPIView(APIView):
                 start_date=start_date,
                 end_date=end_date
             )
-            data = {
-                'search_results': TourSerializer(search_results, many=True).data
-            }
+            serialized_data = TourSerializer(search_results, many=True, context={'request': request}).data
         else:
             top_tours = Tour.objects.order_by('-price')[:3]
             recent_tours = Tour.objects.order_by('-start_date')[:3]
             all_tours = Tour.objects.all()
 
-            data = {
-                'top_tours': TourSerializer(top_tours, many=True).data,
-                'recent_tours': TourSerializer(recent_tours, many=True).data,
-                'all_tours': TourSerializer(all_tours, many=True).data,
+            # اینجا همه تورها رو serialize می‌کنیم
+            serialized_data = {
+                'top_tours': TourSerializer(top_tours, many=True, context={'request': request}).data,
+                'recent_tours': TourSerializer(recent_tours, many=True, context={'request': request}).data,
+                'all_tours': TourSerializer(all_tours, many=True, context={'request': request}).data,
             }
+        
+        # فرض کنیم میخوای روی all_tours که دیکشنری هست duration اضافه کنی:
+        if 'all_tours' in serialized_data:
+            for tour in serialized_data['all_tours']:
+                try:
+                    start = datetime.strptime(tour['start_date'], '%Y-%m-%d').date()
+                    end = datetime.strptime(tour['end_date'], '%Y-%m-%d').date()
+                    tour['duration'] = (end - start).days + 1
+                except Exception:
+                    tour['duration'] = None
+        
+        # همین کار رو می‌تونی برای search_results هم انجام بدی اگر لازم بود
 
-        return Response(data, status=status.HTTP_200_OK)
-
+        return Response(serialized_data, status=status.HTTP_200_OK)
 
 from apps.tour.utils import search_attractions 
 

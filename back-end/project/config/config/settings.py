@@ -31,11 +31,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
     # Third-party
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_spectacular',
+    'corsheaders',
     'jalali_date',
 
     # Custom apps
@@ -67,16 +67,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ]
-
-# ───── session ─────
-SESSION_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SAMESITE = 'Lax'
-CSRF_COOKIE_SECURE = False
-
 
 # ───── URL & WSGI ─────
 ROOT_URLCONF = 'config.urls'
@@ -141,15 +134,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ───── Django REST Framework ─────
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-}
+    ),
+'DEFAULT_PERMISSION_CLASSES': (
+    'rest_framework.permissions.AllowAny',  # ← این همه چیزو عمومی می‌کنه، توصیه نمی‌شه مگر برای پروژه تستی
+),
 
+}
 
 # ───── JWT Settings ─────
 SIMPLE_JWT = {
@@ -170,9 +162,6 @@ SPECTACULAR_SETTINGS = {
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 CORS_ALLOW_HEADERS = ["authorization", "content-type"]
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # آدرس فرانت React تو
-]
 
 # ───── Email Settings ─────
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

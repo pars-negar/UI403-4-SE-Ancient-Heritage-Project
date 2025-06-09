@@ -47,7 +47,6 @@ class TestCustomUserAndTourManagerProfile:
         # حذف پروفایل ساخته شده توسط سیگنال
         TourManagerProfile.objects.filter(user=user).delete()
 
-        # ایجاد دستی پروفایل
         TourManagerProfile.objects.create(
             user=user,
             company_name="Example Company",
@@ -55,7 +54,6 @@ class TestCustomUserAndTourManagerProfile:
             company_registration_number="123456"
         )
 
-        # ذخیره مجدد کاربر نباید پروفایل جدید بسازد
         user.save()
         profiles = TourManagerProfile.objects.filter(user=user)
         assert profiles.count() == 1
@@ -71,7 +69,7 @@ class TestCustomUserAndTourManagerProfile:
         with pytest.raises(ValidationError):
             User.objects.create_user(
                 username="seconduser",
-                email="duplicate@example.com",  # ایمیل تکراری
+                email="duplicate@example.com", 
                 phone_number="09120000005",
                 password="StrongPass123!"
             )
