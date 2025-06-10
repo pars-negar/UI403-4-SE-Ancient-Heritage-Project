@@ -428,7 +428,7 @@ class AttractionDetailAPIView(RetrieveAPIView):
 
 
 class TourReservationAPIView(APIView):
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
     @transaction.atomic
     def post(self, request):
