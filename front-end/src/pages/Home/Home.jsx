@@ -28,7 +28,6 @@ const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
 
-  // تعریف ref ها و توابع اسکرول بر اساس کد صحیح شما
   const attractionsScrollRef = useRef(null);
   const commentsScrollRef = useRef(null);
   const scrollAmount = 350;
@@ -100,42 +99,36 @@ const Home = () => {
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
 
-  // این تابع با منطق کامل ارسال به API جایگزین شده است
-  const handleCommentSubmit = async (data) => { // data همان آبجکت { comment, rating } است
-    const token = localStorage.getItem('authToken'); // کلید توکن خود را که هنگام لاگین ذخیره کرده‌اید وارد کنید
+  const handleCommentSubmit = async (data) => {
+    const token = localStorage.getItem('access_token');
 
     if (!token) {
-        alert('برای ثبت نظر، ابتدا باید وارد شوید.');
-        return;
+      alert('برای ثبت نظر، ابتدا باید وارد شوید.');
+      throw new Error('User is not authenticated.');
     }
 
     try {
-        const response = await axios.post(
-            'http://127.0.0.1:8000/api/comment/site_comments/', // اندپوینت بک‌اند برای ساخت کامنت جدید
-            {
-                comment: data.comment,
-                rating: data.rating
-            },
-            {
-                headers: {
-                    // فرمت هدر Authorization را مطابق با بک‌اند خود تنظیم کنید ('Token ...' یا 'Bearer ...')
-                    'Authorization': `Token ${token}`
-                }
-            }
-        );
+      await axios.post(
+          'http://127.0.0.1:8000/api/comment/site-comments/',
+          {
+              comment: data.comment,
+              rating: data.rating
+          },
+          // ✅✅✅ بازگرداندن هدر به حالت صحیح
+          {
+              headers: {
+                  // اگر از JWT استفاده می‌کنید 'Bearer' و اگر از توکن پیش‌فرض DRF استفاده می‌کنید 'Token' صحیح است
+                  'Authorization': `Bearer ${token}` 
+              }
+          }
+      );
 
-        // اگر درخواست موفقیت آمیز باشد
-        alert('نظر شما با موفقیت ثبت شد.');
-        handleCloseModal(); // بستن مودال
-
-        // نکته: برای دیدن نظر جدید، باید لیست کامنت‌ها را مجددا بارگذاری کنید
-        // این کار معمولا با فراخوانی دوباره تابعی که کامنت‌ها را از سرور می‌گیرد، انجام می‌شود.
-        console.log('کامنت جدید اضافه شد:', response.data);
-        
+      // اگر موفق شد، مودال پیغام موفقیت را نشان می‌دهد
+      
     } catch (error) {
-        // مدیریت خطا
-        console.error("خطا در ارسال نظر:", error.response ? error.response.data : error.message);
-        alert("متاسفانه در ثبت نظر شما مشکلی پیش آمد. لطفاً دوباره تلاش کنید.");
+      console.error("خطا در ارسال نظر:", error.response ? error.response.data : error.message);
+      alert("متاسفانه در ثبت نظر شما مشکلی پیش آمد. لطفاً دوباره تلاش کنید.");
+      throw error;
     }
   };
 
