@@ -43,10 +43,10 @@ const Tabs = ({ labels = [], children }) => {
           ))}
         </div>
         {/* <Link to={`/tour/${tour.id}`}> */}
-        <Link to=''>
+        {/* <Link to="/tourlistonly">
           <button className=" bg-[#ffffff] text-[#f58119]"
           style={{width:"100%", border: "2px solid #f58119", color: "#f58119", padding: "10px 12px", fontSize: "16px", fontFamily: "vazirmatn"}}>مشاهده بیشتر</button>
-        </Link>
+        </Link> */}
       </div>
       {/* Content */}
       <div className="p-4   bg-white text-black">
