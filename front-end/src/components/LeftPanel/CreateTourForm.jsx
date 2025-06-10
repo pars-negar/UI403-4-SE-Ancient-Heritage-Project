@@ -303,43 +303,6 @@ const CreateTourForm = ({ token }) => {
         />
       </label>
 
-          {/* تصاویر دیگر تور */}
-    <div className="mb-4">
-      <label className="block font-semibold mb-2">تصاویر دیگر تور:</label>
-
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => {
-          const file = e.target.files[0];
-          if (file) {
-            setImages(prev => [...prev, { image: file, title: '' }]);
-          }
-        }}
-        className="mb-2"
-      />
-
-      <input
-        type="text"
-        placeholder="عنوان تصویر"
-        className="w-full border rounded p-2 mb-2"
-        onChange={(e) => {
-          const updated = [...images];
-          if (updated.length > 0) {
-            updated[updated.length - 1].title = e.target.value;
-            setImages(updated);
-          }
-        }}
-      />
-
-      {/* نمایش لیست تصاویر انتخاب شده */}
-      {images.map((img, idx) => (
-        <div key={idx} className="text-sm text-gray-700">
-          تصویر {idx + 1}: {img.title || '(بدون عنوان)'}
-        </div>
-      ))}
-    </div>
-
       {/* جاذبه‌ها */}
       <label className="block mb-2">
         جاذبه‌ها (شناسه‌ها را با کاما جدا کنید):
