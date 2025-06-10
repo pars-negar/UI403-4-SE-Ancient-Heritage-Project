@@ -42,7 +42,11 @@ class UserInfoAPIView(APIView):
     def get(self, request):
         auth_header = request.headers.get('Authorization')
         if auth_header:
-            print("توکن دریافت‌شده:", auth_header)  # چاپ توکن
+            print("توکن دریافت‌شده:", auth_header)
+        else:
+            print("توکن دریافت نشد")
+
+        serializer = UserBasicInfoSerializer(request.user, context={'request': request})
 
         serializer = UserBasicInfoSerializer(request.user)
         print("اطلاعات کاربر:", serializer.data)  # چاپ اطلاعات کاربر

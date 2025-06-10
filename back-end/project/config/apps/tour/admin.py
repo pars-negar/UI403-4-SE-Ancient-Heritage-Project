@@ -68,8 +68,9 @@ class DailyScheduleInline(admin.TabularInline):
 class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     form = TourAdminForm
     list_display = (
-        'tour_name', 'price', 'start_date', 'end_date', 'capacity', 'tour_manager'
-    )
+    'id', 'tour_name', 'category', 'price', 'start_date', 'end_date', 'capacity', 'tour_manager'
+)
+
     search_fields = ('tour_name', 'tour_manager__username', 'origin', 'destination')
     list_filter = ('start_date', 'end_date', 'tour_manager', 'related_tours')
     fields = (
@@ -78,7 +79,7 @@ class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
         'meal_details', 'transportation', 'tour_guides_info', 'accommodation',
         'company_name', 'company_address', 'company_phone', 'company_email',
         'company_website', 'travel_insurance', 'tourism_services',
-        'related_tours', 'tour_manager' , 'category',  'rating',
+        'related_tours', 'tour_manager' , 'category',  'rating', 'attractions',
     )
     inlines = [TourImageInline, DailyScheduleInline]
 

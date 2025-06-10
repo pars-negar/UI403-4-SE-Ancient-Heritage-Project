@@ -100,7 +100,11 @@ class Tour(models.Model):
 
     related_tours = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='similar_tours')
     rating = models.PositiveSmallIntegerField(default=0)
-
+    
+    @property
+    def duration(self):
+        return (self.end_date - self.start_date).days + 1
+    
     def __str__(self):
         return self.tour_name
 

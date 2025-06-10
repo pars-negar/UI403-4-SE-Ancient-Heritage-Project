@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import TourFilterSerializer, TourSerializer , AttractionSerializer,TourCreateSerializer, TourDetailSerializer
+from .serializers import TourFilterSerializer, TourSerializer , AttractionSerializer,TourCreateSerializer
 from .models import Attraction
 from rest_framework import viewsets
 from rest_framework.response import Response

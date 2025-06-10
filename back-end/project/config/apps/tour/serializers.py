@@ -5,25 +5,62 @@ from .models import Tour
 from .models import AttractionImage,TourImage,DailySchedule,Review
 from apps.users.models import TourManagerProfile
 
+from rest_framework import serializers
+from .models import Tour, TourImage, DailySchedule
+
+class TourImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TourImage
+        fields = ['id', 'image', 'image_type']
+
+class DailyScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DailySchedule
+        fields = ['id', 'day_number', 'title', 'description', 'image']
 
 class TourCreateSerializer(serializers.ModelSerializer):
     tour_manager = serializers.PrimaryKeyRelatedField(read_only=True)
+    attractions = serializers.PrimaryKeyRelatedField(many=True, queryset=Attraction.objects.all())
+    tour_guides_info = serializers.JSONField(required=False)  # چون TextField ذخیره میکنه، اینجا JSON میگیریم
+    images = TourImageSerializer(many=True, required=False)
+    daily_schedules = DailyScheduleSerializer(many=True, required=False)
 
     class Meta:
         model = Tour
-        fields = [field.name for field in Tour._meta.fields if field.name != 'related_tours']
+        fields = [field.name for field in Tour._meta.fields if field.name != 'related_tours'] + ['images', 'daily_schedules', 'attractions']
 
     def validate(self, data):
-        if data['end_date'] < data['start_date']:
+        start = data.get('start_date')
+        end = data.get('end_date')
+        if start and end and end < start:
             raise serializers.ValidationError("تاریخ بازگشت نمی‌تواند قبل از تاریخ شروع باشد.")
         return data
 
     def create(self, validated_data):
+        images_data = validated_data.pop('images', [])
+        schedules_data = validated_data.pop('daily_schedules', [])
+        attractions_data = validated_data.pop('attractions', [])
+
+        # کاربر رو از کانتکست میگیریم و ست میکنیم
         request = self.context.get('request')
         if request and request.user.is_authenticated:
             validated_data['tour_manager'] = request.user
-        return super().create(validated_data)
 
+        # ساخت تور اصلی
+        tour = Tour.objects.create(**validated_data)
+
+        # افزودن جاذبه‌ها (M2M) - اگر آی‌دی بودن، باید دوباره کوئری کنیم
+        tour.attractions.set(attractions_data)
+
+        # افزودن تصاویر
+        for image_data in images_data:
+            TourImage.objects.create(tour=tour, **image_data)
+
+        # افزودن برنامه‌های روزانه
+        for schedule_data in schedules_data:
+            DailySchedule.objects.create(tour=tour, **schedule_data)
+
+        return tour
 
 class TourUpdateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -41,7 +78,7 @@ class TourListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tour
-        fields = ['id', 'tour_name', 'destination', 'start_date', 'end_date', 'price', 'card2_image']
+        fields = ['id', 'tour_name', 'destination', 'start_date', 'end_date', 'price', 'card2_image','duration',]
 
     def get_card2_image(self, obj):
         image = obj.images.filter(image_type='card2').first()
@@ -63,16 +100,15 @@ class TourDetailSerializer(serializers.ModelSerializer):
     daily_schedules = serializers.SerializerMethodField()
     tour_manager_profile = serializers.SerializerMethodField()
     tour_guides = serializers.SerializerMethodField()
+    duration = serializers.SerializerMethodField()
+    attractions = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Tour
-        fields = [
-            'id', 'tour_name', 'description', 'start_date', 'end_date', 'departure_time', 'return_time',
-            'price', 'capacity', 'origin', 'destination', 'main_image', 'accommodation', 'meal_details',
-            'transportation', 'travel_insurance', 'tourism_services', 'tour_guides',
-            'company_name', 'company_address', 'company_phone', 'company_email', 'company_website',
-            'images', 'daily_schedules', 'tour_manager_profile'
-        ]
+        fields = '__all__' 
+    
+    def get_duration(self, obj):
+        return obj.duration
 
     def get_images(self, obj):
         request = self.context.get('request')
@@ -190,23 +226,20 @@ class TourSerializer(serializers.ModelSerializer):
     meals = serializers.JSONField(required=False)
     guides = serializers.JSONField(required=False)
     services = serializers.ListField(child=serializers.CharField(), required=False)
-
+    attractions = serializers.StringRelatedField(many=True)
     images = TourImageSerializer(many=True, read_only=True)
     daily_schedules = DailyScheduleSerializer(many=True, read_only=True)
     reviews = ReviewSerializer(many=True, read_only=True)
-
+    duration = serializers.SerializerMethodField()
     # اضافه کردن فیلد مربوط به پروفایل مسئول تور
     tour_manager_profile = serializers.SerializerMethodField()
 
     class Meta:
         model = Tour
-        fields = [
-            'id', 'tour_name', 'origin', 'destination', 'start_date', 'end_date',
-            'price', 'description', 'main_image', 'images',
-            'meals', 'guides', 'services',
-            'daily_schedules', 'reviews', 'transportation', 'travel_insurance', 'accommodation', 'company_name',
-            'tour_manager_profile'  # اضافه شد
-        ]
+        fields = '__all__' 
+        
+    def get_duration(self, obj):
+        return obj.duration
 
     def get_tour_manager_profile(self, obj):
         if obj.tour_manager and hasattr(obj.tour_manager, 'tour_manager_profile'):
