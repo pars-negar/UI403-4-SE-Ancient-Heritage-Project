@@ -45,7 +45,7 @@ const TourLeaderPanel = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const token = localStorage.getItem('access_token');  // این خط خیلی مهمه، تعریف توکن
+      const token = localStorage.getItem('access_token');
 
       if (!token) {
         console.error('توکن یافت نشد، لطفاً وارد شوید.');
@@ -55,7 +55,7 @@ const TourLeaderPanel = () => {
 
       try {
         const response = await axios.get('http://127.0.0.1:8000/api/users/oneuser/', {
-          headers: { Authorization: `Bearer ${token}` }  // فقط یک headers استفاده شده
+          headers: { Authorization: `Bearer ${token}` }
         });
 
         if (response.status === 200) {
@@ -72,6 +72,8 @@ const TourLeaderPanel = () => {
 
     fetchUserData();
   }, []);
+
+  const baseUrl = "http://127.0.0.1:8000"; // دامنه سرور که عکس‌ها رو سرو می‌کنه
 
   if (loading) {
     return (
@@ -93,7 +95,11 @@ const TourLeaderPanel = () => {
       </div>
 
       <div className="flex flex-col justify-center w-full h-auto mt-[2rem] items-center">
-        <img src={userAvatar} alt="آواتار کاربر" className="w-[8.75rem] h-[8.75rem] rounded" />
+        <img
+          src={userData && userData.profile_image ? `${baseUrl}${userData.profile_image}` : userAvatar}
+          alt="آواتار کاربر"
+          className="w-[8.75rem] h-[8.75rem] rounded-full" 
+        />
         <h4 className="!text-3xl !font-bold !mt-[0.875rem]" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>
           {userData ? userData.username : 'نامشخص'}
         </h4>

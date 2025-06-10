@@ -14,14 +14,25 @@ from .models import CustomUser
 
 User = get_user_model()
 #______test______
-from rest_framework import serializers
-from .models import CustomUser
+from django.conf import settings
 
 class UserBasicInfoSerializer(serializers.ModelSerializer):
+    profile_image = serializers.SerializerMethodField()
+
     class Meta:
         model = CustomUser
-        fields = ['username', 'role']
+        fields = ['username', 'role', 'profile_image']
 
+    def get_profile_image(self, obj):
+        request = self.context.get('request')
+        if obj.profile_image:
+            # اگر درخواست موجود باشه، URL کامل بساز (با دامنه و پروتکل)
+            if request is not None:
+                return request.build_absolute_uri(obj.profile_image.url)
+            # اگر درخواست نیست، فقط URL نسبی عکس رو برگردون
+            return obj.profile_image.url
+        # اگر عکس نداشت، مقدار None یا رشته خالی برگردون
+        return None
 
 class IsNormalUser(permissions.BasePermission):
     def has_permission(self, request, view):
