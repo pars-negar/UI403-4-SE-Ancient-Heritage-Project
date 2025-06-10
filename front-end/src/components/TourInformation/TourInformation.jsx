@@ -237,10 +237,8 @@ const TourInformation = () => {
               </div>
             </div>
           </div>
-          {/* اینجا میخواهم کد را اضافه کنی */}
-          {/* ================= کد جدید برای اطلاعات تور ================= */}
           <div
-            className="w-[80%] mx-auto mt-16 text-right"
+            className="w-[80%] mx-auto mt-16 mb-16 text-right"
             style={{ fontFamily: "Vazirmatn" }}
           >
             {/* بخش اطلاعات مسئول تور */}
@@ -248,6 +246,13 @@ const TourInformation = () => {
               <div className="mb-12">
                 <h3 className="text-3xl font-bold mb-6">اطلاعات مسئول تور</h3>
                 <div className="flex items-center justify-between p-6 bg-gray-50 rounded-lg">
+                  <div>
+                    <img
+                      src={tour.tour_manager_info.profile_image}
+                      alt={`عکس ${tour.tour_manager_info.username}`}
+                      className="w-40 h-40 rounded-full object-cover border-4 border-orange-300"
+                    />
+                  </div>
                   <div className="text-xl leading-10">
                     <p>
                       <span className="font-semibold">مسئول تور: </span>
@@ -261,28 +266,20 @@ const TourInformation = () => {
                       <span className="font-semibold">ایمیل: </span>
                       {tour.tour_manager_info.email}
                     </p>
-                    {/* این بخش در جیسان نبود و به صورت ثابت اضافه شد */}
                     <p>با ۸ سال سابقه در اجرای تورهای اصفهان و شهرهای مرکزی</p>
-                  </div>
-                  <div>
-                    <img
-                      src={tour.tour_manager_info.profile_image}
-                      alt={`عکس ${tour.tour_manager_info.username}`}
-                      className="w-40 h-40 rounded-full object-cover border-4 border-orange-300"
-                    />
                   </div>
                 </div>
               </div>
             )}
 
             {/* بخش راهنمایان تور */}
-            {tour.tour_guides_info && tour.tour_guides_info.length > 0 && (
+            {Array.isArray(tour.guides) && tour.guides.length > 0 && (
               <div className="mb-12">
                 <h3 className="text-3xl font-bold mb-6">راهنمایان تور</h3>
                 <div className="p-6 bg-gray-50 rounded-lg text-xl leading-9">
-                  {tour.tour_guides_info.map((guide, index) => (
+                  {tour.guides.map((guide, index) => (
                     <p key={index}>
-                      {guide.name} - متخصص {guide.specialty}
+                      {guide.name} - راهنمای {guide.type}
                     </p>
                   ))}
                 </div>
@@ -326,10 +323,6 @@ const TourInformation = () => {
               </div>
             </div>
           </div>
-          {/* ================== پایان کد جدید ================== */}
-          {/* <div className="flex justify-center mr-[11.3125rem] w-[69.3125rem] text-xl">
-                            { features }
-                        </div> */}
         </>
       )}
     </div>
