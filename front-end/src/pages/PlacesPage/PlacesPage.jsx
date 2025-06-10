@@ -46,7 +46,7 @@ const getData = async () => {
   // },
 params: {
   search: search.term,
-  city: search.province,  // چون بک‌اند انتظار city داره نه province
+  city: search.province,
   historical_period: search.periods.join(",")  // چون بک‌اند انتظار historical_period داره
 }
 
