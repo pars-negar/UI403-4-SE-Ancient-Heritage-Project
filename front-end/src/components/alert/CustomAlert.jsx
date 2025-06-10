@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CustomAlert = ({ message, type = 'error', onClose }) => {
-  const bgColor = type === 'error' ? 'bg-red-500' : 'bg-green-500';
+  const bgColor = type === 'error' ? 'orange' : 'bg-green-500';
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">

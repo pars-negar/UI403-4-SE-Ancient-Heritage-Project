@@ -2,8 +2,42 @@ from django import forms
 from django.contrib import admin
 from jalali_date.admin import ModelAdminJalaliMixin
 from jalali_date.widgets import AdminJalaliDateWidget
-from .models import Attraction, Tour ,DailySchedule,AttractionImage,TourImage
+from .models import Attraction, Tour, DailySchedule, AttractionImage, TourImage
 from django.utils.html import format_html
+from apps.reserve.models import Reservation, RoomType, Passenger, ReservedRoom
+
+
+# Inline نمایش RoomType داخل صفحه Tour
+class RoomTypeInline(admin.TabularInline):
+    model = RoomType
+    extra = 1
+
+
+# Inline نمایش Reservation داخل صفحه Tour
+class ReservationInline(admin.TabularInline):
+    model = Reservation
+    extra = 1
+    readonly_fields = ('full_price', 'created_at')
+    show_change_link = True  # برای دسترسی به صفحه ویرایش Reservation
+
+
+# Inline نمایش Passenger داخل صفحه Reservation
+class PassengerInline(admin.TabularInline):
+    model = Passenger
+    extra = 1
+
+
+# Inline نمایش ReservedRoom داخل صفحه Reservation
+class ReservedRoomInline(admin.TabularInline):
+    model = ReservedRoom
+    extra = 1
+
+
+# Admin مربوط به Reservation با نمایش Passenger و ReservedRoom
+@admin.register(Reservation)
+class ReservationAdmin(admin.ModelAdmin):
+    list_display = ('user', 'tour', 'full_price', 'created_at')
+    inlines = [PassengerInline, ReservedRoomInline]
 
 
 class TourAdminForm(forms.ModelForm):
@@ -11,11 +45,13 @@ class TourAdminForm(forms.ModelForm):
         model = Tour
         fields = '__all__'
         widgets = {
-            'start_date': AdminJalaliDateWidget,  
-            'end_date': AdminJalaliDateWidget,    
-            'departure_time': forms.TimeInput(format='%H:%M'),  
-            'return_time': forms.TimeInput(format='%H:%M'),     
+            'start_date': AdminJalaliDateWidget,
+            'end_date': AdminJalaliDateWidget,
+            'departure_time': forms.TimeInput(format='%H:%M', attrs={'type': 'time'}),
+            'return_time': forms.TimeInput(format='%H:%M', attrs={'type': 'time'}),
         }
+
+
 class AttractionImageInline(admin.TabularInline):
     model = AttractionImage
     extra = 1
@@ -28,15 +64,24 @@ class AttractionImageInline(admin.TabularInline):
         return "-"
     image_tag.short_description = 'پیش‌نمایش تصویر'
 
+
 class AttractionAdmin(admin.ModelAdmin):
-    list_display = ('attraction_name', 'city', 'historical_period', 'entry_fee','category')
-    search_fields = ('attraction_name', 'city','category',)
-    list_filter = ('city','category',)
+    list_display = ('attraction_name', 'city', 'historical_period', 'entry_fee', 'category')
+    search_fields = ('attraction_name', 'city', 'category',)
+    list_filter = ('city', 'category',)
     fields = (
         'attraction_name', 'description', 'location', 'city', 'historical_period',
-        'opening_hours', 'entry_fee', 'image', 'category',
+        'opening_hours', 'entry_fee', 'image', 'category', 'image_tag',
     )
+    readonly_fields = ('image_tag',)
     inlines = [AttractionImageInline]
+
+    def image_tag(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" width="100" />', obj.image.url)
+        return "-"
+    image_tag.short_description = 'پیش‌نمایش تصویر'
+
 
 @admin.register(AttractionImage)
 class AttractionImageAdmin(admin.ModelAdmin):
@@ -48,6 +93,7 @@ class AttractionImageAdmin(admin.ModelAdmin):
         return "-"
     image_tag.short_description = 'پیش‌نمایش تصویر'
 
+
 class TourImageInline(admin.TabularInline):
     model = TourImage
     extra = 1  # چندتا فیلد خالی برای اضافه کردن تصویر جدید
@@ -59,18 +105,19 @@ class TourImageInline(admin.TabularInline):
             return format_html('<img src="{}" width="100" />', obj.image.url)
         return "-"
     image_tag.short_description = 'پیش‌نمایش تصویر'
-    
+
+
 class DailyScheduleInline(admin.TabularInline):
     model = DailySchedule
     extra = 1
     fields = ('day_number', 'title', 'description', 'image')
 
+
 class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     form = TourAdminForm
     list_display = (
-    'id', 'tour_name', 'category', 'price', 'start_date', 'end_date', 'capacity', 'tour_manager'
-)
-
+        'id', 'tour_name', 'category', 'price', 'start_date', 'end_date', 'capacity', 'tour_manager'
+    )
     search_fields = ('tour_name', 'tour_manager__username', 'origin', 'destination')
     list_filter = ('start_date', 'end_date', 'tour_manager', 'related_tours')
     fields = (
@@ -79,29 +126,18 @@ class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
         'meal_details', 'transportation', 'tour_guides_info', 'accommodation',
         'company_name', 'company_address', 'company_phone', 'company_email',
         'company_website', 'travel_insurance', 'tourism_services',
-        'related_tours', 'tour_manager' , 'category',  'rating', 'attractions',
+        'related_tours', 'tour_manager', 'category', 'rating', 'attractions',
     )
-    inlines = [TourImageInline, DailyScheduleInline]
+    inlines = [TourImageInline, DailyScheduleInline, RoomTypeInline, ReservationInline]
 
-    
-class TourImageInline(admin.TabularInline):
-    model = TourImage
-    extra = 1  # چندتا فیلد خالی برای اضافه کردن تصویر جدید
-    fields = ('image', 'image_type', 'image_tag')
-    readonly_fields = ('image_tag',)
 
-    def image_tag(self, obj):
-        if obj.image:
-            return format_html('<img src="{}" width="100" />', obj.image.url)
-        return "-"
-    image_tag.short_description = 'پیش‌نمایش تصویر'
 class DailyScheduleAdmin(admin.ModelAdmin):
     list_display = ('tour', 'day_number', 'title', 'description')
     search_fields = ('tour__tour_name', 'title')
     list_filter = ('tour', 'day_number')
     fields = ('tour', 'day_number', 'title', 'description', 'image')
 
-admin.site.register(DailySchedule, DailyScheduleAdmin)
 
+admin.site.register(DailySchedule, DailyScheduleAdmin)
 admin.site.register(Attraction, AttractionAdmin)
 admin.site.register(Tour, TourAdmin)

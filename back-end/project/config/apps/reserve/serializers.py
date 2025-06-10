@@ -50,6 +50,8 @@ class PassengerSerializer(serializers.ModelSerializer):
         return value
 
 class ReservedRoomSerializer(serializers.ModelSerializer):
+    room_type = serializers.PrimaryKeyRelatedField(queryset=RoomType.objects.all())
+
     class Meta:
         model = ReservedRoom
         fields = ['id', 'reservation', 'room_type', 'count']
@@ -64,8 +66,11 @@ class ReservedRoomSerializer(serializers.ModelSerializer):
         count = data.get('count')
         if room_type and count:
             if room_type.remaining < count:
-                raise serializers.ValidationError(f"تعداد رزرو شده بیشتر از باقی‌مانده اتاق '{room_type.name}' است.")
+                raise serializers.ValidationError(
+                    f"تعداد رزرو شده بیشتر از باقی‌مانده اتاق '{room_type.name}' است."
+                )
         return data
+
 
 class ReservationSerializer(serializers.ModelSerializer):
     passengers = PassengerSerializer(many=True)
@@ -134,29 +139,50 @@ class ReservationSerializer(serializers.ModelSerializer):
 
         return data
 
+class ReservationSerializer(serializers.ModelSerializer):
+    passengers = PassengerSerializer(many=True)
+    reserved_rooms = ReservedRoomSerializer(many=True)
+
+    class Meta:
+        model = Reservation
+        fields = ['id', 'tour', 'user', 'full_price', 'created_at', 'passengers', 'reserved_rooms']
+        read_only_fields = ['user', 'created_at']
+
+    def validate_full_price(self, value):
+        if value < 0:
+            raise serializers.ValidationError("قیمت کل نمی‌تواند منفی باشد.")
+        return value
+
+    def validate(self, data):
+        # ... ولیدیشن‌هایی که قبلاً نوشتی ...
+        return data
+
+    # 🔻 اینجا متد create جدید رو بذار
     def create(self, validated_data):
+        from django.db import transaction  # اگر بالاتر import نکردی، همین‌جا هم می‌تونی بنویسی
+
         passengers_data = validated_data.pop('passengers')
         reserved_rooms_data = validated_data.pop('reserved_rooms')
         user = self.context['request'].user
-        reservation = Reservation.objects.create(user=user, **validated_data)
 
-        # ساخت مسافران
-        for passenger_data in passengers_data:
-            Passenger.objects.create(reservation=reservation, **passenger_data)
+        with transaction.atomic():
+            reservation = Reservation.objects.create(user=user, **validated_data)
 
-        # ساخت اتاق‌های رزرو شده و کم کردن ظرفیت remaining
-        for room_data in reserved_rooms_data:
-            room_type_id = room_data['room_type']
-            count = room_data['count']
+            for passenger_data in passengers_data:
+                Passenger.objects.create(reservation=reservation, **passenger_data)
 
-            room_type = RoomType.objects.get(id=room_type_id)
-            if room_type.remaining < count:
-                raise serializers.ValidationError(
-                    f"تعداد اتاق‌های باقی‌مانده اتاق {room_type.name} کافی نیست."
-                )
-            room_type.remaining -= count
-            room_type.save()
+            for room_data in reserved_rooms_data:
+                room_type = room_data['room_type']
+                count = room_data['count']
 
-            ReservedRoom.objects.create(reservation=reservation, room_type=room_type, count=count)
+                if room_type.remaining < count:
+                    raise serializers.ValidationError(
+                        f"تعداد اتاق‌های باقی‌مانده اتاق {room_type.name} کافی نیست."
+                    )
+
+                room_type.remaining -= count
+                room_type.save()
+
+                ReservedRoom.objects.create(reservation=reservation, room_type=room_type, count=count)
 
         return reservation
