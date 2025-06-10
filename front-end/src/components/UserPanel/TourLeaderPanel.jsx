@@ -3,7 +3,7 @@ import axios from "axios";
 
 import Toggle from './Toggle';
 import logo from '../../assets/icons/logo.svg';
-import userAvatar from '../../assets/images/user-avatar.png';
+import userAvatar from '../../assets/icons/login-user-avatar.svg';
 
 import HomeIcon from '../Icons/HomeIcon';
 import EditInfoIcon from '../Icons/EditInfoIcon';
@@ -46,25 +46,27 @@ const TourLeaderPanel = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem('access_token');
-
       if (!token) {
-        console.error('توکن یافت نشد، لطفاً وارد شوید.');
+        console.error('توکن وجود ندارد.');
         setLoading(false);
         return;
       }
 
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/users/oneuser/', {
-          headers: { Authorization: `Bearer ${token}` }
+        const response = await fetch(`${baseUrl}/api/users/oneuser/`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         });
 
-        if (response.status === 200) {
-          setUserData(response.data);
+        if (response.ok) {
+          const data = await response.json();
+          setUserData(data);
         } else {
-          console.error('دریافت اطلاعات کاربر ناموفق بود:', response);
+          console.error('دریافت اطلاعات کاربر ناموفق بود.');
         }
-      } catch (error) {
-        console.error('خطا در دریافت اطلاعات کاربر:', error);
+      } catch (err) {
+        console.error('خطا در دریافت اطلاعات:', err);
       } finally {
         setLoading(false);
       }

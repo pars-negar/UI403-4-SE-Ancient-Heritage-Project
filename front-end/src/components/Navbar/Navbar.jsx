@@ -1,152 +1,103 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-
 import logoUrl from "../../assets/icons/logo.svg";
-import FormButton from "../FormButton/FormButton";
+import userAvatar from '../../assets/icons/login-user-avatar.svg';
 
 import "./navbar.css";
 import '../../index.css';
 
 const Navbar = () => {
-    const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem("access_token");
+  const navigate = useNavigate();
 
-    console.log("listen listen" + token);
-    console.log("Access Token:", token);
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
-    const [user, setUser] = useState({});
-    const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
-    useEffect(() => {
-        fetchUser();
-    }, []);
+  const fetchUser = async () => {
+    if (!token) return;
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/users/oneuser`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (response.status === 200) {
+        setUser(response.data);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const fetchUser = async () => {
-        if (!token) return;
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    window.location.reload();
+  };
 
+  const handleLogin = () => {
+    user.role === 'tour_manager'
+      ? navigate('/profiletourleader')
+      : navigate('/userpanel');
+  };
 
-        try {
-            const response = await axios.get(
-                `http://127.0.0.1:8000/api/users/oneuser`,
-                {
-                    headers: { Authorization: `Bearer ${token}` }
-                }
-            );
+  return (
+    <nav className="navbar">
+      <img className="logo" src={logoUrl} alt="logo" />
 
-            if (response && response.status === 200) {
-                console.log("access token: " + token);
-                // console.log("hey you" + response.data);
-                setUser(response.data);
-                setLoading(false);
-                // console.log("\\nbla bla bla\\n " + user);
-            } else {
-                console.error("Failed to fetch data", response);
-                setLoading(false);
-            }
-        } catch (error) {
-            console.error("Error during fetch: ", error);
-            setLoading(false);
-        }
-    };
+      <ul>
+        <div className="navbar-links text-[1.4rem]" style={{ fontFamily: 'Koodak', fontWeight: '700' }}>
+          <Link to="/">صفحه‌ی اصلی</Link>
+          <Link to="/tourlistpage">تورها</Link>
+          <Link to="/place">جاذبه‌ها</Link>
+          <Link to="/addtour">اضافه کردن تور</Link>
+          <Link to="/aboutus">درباره‌‌ما</Link>
+        </div>
+      </ul>
 
-    useEffect(() => {
-        console.log("State user updated:", user);
-    }, [user]);
-
-    const handleLogout = () => {
-
-    localStorage.removeItem("access_token"); 
-
-    window.location.reload(); // رفرش کامل صفحه برای اطمینان از اعمال تغییرات UI
-    };
-
-    return (
-        <nav className="navbar">
-            <img className="logo" src={logoUrl} alt="logo" />
-
-            <ul>
-                <div
-                    className='navbar-links text-[1.4rem]'
-                    style={{
-                        fontFamily: 'Koodak',
-                        fontWeight: '700'
-                    }}
-                >
-                    <Link to="/">صفحه‌ی اصلی</Link>
-                    <Link to="/tourlistpage">تورها</Link>
-                    <Link to="/place">جاذبه‌ها</Link>
-                    <Link to="/addtour">اضافه کردن تور</Link>
-                    <Link to="/aboutus">درباره‌‌ما</Link>
-                </div>
-            </ul>
-
-            {token ? (
-                <div className="flex flex-col gap-[0.75rem]">
-                    <h3 className="!text-black">سلام {user.username}</h3>
-                    <p>نقش: {user.role}</p>
-                </div>
-            ) : (
-                <Link
-                    to='/LoginSignUp'
-                    id="button"
-                    className="
-                        bg-[var(--color-orange)] 
-                        text-black
-                        text-2xl
-                        text-center
-                        font-[499] 
-                        rounded-[40px]
-                        w-[10.125rem]
-                    "
-                    style={{ fontFamily: 'Gandom' }}
-                >
-                    ورود/ثبت‌نام
-                </Link>
-            )}
-
-
-            <a
-                href="/addtour"
-                className="
-                    ml-4 
-                    w-12 
-                    h-12 
-                    rounded-full 
-                    bg-blue-500 
-                    flex 
-                    items-center 
-                    justify-center 
-                    text-white 
-                    text-lg 
-                    font-bold
-                "
-                style={{
-                    position: 'absolute',
-                    left: '20px',
-                    top: '50%',
-                    transform: 'translateY(-50%)'
+      {token ? (
+        <div className="flex items-start gap-4">
+          {!loading && (
+            <div className="flex flex-col">
+              <button
+                style={{ backgroundImage: `url("${userAvatar}")` }}
+                className="ml-4 !w-12 h-12 rounded-full bg-cover bg-center bg-no-repeat flex items-center justify-center"
+                onClick={e => {
+                  e.preventDefault();
+                  handleLogin();
                 }}
-            >
-                <span
-                    className="text-[1.4rem]"
-                    style={{
-                        fontFamily: 'Koodak',
-                        fontWeight: '700'
-                    }}
-                >
-                    &#x2B;
-                </span>
-            </a>
+              />
+              <div className="flex flex-col gap-[0.75rem]">
+                <h3 className="!text-black">سلام {user.username}</h3>
+              </div>
+            </div>
+          )}
+          <button
+            onClick={handleLogout}
+            className="w-[12rem] h-[3rem] text-black"
+          >
+            خروج
+          </button>
+        </div>
+      ) : (
+        <Link
+          to='/LoginSignUp'
+          className="bg-[var(--color-orange)] text-black text-2xl text-center font-[499] rounded-[40px] w-[10.125rem]"
+          style={{ fontFamily: 'Gandom' }}
+        >
+          ورود/ثبت‌نام
+        </Link>
+      )}
 
-            <hr className="border !border-[var(--color-brown)] opacity-100 w-full h-[0.1rem] m-0" />
-            <button onClick={
-                handleLogout
-            }
-            className="w-[12rem] h-[3rem] text-black "
-            >exit</button>
-        </nav>
-    );
+      <hr className="border !border-[var(--color-brown)] opacity-100 w-full h-[0.1rem] m-0" />
+    </nav>
+  );
 };
 
 export default Navbar;
