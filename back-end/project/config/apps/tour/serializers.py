@@ -1,13 +1,19 @@
 from rest_framework import serializers
 from django.db.models import Sum
 from .models import Attraction
-from .models import Tour
+from .models import Tour , TourGuide
 from .models import AttractionImage,TourImage,DailySchedule,Review
 from apps.users.models import TourManagerProfile
 from apps.users.models import CustomUser  
 
 from rest_framework import serializers
 from .models import Tour, TourImage, DailySchedule
+
+class TourGuideSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TourGuide
+        fields = ['name', 'type']
+
 
 class TourImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,9 +28,10 @@ class DailyScheduleSerializer(serializers.ModelSerializer):
 class TourCreateSerializer(serializers.ModelSerializer):
     tour_manager = serializers.PrimaryKeyRelatedField(read_only=True)
     attractions = serializers.PrimaryKeyRelatedField(many=True, queryset=Attraction.objects.all())
-    tour_guides_info = serializers.JSONField(required=False)
+    #tour_guides_info = serializers.JSONField(required=False)
     images = TourImageSerializer(many=True, required=False)
     daily_schedules = DailyScheduleSerializer(many=True, required=False)
+    tour_guides_info = TourGuideSerializer(many=True, required=False)
 
     class Meta:
         model = Tour
@@ -41,6 +48,7 @@ class TourCreateSerializer(serializers.ModelSerializer):
         images_data = validated_data.pop('images', [])
         schedules_data = validated_data.pop('daily_schedules', [])
         attractions_data = validated_data.pop('attractions', [])
+        guides_data = validated_data.pop('tour_guides_info', [])  # 👈 این خط رو اضافه کن
 
         request = self.context.get('request')
         daily_schedule_images = self.context.get('daily_schedule_images', {})
@@ -49,9 +57,13 @@ class TourCreateSerializer(serializers.ModelSerializer):
         if request and request.user.is_authenticated:
             validated_data['tour_manager'] = request.user
 
-        tour = Tour.objects.create(**validated_data)
+        tour = Tour.objects.create(**validated_data)  # ✅ تور ساخته می‌شه
 
         tour.attractions.set(attractions_data)
+
+        # ذخیره راهنمایان تور
+        for guide in guides_data:
+            TourGuide.objects.create(tour=tour, **guide)  # 👈 این بخش اضافه شد
 
         # ذخیره تصاویر تور
         for idx, image_data in enumerate(images_data):
@@ -69,6 +81,7 @@ class TourCreateSerializer(serializers.ModelSerializer):
                 schedule_obj.save()
 
         return tour
+
 
 
 
@@ -239,52 +252,59 @@ class SimpleUserSerializer(serializers.ModelSerializer):
 class TourSerializer(serializers.ModelSerializer):
     price = serializers.IntegerField(required=True)
     meals = serializers.JSONField(required=False)
-    guides = serializers.JSONField(required=False)
+    guides = TourGuideSerializer(many=True, required=False)  # ✅ آرایه‌ای از آبجکت‌ها
     services = serializers.ListField(child=serializers.CharField(), required=False)
     attractions = serializers.StringRelatedField(many=True)
     images = TourImageSerializer(many=True, read_only=True)
     daily_schedules = DailyScheduleSerializer(many=True, read_only=True)
     reviews = ReviewSerializer(many=True, read_only=True)
     duration = serializers.SerializerMethodField()
-    tour_manager_info = SimpleUserSerializer(source='tour_manager', read_only=True)  # ✅ اینو اضافه کردیم
+    tour_manager_info = SimpleUserSerializer(source='tour_manager', read_only=True)
+    tour_guides_info = TourGuideSerializer(source='tour_guides', many=True, read_only=True)
 
     class Meta:
         model = Tour
-        fields = '__all__'  # یا لیست دقیق‌تر مثلاً: ['id', 'title', ..., 'tour_manager_info']
+        fields = '__all__'
 
     def get_duration(self, obj):
         return obj.duration
 
     def create(self, validated_data):
         meals = validated_data.pop('meals', None)
-        guides = validated_data.pop('guides', None)
+        guides_data = validated_data.pop('guides', [])
         services = validated_data.pop('services', None)
 
         if meals:
             validated_data['meal_details'] = self.meals_dict_to_string(meals)
-        if guides:
-            validated_data['tour_guides_info'] = self.guides_list_to_string(guides)
         if services:
             validated_data['tourism_services'] = '،'.join(services)
 
         tour = Tour.objects.create(**validated_data)
+
+        for guide in guides_data:
+            TourGuide.objects.create(tour=tour, **guide)
+
         return tour
 
     def update(self, instance, validated_data):
         meals = validated_data.pop('meals', None)
-        guides = validated_data.pop('guides', None)
+        guides_data = validated_data.pop('guides', None)
         services = validated_data.pop('services', None)
 
         if meals:
             instance.meal_details = self.meals_dict_to_string(meals)
-        if guides:
-            instance.tour_guides_info = self.guides_list_to_string(guides)
         if services:
             instance.tourism_services = '،'.join(services)
 
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
+
+        if guides_data is not None:
+            instance.guides.all().delete()
+            for guide in guides_data:
+                TourGuide.objects.create(tour=instance, **guide)
+
         return instance
 
     def meals_dict_to_string(self, meals):
@@ -296,12 +316,6 @@ class TourSerializer(serializers.ModelSerializer):
         if 'dinner' in meals:
             parts.append(f"شام {meals['dinner']}")
         return '،'.join(parts)
-
-    def guides_list_to_string(self, guides):
-        return '،'.join(f"{guide['name']} - {guide['type']}" for guide in guides)
-
-
-
 
 
 
