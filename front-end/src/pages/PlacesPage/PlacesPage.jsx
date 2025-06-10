@@ -28,7 +28,7 @@ const PlacesPage = () => {
  console.log("filtering with search:", search);
 const getData = async () => {
   setLoading(true);
-  const token = localStorage.getItem('accessToken');
+  const token = localStorage.getItem('access_Token');
 
   console.log("🟢 sending request with:", {
     term: search.term,
@@ -41,9 +41,9 @@ const getData = async () => {
       
       "http://127.0.0.1:8000/api/homepage/attraction-page/",
       {
-          headers: {
-    Authorization: `Bearer ${token}`,  // حتماً 'Bearer' باشد
-  },
+  //         headers: {
+  //   Authorization: `Bearer ${token}`,  // حتماً 'Bearer' باشد
+  // },
 params: {
   search: search.term,
   city: search.province,  // چون بک‌اند انتظار city داره نه province
@@ -73,12 +73,12 @@ params: {
 
 
 const getCities = async () => {
-  const token = localStorage.getItem('accessToken'); 
+  const token = localStorage.getItem('access_Token'); 
   try {
       const response = await axios.get("http://127.0.0.1:8000/api/homepage/places/cities/", {
-        headers: {
-          Authorization: `Bearer ${token}`,  // حتماً 'Bearer' باشد
-        }
+        // headers: {
+        //   Authorization: `Bearer ${token}`,  // حتماً 'Bearer' باشد
+        // }
       });
 
     if (response.status === 200) {
@@ -103,7 +103,7 @@ const getCities = async () => {
     }
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/attractions/${placeSummary.id}/`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/tours/attractions/${placeSummary.id}/`);
       
       if (response.status === 200) {
         setSelectedPlace(response.data); 
