@@ -42,8 +42,7 @@ const TourTab = () => {
             {loading ? (
                 <p>در حال بارگذاری...</p>
             ) : tours && tours.length > 0 ? (
-                // در اینجا از TourCard استفاده می‌کنیم که قبلاً isTop را به درستی می‌گیرد
-                tours.map((tour) => <TourCard key={tour.id} tour={tour} isTop={isTop}/>) 
+                tours.map((tour) => <TourCard key={tour.id} tour={tour} isTop={isTop}/>)
             ) : (
                 <p>هیچ توری یافت نشد.</p>
             )}
