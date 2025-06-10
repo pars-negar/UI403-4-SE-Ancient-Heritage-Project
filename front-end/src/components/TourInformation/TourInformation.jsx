@@ -132,7 +132,7 @@ const TourInformation = () => {
                                 </div>
                             </div>
                         </div>
-
+                        {/* اینجا میخواهم کد را اضافه کنی */}
                         {/* <div className="flex justify-center mr-[11.3125rem] w-[69.3125rem] text-xl">
                             { features }
                         </div> */}

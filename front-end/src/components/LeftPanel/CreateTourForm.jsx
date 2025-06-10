@@ -40,38 +40,82 @@ const CreateTourForm = () => {
     const fileInputButtonStyled = `!bg-[#D9D9D9] hover:!bg-gray-400 !text-black !h-[3.8vh] !rounded-md !px-3 !text-[18px] font-koodak`;
     const commonAddButtonClass = `${primaryButton} !py-2 !text-sm !w-auto`;
 
-    // State برای مدیریت روزهای جدید
     const [days, setDays] = useState([]);
-    
-    // State برای مدیریت راهنماهای جدید
     const [guides, setGuides] = useState([]);
-    
-    // State برای پیام موفقیت
     const [successMessage, setSuccessMessage] = useState('');
+    
+    // State های جدید برای مدیریت خطا، موفقیت و وضعیت ارسال
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
-    // تابع افزودن روز جدید
     const handleAddDay = () => {
-        const newDayId = days.length + 2; // +2 چون روز اول ثابت است
-        setDays([...days, { id: newDayId }]);
+        setDays([...days, { id: Date.now() }]);
     };
 
-    // تابع افزودن راهنمای جدید
     const handleAddGuide = () => {
-        const newGuideId = guides.length + 2;
-        setGuides([...guides, { id: newGuideId }]);
+        setGuides([...guides, { id: Date.now() }]);
     };
     
     // تابع برای مدیریت ارسال فرم
-    const handleSubmit = (event) => {
-        event.preventDefault(); // جلوگیری از رفرش شدن صفحه
-        // در اینجا می‌توانید اطلاعات فرم را به سرور ارسال کنید
-        console.log("Form submitted!");
-        // نمایش پیام موفقیت
-        setSuccessMessage('اطلاعات تور با موفقیت ثبت شد!');
-        // می‌توانید پس از چند ثانیه پیام را پنهان کنید
-        setTimeout(() => {
-            setSuccessMessage('');
-        }, 5000);
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setSuccessMessage('');
+        setErrorMessage('');
+
+        const form = event.target;
+        const formData = new FormData(form);
+        let allFieldsFilled = true;
+
+        // 1. بررسی خالی نبودن تمام فیلدها (به جز فایل و دکمه)
+        for (const [name, value] of formData.entries()) {
+            const element = form.elements[name];
+            if (element.type !== 'file' && element.type !== 'button' && element.type !== 'submit') {
+                if (typeof value === 'string' && !value.trim()) {
+                    allFieldsFilled = false;
+                    break;
+                }
+            }
+        }
+
+        if (!allFieldsFilled) {
+            setErrorMessage('لطفاً تمام فیلدهای متنی را پر کنید.');
+            return;
+        }
+
+        // 2. ایجاد توکن و ارسال به بک‌اند
+        setIsLoading(true);
+        const tourToken = `TOUR_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+        const dataToSend = Object.fromEntries(formData.entries());
+
+        console.log("Sending data to backend:", dataToSend);
+        console.log("With Token:", tourToken);
+
+        try {
+            const response = await fetch('https://api.example.com/tours', { // آدرس API بک‌اند خود را اینجا قرار دهید
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tourToken}`
+                },
+                body: JSON.stringify(dataToSend)
+            });
+
+            if (!response.ok) {
+                throw new Error('پاسخ سرور موفقیت‌آمیز نبود.');
+            }
+
+            const result = await response.json();
+            console.log('Backend Response:', result);
+
+            // نمایش پیام موفقیت به همراه توکن
+            setSuccessMessage(`اطلاعات با موفقیت ثبت شد. توکن تور: ${tourToken}`);
+
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setErrorMessage('خطا در ارسال اطلاعات. لطفاً دوباره تلاش کنید.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
   return (
@@ -81,7 +125,7 @@ const CreateTourForm = () => {
             <h2 className="!text-[30px] !mb-6 border-r-4 border-[#205781] pr-1.5 " style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>ثبت اطلاعات تور</h2>
         </div>
 
-      <form onSubmit={handleSubmit} className="!bg-white w-[61.9375rem] !py-6 !px-[7.5rem] !rounded-lg !shadow !relative">
+      <form onSubmit={handleSubmit} className="!bg-white w-[61.9375rem] !py-6 !px-[7.5rem] !rounded-lg !shadow !relative" noValidate>
         
         <SectionTitle title="اطلاعات کلی تور" />
         <FormFieldStacked label="نام تور" htmlFor="tourName"><input type="text" name="tourName" id="tourName" className={inputBase} placeholder="تور اصفهان نوروز" /></FormFieldStacked>
@@ -114,10 +158,8 @@ const CreateTourForm = () => {
         <FormFieldStacked label="اطلاعات حمل و نقل" htmlFor="transportInfo"><input type="text" name="transportInfo" id="transportInfo" className={inputBase} /></FormFieldStacked>
         <FormFieldStacked label="اطلاعات بیمه" htmlFor="insuranceInfo"><input type="text" name="insuranceInfo" id="insuranceInfo" className={inputBase} /></FormFieldStacked>
         
-        {/* بخش برنامه روزانه */}
         <div id="daily-program-section">
             <SectionTitle title="برنامه روزانه" />
-            {/* روز اول (ثابت) */}
             <FormFieldStacked label="توضیحات برنامه روز اول" htmlFor="day1Description">
               <textarea name="day1Description" id="day1Description" rows="3" className={textareaBase}></textarea>
             </FormFieldStacked>
@@ -129,7 +171,6 @@ const CreateTourForm = () => {
                 </div>
             </FormFieldStacked>
             
-            {/* روزهای جدید به صورت داینامیک اضافه میشوند */}
             {days.map((day, index) => (
                 <div key={day.id} className="mt-6 border-t-2 border-gray-200 pt-4">
                     <FormFieldStacked label={`توضیحات برنامه روز ${index + 2}`} htmlFor={`day${day.id}Description`}>
@@ -172,16 +213,13 @@ const CreateTourForm = () => {
            <div className="!w-full md:!w-[calc(50%-0.75rem)]"></div> {/* Spacer */}
          </FormRow>
 
-        {/* بخش اطلاعات راهنمایان */}
         <div id="tour-guides-section">
             <SectionTitle title="اطلاعات راهنمایان تور" />
-            {/* راهنمای اول (ثابت) */}
             <FormRow>
               <FormFieldStacked label="نام و نام خانوادگی" htmlFor="guideName1" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="guideName1" id="guideName1" className={inputBase} /></FormFieldStacked>
               <FormFieldStacked label="تخصص" htmlFor="guideSpecialty1" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="guideSpecialty1" id="guideSpecialty1" className={inputBase} /></FormFieldStacked>
             </FormRow>
             
-            {/* راهنماهای جدید به صورت داینامیک اضافه میشوند */}
             {guides.map((guide, index) => (
                 <FormRow key={guide.id} className="mt-4 border-t-2 border-gray-200 pt-4">
                     <FormFieldStacked label={`نام و نام خانوادگی راهنمای ${index + 2}`} htmlFor={`guideName${guide.id}`} fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name={`guideName${guide.id}`} id={`guideName${guide.id}`} className={inputBase} /></FormFieldStacked>
@@ -210,14 +248,20 @@ const CreateTourForm = () => {
         </FormFieldStacked>
 
         <div className="!mt-10 !pt-5 !pb-12"> 
+            {/* نمایش پیام خطا */}
+            {errorMessage && (
+                <div className="!absolute !bottom-[5.5rem] !right-[2rem] !left-[2rem] !text-red-700 !font-bold !bg-red-100 !p-3 !rounded-md !text-center">
+                    {errorMessage}
+                </div>
+            )}
             {/* نمایش پیام موفقیت */}
             {successMessage && (
-                <div className="!absolute !bottom-[5rem] !left-[2rem] !text-green-600 !font-bold !bg-green-100 !p-3 !rounded-md">
+                <div className="!absolute !bottom-[5.5rem] !right-[2rem] !left-[2rem] !text-green-700 !font-bold !bg-green-100 !p-3 !rounded-md !text-center !break-words">
                     {successMessage}
                 </div>
             )}
-          <button type="submit" className={`${primaryButton} !py-2.5 !text-sm !w-auto !absolute !bottom-6 !left-[2rem]`} >
-            ثبت اطلاعات
+          <button type="submit" className={`${primaryButton} !py-2.5 !text-sm !w-auto !absolute !bottom-6 !left-[2rem]`} disabled={isLoading}>
+            {isLoading ? 'در حال ارسال...' : 'ثبت اطلاعات'}
           </button>
         </div>
       </form>
