@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import axios from "axios";
 import TestimonialCard from "./TestimonialCard";
-import "../Comments/testimonials.css";
+import "./testimonials.css"; 
 
-const Testimonials = () => {
-    const[testimonials , settest] = useState([]);
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
+const Testimonials = forwardRef((props, ref) => {
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
     getData();
   }, []);
 
@@ -16,41 +17,29 @@ const Testimonials = () => {
         "http://127.0.0.1:8000/api/comment/site-comments"
       );
       if (response && response.status === 200) {
-        // console.log(response.data.tours);
-        settest(response.data);
-        setLoading(false);
+        setTestimonials(response.data);
       } else {
         console.error("Failed to fetch data", response);
-        setLoading(false);
       }
     } catch (error) {
       console.error("Error during fetch: ", error);
+    } finally {
       setLoading(false);
     }
   };
-  return ( 
-    <div className="testimonials-wrapper overflow-x-auto scroll-smooth no-scrollbar">
-      <div className="flex testimonials-container overflow-x-auto scroll-smooth no-scrollbar">
-        {/* {testimonials.map((item) => (
-          <TestimonialCard key={item.id} testimonial={item} />
-        ))} */}
-          
-          {testimonials.map((item, index) => {
-            let color = ""
-          if (index % 2 === 0) {
-              color="#205781";
-          }
 
-          if (index % 2 !== 0) {
-              color="#FB8101";
+  if (loading) {
+    return <p>در حال بارگذاری نظرات...</p>;
+  }
 
-          }
-
-          return <TestimonialCard key={item.id} testimonial={item} color={color}/>;
-        })}
-      </div>
+  return (
+    <div className="testimonials-container" ref={ref}>
+      {testimonials.map((item, index) => {
+        const color = index % 2 === 0 ? "#205781" : "#FB8101";
+        return <TestimonialCard key={item.id} testimonial={item} color={color} />;
+      })}
     </div>
   );
-};
+});
 
 export default Testimonials;
