@@ -131,10 +131,20 @@ const CreateTourForm = ({ token }) => {
 
     // daily_schedules به صورت رشته JSON (تصاویر را حذف کن یا جداگانه مدیریت کن)
     const schedulesWithoutImages = dailySchedules.map(({ image, ...rest }) => rest);
-    formData.append('daily_schedules', JSON.stringify(schedulesWithoutImages));
+    schedulesWithoutImages.forEach((item, index) => {
+      formData.append(`daily_schedules[${index}]`, JSON.stringify(item));
+    });
 
-    // اگر بخواهی تصاویر روزانه را هم ارسال کنی باید جداگانه انجام شود، در اینجا ارسال نشده.
 
+    images.forEach((imgObj, index) => {
+      const { image, title } = imgObj;
+
+      // اول title رو به‌صورت JSON جداگانه می‌فرستیم
+      formData.append(`images[${index}]`, JSON.stringify({ title }));
+
+      // حالا فایل رو هم با کلید image جدا می‌فرستیم
+      formData.append(`images[${index}].image`, image);
+    });
     // درخواست API
     const res = await axios.post(
       'http://127.0.0.1:8000/api/homepage/dashboard/tours/create/',
@@ -292,6 +302,43 @@ const CreateTourForm = ({ token }) => {
           className="w-full"
         />
       </label>
+
+          {/* تصاویر دیگر تور */}
+    <div className="mb-4">
+      <label className="block font-semibold mb-2">تصاویر دیگر تور:</label>
+
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => {
+          const file = e.target.files[0];
+          if (file) {
+            setImages(prev => [...prev, { image: file, title: '' }]);
+          }
+        }}
+        className="mb-2"
+      />
+
+      <input
+        type="text"
+        placeholder="عنوان تصویر"
+        className="w-full border rounded p-2 mb-2"
+        onChange={(e) => {
+          const updated = [...images];
+          if (updated.length > 0) {
+            updated[updated.length - 1].title = e.target.value;
+            setImages(updated);
+          }
+        }}
+      />
+
+      {/* نمایش لیست تصاویر انتخاب شده */}
+      {images.map((img, idx) => (
+        <div key={idx} className="text-sm text-gray-700">
+          تصویر {idx + 1}: {img.title || '(بدون عنوان)'}
+        </div>
+      ))}
+    </div>
 
       {/* جاذبه‌ها */}
       <label className="block mb-2">
