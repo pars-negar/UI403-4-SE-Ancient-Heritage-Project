@@ -30,14 +30,11 @@ const Home = () => {
   const [selectedAttraction, setSelectedAttraction] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  // --- START: تغییرات ---
-  // Ref برای بخش جاذبه‌ها
+
   const attractionsScrollRef = useRef(null);
-  // Ref برای بخش نظرات
   const commentsScrollRef = useRef(null);
   const scrollAmount = 350;
 
-  // توابع اسکرول برای بخش جاذبه‌ها
   const scrollAttractionsLeft = () => {
     if (attractionsScrollRef.current) {
       attractionsScrollRef.current.scrollBy({
@@ -56,7 +53,6 @@ const Home = () => {
     }
   };
 
-  // توابع اسکرول برای بخش نظرات
   const scrollCommentsLeft = () => {
     if (commentsScrollRef.current) {
       commentsScrollRef.current.scrollBy({
@@ -131,7 +127,6 @@ const handleAttractionClick = async (id) => {
     <div className="home rtl">
       <Navbar />
 
-      {/* ... (کدهای دیگر بدون تغییر باقی می‌مانند) ... */}
       <div className={styles.carousel}>
         {/* ... */}
       </div>
@@ -154,20 +149,16 @@ const handleAttractionClick = async (id) => {
           <h3 className="!text-4xl" style={{ fontFamily: 'Vazirmatn', fontWeight: 700 }}>جاذبه‌های برتر</h3>
         </div>
         <div className="flex gap-[1.75rem] ml-[3rem]">
-          {/* --- START: تغییرات --- */}
           <button onClick={scrollAttractionsRight}>
             <ArrowRight defualtColor="black" hoverColor="var(--color-dark-blue)" className="cursor-pointer"/>
           </button>
           <button onClick={scrollAttractionsLeft}>
             <ArrowLeft defualtColor="black" hoverColor="var(--color-dark-blue)" className="cursor-pointer"/>
           </button>
-          {/* --- END: تغییرات --- */}
         </div>
       </div>
       <div className={styles.attractionsSection}>
-        {/* --- START: تغییرات --- */}
         <div className="overflow-x-auto scroll-smooth no-scrollbar" ref={attractionsScrollRef}>
-        {/* --- END: تغییرات --- */}
         <div className="flex gap-4 mt-20 w-max px-6">
             { loading ? (
                 <p>در حال بارگذاری...</p>
@@ -205,7 +196,7 @@ const handleAttractionClick = async (id) => {
             نظرات کاربران <span className="section-accent" />
         </h2>
           <button
-            className="!w-[9rem] absolute !left-10 whitespace-nowrap flex justify-center !rounded-[0.7rem] !mt-[2rem]"
+            className="!w-[9rem] absolute !left-10 whitespace-nowrap flex justify-center !rounded-[0.7rem] !mt-[1rem]"
             style={{
               fontFamily: "Gandom",
               color: "var(--color-dark-blue)",
@@ -223,9 +214,7 @@ const handleAttractionClick = async (id) => {
             onSubmit={handleCommentSubmit}
           />
       </div>
-      {/* --- START: تغییرات --- */}
       <div className="overflow-x-auto scroll-smooth no-scrollbar" ref={commentsScrollRef}>
-      {/* --- END: تغییرات --- */}
         <Comments />
       </div>
       <div className="flex justify-center !mb-[1rem]">
