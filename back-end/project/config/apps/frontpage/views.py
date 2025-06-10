@@ -15,6 +15,8 @@ from rest_framework import generics, permissions
 from apps.reserve.models import Passenger
 from apps.reserve.serializers import TourPassengerSerializer
 from apps.core.mixins import UserInfoAppendMixin
+import json
+from rest_framework.exceptions import ValidationError
 
 
 from rest_framework.decorators import api_view
@@ -100,6 +102,8 @@ class UserProfileView(UserInfoAppendMixin, generics.RetrieveUpdateAPIView):
 
 logger = logging.getLogger(__name__)  # استفاده از لاگر بهتر از print هست، ولی print هم می‌تونه جایگزین باشه
 
+
+# views.py
 class CreateTourAPIView(UserInfoAppendMixin, generics.CreateAPIView):
     queryset = Tour.objects.all()
     serializer_class = TourCreateSerializer
@@ -107,20 +111,62 @@ class CreateTourAPIView(UserInfoAppendMixin, generics.CreateAPIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def perform_create(self, serializer):
-        # توکن و داده‌های ورودی را چاپ کن
-        print("=== Token:", self.request.META.get("HTTP_AUTHORIZATION"))
-        print("=== Form Data:", dict(self.request.data))
-        logger.debug(f"User {self.request.user} is creating a tour.")
+        data = self.request.data.copy()
+
+        def parse_list_from_form(prefix):
+            items = []
+            i = 0
+            while f"{prefix}[{i}]" in data:
+                try:
+                    item_data = json.loads(data[f"{prefix}[{i}]"])
+                    items.append(item_data)
+                except json.JSONDecodeError:
+                    raise ValidationError({prefix: f"فرمت JSON نامعتبر در {prefix}[{i}]."})
+                i += 1
+            return items
+
+        # Parse JSON list fields from multipart form
+        data.setlist('daily_schedules', parse_list_from_form('daily_schedules'))
+        data.setlist('images', parse_list_from_form('images'))
+
+        # Extract daily schedule images from request.FILES
+        daily_schedule_images = {}
+        for key in self.request.FILES:
+            if key.startswith('daily_schedules_images['):
+                # مثلا کلیدها میشن daily_schedules_images[0], daily_schedules_images[1], ...
+                index = int(key[len('daily_schedules_images['):-1])
+                daily_schedule_images[index] = self.request.FILES[key]
+
+        # Extract tour images files (if any)
+        tour_images_files = {}
+        for key in self.request.FILES:
+            if key.startswith('images['):
+                # کلیدها images[0].image, images[1].image, ...
+                # یا فقط images[0] اگر ساده ارسال شده
+                # اینجا فرض می‌کنیم images[index].image
+                if key.endswith('.image'):
+                    index = int(key[len('images['):key.find('].image')])
+                    tour_images_files[index] = self.request.FILES[key]
+                else:
+                    # اگر فقط images[0]
+                    index = int(key[len('images['):-1])
+                    tour_images_files[index] = self.request.FILES[key]
+
+        # اینجا فایل‌ها رو می‌فرستیم تو کانتکست serializer
+        serializer = self.get_serializer(data=data, context={
+            'request': self.request,
+            'daily_schedule_images': daily_schedule_images,
+            'tour_images_files': tour_images_files,
+        })
+        serializer.is_valid(raise_exception=True)
         serializer.save(tour_manager=self.request.user)
 
     def finalize_response(self, request, response, *args, **kwargs):
         response = super().finalize_response(request, response, *args, **kwargs)
-        
-        # چاپ محتوای پاسخ
         print("=== Response Data:", getattr(response, 'data', 'No data in response'))
         print("=== Status Code:", response.status_code)
-        
         return self.append_user_info(response, request)
+
 
 class RegisteredPassengersListAPIView(UserInfoAppendMixin, APIView):
     permission_classes = [IsAuthenticated]
@@ -428,7 +474,7 @@ class AttractionDetailAPIView(RetrieveAPIView):
 
 
 class TourReservationAPIView(APIView):
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
     @transaction.atomic
     def post(self, request):

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../assets/icons/logo.svg';
-import userAvatar from '../../assets/images/user-avatar.png';
+import userAvatar from '../../assets/icons/login-user-avatar.svg';
 import DeleteAccountModal from './DeleteAccountModal';
 
 import HomeIcon from '../Icons/HomeIcon';
@@ -11,6 +11,8 @@ const UserPanel = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -107,7 +109,7 @@ const UserPanel = () => {
           className="relative h-[3.2875rem] flex gap-[0.6rem] items-center pr-[1.4375rem] border-b border-[var(--color-orange)] text-[var(--color-gray)] hover:text-black hover:font-bold cursor-pointer group"
         >
           <HomeIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black" />
-          <a href="/"><span className="text-xl group-hover:text-black group-hover:font-bold">صفحه اصلی</span></a>
+          <a href="/"><span className="text-xl group-hover:text-black group-hover:font-bold text-[var(--color-gray)]">صفحه اصلی</span></a>
         </div>
         <div
           className="relative h-[3.2875rem] flex gap-[0.6rem] items-center pr-[1.4375rem] text-[var(--color-gray)] hover:text-black hover:font-bold cursor-pointer group"
