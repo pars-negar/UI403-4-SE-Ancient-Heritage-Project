@@ -36,6 +36,8 @@ from django.db import transaction
 from apps.reserve.models import  RoomType, Reservation, Passenger, ReservedRoom
 
 from apps.users.serializers import UserProfileCombinedSerializer
+from rest_framework.parsers import MultiPartParser, FormParser
+import logging
 
 
 
@@ -96,16 +98,28 @@ class UserProfileView(UserInfoAppendMixin, generics.RetrieveUpdateAPIView):
 
 
 
-class CreateTourAPIView(UserInfoAppendMixin , generics.CreateAPIView):
+logger = logging.getLogger(__name__)  # استفاده از لاگر بهتر از print هست، ولی print هم می‌تونه جایگزین باشه
+
+class CreateTourAPIView(UserInfoAppendMixin, generics.CreateAPIView):
     queryset = Tour.objects.all()
     serializer_class = TourCreateSerializer
     permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
 
     def perform_create(self, serializer):
+        # توکن و داده‌های ورودی را چاپ کن
+        print("=== Token:", self.request.META.get("HTTP_AUTHORIZATION"))
+        print("=== Form Data:", dict(self.request.data))
+        logger.debug(f"User {self.request.user} is creating a tour.")
         serializer.save(tour_manager=self.request.user)
 
     def finalize_response(self, request, response, *args, **kwargs):
         response = super().finalize_response(request, response, *args, **kwargs)
+        
+        # چاپ محتوای پاسخ
+        print("=== Response Data:", getattr(response, 'data', 'No data in response'))
+        print("=== Status Code:", response.status_code)
+        
         return self.append_user_info(response, request)
 
 class RegisteredPassengersListAPIView(UserInfoAppendMixin, APIView):

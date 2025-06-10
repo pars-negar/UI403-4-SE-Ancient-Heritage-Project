@@ -53,6 +53,11 @@ class CustomUser(AbstractUser):
     first_name_fa = models.CharField(max_length=100, blank=True, verbose_name='نام فارسی')
     last_name_fa = models.CharField(max_length=100, blank=True, verbose_name='نام خانوادگی فارسی')
 
+    birth_date = models.DateField(blank=True, null=True, verbose_name='تاریخ تولد')
+    national_code = models.CharField(max_length=10, blank=True, null=True, verbose_name='کد ملی')
+    province = models.CharField(max_length=100, blank=True, null=True, verbose_name='استان')
+    city = models.CharField(max_length=100, blank=True, null=True, verbose_name='شهر')
+
     
 
     objects = CustomUserManager()

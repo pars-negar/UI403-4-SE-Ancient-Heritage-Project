@@ -14,14 +14,25 @@ from .models import CustomUser
 
 User = get_user_model()
 #______test______
-from rest_framework import serializers
-from .models import CustomUser
+from django.conf import settings
 
 class UserBasicInfoSerializer(serializers.ModelSerializer):
+    profile_image = serializers.SerializerMethodField()
+
     class Meta:
         model = CustomUser
-        fields = ['username', 'role']
+        fields = ['username', 'role', 'profile_image']
 
+    def get_profile_image(self, obj):
+        request = self.context.get('request')
+        if obj.profile_image:
+            # اگر درخواست موجود باشه، URL کامل بساز (با دامنه و پروتکل)
+            if request is not None:
+                return request.build_absolute_uri(obj.profile_image.url)
+            # اگر درخواست نیست، فقط URL نسبی عکس رو برگردون
+            return obj.profile_image.url
+        # اگر عکس نداشت، مقدار None یا رشته خالی برگردون
+        return None
 
 class IsNormalUser(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -31,6 +42,46 @@ class IsNormalUser(permissions.BasePermission):
 class UserProfileCombinedSerializer(serializers.ModelSerializer):
     new_password = serializers.CharField(write_only=True, required=False)
     confirm_password = serializers.CharField(write_only=True, required=False)
+
+    # فیلدهای جدید اضافه شده
+    birth_date = serializers.DateField(required=False, allow_null=True)
+    national_code = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    state = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    city = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+
+    class Meta:
+        model = CustomUser
+        fields = [
+            'username', 'email', 'phone_number', 'birth_date', 'national_code', 'state', 'city',
+            'new_password', 'confirm_password',
+            # هر فیلد دیگه‌ای که لازم داری
+        ]
+        read_only_fields = ['username']  # به دلخواه
+
+    def validate(self, attrs):
+        new_password = attrs.get('new_password')
+        confirm_password = attrs.get('confirm_password')
+
+        if new_password or confirm_password:
+            if new_password != confirm_password:
+                raise serializers.ValidationError({"confirm_password": "کلمه عبور و تکرار آن مطابقت ندارند."})
+        return attrs
+
+    def update(self, instance, validated_data):
+        # مدیریت تغییر پسورد
+        new_password = validated_data.pop('new_password', None)
+        validated_data.pop('confirm_password', None)  # حذف چون استفاده نمیشه مستقیما
+
+        # به‌روزرسانی فیلدهای معمولی
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        # تغییر پسورد اگر داده شده
+        if new_password:
+            instance.set_password(new_password)
+
+        instance.save()
+        return instance
 
     class Meta:
         model = CustomUser
@@ -219,16 +270,26 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
         user.save()
         return user
     
+
 class TourLeaderDashboardSerializer(serializers.ModelSerializer):
     company_name = serializers.CharField(source='tour_manager_profile.company_name', required=False)
     company_address = serializers.CharField(source='tour_manager_profile.company_address', required=False)
     company_registration_number = serializers.CharField(source='tour_manager_profile.company_registration_number', required=False)
     tours = serializers.SerializerMethodField(read_only=True)
 
+    # فیلدهای جدید
+    birth_date = serializers.DateField(required=False, allow_null=True)
+    national_code = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    state = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+    city = serializers.CharField(required=False, allow_blank=True, allow_null=True)
+
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'phone_number', 'role',
-                'company_name', 'company_address', 'company_registration_number', 'tours']
+        fields = [
+            'id', 'username', 'email', 'phone_number', 'role',
+            'birth_date', 'national_code', 'state', 'city',   # اضافه شد
+            'company_name', 'company_address', 'company_registration_number', 'tours'
+        ]
         read_only_fields = ['id', 'username', 'role', 'tours']
 
     def get_tours(self, obj):
@@ -238,10 +299,16 @@ class TourLeaderDashboardSerializer(serializers.ModelSerializer):
         return []
 
     def update(self, instance, validated_data):
+        # آپدیت فیلدهای اصلی
         instance.email = validated_data.get('email', instance.email)
         instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        instance.birth_date = validated_data.get('birth_date', instance.birth_date)
+        instance.national_code = validated_data.get('national_code', instance.national_code)
+        instance.state = validated_data.get('state', instance.state)
+        instance.city = validated_data.get('city', instance.city)
         instance.save()
 
+        # آپدیت پروفایل تور منیجر
         profile_data = validated_data.get('tour_manager_profile', {})
         if hasattr(instance, 'tour_manager_profile'):
             profile = instance.tour_manager_profile
