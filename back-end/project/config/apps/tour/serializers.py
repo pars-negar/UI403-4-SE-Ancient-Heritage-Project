@@ -41,7 +41,7 @@ class TourListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tour
-        fields = ['id', 'tour_name', 'destination', 'start_date', 'end_date', 'price', 'card2_image']
+        fields = ['id', 'tour_name', 'destination', 'start_date', 'end_date', 'price', 'card2_image','duration',]
 
     def get_card2_image(self, obj):
         image = obj.images.filter(image_type='card2').first()
@@ -63,16 +63,15 @@ class TourDetailSerializer(serializers.ModelSerializer):
     daily_schedules = serializers.SerializerMethodField()
     tour_manager_profile = serializers.SerializerMethodField()
     tour_guides = serializers.SerializerMethodField()
+    duration = serializers.SerializerMethodField()
+    attractions = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Tour
-        fields = [
-            'id', 'tour_name', 'description', 'start_date', 'end_date', 'departure_time', 'return_time',
-            'price', 'capacity', 'origin', 'destination', 'main_image', 'accommodation', 'meal_details',
-            'transportation', 'travel_insurance', 'tourism_services', 'tour_guides',
-            'company_name', 'company_address', 'company_phone', 'company_email', 'company_website',
-            'images', 'daily_schedules', 'tour_manager_profile'
-        ]
+        fields = '__all__' 
+    
+    def get_duration(self, obj):
+        return obj.duration
 
     def get_images(self, obj):
         request = self.context.get('request')
@@ -190,23 +189,20 @@ class TourSerializer(serializers.ModelSerializer):
     meals = serializers.JSONField(required=False)
     guides = serializers.JSONField(required=False)
     services = serializers.ListField(child=serializers.CharField(), required=False)
-
+    attractions = serializers.StringRelatedField(many=True)
     images = TourImageSerializer(many=True, read_only=True)
     daily_schedules = DailyScheduleSerializer(many=True, read_only=True)
     reviews = ReviewSerializer(many=True, read_only=True)
-
+    duration = serializers.SerializerMethodField()
     # اضافه کردن فیلد مربوط به پروفایل مسئول تور
     tour_manager_profile = serializers.SerializerMethodField()
 
     class Meta:
         model = Tour
-        fields = [
-            'id', 'tour_name', 'origin', 'destination', 'start_date', 'end_date',
-            'price', 'description', 'main_image', 'images',
-            'meals', 'guides', 'services',
-            'daily_schedules', 'reviews', 'transportation', 'travel_insurance', 'accommodation', 'company_name',
-            'tour_manager_profile'  # اضافه شد
-        ]
+        fields = '__all__' 
+        
+    def get_duration(self, obj):
+        return obj.duration
 
     def get_tour_manager_profile(self, obj):
         if obj.tour_manager and hasattr(obj.tour_manager, 'tour_manager_profile'):

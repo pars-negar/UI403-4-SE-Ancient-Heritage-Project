@@ -7,26 +7,39 @@ const ProfiletourListLeft = () => {
   const [upcomingTours, setUpcomingTours] = useState([]);
   const [pastTours, setPastTours] = useState([]);
   const [loading, setLoading] = useState(true);
+  console.log(localStorage.getItem("access_token"));
 
-  useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/api/users/dashboard/tours/', {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-          }
-        });
-        setUpcomingTours(response.data.upcoming_tours || []);
-        setPastTours(response.data.past_tours || []);
-      } catch (error) {
-        console.error("خطا در دریافت لیست تورها:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    fetchTours();
-  }, []);
+useEffect(() => {
+  const token = localStorage.getItem("access_token");
+
+
+  if (!token) {
+    console.warn("توکن یافت نشد! لطفاً وارد شوید.");
+    return;
+  }
+
+  const fetchTours = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/homepage/dashboard/tours/', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      console.log("API response:", response.data);
+
+      setUpcomingTours(response.data.upcoming_tours || []);
+      setPastTours(response.data.past_tours || []);
+    } catch (error) {
+      console.error("خطا در دریافت لیست تورها:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchTours();
+}, []);
+
 
   return (
     <div className="bg-[var(--color-light-gray)] w-full h-auto flex flex-col justify-center items-center">

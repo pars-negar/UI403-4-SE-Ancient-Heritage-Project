@@ -14,9 +14,9 @@ const TourInfoList = ({ tours }) => {
             key={tour.id || index}
             title={tour.tour_name}
             destination={tour.destination}
-            duration={tour.duration}
-            price={tour.price}
-            imageUrl={tour.image_url}
+            duration={`${tour.duration} روز`}
+            price={Math.round(tour.price).toLocaleString()}
+            imageUrl={tour. card2_image}
           />
         ))}
       </div>

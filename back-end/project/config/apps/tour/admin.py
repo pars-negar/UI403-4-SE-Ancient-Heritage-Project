@@ -78,7 +78,7 @@ class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
         'meal_details', 'transportation', 'tour_guides_info', 'accommodation',
         'company_name', 'company_address', 'company_phone', 'company_email',
         'company_website', 'travel_insurance', 'tourism_services',
-        'related_tours', 'tour_manager' , 'category',  'rating',
+        'related_tours', 'tour_manager' , 'category',  'rating', 'attractions',
     )
     inlines = [TourImageInline, DailyScheduleInline]
 
