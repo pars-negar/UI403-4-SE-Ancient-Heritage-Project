@@ -5,7 +5,12 @@ from jalali_date.widgets import AdminJalaliDateWidget
 from .models import Attraction, Tour, DailySchedule, AttractionImage, TourImage
 from django.utils.html import format_html
 from apps.reserve.models import Reservation, RoomType, Passenger, ReservedRoom
+from .models import TourGuide  
 
+class TourGuideInline(admin.TabularInline):
+    model = TourGuide
+    extra = 1
+    fields = ('name', 'type')  
 
 # Inline نمایش RoomType داخل صفحه Tour
 class RoomTypeInline(admin.TabularInline):
@@ -123,12 +128,12 @@ class TourAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     fields = (
         'tour_name', 'description', 'main_image', 'price', 'capacity',
         'start_date', 'end_date', 'departure_time', 'return_time', 'origin', 'destination',
-        'meal_details', 'transportation', 'tour_guides_info', 'accommodation',
+        'meal_details', 'transportation', 'accommodation',
         'company_name', 'company_address', 'company_phone', 'company_email',
         'company_website', 'travel_insurance', 'tourism_services',
         'related_tours', 'tour_manager', 'category', 'rating', 'attractions',
     )
-    inlines = [TourImageInline, DailyScheduleInline, RoomTypeInline, ReservationInline]
+    inlines = [TourImageInline, DailyScheduleInline, RoomTypeInline, ReservationInline, TourGuideInline]
 
 
 class DailyScheduleAdmin(admin.ModelAdmin):
