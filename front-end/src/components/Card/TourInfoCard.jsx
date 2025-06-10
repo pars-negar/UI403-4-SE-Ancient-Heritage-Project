@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-// نام prop از isTopp به isTop اصلاح شد
 const TourInfoCard = ({ title, destination, duration, price, imageUrl, isTop, tourId }) => {
     return (
         <div className="relative flex items-center bg-white rounded-xl border border-gray-200 w-[700px] mb-6 shadow-[0_4px_8px_#205781]">
@@ -22,7 +21,6 @@ const TourInfoCard = ({ title, destination, duration, price, imageUrl, isTop, to
                     <span style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>هزینه تور:</span> {price} تومان
                 </p>
                 
-                {/* از isTop (با یک p) استفاده می‌کنیم */}
                 <Link to={`/tourinformation/${isTop ? `top/${tourId}` : `latest/${tourId}`}`}>
                     <button className="absolute w-auto h-7 !text-[22px] flex flex-row items-center left-2.5 bottom-4  bg-[#205781]  hover:bg-[#0f3a5b] transition " style={{ fontFamily: 'Gandom', fontWeight: 400 }}>
                         جزئیات بیشتر

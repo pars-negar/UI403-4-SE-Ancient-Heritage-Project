@@ -73,10 +73,7 @@ const TourInformationPage = () => {
             <div className="flex justify-center">
                 <TourInformation tour={tourData} />
             </div>
-            <hr className="!mr-[10%] !ml-[10%] bg-[#FB8101] w-[80%] !mt-[2rem]"/>
-            <div className="!mr-[10%] flex justify-start items-center w-full"> 
-                <h1 className="!text-[25px] !mb-5" style={{fontFamily: 'Vazirmatn', fontWeight: 700}}>اطلاعات مسئول تور</h1>
-            </div>
+
 
             {/* TourBookingCard و TourReviews بدون تغییرات در props قبلی */}
             <TourBookingCard />
