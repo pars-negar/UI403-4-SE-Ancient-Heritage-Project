@@ -99,8 +99,44 @@ const Home = () => {
 
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
-  const handleCommentSubmit = (comment) => {
-    console.log("نظر ثبت شده:", comment);
+
+  // این تابع با منطق کامل ارسال به API جایگزین شده است
+  const handleCommentSubmit = async (data) => { // data همان آبجکت { comment, rating } است
+    const token = localStorage.getItem('authToken'); // کلید توکن خود را که هنگام لاگین ذخیره کرده‌اید وارد کنید
+
+    if (!token) {
+        alert('برای ثبت نظر، ابتدا باید وارد شوید.');
+        return;
+    }
+
+    try {
+        const response = await axios.post(
+            'http://127.0.0.1:8000/api/comment/site_comments/', // اندپوینت بک‌اند برای ساخت کامنت جدید
+            {
+                comment: data.comment,
+                rating: data.rating
+            },
+            {
+                headers: {
+                    // فرمت هدر Authorization را مطابق با بک‌اند خود تنظیم کنید ('Token ...' یا 'Bearer ...')
+                    'Authorization': `Token ${token}`
+                }
+            }
+        );
+
+        // اگر درخواست موفقیت آمیز باشد
+        alert('نظر شما با موفقیت ثبت شد.');
+        handleCloseModal(); // بستن مودال
+
+        // نکته: برای دیدن نظر جدید، باید لیست کامنت‌ها را مجددا بارگذاری کنید
+        // این کار معمولا با فراخوانی دوباره تابعی که کامنت‌ها را از سرور می‌گیرد، انجام می‌شود.
+        console.log('کامنت جدید اضافه شد:', response.data);
+        
+    } catch (error) {
+        // مدیریت خطا
+        console.error("خطا در ارسال نظر:", error.response ? error.response.data : error.message);
+        alert("متاسفانه در ثبت نظر شما مشکلی پیش آمد. لطفاً دوباره تلاش کنید.");
+    }
   };
 
   return (
