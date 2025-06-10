@@ -28,7 +28,6 @@ const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
 
-  // تعریف ref ها و توابع اسکرول بر اساس کد صحیح شما
   const attractionsScrollRef = useRef(null);
   const commentsScrollRef = useRef(null);
   const scrollAmount = 350;
@@ -99,8 +98,38 @@ const Home = () => {
 
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
-  const handleCommentSubmit = (comment) => {
-    console.log("نظر ثبت شده:", comment);
+
+  const handleCommentSubmit = async (data) => {
+    const token = localStorage.getItem('access_token');
+
+    if (!token) {
+      alert('برای ثبت نظر، ابتدا باید وارد شوید.');
+      throw new Error('User is not authenticated.');
+    }
+
+    try {
+      await axios.post(
+          'http://127.0.0.1:8000/api/comment/site-comments/',
+          {
+              comment: data.comment,
+              rating: data.rating
+          },
+          // ✅✅✅ بازگرداندن هدر به حالت صحیح
+          {
+              headers: {
+                  // اگر از JWT استفاده می‌کنید 'Bearer' و اگر از توکن پیش‌فرض DRF استفاده می‌کنید 'Token' صحیح است
+                  'Authorization': `Bearer ${token}` 
+              }
+          }
+      );
+
+      // اگر موفق شد، مودال پیغام موفقیت را نشان می‌دهد
+      
+    } catch (error) {
+      console.error("خطا در ارسال نظر:", error.response ? error.response.data : error.message);
+      alert("متاسفانه در ثبت نظر شما مشکلی پیش آمد. لطفاً دوباره تلاش کنید.");
+      throw error;
+    }
   };
 
   return (
