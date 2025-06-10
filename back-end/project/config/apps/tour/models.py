@@ -86,7 +86,7 @@ class Tour(models.Model):
     transportation = models.TextField(blank=True, null=True)
     travel_insurance = models.TextField(blank=True, null=True)
     tourism_services = models.TextField(blank=True, null=True)
-    tour_guides_info = models.TextField(blank=True, null=True)
+    #tour_guides_info = models.TextField(blank=True, null=True)
 
     tour_manager = models.ForeignKey(
         CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name='managed_tours'
@@ -147,3 +147,10 @@ class Review(models.Model):
 
 
 
+class TourGuide(models.Model):
+    tour = models.ForeignKey("Tour", related_name="guides", on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    type = models.CharField(max_length=100)  # مثال: "محلی"، "فرهنگی"
+
+    def __str__(self):
+        return f"{self.name} - {self.type}"
