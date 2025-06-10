@@ -135,6 +135,11 @@ const CreateTourForm = ({ token }) => {
       formData.append(`daily_schedules[${index}]`, JSON.stringify(item));
     });
 
+    dailySchedules.forEach((day, idx) => {
+  if (day.image) {
+    formData.append(`daily_schedules[${idx}].image`, day.image);
+  }
+});
 
     images.forEach((imgObj, index) => {
       const { image, title } = imgObj;

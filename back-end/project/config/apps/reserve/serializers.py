@@ -19,6 +19,20 @@ class RoomTypeSerializer(serializers.ModelSerializer):
         model = RoomType
         fields = ['id', 'tour', 'name', 'capacity', 'total', 'remaining', 'price_per_room']
 
+
+class PassengerListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Passenger
+        fields = [
+            'first_name',
+            'last_name',
+            'national_id',
+            'phone',
+            'payment_status',
+            'registration_date'
+        ]
+
+
 class PassengerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Passenger

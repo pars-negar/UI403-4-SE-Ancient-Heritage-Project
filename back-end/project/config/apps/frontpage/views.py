@@ -17,6 +17,8 @@ from apps.reserve.serializers import TourPassengerSerializer
 from apps.core.mixins import UserInfoAppendMixin
 import json
 from rest_framework.exceptions import ValidationError
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 
 from rest_framework.decorators import api_view
@@ -60,6 +62,19 @@ def get_origins_and_destinations(request):
     })
 import jdatetime
 
+
+class PassengerListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, tour_id):
+        try:
+            tour = Tour.objects.get(id=tour_id, tour_manager=request.user)
+        except Tour.DoesNotExist:
+            return Response({"detail": "تور پیدا نشد یا شما مدیر این تور نیستید."}, status=404)
+
+        passengers = Passenger.objects.filter(reservation__tour=tour)
+        serializer = PassengerListSerializer(passengers, many=True)
+        return Response(serializer.data)
 
 
 class TourDetailView(generics.RetrieveAPIView):

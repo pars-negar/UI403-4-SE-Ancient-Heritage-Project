@@ -15,7 +15,8 @@ from .views import (
     SearchTourAPIView,
     DashboardRedirectAPIView,
     UserProfileView,
-    TourDetailView
+    TourDetailView,
+    PassengerListAPIView
 )
 
 urlpatterns = [
@@ -41,6 +42,7 @@ urlpatterns = [
     path('dashboard/my-tours/delete/', TourSoftDeleteAPIView.as_view(), name='delete-my-tour'), 
     path('dashboard/tours/create/', CreateTourAPIView.as_view(), name='create-tour'),
     path('dashboard-url/', DashboardRedirectAPIView.as_view(), name='dashboard-url'),
+    path('dashboard/tours/<int:tour_id>/passengers/', PassengerListAPIView.as_view(), name='tour-passenger-list'),
 
 
 ]
