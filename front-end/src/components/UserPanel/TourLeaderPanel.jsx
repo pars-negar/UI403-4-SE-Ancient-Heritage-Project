@@ -1,21 +1,20 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
 import Toggle from './Toggle';
 import logo from '../../assets/icons/logo.svg';
-import userAvatar from '../../assets/images/user-avatar.png';
-import home from '../../assets/icons/home.svg';
-import userProfile from '../../assets/icons/user-profile.svg';
-import logout from '../../assets/icons/logout.svg';
-import DeleteAccountModal from './DeleteAccountModal';
+import userAvatar from '../../assets/icons/login-user-avatar.svg';
 
 import HomeIcon from '../Icons/HomeIcon';
 import EditInfoIcon from '../Icons/EditInfoIcon';
 import LogoutIcon from '../Icons/LogoutIcon';
 
+import DeleteAccountModal from './DeleteAccountModal';
+
 const TourLeaderPanel = () => {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -26,44 +25,65 @@ const TourLeaderPanel = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
       });
 
       if (response.ok) {
-        localStorage.removeItem('authToken');
+        localStorage.removeItem('access_token');
         window.location.href = '/login';
       } else {
         const errorData = await response.json();
         alert('خطا: ' + (errorData.message || 'لطفاً دوباره تلاش کنید.'));
       }
     } catch (err) {
-      alert('مشکل در ارتباط با سرور.');      
+      alert('مشکل در ارتباط با سرور.');
     } finally {
       closeModal();
     }
   };
-    useEffect(() => {
-    getData();
-  }, []);
 
-  const getData = async () => {
-    try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/users/tourleaderdashboard/"
-      );
-      if (response && response.status === 200) {
-        // console.log(response.data.tours);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem('access_token');
+      if (!token) {
+        console.error('توکن وجود ندارد.');
         setLoading(false);
-      } else {
-        console.error("Failed to fetch data", response);
+        return;
+      }
+
+      try {
+        const response = await fetch(`${baseUrl}/api/users/oneuser/`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUserData(data);
+        } else {
+          console.error('دریافت اطلاعات کاربر ناموفق بود.');
+        }
+      } catch (err) {
+        console.error('خطا در دریافت اطلاعات:', err);
+      } finally {
         setLoading(false);
       }
-    } catch (error) {
-      console.error("Error during fetch: ", error);
-      setLoading(false);
-    }
-  };
+    };
+
+    fetchUserData();
+  }, []);
+
+  const baseUrl = "http://127.0.0.1:8000"; // دامنه سرور که عکس‌ها رو سرو می‌کنه
+
+  if (loading) {
+    return (
+      <div className="bg-white w-[23rem] h-[30rem] flex items-center justify-center">
+        <p>در حال بارگذاری...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white w-[23rem] h-[30rem] !max-h-3">
@@ -77,13 +97,21 @@ const TourLeaderPanel = () => {
       </div>
 
       <div className="flex flex-col justify-center w-full h-auto mt-[2rem] items-center">
-        <img src={userAvatar} alt="آواتار کاربر" className="w-[8.75rem] h-[8.75rem] rounded" />
-        <h4 className="!text-3xl !font-bold !mt-[0.875rem]" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>محمدرضا مرادی</h4>
-        <h4 className="!text-2xl !mt-[0.635rem] !mb-[3.5rem]" style={{ fontFamily: 'Vazirmatn', fontStyle: 400 }}>مسئول تور</h4>
+        <img
+          src={userData && userData.profile_image ? `${baseUrl}${userData.profile_image}` : userAvatar}
+          alt="آواتار کاربر"
+          className="w-[8.75rem] h-[8.75rem] rounded-full" 
+        />
+        <h4 className="!text-3xl !font-bold !mt-[0.875rem]" style={{ fontFamily: 'Vazirmatn', fontWeight: 500 }}>
+          {userData ? userData.username : 'نامشخص'}
+        </h4>
+        <h4 className="!text-2xl !mt-[0.635rem] !mb-[3.5rem]" style={{ fontFamily: 'Vazirmatn', fontStyle: 400 }}>
+          {userData ? (userData.role === 'tour_manager' ? 'مسئول تور' : userData.role) : ''}
+        </h4>
       </div>
 
       <div className="w-[23rem]">
-        <div 
+        <div
           className="relative 
                     h-[3.2875rem] 
                     flex
@@ -96,15 +124,13 @@ const TourLeaderPanel = () => {
                     hover:text-black
                     hover:font-bold
                     cursor-pointer
-                    group
-                    "
-                    
-            >
-          {/* <img src={home} alt="آیکون خانه" className="w-[1.625rem] h-[1.625rem]" /> */}
-          <HomeIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black"/>
+                    group"
+        >
+          <HomeIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black" />
           <a href="/"><span className="text-xl group-hover:text-black group-hover:font-bold">صفحه اصلی</span></a>
         </div>
-        <div className="relative 
+        <div
+          className="relative 
                         h-[3.2875rem] 
                         flex 
                         gap-[0.6rem] 
@@ -114,10 +140,9 @@ const TourLeaderPanel = () => {
                       hover:text-black
                         hover:font-bold
                         cursor-pointer
-                        group
-                        ">
-          {/* <img src={userProfile} alt="آیکون پروفایل کاربر" className="w-[1.625rem] h-[1.625rem]" /> */}
-          <EditInfoIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black"/>
+                        group"
+        >
+          <EditInfoIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black" />
           <a href="/profiletourleader"><span className="text-xl group-hover:text-black group-hover:font-bold text-black ">ویرایش اطلاعات</span></a>
         </div>
         <Toggle />
@@ -135,8 +160,7 @@ const TourLeaderPanel = () => {
                     group"
           onClick={openModal}
         >
-          {/* <img src={logout} alt="آیکون خروج" className="w-[1.625rem] h-[1.625rem]" /> */}
-          <LogoutIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black"/>
+          <LogoutIcon defualtColor="var(--color-gray)" hoverColor="black" className="group-hover:text-black" />
           <span className="text-xl group-hover:text-black group-hover:font-bold">حذف حساب کاربری</span>
         </div>
       </div>

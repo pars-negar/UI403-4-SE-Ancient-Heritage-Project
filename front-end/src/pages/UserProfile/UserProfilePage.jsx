@@ -1,8 +1,43 @@
 import UserPanel from "../../components/UserPanel/UserPanel";
 import dropDownIcon from '../../assets/icons/dropdown.svg';
 import userAvatar from '../../assets/images/user-avatar.png';
+import { useEffect, useState } from "react";
 
 const UserProfilePage = () => {
+    const baseUrl = "http://127.0.0.1:8000";
+    const [userData, setUserData] = useState(null);
+    useEffect(() => {
+        const fetchUserData = async () => {
+          const token = localStorage.getItem('access_token');
+          if (!token) {
+            console.error('توکن وجود ندارد.');
+            setLoading(false);
+            return;
+          }
+    
+          try {
+            const response = await fetch(`${baseUrl}/api/users/oneuser/`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+    
+            if (response.ok) {
+              const data = await response.json();
+              setUserData(data);
+            } else {
+              console.error('دریافت اطلاعات کاربر ناموفق بود.');
+            }
+          } catch (err) {
+            console.error('خطا در دریافت اطلاعات:', err);
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        fetchUserData();
+      }, []);
+
     return (
     <div className="flex h-screen">
         <div>
@@ -19,9 +54,15 @@ const UserProfilePage = () => {
 
                 <div className="bg-[#205781] text-white p-4 flex justify-between items-center rounded-t-[30px]">
                     <div className="flex items-center gap-4">
-                        <img src={userAvatar} alt="آواتار کاربر" className="w-[70px] h-[70px] rounded-full" />
+                        <img
+                            src={userData && userData.profile_image ? `${baseUrl}${userData.profile_image}` : userAvatar}
+                            alt="آواتار کاربر"
+                            className="w-[8.75rem] h-[8.75rem] rounded-full" 
+                        />
                         <div className="flex flex-col items-end">
-                            <p className="text-lg font-semibold" style={{fontFamily: 'Vazirmatn'}}>محمدرضا مرادی</p>
+                            <p className="text-lg font-semibold" style={{fontFamily: 'Vazirmatn'}}>
+                                {userData ? userData.username : 'نامشخص'}
+                            </p>
                         </div>
                     </div>
                 </div>

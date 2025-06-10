@@ -17,13 +17,13 @@ const DropDownIcon = ({ className }) => {
                 // onMouseEnter={() => setColor(hoverColor)}
                 // onMouseLeave={() => setColor(defualtColor)}
             >
-            <g clip-path="url(#clip0_2091_1897)">
+            <g clipPath="url(#clip0_2091_1897)">
             <path 
                 d="M0.642578 4.94981L8.54972 12.8569C8.60744 12.9184 8.67715 12.9675 8.75454 13.001C8.83194 13.0345 8.91538 13.0518 8.99972 13.0518C9.08406 13.0518 9.1675 13.0345 9.2449 13.001C9.3223 12.9675 9.39201 12.9184 9.44972 12.8569L17.3569 4.94981" 
                 stroke="currentColor" 
-                stroke-width="2" 
-                stroke-linecap="round" 
-                stroke-linejoin="round"/>
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"/>
             </g>
             <defs>
             <clipPath id="clip0_2091_1897">

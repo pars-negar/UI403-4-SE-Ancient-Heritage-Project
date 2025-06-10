@@ -16,20 +16,26 @@ class CustomUserAdmin(UserAdmin):
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('اطلاعات شخصی', {'fields': ('email', 'phone_number', 'role', 'is_verified','profile_image')}),
+        ('اطلاعات شخصی', {'fields': (
+            'email', 'phone_number', 'role', 'is_verified', 'profile_image',
+            'birth_date', 'national_code', 'province', 'city'  # اینجا فیلدهای جدید اضافه شدند
+        )}),
         ('دسترسی‌ها', {'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')}),
         ('تاریخ‌ها', {'fields': ('last_login', 'date_joined')}),
     )
-    
+
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'email', 'phone_number', 'role', 'password1', 'password2'),
+            'fields': (
+                'username', 'email', 'phone_number', 'role',
+                'birth_date', 'national_code', 'province', 'city',  # فیلدهای جدید اینجا هم اضافه شدند
+                'password1', 'password2'
+            ),
         }),
     )
-    
+
     def get_inline_instances(self, request, obj=None):
         if obj and obj.role == 'tour_manager':
             return [TourManagerProfileInline(self.model, self.admin_site)]
         return []
-

@@ -1,271 +1,498 @@
 import React, { useState } from 'react';
-import './CreateForm.css'
+import axios from 'axios';
 
-// کامپوننت‌های شما بدون تغییر باقی می‌مانند
-const ChevronDownIcon = () => (
-    <svg className="!absolute !left-2 !top-1/2 !-translate-y-1/2 !w-4 !h-4 !text-[#959494] pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-    </svg>
-  );
-  
-  const SectionTitle = ({ title }) => (
-    <div className="!flex !items-center !mb-5 !mt-8 first:!mt-0">
-      <h3 className="!text-[25px] !font-bold "style={{fontFamily: 'Vazirmatn', fontWeight: 700}}>{title}</h3>
-    </div>
-  );
-  
-  const FormRow = ({ children, className = "" }) => (
-    <div className={`!flex !flex-wrap md:!flex-nowrap !gap-x-6 !gap-y-4 !mb-4 ${className}`}>
-      {children}
-    </div>
-  );
-  
-  const FormFieldStacked = ({ label, htmlFor, children, className = "", fieldWrapperClassName = "!w-full" }) => (
-    <div className={`!mb-4 ${fieldWrapperClassName} ${className}`}>
-      <label htmlFor={htmlFor} className="!block !text-[18px] !mb-1 !text-right"style={{fontFamily: 'Vazirmatn', fontWeight: 700}}>
-        {label}
-      </label>
-      {children}
-    </div>
-  );
+const CreateTourForm = ({ token }) => {
+  // وضعیت ورودی‌ها
+  const [tourName, setTourName] = useState('');
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('normal');
 
-const CreateTourForm = () => {
-    // تعریف استایل‌ها
-    const inputBase = "!block !w-full !h-10 !px-3 !py-2 !border-2 !border-black !rounded-md !shadow-sm focus:!ring-indigo-500 focus:!border-indigo-500 !text-sm input-vazirmatn-style";
-    const inputDigit = "!block !text-black !w-full !h-10 !px-3 !py-2 !border-2 !border-black !rounded-md !shadow-sm focus:!ring-indigo-500 focus:!border-indigo-500 !text-[20px] font-koodak";
-    const datePartInputBase = "!block !w-full !h-10 !pr-3 !pl-7 !py-2 !border-2 !border-black !rounded-md !shadow-sm focus:!ring-indigo-500 focus:!border-indigo-500 !text-[25px] !text-right font-nazanin";
-    const textareaBase = "!block !w-full !px-3 !py-2 !border-2 !border-black !rounded-md !shadow-sm focus:!ring-indigo-500 focus:!border-indigo-500 !text-sm";
-    const buttonBase = "!inline-flex !items-center !justify-center !py-2 !border !border-transparent !text-[28px] !h-[6vh] !w-auto !rounded-lg !shadow-[#009688] !shadow-sm !text-white font-nazanin";
-    const primaryButton = `${buttonBase} !bg-[#205781] hover:!bg-[#143D5D] focus:!outline-none focus:!ring-2 focus:!ring-offset-2 focus:!ring-blue-500`;
-    const fileInputButtonStyled = `!bg-[#D9D9D9] hover:!bg-gray-400 !text-black !h-[3.8vh] !rounded-md !px-3 !text-[18px] font-koodak`;
-    const commonAddButtonClass = `${primaryButton} !py-2 !text-sm !w-auto`;
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
-    const [days, setDays] = useState([]);
-    const [guides, setGuides] = useState([]);
-    const [successMessage, setSuccessMessage] = useState('');
-    
-    // State های جدید برای مدیریت خطا، موفقیت و وضعیت ارسال
-    const [errorMessage, setErrorMessage] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+  const [departureTime, setDepartureTime] = useState('');
+  const [returnTime, setReturnTime] = useState('');
 
-    const handleAddDay = () => {
-        setDays([...days, { id: Date.now() }]);
-    };
+  const [price, setPrice] = useState('');
+  const [capacity, setCapacity] = useState('');
 
-    const handleAddGuide = () => {
-        setGuides([...guides, { id: Date.now() }]);
-    };
-    
-    // تابع برای مدیریت ارسال فرم
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        setSuccessMessage('');
-        setErrorMessage('');
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
 
-        const form = event.target;
-        const formData = new FormData(form);
-        let allFieldsFilled = true;
+  const [mainImage, setMainImage] = useState(null);
 
-        // 1. بررسی خالی نبودن تمام فیلدها (به جز فایل و دکمه)
-        for (const [name, value] of formData.entries()) {
-            const element = form.elements[name];
-            if (element.type !== 'file' && element.type !== 'button' && element.type !== 'submit') {
-                if (typeof value === 'string' && !value.trim()) {
-                    allFieldsFilled = false;
-                    break;
-                }
-            }
-        }
+  // جاذبه‌ها (یک آرایه از شناسه‌ها)
+  const [attractions, setAttractions] = useState([]);
 
-        if (!allFieldsFilled) {
-            setErrorMessage('لطفاً تمام فیلدهای متنی را پر کنید.');
-            return;
-        }
+  // متن‌های اضافه
+  const [accommodation, setAccommodation] = useState('');
+  const [mealDetails, setMealDetails] = useState('');
+  const [transportation, setTransportation] = useState('');
+  const [travelInsurance, setTravelInsurance] = useState('');
+  const [tourismServices, setTourismServices] = useState('');
+  const [tourGuidesInfo, setTourGuidesInfo] = useState([{ name: '', specialty: '' }]); // راهنماها به صورت آرایه آبجکت
 
-        // 2. ایجاد توکن و ارسال به بک‌اند
-        setIsLoading(true);
-        const tourToken = `TOUR_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
-        const dataToSend = Object.fromEntries(formData.entries());
+  // شرکت برگزارکننده
+  const [companyName, setCompanyName] = useState('');
+  const [companyAddress, setCompanyAddress] = useState('');
+  const [companyPhone, setCompanyPhone] = useState('');
+  const [companyEmail, setCompanyEmail] = useState('');
+  const [companyWebsite, setCompanyWebsite] = useState('');
 
-        console.log("Sending data to backend:", dataToSend);
-        console.log("With Token:", tourToken);
+  // برنامه روزانه (آرایه روزها)
+  const [dailySchedules, setDailySchedules] = useState([
+    { day_number: 1, title: 'روز اول', description: '', image: null },
+  ]);
 
-        try {
-            const response = await fetch('https://api.example.com/tours', { // آدرس API بک‌اند خود را اینجا قرار دهید
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${tourToken}`
-                },
-                body: JSON.stringify(dataToSend)
-            });
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
 
-            if (!response.ok) {
-                throw new Error('پاسخ سرور موفقیت‌آمیز نبود.');
-            }
+  // اضافه کردن روز جدید
+  const addDailySchedule = () => {
+    setDailySchedules(prev => [
+      ...prev,
+      {
+        day_number: prev.length + 1,
+        title: `روز ${prev.length + 1}`,
+        description: '',
+        image: null,
+      },
+    ]);
+  };
 
-            const result = await response.json();
-            console.log('Backend Response:', result);
+  // اضافه کردن راهنما جدید
+  const addTourGuide = () => {
+    setTourGuidesInfo(prev => [...prev, { name: '', specialty: '' }]);
+  };
 
-            // نمایش پیام موفقیت به همراه توکن
-            setSuccessMessage(`اطلاعات با موفقیت ثبت شد. توکن تور: ${tourToken}`);
+  // تغییر عکس روزانه
+  const handleDailyScheduleImageChange = (e, index) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setDailySchedules(prev => {
+      const copy = [...prev];
+      copy[index].image = file;
+      return copy;
+    });
+  };
 
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            setErrorMessage('خطا در ارسال اطلاعات. لطفاً دوباره تلاش کنید.');
-        } finally {
-            setIsLoading(false);
-        }
-    };
+  // تغییر اطلاعات راهنماها
+  const handleGuideChange = (index, field, value) => {
+    setTourGuidesInfo(prev => {
+      const copy = [...prev];
+      copy[index][field] = value;
+      return copy;
+    });
+  };
+
+  // ارسال فرم
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError('');
+  setSuccess('');
+
+  try {
+    const formData = new FormData();
+
+    formData.append('category', category);
+    formData.append('tour_name', tourName);
+    formData.append('description', description);
+    formData.append('start_date', startDate);
+    formData.append('end_date', endDate);
+    if (departureTime) formData.append('departure_time', departureTime);
+    if (returnTime) formData.append('return_time', returnTime);
+    formData.append('price', price);
+    formData.append('capacity', capacity);
+    formData.append('origin', origin);
+    formData.append('destination', destination);
+    if (mainImage) formData.append('main_image', mainImage);
+
+    // ارسال attractions به صورت چند مقدار
+    attractions.forEach(id => formData.append('attractions', id));
+
+    // ارسال متن‌های اضافی
+    formData.append('accommodation', accommodation);
+    formData.append('meal_details', mealDetails);
+    formData.append('transportation', transportation);
+    formData.append('travel_insurance', travelInsurance);
+    formData.append('tourism_services', tourismServices);
+
+    // tour_guides_info به صورت رشته JSON
+    formData.append('tour_guides_info', JSON.stringify(tourGuidesInfo));
+
+    // شرکت برگزارکننده
+    formData.append('company_name', companyName);
+    formData.append('company_address', companyAddress);
+    formData.append('company_phone', companyPhone);
+    formData.append('company_email', companyEmail);
+    formData.append('company_website', companyWebsite);
+
+    // daily_schedules به صورت رشته JSON (تصاویر را حذف کن یا جداگانه مدیریت کن)
+    const schedulesWithoutImages = dailySchedules.map(({ image, ...rest }) => rest);
+    formData.append('daily_schedules', JSON.stringify(schedulesWithoutImages));
+
+    // اگر بخواهی تصاویر روزانه را هم ارسال کنی باید جداگانه انجام شود، در اینجا ارسال نشده.
+
+    // درخواست API
+    const res = await axios.post(
+      'http://127.0.0.1:8000/api/homepage/dashboard/tours/create/',
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+
+    setSuccess('تور با موفقیت ساخته شد.');
+    setError('');
+  } catch (err) {
+    setError('خطا در ارسال فرم: ' + (err.response?.data || err.message));
+    setSuccess('');
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
-    <div className="bg-[var(--color-light-gray)] w-full h-auto flex flex-col justify-center items-center">
-        <hr className="bg-[--color-gray] w-full !mt-[2rem]"/>      
-        <div className="!flex justify-start !items-end !mb-3 w-full mr-[3.5rem]">
-            <h2 className="!text-[30px] !mb-6 border-r-4 border-[#205781] pr-1.5 " style={{fontFamily: 'Vazirmatn', fontWeight: 500}}>ثبت اطلاعات تور</h2>
-        </div>
+    <form onSubmit={handleSubmit} className="p-4 max-w-4xl mx-auto bg-white shadow rounded" dir="rtl">
+      <h2 className="text-xl font-bold mb-4">ایجاد تور جدید</h2>
 
-      <form onSubmit={handleSubmit} className="!bg-white w-[61.9375rem] !py-6 !px-[7.5rem] !rounded-lg !shadow !relative" noValidate>
-        
-        <SectionTitle title="اطلاعات کلی تور" />
-        <FormFieldStacked label="نام تور" htmlFor="tourName"><input type="text" name="tourName" id="tourName" className={inputBase} placeholder="تور اصفهان نوروز" /></FormFieldStacked>
-        <FormFieldStacked label="توضیحات تور" htmlFor="tourDescription"><textarea name="tourDescription" id="tourDescription" rows="3" className={textareaBase}></textarea></FormFieldStacked>
-        <FormRow>
-          <FormFieldStacked label="تصویر اصلی تور" htmlFor="mainImage_file_trigger" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><div className={`${inputBase} !p-0 !flex !items-center !overflow-hidden`}><label htmlFor="mainImage_file" className={`${fileInputButtonStyled} !cursor-pointer `}>فایلی انتخاب کنید</label><input type="file" name="mainImage_file" id="mainImage_file" className="!hidden" /><span className="!px-3 !text-sm !text-[#959494] !flex-grow">فایلی انتخاب نشده است</span></div></FormFieldStacked>
-          <FormFieldStacked label="قیمت (تومان)" htmlFor="price" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="price" id="price" className={inputDigit} placeholder="۴,۰۰۰,۰۰۰" /></FormFieldStacked>
-        </FormRow>
-        <FormRow>
-          <FormFieldStacked label="تاریخ شروع" htmlFor="startDate_day" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><div className="!flex !items-center !gap-2"><div className="!relative !flex-1"><input type="text" name="startDate_day" id="startDate_day" placeholder="روز" className={datePartInputBase} /><ChevronDownIcon /></div><div className="!relative !flex-1"><input type="text" name="startDate_month" id="startDate_month" placeholder="ماه" className={datePartInputBase} /><ChevronDownIcon /></div><div className="!relative !flex-1"><input type="text" name="startDate_year" id="startDate_year" placeholder="سال" className={datePartInputBase} /><ChevronDownIcon /></div></div></FormFieldStacked>
-          <FormFieldStacked label="ساعت حرکت" htmlFor="departureTime" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="departureTime" id="departureTime" className={inputDigit} placeholder="۰۸:۳۰" /></FormFieldStacked>
-        </FormRow>
-        <FormRow>
-          <FormFieldStacked label="تاریخ برگشت" htmlFor="returnDate_day" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><div className="!flex !items-center !gap-2"><div className="!relative !flex-1"><input type="text" name="returnDate_day" id="returnDate_day" placeholder="روز" className={datePartInputBase} /><ChevronDownIcon /></div><div className="!relative !flex-1"><input type="text" name="returnDate_month" id="returnDate_month" placeholder="ماه" className={datePartInputBase} /><ChevronDownIcon /></div><div className="!relative !flex-1"><input type="text" name="returnDate_year" id="returnDate_year" placeholder="سال" className={datePartInputBase} /><ChevronDownIcon /></div></div></FormFieldStacked>
-          <FormFieldStacked label="ساعت برگشت" htmlFor="returnTime" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="returnTime" id="returnTime" className={inputDigit} placeholder="۲۰:۰۰" /></FormFieldStacked>
-        </FormRow>
-         <FormRow>
-          <FormFieldStacked label="مبدا" htmlFor="origin" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="origin" id="origin" className={inputBase} /></FormFieldStacked>
-          <FormFieldStacked label="مقصد" htmlFor="destination" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="destination" id="destination" className={inputBase} /></FormFieldStacked>
-        </FormRow>
-        <FormRow>
-          <FormFieldStacked label="محل حرکت" htmlFor="departurePlace" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="departurePlace" id="departurePlace" className={inputBase} /></FormFieldStacked>
-          <FormFieldStacked label="ظرفیت" htmlFor="capacity" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="number" name="capacity" id="capacity" className={inputBase} /></FormFieldStacked>
-        </FormRow>
+      <label className="block mb-2">
+        دسته‌بندی:
+        <select
+          value={category}
+          onChange={e => setCategory(e.target.value)}
+          className="w-full border rounded p-2"
+        >
+          <option value="featured">پربازدید</option>
+          <option value="hidden">کمتر شناخته‌شده</option>
+          <option value="normal">معمولی</option>
+        </select>
+      </label>
 
-        <SectionTitle title="ویژگی های تور" />
-        <FormFieldStacked label="جاذبه ها" htmlFor="attractions"><input type="text" name="attractions" id="attractions" className={inputBase} /></FormFieldStacked>
-        <FormFieldStacked label="اقامت" htmlFor="accommodation"><input type="text" name="accommodation" id="accommodation" className={inputBase} /></FormFieldStacked>
-        <FormFieldStacked label="جزئیات وعده های غذایی" htmlFor="mealDetails"><input type="text" name="mealDetails" id="mealDetails" className={inputBase} /></FormFieldStacked>
-        <FormFieldStacked label="اطلاعات حمل و نقل" htmlFor="transportInfo"><input type="text" name="transportInfo" id="transportInfo" className={inputBase} /></FormFieldStacked>
-        <FormFieldStacked label="اطلاعات بیمه" htmlFor="insuranceInfo"><input type="text" name="insuranceInfo" id="insuranceInfo" className={inputBase} /></FormFieldStacked>
-        
-        <div id="daily-program-section">
-            <SectionTitle title="برنامه روزانه" />
-            <FormFieldStacked label="توضیحات برنامه روز اول" htmlFor="day1Description">
-              <textarea name="day1Description" id="day1Description" rows="3" className={textareaBase}></textarea>
-            </FormFieldStacked>
-            <FormFieldStacked label="تصویر روز اول" htmlFor="day1Image_file_trigger" fieldWrapperClassName="!w-[calc(50%-0.75rem)]">
-                <div className={`${inputBase} !p-0 !flex !items-center !overflow-hidden`}>
-                    <label htmlFor="day1Image_file" className={`${fileInputButtonStyled} !cursor-pointer`}>فایل انتخاب کنید</label>
-                    <span className="!px-3 !text-sm !text-gray-500 !flex-grow">فایلی انتخاب نشده است</span>
-                    <input type="file" name="day1Image_file" id="day1Image_file" className="!hidden" />
-                </div>
-            </FormFieldStacked>
-            
-            {days.map((day, index) => (
-                <div key={day.id} className="mt-6 border-t-2 border-gray-200 pt-4">
-                    <FormFieldStacked label={`توضیحات برنامه روز ${index + 2}`} htmlFor={`day${day.id}Description`}>
-                        <textarea name={`day${day.id}Description`} id={`day${day.id}Description`} rows="3" className={textareaBase}></textarea>
-                    </FormFieldStacked>
-                    <FormFieldStacked label={`تصویر روز ${index + 2}`} htmlFor={`day${day.id}Image_file_trigger`} fieldWrapperClassName="!w-[calc(50%-0.75rem)]">
-                        <div className={`${inputBase} !p-0 !flex !items-center !overflow-hidden`}>
-                            <label htmlFor={`day${day.id}Image_file`} className={`${fileInputButtonStyled} !cursor-pointer`}>فایل انتخاب کنید</label>
-                            <span className="!px-3 !text-sm !text-gray-500 !flex-grow">فایلی انتخاب نشده است</span>
-                            <input type="file" name={`day${day.id}Image_file`} id={`day${day.id}Image_file`} className="!hidden" />
-                        </div>
-                    </FormFieldStacked>
-                </div>
-            ))}
-        </div>
+      <label className="block mb-2">
+        نام تور:
+        <input
+          type="text"
+          value={tourName}
+          onChange={e => setTourName(e.target.value)}
+          required
+          className="w-full border rounded p-2"
+        />
+      </label>
 
-        <div className="!mt-4 !flex !justify-start !ml-[-34.8rem]">
-          <button type="button" onClick={handleAddDay} className={commonAddButtonClass}>
-            افزودن روز جدید
-          </button>
-        </div>
+      <label className="block mb-2">
+        توضیحات:
+        <textarea
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          required
+          className="w-full border rounded p-2"
+        />
+      </label>
 
-        <SectionTitle title="اطلاعات مسئول تور" />
-        <FormRow>
-          <FormFieldStacked label="نام و نام خانوادگی" htmlFor="leaderName" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="leaderName" id="leaderName" className={inputBase} /></FormFieldStacked>
-          <FormFieldStacked label="شماره تماس" htmlFor="leaderContact" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="leaderContact" id="leaderContact" className={inputBase} /></FormFieldStacked>
-        </FormRow>
-        <FormRow>
-           <FormFieldStacked label="ایمیل" htmlFor="leaderEmail" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="email" name="leaderEmail" id="leaderEmail" className={inputBase} /></FormFieldStacked>
-          <FormFieldStacked label="توضیحات" htmlFor="leaderDescription" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="leaderDescription" id="leaderDescription" className={inputBase} /></FormFieldStacked>
-        </FormRow>
-         <FormRow>
-          <FormFieldStacked label="عکس مسئول تور" htmlFor="leaderImage_file_trigger" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]">
-            <div className={`${inputBase} !p-0 !flex !items-center !overflow-hidden`}>
-             <label htmlFor="leaderImage_file" className={`${fileInputButtonStyled} !cursor-pointer`}>فایل انتخاب کنید</label>
-               <span className="!px-3 !text-sm !text-gray-500 !flex-grow">فایلی انتخاب نشده است</span>
-               <input type="file" name="leaderImage_file" id="leaderImage_file" className="!hidden" />
-            </div>
-          </FormFieldStacked>
-           <div className="!w-full md:!w-[calc(50%-0.75rem)]"></div> {/* Spacer */}
-         </FormRow>
+      <label className="block mb-2">
+        تاریخ شروع:
+        <input
+          type="date"
+          value={startDate}
+          onChange={e => setStartDate(e.target.value)}
+          required
+          className="w-full border rounded p-2"
+        />
+      </label>
 
-        <div id="tour-guides-section">
-            <SectionTitle title="اطلاعات راهنمایان تور" />
-            <FormRow>
-              <FormFieldStacked label="نام و نام خانوادگی" htmlFor="guideName1" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="guideName1" id="guideName1" className={inputBase} /></FormFieldStacked>
-              <FormFieldStacked label="تخصص" htmlFor="guideSpecialty1" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="guideSpecialty1" id="guideSpecialty1" className={inputBase} /></FormFieldStacked>
-            </FormRow>
-            
-            {guides.map((guide, index) => (
-                <FormRow key={guide.id} className="mt-4 border-t-2 border-gray-200 pt-4">
-                    <FormFieldStacked label={`نام و نام خانوادگی راهنمای ${index + 2}`} htmlFor={`guideName${guide.id}`} fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name={`guideName${guide.id}`} id={`guideName${guide.id}`} className={inputBase} /></FormFieldStacked>
-                    <FormFieldStacked label={`تخصص راهنمای ${index + 2}`} htmlFor={`guideSpecialty${guide.id}`} fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name={`guideSpecialty${guide.id}`} id={`guideSpecialty${guide.id}`} className={inputBase} /></FormFieldStacked>
-                </FormRow>
-            ))}
-        </div>
-        
-        <div className="!mt-4 !flex !justify-start !ml-[-36.8rem]"> 
-          <button type="button" onClick={handleAddGuide} className={commonAddButtonClass}>
-            افزودن راهنما
-          </button>
-        </div>
+      <label className="block mb-2">
+        تاریخ بازگشت:
+        <input
+          type="date"
+          value={endDate}
+          onChange={e => setEndDate(e.target.value)}
+          required
+          className="w-full border rounded p-2"
+        />
+      </label>
 
-        <SectionTitle title="اطلاعات شرکت برگزارکننده" />
-        <FormRow>
-          <FormFieldStacked label="نام شرکت" htmlFor="companyName" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="companyName" id="companyName" className={inputBase} /></FormFieldStacked>
-          <FormFieldStacked label="تلفن" htmlFor="companyPhone" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="text" name="companyPhone" id="companyPhone" className={inputBase} /></FormFieldStacked>
-        </FormRow>
-         <FormRow>
-           <FormFieldStacked label="ایمیل" htmlFor="companyEmail" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="email" name="companyEmail" id="companyEmail" className={inputBase} /></FormFieldStacked>
-          <FormFieldStacked label="وبسایت" htmlFor="companyWebsite" fieldWrapperClassName="!w-full md:!w-[calc(50%-0.75rem)]"><input type="url" name="companyWebsite" id="companyWebsite" className={inputBase} /></FormFieldStacked>
-        </FormRow>
-        <FormFieldStacked label="آدرس" htmlFor="companyAddress">
-          <textarea name="companyAddress" id="companyAddress" rows="3" className={textareaBase}></textarea>
-        </FormFieldStacked>
+      <label className="block mb-2">
+        ساعت حرکت:
+        <input
+          type="time"
+          value={departureTime}
+          onChange={e => setDepartureTime(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
 
-        <div className="!mt-10 !pt-5 !pb-12"> 
-            {/* نمایش پیام خطا */}
-            {errorMessage && (
-                <div className="!absolute !bottom-[5.5rem] !right-[2rem] !left-[2rem] !text-red-700 !font-bold !bg-red-100 !p-3 !rounded-md !text-center">
-                    {errorMessage}
-                </div>
-            )}
-            {/* نمایش پیام موفقیت */}
-            {successMessage && (
-                <div className="!absolute !bottom-[5.5rem] !right-[2rem] !left-[2rem] !text-green-700 !font-bold !bg-green-100 !p-3 !rounded-md !text-center !break-words">
-                    {successMessage}
-                </div>
-            )}
-          <button type="submit" className={`${primaryButton} !py-2.5 !text-sm !w-auto !absolute !bottom-6 !left-[2rem]`} disabled={isLoading}>
-            {isLoading ? 'در حال ارسال...' : 'ثبت اطلاعات'}
-          </button>
-        </div>
-      </form>
-    </div>
+      <label className="block mb-2">
+        ساعت برگشت:
+        <input
+          type="time"
+          value={returnTime}
+          onChange={e => setReturnTime(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        قیمت:
+        <input
+          type="number"
+          step="0.01"
+          value={price}
+          onChange={e => setPrice(e.target.value)}
+          required
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        ظرفیت:
+        <input
+          type="number"
+          value={capacity}
+          onChange={e => setCapacity(e.target.value)}
+          required
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        مبدا:
+        <input
+          type="text"
+          value={origin}
+          onChange={e => setOrigin(e.target.value)}
+          required
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        مقصد:
+        <input
+          type="text"
+          value={destination}
+          onChange={e => setDestination(e.target.value)}
+          required
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        عکس اصلی تور:
+        <input
+          type="file"
+          accept="image/*"
+          onChange={e => setMainImage(e.target.files[0])}
+          className="w-full"
+        />
+      </label>
+
+      {/* جاذبه‌ها */}
+      <label className="block mb-2">
+        جاذبه‌ها (شناسه‌ها را با کاما جدا کنید):
+        <input
+          type="text"
+          placeholder="مثلاً: 1,2,3"
+          onChange={e => {
+            const vals = e.target.value.split(',').map(v => v.trim()).filter(v => v);
+            setAttractions(vals);
+          }}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      {/* متن‌های اضافی */}
+      <label className="block mb-2">
+        اقامتگاه:
+        <textarea
+          value={accommodation}
+          onChange={e => setAccommodation(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        جزئیات غذا:
+        <textarea
+          value={mealDetails}
+          onChange={e => setMealDetails(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        حمل و نقل:
+        <textarea
+          value={transportation}
+          onChange={e => setTransportation(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        بیمه مسافرتی:
+        <textarea
+          value={travelInsurance}
+          onChange={e => setTravelInsurance(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        خدمات گردشگری:
+        <textarea
+          value={tourismServices}
+          onChange={e => setTourismServices(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      {/* راهنماهای تور */}
+      <div className="mb-4">
+        <h3 className="font-semibold mb-2">راهنماهای تور</h3>
+        {tourGuidesInfo.map((guide, idx) => (
+          <div key={idx} className="mb-2 border p-2 rounded">
+            <label>
+              نام:
+              <input
+                type="text"
+                value={guide.name}
+                onChange={e => handleGuideChange(idx, 'name', e.target.value)}
+                className="w-full border rounded p-1"
+              />
+            </label>
+            <label>
+              تخصص:
+              <input
+                type="text"
+                value={guide.specialty}
+                onChange={e => handleGuideChange(idx, 'specialty', e.target.value)}
+                className="w-full border rounded p-1"
+              />
+            </label>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={addTourGuide}
+          className="bg-blue-500 text-white px-3 py-1 rounded"
+        >
+          اضافه کردن راهنما
+        </button>
+      </div>
+
+      {/* برنامه روزانه */}
+      <div className="mb-4">
+        <h3 className="font-semibold mb-2">برنامه روزانه</h3>
+        {dailySchedules.map((day, idx) => (
+          <div key={idx} className="mb-3 border p-2 rounded">
+            <p className="font-semibold">{day.title}</p>
+            <label>
+              شرح:
+              <textarea
+                value={day.description}
+                onChange={e => {
+                  const val = e.target.value;
+                  setDailySchedules(prev => {
+                    const copy = [...prev];
+                    copy[idx].description = val;
+                    return copy;
+                  });
+                }}
+                className="w-full border rounded p-1"
+              />
+            </label>
+            <label>
+              تصویر:
+              <input
+                type="file"
+                accept="image/*"
+                onChange={e => handleDailyScheduleImageChange(e, idx)}
+                className="w-full"
+              />
+            </label>
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={addDailySchedule}
+          className="bg-green-500 text-white px-3 py-1 rounded"
+        >
+          اضافه کردن روز
+        </button>
+      </div>
+
+      {/* شرکت برگزارکننده */}
+      <h3 className="font-semibold mb-2">شرکت برگزارکننده</h3>
+
+      <label className="block mb-2">
+        نام شرکت:
+        <input
+          type="text"
+          value={companyName}
+          onChange={e => setCompanyName(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        آدرس شرکت:
+        <input
+          type="text"
+          value={companyAddress}
+          onChange={e => setCompanyAddress(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        تلفن شرکت:
+        <input
+          type="tel"
+          value={companyPhone}
+          onChange={e => setCompanyPhone(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        ایمیل شرکت:
+        <input
+          type="email"
+          value={companyEmail}
+          onChange={e => setCompanyEmail(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      <label className="block mb-2">
+        وب‌سایت شرکت:
+        <input
+          type="url"
+          value={companyWebsite}
+          onChange={e => setCompanyWebsite(e.target.value)}
+          className="w-full border rounded p-2"
+        />
+      </label>
+
+      {/* نمایش خطا یا موفقیت */}
+      {error && <p className="text-red-600 mb-2">{error}</p>}
+      {success && <p className="text-green-600 mb-2">{success}</p>}
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="bg-blue-700 text-white px-4 py-2 rounded"
+      >
+        {loading ? 'در حال ارسال...' : 'ارسال تور'}
+      </button>
+    </form>
   );
 };
 
