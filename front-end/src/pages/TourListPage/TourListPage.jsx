@@ -4,14 +4,13 @@ import axios from 'axios';
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import SearchBox from "../../components/SearchBox/SearchBox";
-import TourInfoCard from "../../components/Card/TourInfoCard"; // از TourInfoCard استفاده می‌کنیم
+import TourInfoCard from "../../components/Card/TourInfoCard";
 import TourTab from "../../components/TourTab/TourTab";
 
 
 const TourListPage = () => {
     const [allTours, setAllTours] = useState([]);
     const [loading, setLoading] = useState(true);
-    // const [activeTab, setActiveTab] = useState() // این خط به نظر بلااستفاده می‌آید و حذف شد
 
     useEffect(() => {
         getTourList();
@@ -60,15 +59,15 @@ const TourListPage = () => {
                         ) : (
                             allTours && allTours.length > 0 ? (
                                 allTours.map( (tour) => (
-                                    <div className="max-w-[700px]" key={tour.id}> {/* key را به div بیرونی اضافه کردیم */}
+                                    <div className="max-w-[700px]" key={tour.id}>
                                         <TourInfoCard 
                                             title={tour.title}
                                             destination={tour.destination}
                                             duration={tour.duration ? `${tour.duration} روز` : null}
                                             price={tour.price}
                                             imageUrl={tour.card2ImageUrl}
-                                            isTop={false} // در TourListPage ما فقط لیست "همه تورها" را نمایش می‌دهیم، پس isTop را false در نظر می‌گیریم
-                                            tourId={tour.id} // اینجا id تور را پاس می‌دهیم
+                                            isTop={false}
+                                            tourId={tour.id}
                                         />
                                     </div>
                                 ))
