@@ -7,7 +7,7 @@ import DeleteTourModal from './DeleteTourModal';
 import axios from 'axios';
 
 const ProfileTourInfoForTourLeader = () => {
-  const { id } = useParams();
+  const { tourId } = useParams();
   const navigate = useNavigate();
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -25,7 +25,7 @@ const ProfileTourInfoForTourLeader = () => {
       }
       try {
         const res = await axios.get(
-          `http://127.0.0.1:8000/api/homepage/dashboard/tours/${id}/`,
+          `http://127.0.0.1:8000/api/homepage/dashboard/tours/${tourId}/`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setTourData(res.data);
@@ -41,7 +41,7 @@ const ProfileTourInfoForTourLeader = () => {
       }
     };
     fetchTour();
-  }, [id, navigate, token]);
+  }, [tourId, navigate, token]);
 
   const openModal = () => setIsDeleteModalOpen(true);
   const closeModal = () => setIsDeleteModalOpen(false);
@@ -71,7 +71,11 @@ const ProfileTourInfoForTourLeader = () => {
       <div className='flex gap-[1rem] mt-[2rem] mr-[25rem] mb-[15rem]'>
         <button className='bg-[var(--color-dark-blue)] rounded-[13px] !w-[10rem] !h-[2.5rem] flex items-center justify-center !text-xl' style={{ fontFamily: 'Gandom' }}>ویرایش تور</button>
         <button className='text-black bg-[var(--color-orange)] rounded-[13px] ...' style={{ fontFamily: 'Gandom' }} onClick={openModal}>حذف تور</button>
-        <a href="/trp"><button className='bg-[var(--color-dark-blue)] rounded-[13px] ...' style={{ fontFamily: 'Gandom' }}>مشاهده خریداران</button></a>
+        <Link to={`/trp/${tourId}`}>
+          <button className="bg-[var(--color-dark-blue)] rounded-[13px] ..." style={{ fontFamily: 'Gandom' }}>
+            مشاهده خریداران
+          </button>
+        </Link>
       </div>
 
       <DeleteTourModal isOpen={isDeleteModalOpen} onClose={closeModal} onDeleteConfirm={confirmDelete} />

@@ -1,6 +1,7 @@
+// src/components/ShoppingCart.jsx
 import React from "react";
 
-const ShoppingCart = ({ tourInfo, totalPrice, onSubmit }) => {
+const ShoppingCart = ({ tourInfo, totalPrice, buttonLink }) => {
   return (
     <div
       className="max-w-2xl mx-auto mt-10 mb-12 p-6 rounded-md text-right"
@@ -40,17 +41,14 @@ const ShoppingCart = ({ tourInfo, totalPrice, onSubmit }) => {
         </span>
       </div>
       <div className="text-center">
-        <button
-          onClick={(e) => {
-            e.preventDefault(); // جلوگیری از رفتار پیش‌فرض
-            onSubmit();
-          }}
-          className="bg-[#205781] hover:bg-[#1a4a6c] text-white py-2 rounded-md !w-40"
-          style={{ fontFamily: "gandom", fontWeight: 500 }}
-        >
-          ادامه خرید
-        </button>
-
+        <a href="/zarin">
+          <button
+            className="bg-[#205781] hover:bg-[#1a4a6c] text-white py-2 rounded-md !w-40"
+            style={{ fontFamily: "gandom", fontWeight: 500 }}
+          >
+            ادامه خرید
+          </button>
+        </a>
       </div>
     </div>
   );

@@ -159,9 +159,50 @@ SPECTACULAR_SETTINGS = {
 }
 
 # ───── CORS Settings ─────
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-CORS_ALLOW_HEADERS = ["authorization", "content-type"]
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+# CORS_ALLOW_HEADERS = ["authorization", "content-type"]
+
+# In: settings.py
+
+# ==============================================================================
+# CORS (Cross-Origin Resource Sharing) SETTINGS
+# ==============================================================================
+
+# آدرس‌هایی که مجاز به ارسال درخواست به بک‌اند شما هستند.
+# آدرس فرانت‌اند ری‌اکت خود را اینجا وارد کنید.
+# (پورت 5174 یک پورت رایج برای Vite/React است، اگر مال شما فرق دارد آن را تغییر دهید)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+# اگر می‌خواهید به صورت موقت برای تست به همه دامنه‌ها اجازه دهید (امنیت کمتر)
+# می‌توانید از خط زیر استفاده کنید:
+# CORS_ALLOW_ALL_ORIGINS = True
+
+
+# ✅✅✅ مهم‌ترین بخش برای حل مشکل شما اینجاست
+# این لیست به مرورگر می‌گوید کدام هدرها در درخواست مجاز هستند.
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "authorization",  # <<<<<<<<<<<<<<< ما باید این هدر را صریحاً مجاز کنیم
+    "content-type",
+    "origin",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+# متدهای HTTP که مجاز هستند
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
 
 # ───── Email Settings ─────
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

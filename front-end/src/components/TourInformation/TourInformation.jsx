@@ -242,15 +242,24 @@ const TourInformation = () => {
             style={{ fontFamily: "Vazirmatn" }}
           >
             {/* بخش اطلاعات مسئول تور */}
+
             {tour.tour_manager_info && (
-              <div className="mb-12">
-                <h3 className="text-3xl font-bold mb-6">اطلاعات مسئول تور</h3>
-                <div className="flex items-center justify-between p-6 bg-gray-50 rounded-lg">
+              <div className="mb-12 !w-full">
+                <hr class="w-full border-3 !border-[#FB8101]" />
+                <div className=" flex justify-start items-center w-full">
+                  <h1
+                    className="!text-[25px] !mb-5"
+                    style={{ fontFamily: "Vazirmatn", fontWeight: 700 }}
+                  >
+                    اطلاعات مسئول تور
+                  </h1>
+                </div>{" "}
+                <div className="flex items-center justify-beetwen gap-5  rounded-lg">
                   <div>
                     <img
                       src={tour.tour_manager_info.profile_image}
                       alt={`عکس ${tour.tour_manager_info.username}`}
-                      className="w-40 h-40 rounded-full object-cover border-4 border-orange-300"
+                      className=" w-40 h-40 rounded-full object-cover"
                     />
                   </div>
                   <div className="text-xl leading-10">
@@ -275,8 +284,13 @@ const TourInformation = () => {
             {/* بخش راهنمایان تور */}
             {Array.isArray(tour.guides) && tour.guides.length > 0 && (
               <div className="mb-12">
-                <h3 className="text-3xl font-bold mb-6">راهنمایان تور</h3>
-                <div className="p-6 bg-gray-50 rounded-lg text-xl leading-9">
+                <h1
+                  className="!text-[25px] !mb-5"
+                  style={{ fontFamily: "Vazirmatn", fontWeight: 700 }}
+                >
+                  راهنمایان تور
+                </h1>{" "}
+                <div className="p-6 rounded-lg text-xl leading-9">
                   {tour.guides.map((guide, index) => (
                     <p key={index}>
                       {guide.name} - راهنمای {guide.type}
@@ -288,10 +302,13 @@ const TourInformation = () => {
 
             {/* بخش اطلاعات شرکت برگزار کننده */}
             <div className="mb-12">
-              <h3 className="text-3xl font-bold mb-6">
+              <h1
+                className="!text-[25px] !mb-5"
+                style={{ fontFamily: "Vazirmatn", fontWeight: 700 }}
+              >
                 اطلاعات شرکت برگزار کننده
-              </h3>
-              <div className="p-6 bg-gray-50 rounded-lg text-xl leading-10">
+              </h1>
+              <div className="p-6 rounded-lg text-xl leading-10">
                 <p>
                   <span className="font-semibold">شرکت گردشگری: </span>
                   {tour.company_name}
@@ -321,6 +338,7 @@ const TourInformation = () => {
                 </p>
                 <p className="font-semibold">مجوز رسمی از سازمان گردشگری</p>
               </div>
+              <hr class="w-full border-3 !border-[#FB8101]" />
             </div>
           </div>
         </>
